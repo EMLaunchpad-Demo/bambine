@@ -74,3 +74,12 @@ De pagina is opgebouwd volgens de EM Launchpad-conventies en kan als custom HTML
 GoHighLevel geplakt worden. Voor GHL: laat de `<!DOCTYPE>`, `<html>`, `<head>` en `<body>`
 weg en plak enkel de inhoud daarbinnen; SEO-metatags stel je in via de pagina-instellingen
 van GHL.
+
+---
+
+## Andere demo's in deze repo
+
+- **[`bambine/`](bambine/)** — conceptsite voor Bambine babywellness & mamazorg (Lommel).
+  Zes pagina's, zelf gehoste fonts, echte SVG-iconen, LocalBusiness-structured data.
+  [Live preview](https://claude.ai/code/artifact/028ac88e-6ae9-40c6-bd1e-4444dac759ca) ·
+  [compositienota](composition-local-service-booking-bambine.md)

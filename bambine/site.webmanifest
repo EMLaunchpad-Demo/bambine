@@ -1,0 +1,13 @@
+{
+  "name": "Bambine babywellness & mamazorg",
+  "short_name": "Bambine",
+  "description": "Babywellness, zwangerschapsmassage en verwenmomenten in Lommel.",
+  "lang": "nl-BE",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fcf8f3",
+  "theme_color": "#10403e",
+  "icons": [
+    { "src": "favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }
+  ]
+}
