@@ -28,13 +28,14 @@ Register: *image-led, warm-editorial* — geen SaaS-airy landingspagina, maar oo
 storefront-dichtheid van een catalogus. Baby-wellness verkoopt rust; de pagina moet rust tonen
 en tegelijk alle harde feiten binnen handbereik houden.
 
-- **Boven de vouw op desktop: 3 modules** — kop + lead, boekingskaart, fotocollage met
-  36 °C-badge; direct daaronder de vertrouwensstrook met vier feiten.
+- **Boven de vouw op desktop: 3 modules**: kop + lead, boekingskaart, en het beeld rechts.
+  Direct daaronder de vertrouwensstrook met vier feiten.
 - Ruime witruimte, maar de informatie is dicht: prijzen, leeftijdsgrens, watertemperatuur en
   adres staan alle vier binnen één schermhoogte na de hero.
 - Visueel register (kleur, type, radius) → `design-standards` / `creative-direction`.
-  Hier vastgelegd: warm crème als grond, diep teal als donkere ankers, terracotta als enige
-  actiekleur, en een tint per dienstfamilie (aqua = baby, blush = mama, goud = kids).
+  Hier vastgelegd: linnen als grond, sage-groen als donkere ankers, klei als enige actiekleur,
+  en een zachte tint per dienstfamilie (sage = baby, blush = mama, zand = kids). Het palet is
+  ontleend aan de foto die de klant aanleverde, niet aan een bedacht kleurenschema.
 
 ## 3. Merchandising- en categorieoppervlak
 
@@ -62,8 +63,8 @@ en tegelijk alle harde feiten binnen handbereik houden.
 Warm, nabij, Vlaams, zonder zweverigheid. Die toon is doorgetrokken tot in de randen:
 navigatie ("Kies je moment"), lege staten, formulierlabels ("Iets dat we moeten weten?"),
 de bevestiging na verzenden en de footer. Beeldhouding is consequent documentair-warm:
-geen illustratie-stijlbreuk halverwege. De fotovlakken zijn duotoonverlopen in de merkkleuren
-met korrel — bewust ontworpen, geen grijze blokken — zodat het beeldritme nu al klopt.
+geen illustratie-stijlbreuk halverwege. De nog lege fotovlakken zijn
+bijna-monochrome linnenvlakken met korrel, dus ze vallen niet op als gekleurde blokken.
 
 ## 6. Vertrouwens- en conversiesignalen
 
@@ -108,7 +109,8 @@ staat in plaats van van een wellnessbrochure.
 ## Hand-off
 
 - **Foto's** — 14 slots, elk met een `<!-- FOTO-SLOT -->`-commentaar en de gewenste beeldinhoud.
-  Invullen gebeurt per slot met `style="--img:url('assets/img/….jpg')"`.
+  Invullen gebeurt per slot met `style="background-image:url('assets/img/….jpg')"`.
+  Eén foto is al aangeleverd en staat in de hero en de galerij.
 - **`design-standards`** — tokens staan in `bambine/assets/css/site.css` (sectie 1). Kleur, radius
   en schaal zijn daar centraal; niets is hardgecodeerd in de pagina's.
 - **`frontend-component-build`** — het boekingsformulier is nu een demo; koppelen aan de echte

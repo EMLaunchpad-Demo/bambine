@@ -41,44 +41,52 @@ gegenereerde bestanden en laat `build.py` achterwege.
 
 ## Ontwerp
 
+Het palet komt uit de aangeleverde foto: gebreid sage-groen, mousseline, warm beige.
+
 | Rol | Kleur |
 |---|---|
-| Grond (crème) | `#fcf8f3` |
-| Diep water (donkere secties) | `#10403e` |
-| Teal (accenten, water) | `#2e706a` |
-| Terracotta (enige actiekleur) | `#b15a41` |
-| Aqua (baby) / blush (mama) / goud (kids) | `#8fc7c1` / `#eac3b6` / `#cf9a4f` |
+| Grond (linnen) | `#f4f1ea` |
+| Kaarten (papier) | `#fbf9f5` |
+| Sage (accenten, tekst) | `#5c6b50` |
+| Sage donker (donkere secties, knop) | `#46523c` |
+| Klei (warme accentkleur, knoppen) | `#8f5f45` |
+| Zand / sage zacht | `#e2d9c9` / `#dde1d4` |
 
-Typografie: **Fraunces** (display, variabel — met SOFT- en WONK-as voor de zachte vorm)
-en **Inter** (UI). Beide zelf gehost in `assets/fonts/`, dus geen verbinding met Google
-tijdens het bezoek (AVG/GDPR + snelheid).
+Typografie: **Fraunces** (display, variabel, met zachte SOFT-as en WONK uit) en
+**Mulish** (UI, humanistisch en zacht). Beide zelf gehost in `assets/fonts/`, dus geen
+verbinding met Google tijdens het bezoek (AVG/GDPR + snelheid).
 
 Iconen zijn echte SVG-iconen uit [Lucide](https://lucide.dev) (ISC) en
 [Simple Icons](https://simpleicons.org) (CC0), samengevoegd tot één inline sprite.
 
-Animaties: reveal-on-scroll, voortgangslijn in de tijdlijn, tellers, drijvende belletjes,
-rimpelingen in het water, paginaovergangen via de View Transitions API. Alles valt stil bij
-`prefers-reduced-motion: reduce`.
+Animaties zijn bewust ingehouden: reveal-on-scroll, een voortgangslijn in de tijdlijn,
+tellende cijfers, lichte parallax in de galerij en paginaovergangen via de View Transitions
+API. Alles valt stil bij `prefers-reduced-motion: reduce`.
 
 ## Foto's toevoegen
 
-De site is foto-gedreven opgebouwd. Elk beeldvlak is een `.photo`-blok met een
-duotoonverloop in de merkkleuren als tijdelijke invulling; er zijn **14 slots**, elk
-gemarkeerd met `<!-- FOTO-SLOT: … -->` in `src/`.
+De site is foto-gedreven opgebouwd. Twee vlakken bevatten al de aangeleverde foto
+(`assets/img/baby-knuffel.webp`). De overige beeldvlakken zijn `.photo`-blokken met een
+rustig linnen verloop in de merkkleuren als tijdelijke invulling, elk gemarkeerd met
+`<!-- FOTO-SLOT: … -->` in `src/`.
 
-Een echte foto zet je erin met één custom property:
+Een echte foto zet je erin met één attribuut:
 
 ```html
-<div class="photo ratio-4-5 blob-1" style="--img:url('assets/img/hero-baby.jpg')" …>
+<div class="photo ratio-4-5 arch" style="background-image:url('assets/img/hero-baby.jpg')" …>
 ```
 
-Het verloop blijft eronder staan als de foto nog laadt, en het icoontje in het midden
-verdwijnt automatisch zodra `--img` gezet is. Pas ook de `aria-label` aan zodat die de
-foto beschrijft.
+Het icoontje in het midden verdwijnt dan automatisch. Pas ook de `aria-label` aan zodat die
+de foto beschrijft. Let op: gebruik géén CSS-variabele voor het pad — een `url()` in een
+custom property wordt relatief aan het stylesheet opgelost, niet aan de pagina.
 
 ## Nog na te kijken vóór livegang
 
-- **Foto's** van de praktijk, de badruimte, Ine en de cadeauhoek.
+- **Logo.** `Babywellness_transparant.png` en `voetjes_transparant.png` staan op bambine.be
+  maar zijn vanuit deze omgeving niet te downloaden. Zet ze in `assets/img/` en vervang het
+  woordmerk in de header (`BRAND` in `build.py`).
+- **Foto's** van de praktijk, de badruimte, Ine en de cadeauhoek. Eén foto is aangeleverd en
+  staat in de hero en de galerij; de rest van de slots wacht nog.
 - **Reviews** — de drie citaten zijn voorbeeldteksten en staan ook zo gemarkeerd; te
   vervangen door echte reacties (Google, Facebook).
 - **Openingsuren** — nergens publiek gevonden; nu staat er enkel "op afspraak".
