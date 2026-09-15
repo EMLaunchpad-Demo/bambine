@@ -11,83 +11,13 @@
         en geen haast.
       </p>
 
-      <!-- Primaire taak: kiezen en boeken, meteen in beeld -->
-      <div class="booker" data-reveal style="--d:240ms" id="kiezen">
-        <div class="booker-head">
-          <h2>Kies je moment</h2>
-          <span>Tarieven incl. btw</span>
-        </div>
-
-        <div data-tabs>
-          <div class="tabs" role="tablist" aria-label="Voor wie boek je?">
-            <button class="tab" role="tab" id="tab-baby" aria-controls="panel-baby" aria-selected="true" type="button">
-              <svg class="ico" aria-hidden="true"><use href="#i-baby"></use></svg>Baby
-            </button>
-            <button class="tab" role="tab" id="tab-mama" aria-controls="panel-mama" aria-selected="false" tabindex="-1" type="button">
-              <svg class="ico" aria-hidden="true"><use href="#i-flower-2"></use></svg>Mama
-            </button>
-            <button class="tab" role="tab" id="tab-kids" aria-controls="panel-kids" aria-selected="false" tabindex="-1" type="button">
-              <svg class="ico" aria-hidden="true"><use href="#i-sparkles"></use></svg>Kids
-            </button>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="panel-baby" aria-labelledby="tab-baby">
-            <button class="opt" type="button" aria-pressed="false" data-name="Hydrotherapie" data-duration="30 min" data-price="€ 55">
-              <span class="opt-radio" aria-hidden="true"></span>
-              <span><span class="opt-name">Hydrotherapie</span><span class="opt-dur">30 minuten in het warme water</span></span>
-              <span class="opt-price">€ 55</span>
-            </button>
-            <button class="opt" type="button" aria-pressed="false" data-name="Hydrotherapie &amp; Shantala" data-duration="1 u 10" data-price="€ 75">
-              <span class="opt-radio" aria-hidden="true"></span>
-              <span><span class="opt-name">Hydrotherapie &amp; Shantala</span><span class="opt-dur">30 min bad, daarna 40 min babymassage</span></span>
-              <span class="opt-price">€ 75<small>meest gekozen</small></span>
-            </button>
-            <button class="opt" type="button" aria-pressed="false" data-name="Duosessie" data-duration="1 uur" data-price="€ 150">
-              <span class="opt-radio" aria-hidden="true"></span>
-              <span><span class="opt-name">Duosessie</span><span class="opt-dur">Samen met een vriendin, elk je eigen baby</span></span>
-              <span class="opt-price">€ 150</span>
-            </button>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="panel-mama" aria-labelledby="tab-mama" hidden>
-            <button class="opt" type="button" aria-pressed="false" data-name="Zwangerschapsmassage" data-duration="op afspraak" data-price="op aanvraag">
-              <span class="opt-radio" aria-hidden="true"></span>
-              <span><span class="opt-name">Zwangerschapsmassage</span><span class="opt-dur">In elke fase van je zwangerschap</span></span>
-              <span class="opt-price" style="font-size:.95rem">op aanvraag</span>
-            </button>
-            <button class="opt" type="button" aria-pressed="false" data-name="Ontspanningsmassage" data-duration="op afspraak" data-price="op aanvraag">
-              <span class="opt-radio" aria-hidden="true"></span>
-              <span><span class="opt-name">Ontspanningsmassage</span><span class="opt-dur">Voor elke vrouw, met of zonder kinderen</span></span>
-              <span class="opt-price" style="font-size:.95rem">op aanvraag</span>
-            </button>
-          </div>
-
-          <div class="tabpanel" role="tabpanel" id="panel-kids" aria-labelledby="tab-kids" hidden>
-            <button class="opt" type="button" aria-pressed="false" data-name="Verwenmoment" data-duration="op afspraak" data-price="op aanvraag">
-              <span class="opt-radio" aria-hidden="true"></span>
-              <span><span class="opt-name">Verwenmoment</span><span class="opt-dur">Vanaf 3 jaar: gezichtje, handjes, nageltjes</span></span>
-              <span class="opt-price" style="font-size:.95rem">op aanvraag</span>
-            </button>
-            <button class="opt" type="button" aria-pressed="false" data-name="Klein feestje" data-duration="op afspraak" data-price="op aanvraag">
-              <span class="opt-radio" aria-hidden="true"></span>
-              <span><span class="opt-name">Klein feestje</span><span class="opt-dur">Met een paar vriendinnetjes samen</span></span>
-              <span class="opt-price" style="font-size:.95rem">op aanvraag</span>
-            </button>
-          </div>
-        </div>
-
-        <div class="booker-foot">
-          <a class="btn" href="#afspraak" data-book="true">
-            <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Afspraak aanvragen
-          </a>
-          <a class="btn btn--ghost" href="tel:+32474782691">
-            <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91
-          </a>
-        </div>
-        <p class="booker-note">
-          <svg class="ico" aria-hidden="true"><use href="#i-shield-check"></use></svg>
-          <span id="booking-summary">Enkel op afspraak, ook 's avonds. Liever even bellen? Dat mag altijd.</span>
-        </p>
+      <div class="pill-row" data-reveal style="--d:240ms">
+        <a class="btn" href="tel:+32474782691">
+          <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91
+        </a>
+        <a class="btn btn--ghost" href="tarieven.html">
+          <svg class="ico" aria-hidden="true"><use href="#i-banknote"></use></svg>Bekijk de tarieven
+        </a>
       </div>
 
       <ul class="hero-meta" data-reveal style="--d:320ms">
@@ -442,8 +372,8 @@
       <h2>Een sessie cadeau geven</h2>
       <p class="lead">
         Een sessie babywellness cadeau doen, een pampertaart laten klaarzetten of een kleinigheid
-        met naam erop: het kan allemaal. Bestellen doe je telefonisch, via mail of via het
-        contactformulier. Ophalen kan na afspraak of gewoon even binnenspringen.
+        met naam erop: het kan allemaal. Bestellen doe je telefonisch of via mail. Ophalen kan na afspraak of gewoon
+        even binnenspringen.
       </p>
       <div class="pill-row">
         <a class="btn btn--light" href="tarieven.html#cadeaubon">
@@ -490,44 +420,27 @@
       <p style="margin-top:1.5rem"><a class="link-arrow" href="contact.html#faq">Alle vragen en antwoorden<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a></p>
     </div>
 
-    <div class="card form-wrap" data-reveal="right" style="padding:clamp(1.5rem,3vw,2.25rem)">
-      <span class="eyebrow">Een moment reserveren</span>
-      <h3 style="margin-bottom:.75rem">Laat je gegevens achter</h3>
-      <p style="color:var(--ink-2);font-size:.95rem">Ine neemt persoonlijk contact op om samen een moment te kiezen dat past in jullie ritme.</p>
-      <form class="form" data-demo-form style="margin-top:1.25rem">
-        <div class="field-row">
-          <div class="field">
-            <label for="h-naam">Je naam</label>
-            <input id="h-naam" name="naam" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="h-tel">Telefoon</label>
-            <input id="h-tel" name="telefoon" type="tel" autocomplete="tel" required>
-          </div>
-        </div>
-        <div class="field">
-          <label for="h-dienst">Waarvoor kom je?</label>
-          <select id="h-dienst" name="dienst">
-            <option>Babywellness — hydrotherapie (30 min)</option>
-            <option>Babywellness — hydrotherapie &amp; Shantala (1 u 10)</option>
-            <option>Duosessie babywellness (1 u)</option>
-            <option>Zwangerschapsmassage</option>
-            <option>Ontspanningsmassage</option>
-            <option>Verwenmoment kind (3–16 jaar)</option>
-            <option>Cadeaubon</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="h-bericht">Iets dat we moeten weten?</label>
-          <textarea id="h-bericht" name="bericht" placeholder="Leeftijd van je baby, eerste keer, liefst in de voormiddag …"></textarea>
-        </div>
-        <button class="btn btn--block" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg>Aanvraag versturen</button>
-        <p class="booker-note"><svg class="ico" aria-hidden="true"><use href="#i-shield-check"></use></svg>Demo-formulier: er wordt niets verstuurd. Bellen kan wel echt: <a href="tel:+32474782691" style="color:inherit">+32 474 78 26 91</a>.</p>
-      </form>
-      <div data-form-ok hidden>
-        <span class="ico-badge" style="margin-bottom:1rem"><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg></span>
-        <h3>Bedankt, dit is een demo</h3>
-        <p style="color:var(--ink-2)">Op de echte site komt hier een bevestiging per mail. Wil je écht een afspraak bij Bambine? Bel <a href="tel:+32474782691">+32 474 78 26 91</a> of mail <a href="mailto:info@bambine.be">info@bambine.be</a>.</p>
+    <div class="card" data-reveal="right" style="padding:clamp(1.5rem,3vw,2.25rem)">
+      <span class="eyebrow">Een moment vastleggen</span>
+      <h3 style="margin-bottom:.75rem">Bel of mail even</h3>
+      <p style="color:var(--ink-2);font-size:.97rem">Ine kijkt samen met jou naar een moment dat past in jullie ritme. Ook 's avonds is bespreekbaar.</p>
+      <ul class="info-list" style="margin-top:1.5rem">
+        <li>
+          <span class="ico-badge"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg></span>
+          <span><span class="info-k">Telefoon</span><a href="tel:+32474782691">+32 474 78 26 91</a></span>
+        </li>
+        <li>
+          <span class="ico-badge"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg></span>
+          <span><span class="info-k">E-mail</span><a href="mailto:info@bambine.be">info@bambine.be</a></span>
+        </li>
+        <li>
+          <span class="ico-badge"><svg class="ico" aria-hidden="true"><use href="#i-map-pin"></use></svg></span>
+          <span><span class="info-k">Adres</span>Michiel Jansplein 28 bus b2<br>3920 Lommel</span>
+        </li>
+      </ul>
+      <div class="pill-row">
+        <a class="btn" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bel Bambine</a>
+        <a class="btn btn--ghost" href="contact.html">Naar contact</a>
       </div>
     </div>
   </div>

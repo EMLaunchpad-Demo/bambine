@@ -211,7 +211,7 @@ FAQ_BABY = [
     ),
     (
         "Kan ik een sessie cadeau geven?",
-        "Ja. Een cadeaubon bestel je telefonisch, via mail of via het contactformulier. "
+        "Ja. Een cadeaubon bestel je telefonisch of via mail. "
         "Je haalt hem op na afspraak of je springt gewoon even binnen.",
     ),
 ]
@@ -352,8 +352,7 @@ HEADER = """<div class="notice" data-notice>
   <nav class="wrap nav" aria-label="Hoofdnavigatie">
     {brand}
     <ul class="nav-links">{links}</ul>
-    <a class="nav-tel" href="tel:{telhref}">{ic_tel}{tel}</a>
-    <a class="btn btn--sm" href="#afspraak" data-book="true">{ic_cal}Afspraak</a>
+    <a class="btn btn--sm" href="tel:{telhref}">{ic_tel}{tel}</a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen">{ic_menu}</button>
   </nav>
 </header>
@@ -364,8 +363,8 @@ HEADER = """<div class="notice" data-notice>
   </div>
   <ul class="drawer-links">{dlinks}</ul>
   <div class="drawer-foot">
-    <a class="btn btn--block" href="#afspraak" data-book="true">{ic_cal}Afspraak aanvragen</a>
-    <a class="btn btn--ghost btn--block" href="tel:{telhref}">{ic_tel}{tel}</a>
+    <a class="btn btn--block" href="tel:{telhref}">{ic_tel}{tel}</a>
+    <a class="btn btn--ghost btn--block" href="mailto:{mail}">{ic_mail}{mail}</a>
   </div>
 </div>"""
 
@@ -417,67 +416,9 @@ FOOTER = """<footer class="site-footer">
   </div>
 </footer>"""
 
-DIALOG = """<dialog id="book-dialog" aria-labelledby="dlg-title">
-  <div class="dialog-in">
-    <div class="dialog-head">
-      <div>
-        <span class="eyebrow" style="margin-bottom:.4rem">Afspraak aanvragen</span>
-        <h2 id="dlg-title" style="font-size:1.6rem;margin:0">Even samen een moment kiezen</h2>
-      </div>
-      <button class="dialog-close" data-dialog-close aria-label="Sluiten">{ic_x}</button>
-    </div>
-    <form class="form" data-demo-form>
-      <div class="field">
-        <label for="f-dienst">Waarvoor kom je?</label>
-        <select id="f-dienst" name="dienst">
-          <option>Babywellness — hydrotherapie (30 min)</option>
-          <option>Babywellness — hydrotherapie &amp; Shantala (1 u 10)</option>
-          <option>Duosessie babywellness (1 u)</option>
-          <option>Zwangerschapsmassage</option>
-          <option>Ontspanningsmassage</option>
-          <option>Verwenmoment kind (3–16 jaar)</option>
-          <option>Cadeaubon</option>
-        </select>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-naam">Je naam</label>
-          <input id="f-naam" name="naam" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-tel">Telefoon</label>
-          <input id="f-tel" name="telefoon" type="tel" autocomplete="tel" required>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-mail">E-mail</label>
-          <input id="f-mail" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="f-datum">Voorkeursdatum</label>
-          <input id="f-datum" name="datum" type="date">
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-bericht">Iets dat we moeten weten?</label>
-        <textarea id="f-bericht" name="bericht" placeholder="Leeftijd van je baby, prematuur geboren, eerste keer …"></textarea>
-      </div>
-      <button class="btn btn--block" type="submit">{ic_check}Aanvraag versturen</button>
-      <p class="booker-note">{ic_shield}Demo-formulier: er wordt niets verstuurd. Op de echte site komt hier de boekingskoppeling of een mail naar {mail}.</p>
-    </form>
-    <div data-form-ok hidden>
-      <div class="ico-badge" style="margin-bottom:1rem">{ic_check}</div>
-      <h3>Bedankt — dit is een demo</h3>
-      <p>In de live versie krijg je nu een bevestiging per mail en komt de aanvraag in de agenda terecht.
-      Wil je écht een afspraak bij Bambine? Bel <a href="tel:{telhref}">{tel}</a> of mail <a href="mailto:{mail}">{mail}</a>.</p>
-    </div>
-  </div>
-</dialog>"""
-
 ACTIONBAR = """<div class="action-bar">
   <a class="btn btn--ghost" href="tel:{telhref}">{ic_tel}Bellen</a>
-  <a class="btn" href="#afspraak" data-book="true">{ic_cal}Afspraak</a>
+  <a class="btn" href="mailto:{mail}">{ic_mail}Mailen</a>
 </div>"""
 
 LAYOUT = """<!DOCTYPE html>
@@ -521,7 +462,6 @@ LAYOUT = """<!DOCTYPE html>
 {body}
 </main>
 {footer}
-{dialog}
 {actionbar}
 <script src="assets/js/site.js" defer></script>
 </body>
@@ -529,17 +469,159 @@ LAYOUT = """<!DOCTYPE html>
 """
 
 
-def build() -> None:
-    common = dict(
-        telhref=TEL_HREF, tel=TEL, mail=MAIL, straat=STRAAT, post=POSTCODE,
-        stad=STAD, insta=INSTA, fb=FB, shop=WEBSHOP, voluit=VOLUIT,
-        ic_tel=icon("phone"), ic_cal=icon("calendar-days"), ic_menu=icon("menu"),
-        ic_x=icon("x"), ic_check=icon("check"), ic_shield=icon("shield-check"),
-        ic_ig=icon("si-instagram"), ic_fb=icon("si-facebook"), ic_mail=icon("mail"),
-        ic=icon("sparkles"),
+# --- GoHighLevel-export ----------------------------------------------------
+# GHL werkt met losse blokken in een pagebuilder. Per pagina schrijven we één
+# zelfstandig HTML-blok weg: de CSS zit ingekapseld onder .bambine-site zodat ze
+# de rest van de GHL-pagina niet raakt, de foto zit als data-URI in het blok en
+# er zijn geen externe bestanden nodig behalve de webfonts.
+
+FONT_IMPORT = (
+    "@import url('https://fonts.googleapis.com/css2?"
+    "family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;"
+    "1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap');"
+)
+
+
+def scope_css(css: str, scope: str = ".bambine-site") -> str:
+    """Prefix elke selector met `scope`, zodat de stijl binnen het blok blijft."""
+    uit: list[str] = []
+    i = 0
+    n = len(css)
+    while i < n:
+        # commentaar overslaan
+        if css.startswith("/*", i):
+            j = css.find("*/", i + 2)
+            i = (j + 2) if j != -1 else n
+            continue
+        if css[i].isspace():
+            i += 1
+            continue
+        haak = css.find("{", i)
+        if haak == -1:
+            break
+        selector = css[i:haak].strip()
+        # bijpassende sluithaak zoeken
+        diepte, j = 1, haak + 1
+        while j < n and diepte:
+            if css[j] == "{":
+                diepte += 1
+            elif css[j] == "}":
+                diepte -= 1
+            j += 1
+        body = css[haak + 1:j - 1]
+        i = j
+
+        if selector.startswith("@media") or selector.startswith("@supports"):
+            uit.append(f"{selector}{{{scope_css(body, scope)}}}")
+        elif selector.startswith("@keyframes") or selector.startswith("@font-face"):
+            uit.append(f"{selector}{{{body}}}")
+        elif selector.startswith("@view-transition"):
+            continue  # paginaovergangen horen bij een hele pagina, niet bij een blok
+        elif selector.startswith("@"):
+            uit.append(f"{selector}{{{body}}}")
+        else:
+            delen = []
+            for sel in selector.split(","):
+                sel = sel.strip()
+                if not sel:
+                    continue
+                if sel.startswith(":root") or sel in ("html", "body"):
+                    delen.append(scope + sel.replace(":root", "").replace("html", "").replace("body", ""))
+                elif sel.startswith("html ") or sel.startswith("body "):
+                    delen.append(scope + sel[4:] if sel.startswith("html") else scope + sel[4:])
+                elif sel.startswith("::"):
+                    delen.append(f"{scope} {sel}")
+                else:
+                    delen.append(f"{scope} {sel}")
+            uit.append(f"{','.join(delen)}{{{body}}}")
+    return "".join(uit)
+
+
+def data_uri(pad: pathlib.Path) -> str:
+    import base64
+    soort = {"webp": "image/webp", "jpg": "image/jpeg", "jpeg": "image/jpeg",
+             "png": "image/png", "svg": "image/svg+xml"}[pad.suffix.lstrip(".").lower()]
+    return f"data:{soort};base64," + base64.b64encode(pad.read_bytes()).decode()
+
+
+def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
+    ghl_map = ROOT / "ghl"
+    ghl_map.mkdir(exist_ok=True)
+    # een paar regels die voorkomen dat de stijl van het GHL-thema naar binnen lekt
+    harden = (
+        ".bambine-site{text-align:left;box-sizing:border-box}"
+        ".bambine-site a{color:inherit}"
+        ".bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}"
+        ".bambine-site ul,.bambine-site ol{list-style:none}"
     )
+    css = harden + scope_css((ROOT / "assets" / "css" / "site.css").read_text(encoding="utf-8"))
+    js = (ROOT / "assets" / "js" / "site.js").read_text(encoding="utf-8")
+
+    for pad, meta in PAGES.items():
+        body = (SRC / pad).read_text(encoding="utf-8")
+        kop = HEADER.format(brand=BRAND, links=nav_html(pad), dlinks=drawer_html(pad), **COMMON)
+        blok = kop + f"\n<main id=\"main\">\n{body}\n</main>\n" + footer_html + "\n" + actionbar_html
+        # foto's één keer als data-URI in een variabele, zodat het blok zelfstandig
+        # werkt zonder dezelfde afbeelding meermaals mee te sturen
+        fotos = ""
+        for plaatje in sorted((ROOT / "assets" / "img").glob("*")):
+            sleutel = "--f-" + plaatje.stem
+            if f"assets/img/{plaatje.name}" in blok:
+                fotos += f"{sleutel}:url({data_uri(plaatje)});"
+                blok = blok.replace(
+                    f"background-image:url('assets/img/{plaatje.name}')",
+                    f"background-image:var({sleutel})",
+                )
+        fotocss = f".bambine-site{{{fotos}}}" if fotos else ""
+        (ghl_map / pad).write_text(
+            f"<!-- Bambine - {meta['title']}\n"
+            f"     Plak dit volledige blok in een Custom Code / HTML-element in GoHighLevel.\n"
+            f"     Titel en meta-omschrijving zet je in de pagina-instellingen van GHL:\n"
+            f"     Title:       {meta['title']}\n"
+            f"     Description: {meta['desc']}\n"
+            f"-->\n"
+            f"<style>{FONT_IMPORT}{css}{fotocss}</style>\n"
+            f"<div class=\"bambine-site\">\n{SPRITE}\n{blok}\n</div>\n"
+            f"<script>{js}</script>\n",
+            encoding="utf-8",
+        )
+        print(f"  ~ ghl/{pad}")
+
+    # proefpagina: het blok in een vreemde omgeving, om te zien of de stijl
+    # niet naar buiten lekt en het thema van GHL niet naar binnen
+    proef = (ghl_map / "index.html").read_text(encoding="utf-8")
+    (ghl_map / "_proefpagina.html").write_text(
+        "<!DOCTYPE html><html lang=\"nl\"><head><meta charset=\"utf-8\">"
+        "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+        "<title>Proefpagina GoHighLevel-blok</title><style>"
+        "body{margin:0;font-family:Arial,sans-serif;background:#eef;color:#036}"
+        ".ghl-bar{padding:14px 20px;background:#036;color:#fff;font-weight:bold}"
+        "h1,h2,h3{font-family:Arial,sans-serif;color:#036}a{color:#06c}"
+        "</style></head><body>"
+        "<div class=\"ghl-bar\">Sectie van het GHL-thema erboven</div>"
+        + proef +
+        "<div class=\"ghl-bar\">Sectie van het GHL-thema eronder</div>"
+        "</body></html>",
+        encoding="utf-8",
+    )
+    (ghl_map / "_stijl.css").write_text(FONT_IMPORT + css, encoding="utf-8")
+    (ghl_map / "_script.js").write_text(js, encoding="utf-8")
+    print("  ~ ghl/_stijl.css, ghl/_script.js, ghl/_proefpagina.html")
+
+
+COMMON = dict(
+    telhref=TEL_HREF, tel=TEL, mail=MAIL, straat=STRAAT, post=POSTCODE,
+    stad=STAD, insta=INSTA, fb=FB, shop=WEBSHOP, voluit=VOLUIT,
+    ic_tel=icon("phone"), ic_cal=icon("calendar-days"), ic_menu=icon("menu"),
+    ic_x=icon("x"), ic_check=icon("check"), ic_shield=icon("shield-check"),
+    ic_ig=icon("si-instagram"), ic_fb=icon("si-facebook"), ic_mail=icon("mail"),
+    ic=icon("sparkles"),
+)
+
+
+def build() -> None:
+    common = COMMON
     footer = FOOTER.format(**common)
-    dialog = DIALOG.format(**common)
     actionbar = ACTIONBAR.format(**common)
 
     for path, meta in PAGES.items():
@@ -558,7 +640,6 @@ def build() -> None:
             header=header,
             body=body,
             footer=footer,
-            dialog=dialog,
             actionbar=actionbar,
         )
         (ROOT / path).write_text(html, encoding="utf-8")
@@ -580,7 +661,7 @@ def build() -> None:
         + jsonld(*meta["ld"]) + "\n"
         + '<a class="skip-link" href="#main">Naar de inhoud</a>\n'
         + SPRITE + "\n" + header + '\n<main id="main">\n' + body
-        + "\n</main>\n" + footer + "\n" + dialog + "\n" + actionbar
+        + "\n</main>\n" + footer + "\n" + actionbar
         + '\n<script src="assets/js/site.js" defer></script>\n',
         encoding="utf-8",
     )
@@ -604,6 +685,8 @@ def build() -> None:
         f"User-agent: *\nAllow: /\n\nSitemap: {SITE}/sitemap.xml\n", encoding="utf-8"
     )
     print("  ✓ sitemap.xml, robots.txt")
+
+    ghl_export(header_html="", footer_html=footer, actionbar_html=actionbar)
 
 
 if __name__ == "__main__":

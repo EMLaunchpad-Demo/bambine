@@ -93,82 +93,37 @@
   </div>
 </section>
 
-<section class="section" id="afspraak" style="background:linear-gradient(180deg,rgba(236,231,220,.6),rgba(244,241,234,0))">
+<section class="section" id="afspraak" style="background:linear-gradient(180deg,rgba(242,233,220,.55),rgba(255,255,255,0))">
   <div class="wrap contact-grid" style="align-items:start">
     <div data-reveal="left">
       <span class="eyebrow">Afspraak</span>
-      <h2>Een afspraak aanvragen</h2>
+      <h2>Een moment vastleggen</h2>
       <p class="lead">
-        Vul in wat je zoekt en wanneer je ongeveer zou kunnen. Ine belt of mailt je terug om
-        samen een moment te kiezen dat werkt voor jullie ritme. Ook 's avonds is bespreekbaar.
+        Bellen of mailen werkt het snelst. Laat weten voor wie je komt en wanneer het ongeveer
+        past, dan zoekt Ine samen met jou een moment. Ook 's avonds is bespreekbaar.
       </p>
       <ul class="check-list">
         <li><svg class="ico" aria-hidden="true"><use href="#i-circle-check"></use></svg>Eén gezin per sessie, dus geen wachtrij</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-circle-check"></use></svg>Twijfel je of je baby er klaar voor is? Bel gerust even</li>
         <li><svg class="ico" aria-hidden="true"><use href="#i-circle-check"></use></svg>Cadeaubon nodig? Vermeld het bij je bericht</li>
       </ul>
+      <div class="pill-row">
+        <a class="btn" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+        <a class="btn btn--ghost" href="mailto:info@bambine.be"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>info@bambine.be</a>
+      </div>
       <!-- FOTO-SLOT: warm detail van de ruimte -->
       <div class="photo ratio-3-2" style="margin-top:2rem" role="img" aria-label="Warm detail uit de praktijkruimte">
         <div class="photo-glyph"><svg class="ico" aria-hidden="true"><use href="#i-flower-2"></use></svg></div>
       </div>
     </div>
 
-    <div class="card form-wrap" data-reveal="right" style="padding:clamp(1.5rem,3vw,2.25rem)">
-      <h3 style="margin-bottom:1rem">Afspraak aanvragen</h3>
-      <form class="form" data-demo-form>
-        <div class="field-row">
-          <div class="field">
-            <label for="c-naam">Je naam</label>
-            <input id="c-naam" name="naam" autocomplete="name" required>
-          </div>
-          <div class="field">
-            <label for="c-tel">Telefoon</label>
-            <input id="c-tel" name="telefoon" type="tel" autocomplete="tel" required>
-          </div>
-        </div>
-        <div class="field">
-          <label for="c-mail">E-mail</label>
-          <input id="c-mail" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="c-dienst">Waarvoor kom je?</label>
-          <select id="c-dienst" name="dienst">
-            <option>Babywellness — hydrotherapie (30 min)</option>
-            <option>Babywellness — hydrotherapie &amp; Shantala (1 u 10)</option>
-            <option>Duosessie babywellness (1 u)</option>
-            <option>Zwangerschapsmassage</option>
-            <option>Ontspanningsmassage</option>
-            <option>Verwenmoment kind (3–16 jaar)</option>
-            <option>Cadeaubon</option>
-          </select>
-        </div>
-        <div class="field-row">
-          <div class="field">
-            <label for="c-datum">Voorkeursdatum</label>
-            <input id="c-datum" name="datum" type="date">
-          </div>
-          <div class="field">
-            <label for="c-moment">Liefst</label>
-            <select id="c-moment" name="moment">
-              <option>Voormiddag</option>
-              <option>Namiddag</option>
-              <option>Avond</option>
-              <option>Maakt niet uit</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label for="c-bericht">Iets dat we moeten weten?</label>
-          <textarea id="c-bericht" name="bericht" placeholder="Leeftijd van je baby, prematuur geboren, eerste keer …"></textarea>
-        </div>
-        <button class="btn btn--block" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg>Aanvraag versturen</button>
-        <p class="booker-note"><svg class="ico" aria-hidden="true"><use href="#i-shield-check"></use></svg>Demo-formulier: er wordt niets verstuurd. Bellen kan wel echt: <a href="tel:+32474782691" style="color:inherit">+32 474 78 26 91</a>.</p>
-      </form>
-      <div data-form-ok hidden>
-        <span class="ico-badge" style="margin-bottom:1rem"><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg></span>
-        <h3>Bedankt — dit is een demo</h3>
-        <p style="color:var(--ink-2)">Op de echte site komt hier een bevestiging per mail en belandt de aanvraag in de agenda. Wil je écht een afspraak? Bel <a href="tel:+32474782691">+32 474 78 26 91</a> of mail <a href="mailto:info@bambine.be">info@bambine.be</a>.</p>
-      </div>
+    <!-- GHL-BLOK: hier komt straks het boekings- of contactformulier van GoHighLevel.
+         Vervang dit hele blok door het embed-element uit de GHL-builder. -->
+    <div class="ghl-slot" data-reveal="right">
+      <span class="ico-badge"><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg></span>
+      <strong>Hier komt het boekingsformulier</strong>
+      <p>Dit blok wordt in GoHighLevel vervangen door het echte formulier of de agenda.
+      Tot dan gaat een aanvraag per telefoon of mail.</p>
     </div>
   </div>
 </section>
@@ -202,7 +157,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false" type="button">Kan ik een sessie cadeau geven?<svg class="ico" aria-hidden="true"><use href="#i-chevron-down"></use></svg></button>
-        <div class="faq-a"><div><p>Ja. Een cadeaubon bestel je telefonisch, via mail of via het contactformulier. Je haalt hem op na afspraak of je springt gewoon even binnen.</p></div></div>
+        <div class="faq-a"><div><p>Ja. Een cadeaubon bestel je telefonisch of via mail. Je haalt hem op na afspraak of je springt gewoon even binnen.</p></div></div>
       </div>
     </div>
   </div>

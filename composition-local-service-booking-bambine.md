@@ -10,17 +10,20 @@ expliciet als "na te kijken voor livegang" op de pagina zelf.
 
 ---
 
-## 1. Primaire taak: boeken, meteen en dominant
+## 1. Primaire taak: contact opnemen, straks boeken in GoHighLevel
 
 De bezoeker is een ouder met een baby van enkele weken oud, vaak 's avonds op de telefoon.
-De primaire taak is *een moment vastleggen*, niet *lezen over hydrotherapie*.
+De primaire taak is *een moment vastleggen*. De boekingstool komt later in GoHighLevel, dus
+tot dan is bellen of mailen de actie die de site moet uitlokken.
 
-- De **boekingskaart staat in de hero**, boven de vouw, op alle schermformaten: drie tabs
-  (Baby / Mama / Kids), per tab twee tot drie sessies met duur én prijs, en één primaire actie.
-- **Eén primaire CTA** per scherm ("Afspraak aanvragen"). Bellen staat ernaast als secundaire,
-  want voor deze doelgroep is telefoon nog altijd een conversiekanaal.
-- **Sticky actiebalk** onderaan op mobiel (Bellen · Afspraak) zodra de bezoeker voorbij de hero scrollt.
-- Elke onderpagina heeft de boekingsactie in de page-hero en opnieuw onderaan.
+- **Het telefoonnummer is de enige actie in de chrome**: een gouden knop met het nummer,
+  op elke pagina, op elk schermformaat.
+- De hero herhaalt die actie meteen onder de lead, met de tarievenpagina ernaast als
+  secundaire stap voor wie eerst prijzen wil zien.
+- **Sticky actiebalk** onderaan op mobiel (Bellen · Mailen) zodra de bezoeker voorbij de hero scrollt.
+- Op de contactpagina staat een gemarkeerd blok (`.ghl-slot`) precies waar het
+  GHL-boekingsformulier of de agenda komt. Geen nepformulier in de tussentijd: dat zou
+  aanvragen opslokken die nergens aankomen.
 
 ## 2. Layoutregister en dichtheid
 
@@ -28,14 +31,14 @@ Register: *image-led, warm-editorial* — geen SaaS-airy landingspagina, maar oo
 storefront-dichtheid van een catalogus. Baby-wellness verkoopt rust; de pagina moet rust tonen
 en tegelijk alle harde feiten binnen handbereik houden.
 
-- **Boven de vouw op desktop: 3 modules**: kop + lead, boekingskaart, en het beeld rechts.
-  Direct daaronder de vertrouwensstrook met vier feiten.
+- **Boven de vouw op desktop: 3 modules**: kop + lead, de belknop met de tarievenlink, en
+  het beeld rechts. Direct daaronder de vertrouwensstrook met vier feiten.
 - Ruime witruimte, maar de informatie is dicht: prijzen, leeftijdsgrens, watertemperatuur en
   adres staan alle vier binnen één schermhoogte na de hero.
 - Visueel register (kleur, type, radius) → `design-standards` / `creative-direction`.
-  Hier vastgelegd: linnen als grond, sage-groen als donkere ankers, klei als enige actiekleur,
-  en een zachte tint per dienstfamilie (sage = baby, blush = mama, zand = kids). Het palet is
-  ontleend aan de foto die de klant aanleverde, niet aan een bedacht kleurenschema.
+  Hier vastgelegd: wit en crème als grond, donkerbruin als donkere ankers, goud als enige
+  actiekleur, en een zachte tint per dienstfamilie. De merkkleuren (goud, lichtbruin, wit)
+  komen van de klant zelf; goud is voor tekst naar `#8a6a35` gebracht om contrastvast te zijn.
 
 ## 3. Merchandising- en categorieoppervlak
 
@@ -93,7 +96,7 @@ Telefoon, e-mail en adres zijn wél echt.
 | Persoon achter de praktijk | aanwezig |
 | Wat verwachten / verloop van een sessie | aanwezig (tijdlijn met 5 stappen) |
 | Foto's van de ruimte | **slots klaar**, echte foto's nog aan te leveren |
-| Online agenda-integratie | afwezig — bewuste keuze: demo zonder backend |
+| Online agenda-integratie | uitgesteld: komt in GoHighLevel, plek staat klaar (`.ghl-slot`) |
 
 Twee items niet volledig: openingsuren (ontbrekende data) en echte foto's (aangeleverd door de klant).
 Beide zijn data, geen compositiefouten — de modules staan er en zijn één invulbeurt van klaar.
@@ -113,7 +116,8 @@ staat in plaats van van een wellnessbrochure.
   Eén foto is al aangeleverd en staat in de hero en de galerij.
 - **`design-standards`** — tokens staan in `bambine/assets/css/site.css` (sectie 1). Kleur, radius
   en schaal zijn daar centraal; niets is hardgecodeerd in de pagina's.
-- **`frontend-component-build`** — het boekingsformulier is nu een demo; koppelen aan de echte
-  agenda (Fresha of GoHighLevel) is het enige stuk dat nog backend nodig heeft.
+- **GoHighLevel** — `build.py` exporteert de pagina's als plakbare blokken in `bambine/ghl/`,
+  met de stijl ingekapseld onder `.bambine-site`. Het boekingsformulier en de agenda worden
+  daar opgezet en vervangen het `.ghl-slot`-blok op de contactpagina.
 - **`seo-onpage`** — meta, canonical, OG, LocalBusiness/Service/FAQPage/BreadcrumbList-schema,
   sitemap en robots.txt staan klaar; nog te doen na livegang: echte OG-afbeelding en BTW-nummer.

@@ -26,6 +26,10 @@ Zes statische pagina's, geen build-stap nodig om te hosten — gewoon uploaden.
 Verder: `sitemap.xml`, `robots.txt`, `site.webmanifest`, `favicon.svg`, zelf gehoste
 webfonts en een iconensprite.
 
+**Boekingswidgets zitten er bewust niet in.** Afspraken lopen voorlopig via telefoon en
+mail; het boekingsformulier en de agenda komen later in GoHighLevel. Op de contactpagina
+staat een gemarkeerd blok (`.ghl-slot`) op de plek waar dat embed-element hoort.
+
 ## Bouwen
 
 De pagina's worden samengesteld uit `src/*.html` (enkel de inhoud van `<main>`) plus de
@@ -41,16 +45,19 @@ gegenereerde bestanden en laat `build.py` achterwege.
 
 ## Ontwerp
 
-Het palet komt uit de aangeleverde foto: gebreid sage-groen, mousseline, warm beige.
+De merkkleuren zijn goud, lichtbruin en wit.
 
 | Rol | Kleur |
 |---|---|
-| Grond (linnen) | `#f4f1ea` |
-| Kaarten (papier) | `#fbf9f5` |
-| Sage (accenten, tekst) | `#5c6b50` |
-| Sage donker (donkere secties, knop) | `#46523c` |
-| Klei (warme accentkleur, knoppen) | `#8f5f45` |
-| Zand / sage zacht | `#e2d9c9` / `#dde1d4` |
+| Grond | wit `#ffffff` + warm crème `#faf6f0` |
+| Goud (knoppen, accenten) | `#c8aa66` |
+| Goud voor tekst (contrastvast) | `#8a6a35` |
+| Lichtbruin | `#c9b49a` |
+| Donkerbruin (donkere secties) | `#42342a` |
+| Tekst | `#2f2620` |
+
+Knoppen zijn goud met donkerbruine tekst: dat haalt 6,6:1 aan contrast, terwijl wit op goud
+onder de norm zou blijven.
 
 Typografie: **Fraunces** (display, variabel, met zachte SOFT-as en WONK uit) en
 **Mulish** (UI, humanistisch en zacht). Beide zelf gehost in `assets/fonts/`, dus geen
@@ -93,8 +100,8 @@ custom property wordt relatief aan het stylesheet opgelost, niet aan de pagina.
 - **Tarieven** voor mamazorg en kids (nu "op aanvraag") en bevestiging van de
   babywellness-tarieven (€ 55 / € 75 / € 150, overgenomen van de huidige site).
 - **Btw-nummer** in de footer, en een privacy- en cookiepagina.
-- **Formulier** koppelen aan een echte mailbox of aan de boekingstool (Fresha, GoHighLevel).
-  Nu is het een demo die niets verstuurt en dat ook zegt.
+- **Boekingsformulier en agenda** in GoHighLevel opzetten en het `.ghl-slot`-blok op de
+  contactpagina daardoor vervangen.
 - Adres, telefoon en e-mail komen uit publiek beschikbare bronnen; graag verifiëren.
 
 ## SEO
@@ -104,6 +111,14 @@ Per pagina een eigen title, description, canonical, OG- en Twitter-tags. Structu
 `Service` + `Offer` per dienst, `FAQPage`, `BreadcrumbList` en `WebSite`. Verder
 `sitemap.xml`, `robots.txt`, `lang="nl-BE"`, semantische koppenstructuur, skip-link,
 alt-teksten op elk beeldvlak en contrastverhoudingen die WCAG AA halen.
+
+## GoHighLevel
+
+`build.py` schrijft ook een map `ghl/` weg met per pagina één blok dat je rechtstreeks in de
+GHL-pagebuilder plakt. De stijl zit daarin ingekapseld onder `.bambine-site`, de foto zit
+als data-URI in het blok en er zijn geen externe bestanden nodig. De stappen staan in
+[`ghl/LEESMIJ.md`](ghl/LEESMIJ.md); `ghl/_proefpagina.html` laat zien dat het blok en het
+GHL-thema elkaar niet in de weg zitten.
 
 ## Compositie
 

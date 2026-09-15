@@ -90,8 +90,7 @@
   <span><span class="brand-name">bambine</span><span class="brand-sub">babywellness &amp; mamazorg</span></span>
 </a>
     <ul class="nav-links"><li><a href="babywellness.html">Babywellness</a></li><li><a href="mamazorg.html" aria-current="page">Mama &amp; vrouw</a></li><li><a href="kids.html">Kids</a></li><li><a href="tarieven.html">Tarieven</a></li><li><a href="contact.html">Contact</a></li></ul>
-    <a class="nav-tel" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
-    <a class="btn btn--sm" href="#afspraak" data-book="true"><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Afspraak</a>
+    <a class="btn btn--sm" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
     <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen"><svg class="ico" aria-hidden="true"><use href="#i-menu"></use></svg></button>
   </nav>
 </header>
@@ -105,8 +104,8 @@
   </div>
   <ul class="drawer-links"><li><a href="babywellness.html">Babywellness<svg class="ico" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a></li><li><a href="mamazorg.html" aria-current="page">Mama &amp; vrouw<svg class="ico" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a></li><li><a href="kids.html">Kids<svg class="ico" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a></li><li><a href="tarieven.html">Tarieven<svg class="ico" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a></li><li><a href="contact.html">Contact<svg class="ico" aria-hidden="true"><use href="#i-chevron-right"></use></svg></a></li></ul>
   <div class="drawer-foot">
-    <a class="btn btn--block" href="#afspraak" data-book="true"><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Afspraak aanvragen</a>
-    <a class="btn btn--ghost btn--block" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+    <a class="btn btn--block" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+    <a class="btn btn--ghost btn--block" href="mailto:info@bambine.be"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>info@bambine.be</a>
   </div>
 </div>
 <main id="main">
@@ -126,9 +125,7 @@
           tafel voor jou: zwangerschapsmassage in elke fase, of een ontspanningsmassage.
         </p>
         <div class="pill-row" data-reveal style="--d:200ms">
-          <a class="btn" href="#afspraak" data-book="Zwangerschapsmassage">
-            <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Afspraak aanvragen
-          </a>
+          <a class="btn" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bel voor een afspraak</a>
           <a class="btn btn--ghost" href="tel:+32474782691">
             <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Even overleggen
           </a>
@@ -222,7 +219,7 @@
         <li><svg class="ico" aria-hidden="true"><use href="#i-map-pin"></use></svg>Michiel Jansplein 28 bus b2, 3920 Lommel</li>
       </ul>
       <div class="pill-row">
-        <a class="btn" href="#afspraak" data-book="Ontspanningsmassage"><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Afspraak aanvragen</a>
+        <a class="btn" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bel voor een afspraak</a>
         <a class="btn btn--ghost" href="tarieven.html#cadeaubon"><svg class="ico" aria-hidden="true"><use href="#i-gift"></use></svg>Cadeaubon</a>
       </div>
     </div>
@@ -277,66 +274,9 @@
     </div>
   </div>
 </footer>
-<dialog id="book-dialog" aria-labelledby="dlg-title">
-  <div class="dialog-in">
-    <div class="dialog-head">
-      <div>
-        <span class="eyebrow" style="margin-bottom:.4rem">Afspraak aanvragen</span>
-        <h2 id="dlg-title" style="font-size:1.6rem;margin:0">Even samen een moment kiezen</h2>
-      </div>
-      <button class="dialog-close" data-dialog-close aria-label="Sluiten"><svg class="ico" aria-hidden="true"><use href="#i-x"></use></svg></button>
-    </div>
-    <form class="form" data-demo-form>
-      <div class="field">
-        <label for="f-dienst">Waarvoor kom je?</label>
-        <select id="f-dienst" name="dienst">
-          <option>Babywellness — hydrotherapie (30 min)</option>
-          <option>Babywellness — hydrotherapie &amp; Shantala (1 u 10)</option>
-          <option>Duosessie babywellness (1 u)</option>
-          <option>Zwangerschapsmassage</option>
-          <option>Ontspanningsmassage</option>
-          <option>Verwenmoment kind (3–16 jaar)</option>
-          <option>Cadeaubon</option>
-        </select>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-naam">Je naam</label>
-          <input id="f-naam" name="naam" autocomplete="name" required>
-        </div>
-        <div class="field">
-          <label for="f-tel">Telefoon</label>
-          <input id="f-tel" name="telefoon" type="tel" autocomplete="tel" required>
-        </div>
-      </div>
-      <div class="field-row">
-        <div class="field">
-          <label for="f-mail">E-mail</label>
-          <input id="f-mail" name="email" type="email" autocomplete="email" required>
-        </div>
-        <div class="field">
-          <label for="f-datum">Voorkeursdatum</label>
-          <input id="f-datum" name="datum" type="date">
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-bericht">Iets dat we moeten weten?</label>
-        <textarea id="f-bericht" name="bericht" placeholder="Leeftijd van je baby, prematuur geboren, eerste keer …"></textarea>
-      </div>
-      <button class="btn btn--block" type="submit"><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg>Aanvraag versturen</button>
-      <p class="booker-note"><svg class="ico" aria-hidden="true"><use href="#i-shield-check"></use></svg>Demo-formulier: er wordt niets verstuurd. Op de echte site komt hier de boekingskoppeling of een mail naar info@bambine.be.</p>
-    </form>
-    <div data-form-ok hidden>
-      <div class="ico-badge" style="margin-bottom:1rem"><svg class="ico" aria-hidden="true"><use href="#i-check"></use></svg></div>
-      <h3>Bedankt — dit is een demo</h3>
-      <p>In de live versie krijg je nu een bevestiging per mail en komt de aanvraag in de agenda terecht.
-      Wil je écht een afspraak bij Bambine? Bel <a href="tel:+32474782691">+32 474 78 26 91</a> of mail <a href="mailto:info@bambine.be">info@bambine.be</a>.</p>
-    </div>
-  </div>
-</dialog>
 <div class="action-bar">
   <a class="btn btn--ghost" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bellen</a>
-  <a class="btn" href="#afspraak" data-book="true"><svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Afspraak</a>
+  <a class="btn" href="mailto:info@bambine.be"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>Mailen</a>
 </div>
 <script src="assets/js/site.js" defer></script>
 </body>
