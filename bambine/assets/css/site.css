@@ -511,12 +511,25 @@ hr.rule--gold { background: var(--gold-line); }
   display: block;
   font-family: var(--serif);
   font-weight: 400;
-  font-size: clamp(1.5rem, 2.4vw, 2.1rem);
-  line-height: 1;
+  font-size: clamp(1.35rem, 2.1vw, 2.1rem);
+  line-height: 1.1;
   font-variation-settings: "SOFT" 60, "opsz" 60;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
+  text-wrap: balance;
 }
 .facts span { font-size: 0.85rem; color: var(--muted); line-height: 1.5; display: block; }
+/* Eén cijfer loopt over twee regels (2 wkn - 9 mnd). Met subgrid deelt elk vak
+   dezelfde twee rijen, zodat de omschrijvingen naast elkaar op één lijn beginnen
+   en de cijfers onderaan hun rij uitlijnen. */
+@supports (grid-template-rows: subgrid) {
+  .facts div {
+    display: grid;
+    grid-row: span 2;
+    grid-template-rows: subgrid;
+    row-gap: 0.6rem;
+  }
+  .facts b { margin-bottom: 0; align-self: end; }
+}
 @media (max-width: 860px) {
   .facts { grid-template-columns: repeat(2, 1fr); }
   .facts div:nth-child(-n + 2) { border-bottom: 1px solid var(--rule); }
