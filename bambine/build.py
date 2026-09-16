@@ -466,6 +466,16 @@ GHL_PADEN = {
 }
 
 
+def naar_fotovars(blok: str, root: pathlib.Path) -> str:
+    """Relatieve fotopaden vervangen door de variabele uit de gedeelde stijl."""
+    for plaatje in sorted((root / "assets" / "img").glob("*")):
+        blok = blok.replace(
+            f"background-image:url('assets/img/{plaatje.name}')",
+            f"background-image:var(--f-{plaatje.stem})",
+        )
+    return blok
+
+
 def naar_ghl_links(blok: str) -> str:
     """Interne links omzetten naar de paden die in GoHighLevel gebruikt worden."""
     for bestand, (_, pad) in GHL_PADEN.items():
@@ -656,7 +666,7 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
             f'<div class="bambine-site">\n{SPRITE}\n{kop_blok}\n</div>\n',
             encoding="utf-8",
         )
-        secties = split_secties(naar_ghl_links(body))
+        secties = split_secties(naar_ghl_links(naar_fotovars(body, ROOT)))
         for nr, (naam, stuk) in enumerate(secties, start=1):
             (sect_map / bestandsnaam(nr, naam)).write_text(
                 f"<!-- Bambine - {paginanaam} · sectie {nr}: {naam}\n"
