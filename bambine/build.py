@@ -560,6 +560,13 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         ".bambine-site ul,.bambine-site ol{list-style:none}"
     )
     css = harden + scope_css((ROOT / "assets" / "css" / "site.css").read_text(encoding="utf-8"))
+    kale_blokken: dict[str, str] = {}
+    # elke foto één keer als variabele, ook voor de gedeelde stijl van route B
+    alle_fotos = "".join(
+        f"--f-{plaatje.stem}:url({data_uri(plaatje)});"
+        for plaatje in sorted((ROOT / "assets" / "img").glob("*"))
+    )
+    fotocss_gedeeld = f".bambine-site{{{alle_fotos}}}" if alle_fotos else ""
     js = (ROOT / "assets" / "js" / "site.js").read_text(encoding="utf-8")
 
     for pad, meta in PAGES.items():
@@ -580,6 +587,7 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         fotocss = f".bambine-site{{{fotos}}}" if fotos else ""
         blok = naar_ghl_links(blok)
         paginanaam, ghl_pad = GHL_PADEN.get(pad, (meta["title"], pad.replace(".html", "")))
+        kale_blokken[pad] = f'<div class="bambine-site">\n{SPRITE}\n{blok}\n</div>\n'
         (ghl_map / pad).write_text(
             f"<!-- Bambine - {paginanaam}\n"
             f"     Plak dit volledige blok in een Custom Code / HTML-element in GoHighLevel.\n"
@@ -614,9 +622,50 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         "</body></html>",
         encoding="utf-8",
     )
-    (ghl_map / "_stijl.css").write_text(FONT_IMPORT + css, encoding="utf-8")
+    # --- route B: stijl en script één keer site-breed --------------------
+    # De webfonts komen dan via de header-code binnen: een @import moet als
+    # eerste regel van een stylesheet staan en dat is in het custom-CSS-veld
+    # van GHL niet gegarandeerd.
+    (ghl_map / "_header-code.html").write_text(
+        "<!-- Bambine - plak dit in Settings > Tracking Code > Header -->\n"
+        '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
+        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
+        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
+        "family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;"
+        "1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap\">\n",
+        encoding="utf-8",
+    )
+    (ghl_map / "_stijl.css").write_text(
+        "/* Bambine - plak dit in Settings > Custom CSS.\n"
+        "   De webfonts komen binnen via _header-code.html.\n"
+        "   De foto's zitten onderaan als data-URI, dus er is geen upload nodig. */\n"
+        + css + "\n" + fotocss_gedeeld + "\n",
+        encoding="utf-8",
+    )
     (ghl_map / "_script.js").write_text(js, encoding="utf-8")
-    print("  ~ ghl/_stijl.css, ghl/_script.js, ghl/_proefpagina.html")
+    (ghl_map / "_footer-code.html").write_text(
+        "<!-- Bambine - plak dit in Settings > Tracking Code > Footer -->\n"
+        "<script>\n" + js + "</script>\n",
+        encoding="utf-8",
+    )
+
+    # --- route B: per pagina enkel de opmaak, zonder stijl en script ------
+    blokken = ghl_map / "blokken"
+    blokken.mkdir(exist_ok=True)
+    for bestand, kaal in kale_blokken.items():
+        paginanaam, ghl_pad = GHL_PADEN[bestand]
+        (blokken / bestand).write_text(
+            f"<!-- Bambine - {paginanaam}\n"
+            f"     Alleen de opmaak. Gebruik dit als _stijl.css en _script.js al\n"
+            f"     site-breed staan; anders het bestand uit de map erboven nemen.\n"
+            f"     Paginanaam:  {paginanaam}\n"
+            f"     Path:        {ghl_pad}\n"
+            f"-->\n" + kaal,
+            encoding="utf-8",
+        )
+    print("  ~ ghl/_stijl.css, _script.js, _header-code.html, _footer-code.html")
+    print(f"  ~ ghl/blokken/ ({len(kale_blokken)} pagina's zonder stijl en script)")
+    print("  ~ ghl/_proefpagina.html")
 
 
 COMMON = dict(

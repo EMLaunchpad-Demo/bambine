@@ -5,10 +5,13 @@ rechtstreeks in de GHL-pagebuilder kan plakken.
 
 | Bestand | Wat het is |
 |---|---|
-| `index.html`, `tarieven.html`, `reserveren.html`, `shop.html`, `contact.html` | Eén zelfstandig blok per pagina: stijl, iconen, foto en script zitten erin |
-| `_stijl.css` | Dezelfde stijl als los bestand, voor wie liever site-brede CSS gebruikt |
-| `_script.js` | Hetzelfde script als los bestand, voor in de footer |
-| `_proefpagina.html` | Het blok in een vreemde omgeving, om te controleren dat de stijl niet uitlekt |
+| `index.html`, `tarieven.html`, `reserveren.html`, `shop.html`, `contact.html` | Eén zelfstandig blok per pagina: stijl, iconen, foto en script zitten erin (route A) |
+| `blokken/*.html` | Dezelfde pagina's, maar alleen de opmaak, zonder stijl en script (route B) |
+| `_header-code.html` | De webfonts, voor Tracking Code → Header |
+| `_stijl.css` | De volledige stijl inclusief de foto's, voor Settings → Custom CSS |
+| `_script.js` | Het volledige script als los bestand |
+| `_footer-code.html` | Hetzelfde script, al in `<script>`-tags, voor Tracking Code → Footer |
+| `_proefpagina.html` | Een blok in een vreemde omgeving, om te controleren dat de stijl niet uitlekt |
 
 ## De vijf pagina's
 
@@ -43,14 +46,22 @@ opnieuw. Dan kloppen de links in alle blokken weer.
 5. Herhaal per pagina. De links in de blokken wijzen al naar de paden uit de tabel, dus
    zolang je die paden aanhoudt werkt de navigatie meteen.
 
-## Route B — netter, stijl één keer site-breed
+## Route B — netter, stijl en script één keer site-breed
 
-1. Zet de inhoud van `_stijl.css` in **Settings → Custom CSS** (of in de custom CSS van de
-   funnel/website).
-2. Zet de inhoud van `_script.js` in de **footer tracking code**.
-3. Plak per pagina hetzelfde blok als bij route A, maar verwijder bovenaan de regel die met
-   `<style>` begint en onderaan de regel die met `<script>` begint. Wat overblijft is
-   `<div class="bambine-site"> … </div>`.
+Zo staat de stijl maar één keer op de site in plaats van vijf keer, en laden de pagina's
+sneller.
+
+1. **Header.** Plak `_header-code.html` in **Settings → Tracking Code → Header**. Dat zijn
+   enkel de twee lettertypen.
+2. **Stijl.** Plak de volledige inhoud van `_stijl.css` in **Settings → Custom CSS**. De
+   foto's zitten er als data-URI in, dus je hoeft niets te uploaden.
+3. **Script.** Plak `_footer-code.html` in **Settings → Tracking Code → Footer**. Dat is
+   `_script.js` met de `<script>`-tags er al omheen.
+4. **Per pagina.** Plak het bestand uit `blokken/` in een Custom Code-element. Dat is enkel
+   `<div class="bambine-site"> … </div>` — geen stijl, geen script.
+
+Werkt het script niet? Controleer dan of de footer-code op paginaniveau overschreven wordt;
+in GHL kan een pagina zijn eigen tracking code hebben die de site-brede vervangt.
 
 ## Goed om te weten
 
