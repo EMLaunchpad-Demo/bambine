@@ -95,10 +95,11 @@ IntersectionObserver onzichtbaar en onthult zichzelf dan nooit.
 
 ## Foto's toevoegen
 
-De site is foto-gedreven opgebouwd. De hero bevat al de aangeleverde foto
-(`assets/img/baby-knuffel.webp`). De overige beeldvlakken zijn `.fig`-blokken met een
-rustig verloop in de merkkleuren als tijdelijke invulling, elk gemarkeerd met
-`<!-- FOTO-SLOT: … -->` in `src/`.
+De site is foto-gedreven opgebouwd. In de hero staan twee aangeleverde foto's: het grote
+boogbeeld komt rechtstreeks uit de GHL-mediabibliotheek (een `https://assets.cdn.filesafe.space/…`-URL)
+en het kleine ingezette beeld is `assets/img/baby-knuffel.webp`. De overige beeldvlakken zijn
+`.fig`-blokken met een rustig verloop in de merkkleuren als tijdelijke invulling, elk gemarkeerd
+met `<!-- FOTO-SLOT: … -->` in `src/`.
 
 Een echte foto zet je erin met één attribuut:
 
@@ -115,8 +116,9 @@ custom property wordt relatief aan het stylesheet opgelost, niet aan de pagina.
 - **Logo.** `Babywellness_transparant.png` en `voetjes_transparant.png` staan op bambine.be
   maar zijn vanuit deze omgeving niet te downloaden. Zet ze in `assets/img/` en vervang het
   woordmerk in de header (`BRAND` in `build.py`).
-- **Foto's** van de praktijk, de badruimte, Ine en de cadeauhoek. Eén foto is aangeleverd en
-  staat in de hero en de galerij; de rest van de slots wacht nog.
+- **Foto's** van de praktijk, de badruimte, Ine en de cadeauhoek. Twee foto's zijn aangeleverd
+  en staan in de hero; de rest van de slots wacht nog. De `aria-label` van het grote
+  hero-beeld is nog een algemene omschrijving en hoort te beschrijven wat er echt te zien is.
 - **Reviews** — de drie citaten zijn voorbeeldteksten en staan ook zo gemarkeerd; te
   vervangen door echte reacties (Google, Facebook).
 - **Openingsuren** — nergens publiek gevonden; nu staat er enkel "op afspraak".
