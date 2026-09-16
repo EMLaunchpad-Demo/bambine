@@ -250,18 +250,7 @@ hr.rule--gold { background: var(--gold-line); }
 
 .ico { width: 1.15rem; height: 1.15rem; flex: none; vertical-align: middle; }
 
-/* --- 5. Meldingsbalk, koptekst, navigatie -------------------------------- */
-.notice {
-  background: var(--brown-2);
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  padding: 0.5rem 0;
-  text-align: center;
-}
-.notice strong { color: var(--gold); font-weight: 700; }
-.notice .ico { display: none; }
-
+/* --- 5. Koptekst en navigatie -------------------------------------------- */
 .site-header {
   position: sticky;
   top: 0;
@@ -937,5 +926,5 @@ hr.rule--gold { background: var(--gold-line); }
 @keyframes vt-in { from { opacity: 0; } }
 
 @media print {
-  .site-header, .action-bar, .notice, .drawer { display: none !important; }
+  .site-header, .action-bar, .drawer { display: none !important; }
 }

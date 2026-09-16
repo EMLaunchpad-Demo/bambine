@@ -147,11 +147,4 @@
 
   /* 8. Jaartal ------------------------------------------------------------ */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
-
-  /* 9. Demo-melding sluiten ------------------------------------------------ */
-  var notice = $("[data-notice]");
-  if (notice) {
-    var closeN = $("[data-notice-close]", notice);
-    if (closeN) closeN.addEventListener("click", function () { notice.remove(); });
-  }
 })();

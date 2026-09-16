@@ -153,14 +153,7 @@
   padding-bottom: 0.35rem;
   border-bottom: 1px solid var(--gold);
   transition: color 0.3s var(--ease), border-color 0.3s var(--ease), gap 0.3s var(--ease-out);
-}.bambine-site .tlink:hover{ color: var(--gold-ink); gap: 0.85em; }.bambine-site .tlink .ico{ width: 0.95em; height: 0.95em; }.bambine-site .band--dark .tlink{ color: #fff; border-color: var(--gold); }.bambine-site .band--dark .tlink:hover{ color: var(--gold); }.bambine-site .actions{ display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; align-items: center; margin-top: 2rem; }.bambine-site .ico{ width: 1.15rem; height: 1.15rem; flex: none; vertical-align: middle; }.bambine-site .notice{
-  background: var(--brown-2);
-  color: rgba(255, 255, 255, 0.78);
-  font-size: 0.7rem;
-  letter-spacing: 0.04em;
-  padding: 0.5rem 0;
-  text-align: center;
-}.bambine-site .notice strong{ color: var(--gold); font-weight: 700; }.bambine-site .notice .ico{ display: none; }.bambine-site .site-header{
+}.bambine-site .tlink:hover{ color: var(--gold-ink); gap: 0.85em; }.bambine-site .tlink .ico{ width: 0.95em; height: 0.95em; }.bambine-site .band--dark .tlink{ color: #fff; border-color: var(--gold); }.bambine-site .band--dark .tlink:hover{ color: var(--gold); }.bambine-site .actions{ display: flex; flex-wrap: wrap; gap: 1.25rem 2rem; align-items: center; margin-top: 2rem; }.bambine-site .ico{ width: 1.15rem; height: 1.15rem; flex: none; vertical-align: middle; }.bambine-site .site-header{
   position: sticky;
   top: 0;
   z-index: 50;
@@ -558,7 +551,7 @@
 }.bambine-site [data-reveal="fig"].is-in{ opacity: 1; transform: none; }@media (prefers-reduced-motion: reduce){.bambine-site{ scroll-behavior: auto; }.bambine-site *,.bambine-site *::before,.bambine-site *::after{
     animation-duration: 0.001ms !important;
     transition-duration: 0.001ms !important;
-  }.bambine-site [data-reveal]{ opacity: 1 !important; transform: none !important; }}@media (prefers-reduced-motion: no-preference){.bambine-site ::view-transition-old(root){ animation: vt-out 0.25s var(--ease) both; }.bambine-site ::view-transition-new(root){ animation: vt-in 0.4s var(--ease-out) both; }}@keyframes vt-out{ to { opacity: 0; } }@keyframes vt-in{ from { opacity: 0; } }@media print{.bambine-site .site-header,.bambine-site .action-bar,.bambine-site .notice,.bambine-site .drawer{ display: none !important; }}</style>
+  }.bambine-site [data-reveal]{ opacity: 1 !important; transform: none !important; }}@media (prefers-reduced-motion: no-preference){.bambine-site ::view-transition-old(root){ animation: vt-out 0.25s var(--ease) both; }.bambine-site ::view-transition-new(root){ animation: vt-in 0.4s var(--ease-out) both; }}@keyframes vt-out{ to { opacity: 0; } }@keyframes vt-in{ from { opacity: 0; } }@media print{.bambine-site .site-header,.bambine-site .action-bar,.bambine-site .drawer{ display: none !important; }}</style>
 <div class="bambine-site">
 <svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
 <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></symbol>
@@ -574,11 +567,6 @@
 <symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></symbol>
 <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></symbol>
 </svg>
-<div class="notice" data-notice>
-  <div class="sheet">
-    <strong>Conceptvoorstel door EM&nbsp;Launchpad</strong> — niet de officiële website van Bambine. Teksten, reviews en tarieven nog na te kijken.
-  </div>
-</div>
 <header class="site-header">
   <nav class="sheet nav" aria-label="Hoofdnavigatie">
     <ul class="nav-links"><li><a href="/tarieven">Tarieven</a></li><li><a href="/reserveren">Reserveren</a></li><li><a href="/shop" aria-current="page">Shop</a></li><li><a href="/contact">Contact</a></li></ul>
@@ -1008,12 +996,5 @@
 
   /* 8. Jaartal ------------------------------------------------------------ */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
-
-  /* 9. Demo-melding sluiten ------------------------------------------------ */
-  var notice = $("[data-notice]");
-  if (notice) {
-    var closeN = $("[data-notice-close]", notice);
-    if (closeN) closeN.addEventListener("click", function () { notice.remove(); });
-  }
 })();
 </script>

@@ -327,12 +327,7 @@ BRAND = f"""<a class="brand" href="index.html" aria-label="{NAAM} — naar de st
   <span class="brand-sub">babywellness &amp; mamazorg</span>
 </a>"""
 
-HEADER = """<div class="notice" data-notice>
-  <div class="sheet">
-    <strong>Conceptvoorstel door EM&nbsp;Launchpad</strong> — niet de officiële website van Bambine. Teksten, reviews en tarieven nog na te kijken.
-  </div>
-</div>
-<header class="site-header">
+HEADER = """<header class="site-header">
   <nav class="sheet nav" aria-label="Hoofdnavigatie">
     <ul class="nav-links">{links}</ul>
     {brand}

@@ -3,8 +3,8 @@
 Conceptvoorstel voor een vernieuwde website van **Bambine babywellness & mamazorg**
 (Michiel Jansplein 28 bus b2, 3920 Lommel). Gemaakt door **EM Launchpad** als demo.
 
-> Dit is een conceptontwerp, geen officiële Bambine-website. Dat staat in de balk bovenaan
-> elke pagina en in de footer.
+> Dit is een conceptontwerp, geen officiële Bambine-website. Dat staat in de footer van
+> elke pagina.
 
 ## Live preview
 
