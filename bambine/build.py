@@ -329,51 +329,51 @@ def nav_html(current: str) -> str:
 
 def drawer_html(current: str) -> str:
     items = []
-    for href, label in NAV:
+    for i, (href, label) in enumerate(NAV):
         cur = ' aria-current="page"' if href == current else ""
-        items.append(
-            f'<li><a href="{href}"{cur}>{label}{icon("chevron-right")}</a></li>'
-        )
+        nr = f"0{i + 1}"
+        items.append(f'<li><a href="{href}"{cur}><em>{nr}</em>{label}</a></li>')
     return "".join(items)
 
 
 BRAND = f"""<a class="brand" href="index.html" aria-label="{NAAM} — naar de startpagina">
-  <span class="brand-mark">{icon("droplets")}</span>
-  <span><span class="brand-name">bambine</span><span class="brand-sub">babywellness &amp; mamazorg</span></span>
+  <span class="brand-name">bambine</span>
+  <span class="brand-sub">babywellness &amp; mamazorg</span>
 </a>"""
 
 HEADER = """<div class="notice" data-notice>
-  <div class="wrap">
-    {ic}
-    <p style="margin:0"><strong>Conceptvoorstel door EM&nbsp;Launchpad</strong> — niet de officiële website van Bambine. Teksten, reviews en tarieven nog na te kijken.</p>
+  <div class="sheet">
+    <strong>Conceptvoorstel door EM&nbsp;Launchpad</strong> — niet de officiële website van Bambine. Teksten, reviews en tarieven nog na te kijken.
   </div>
 </div>
 <header class="site-header">
-  <nav class="wrap nav" aria-label="Hoofdnavigatie">
-    {brand}
+  <nav class="sheet nav" aria-label="Hoofdnavigatie">
     <ul class="nav-links">{links}</ul>
-    <a class="btn btn--sm" href="tel:{telhref}">{ic_tel}{tel}</a>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen">{ic_menu}</button>
+    {brand}
+    <div class="nav-side">
+      <a class="nav-tel" href="tel:{telhref}">{ic_tel}{tel}</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen">{ic_menu}</button>
+    </div>
   </nav>
 </header>
 <div class="drawer" id="drawer" data-open="false" aria-hidden="true">
   <div class="drawer-top">
     {brand}
-    <button class="dialog-close" data-drawer-close aria-label="Menu sluiten">{ic_x}</button>
+    <button class="drawer-close" data-drawer-close aria-label="Menu sluiten">{ic_x}</button>
   </div>
   <ul class="drawer-links">{dlinks}</ul>
   <div class="drawer-foot">
-    <a class="btn btn--block" href="tel:{telhref}">{ic_tel}{tel}</a>
-    <a class="btn btn--ghost btn--block" href="mailto:{mail}">{ic_mail}{mail}</a>
+    <a class="btn" href="tel:{telhref}">{ic_tel}{tel}</a>
+    <a class="btn btn--line" href="mailto:{mail}">{ic_mail}{mail}</a>
   </div>
 </div>"""
 
 FOOTER = """<footer class="site-footer">
-  <div class="wrap">
+  <div class="sheet">
     <div class="footer-grid">
-      <div class="footer-brand">
+      <div>
         <span class="brand-name">bambine</span>
-        <p>Babywellness, mamazorg en verwenmomenten in hartje Lommel. Eén gezin per moment, alle tijd voor jullie twee.</p>
+        <p style="margin-top:1rem;max-width:32ch">Babywellness, mamazorg en verwenmomenten in hartje Lommel. Eén gezin per moment, alle tijd voor jullie twee.</p>
         <div class="socials">
           <a href="{insta}" rel="noopener me" aria-label="Bambine op Instagram">{ic_ig}</a>
           <a href="{fb}" rel="noopener me" aria-label="Bambine op Facebook">{ic_fb}</a>
@@ -394,7 +394,7 @@ FOOTER = """<footer class="site-footer">
         <h4>Praktisch</h4>
         <ul>
           <li><a href="tarieven.html">Tarieven</a></li>
-          <li><a href="contact.html#afspraak">Afspraak maken</a></li>
+          <li><a href="contact.html#afspraak">Afspraak</a></li>
           <li><a href="contact.html#faq">Veelgestelde vragen</a></li>
           <li><a href="contact.html#route">Route &amp; parkeren</a></li>
         </ul>
@@ -410,15 +410,15 @@ FOOTER = """<footer class="site-footer">
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> {voluit} · BTW-nummer toe te voegen</span>
-      <span>Conceptontwerp door <strong>EM Launchpad</strong> · niet de officiële website van Bambine</span>
+      <span>© <span data-year>2026</span> {voluit} · btw-nummer toe te voegen</span>
+      <span>Conceptontwerp door EM Launchpad · niet de officiële website van Bambine</span>
     </div>
   </div>
 </footer>"""
 
 ACTIONBAR = """<div class="action-bar">
-  <a class="btn btn--ghost" href="tel:{telhref}">{ic_tel}Bellen</a>
-  <a class="btn" href="mailto:{mail}">{ic_mail}Mailen</a>
+  <a href="tel:{telhref}">{ic_tel}Bellen</a>
+  <a href="mailto:{mail}">{ic_mail}Mailen</a>
 </div>"""
 
 LAYOUT = """<!DOCTYPE html>

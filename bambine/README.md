@@ -16,12 +16,12 @@ Zes statische pagina's, geen build-stap nodig om te hosten — gewoon uploaden.
 
 | Pagina | Inhoud |
 |---|---|
-| `index.html` | Hero met boekingskaart, vertrouwensstrook, aanbod, verloop van een sessie, over Ine, ruimte, reviews, cadeaubon, FAQ, aanvraagformulier |
+| `index.html` | Hero, feitenrij, warm water, aanbod in drie rijen, verloop, over Ine, de praktijk, citaat, cadeaubon, vragen en contact |
 | `babywellness.html` | Hydrotherapie + Shantala, verloop, tarieven, praktische tips, volledige FAQ |
 | `mamazorg.html` | Zwangerschapsmassage en ontspanningsmassage |
 | `kids.html` | Verwenmomenten van 3 tot 16 jaar |
 | `tarieven.html` | Alle tarieven + cadeaubon + praktische afspraken |
-| `contact.html` | Adres, route, parkeren, aanvraagformulier, FAQ |
+| `contact.html` | Adres, route, parkeren, plek voor het GHL-formulier, FAQ |
 
 Verder: `sitemap.xml`, `robots.txt`, `site.webmanifest`, `favicon.svg`, zelf gehoste
 webfonts en een iconensprite.
@@ -63,24 +63,43 @@ Typografie: **Fraunces** (display, variabel, met zachte SOFT-as en WONK uit) en
 **Mulish** (UI, humanistisch en zacht). Beide zelf gehost in `assets/fonts/`, dus geen
 verbinding met Google tijdens het bezoek (AVG/GDPR + snelheid).
 
-Iconen zijn echte SVG-iconen uit [Lucide](https://lucide.dev) (ISC) en
-[Simple Icons](https://simpleicons.org) (CC0), samengevoegd tot één inline sprite.
+### De opbouw
 
-Animaties zijn bewust ingehouden: reveal-on-scroll, een voortgangslijn in de tijdlijn,
-tellende cijfers, lichte parallax in de galerij en paginaovergangen via de View Transitions
-API. Alles valt stil bij `prefers-reduced-motion: reduce`.
+Het ontwerp gebruikt bewust **niet** het gangbare stramien van kop → drie kaartjes →
+iconen in cirkels → stats-strook. In plaats daarvan:
+
+- **Genummerde secties** (`01 — Warm water`, `02 — Het aanbod`, …) als herkenbare
+  handtekening, met een gouden haarlijn erachter.
+- **Haarlijnen in plaats van kaders.** Geen kaartjes met schaduw, geen afgeronde blokken.
+  Scheiding gebeurt met lijnen van 1 px en witruimte.
+- **Asymmetrisch raster van 12 kolommen.** Tekst en beeld staan zelden even breed; beeld
+  loopt aan één kant de bladspiegel uit (`.bleed-r` / `.bleed-l`).
+- **De boog** als enige vorm: alle staande beelden zijn bogen.
+- **Het aanbod als redactionele rijen** die links en rechts afwisselen, met een groot
+  cijfer, niet als drie identieke kaartjes.
+- **Tarieven als menukaart** met stippellijnen tussen naam en prijs.
+- **Eén groot citaat** in plaats van drie reviewkaartjes.
+- Iconen zijn teruggebracht tot twaalf, enkel waar ze functioneel zijn (telefoon, pijl,
+  menu, socials). Uit [Lucide](https://lucide.dev) (ISC) en
+  [Simple Icons](https://simpleicons.org) (CC0), als één inline sprite.
+
+Animaties zijn ingehouden: tekst schuift zacht omhoog, beeld zoomt licht uit, en
+paginaovergangen lopen via de View Transitions API. Alles valt stil bij
+`prefers-reduced-motion: reduce`. Let op bij het aanpassen: gebruik géén `clip-path` om
+een element eerst te verbergen — een volledig weggeknipt element is ook voor de
+IntersectionObserver onzichtbaar en onthult zichzelf dan nooit.
 
 ## Foto's toevoegen
 
-De site is foto-gedreven opgebouwd. Twee vlakken bevatten al de aangeleverde foto
-(`assets/img/baby-knuffel.webp`). De overige beeldvlakken zijn `.photo`-blokken met een
-rustig linnen verloop in de merkkleuren als tijdelijke invulling, elk gemarkeerd met
+De site is foto-gedreven opgebouwd. De hero bevat al de aangeleverde foto
+(`assets/img/baby-knuffel.webp`). De overige beeldvlakken zijn `.fig`-blokken met een
+rustig verloop in de merkkleuren als tijdelijke invulling, elk gemarkeerd met
 `<!-- FOTO-SLOT: … -->` in `src/`.
 
 Een echte foto zet je erin met één attribuut:
 
 ```html
-<div class="photo ratio-4-5 arch" style="background-image:url('assets/img/hero-baby.jpg')" …>
+<div class="fig arch r-4-5" style="background-image:url('assets/img/hero-baby.jpg')" …>
 ```
 
 Het icoontje in het midden verdwijnt dan automatisch. Pas ook de `aria-label` aan zodat die

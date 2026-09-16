@@ -27,9 +27,15 @@ tot dan is bellen of mailen de actie die de site moet uitlokken.
 
 ## 2. Layoutregister en dichtheid
 
-Register: *image-led, warm-editorial* — geen SaaS-airy landingspagina, maar ook niet de
+Register: *redactioneel, boetiek* — geen SaaS-airy landingspagina, maar ook niet de
 storefront-dichtheid van een catalogus. Baby-wellness verkoopt rust; de pagina moet rust tonen
 en tegelijk alle harde feiten binnen handbereik houden.
+
+Het gangbare stramien (kop → drie kaartjes → iconen in cirkels → stats-strook → donkere
+CTA-band) is bewust losgelaten: dat leest als een template. In de plaats: genummerde secties,
+haarlijnen in plaats van kaders, een asymmetrisch raster van twaalf kolommen, beeld dat aan
+één kant de bladspiegel uit loopt, het aanbod als afwisselende redactionele rijen, tarieven
+als menukaart en één groot citaat in plaats van drie reviewkaartjes.
 
 - **Boven de vouw op desktop: 3 modules**: kop + lead, de belknop met de tarievenlink, en
   het beeld rechts. Direct daaronder de vertrouwensstrook met vier feiten.
@@ -42,9 +48,9 @@ en tegelijk alle harde feiten binnen handbereik houden.
 
 ## 3. Merchandising- en categorieoppervlak
 
-- **Drie dienstfamilies** worden als volwaardige kaarten getoond (foto, drie bullets,
-  vanafprijs, duur), elk met een eigen detailpagina. Eén vlakke tier — geen mega-menu,
-  geen facetten: bij drie diensten is dat overkill.
+- **Drie dienstfamilies** staan als volwaardige redactionele rijen (groot cijfer, boog-foto,
+  tekst, vanafprijs), links en rechts afwisselend, elk met een eigen detailpagina. Eén vlakke
+  tier — geen mega-menu, geen facetten: bij drie diensten is dat overkill.
 - De **cadeaubon/webshop** is het vierde entreepunt, bewust apart als donkere band zodat
   het niet concurreert met de zorgdiensten maar wel zichtbaar blijft (het is het
   tweede-grootste aankoopmoment: kraamcadeau).
