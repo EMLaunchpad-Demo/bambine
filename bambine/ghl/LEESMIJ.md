@@ -10,18 +10,38 @@ rechtstreeks in de GHL-pagebuilder kan plakken.
 | `_script.js` | Hetzelfde script als los bestand, voor in de footer |
 | `_proefpagina.html` | Het blok in een vreemde omgeving, om te controleren dat de stijl niet uitlekt |
 
+## De vijf pagina's
+
+Vul in de pagebuilder per pagina deze twee velden in. De paden zijn al in de blokken
+verwerkt: de navigatie, de knoppen en de footer linken naar `/tarieven`, `/reserveren`,
+enzovoort, dus je hoeft geen enkele link aan te passen.
+
+| Bestand in deze map | Paginanaam | Path |
+|---|---|---|
+| `index.html` | Home | `/` (leeg laten) |
+| `tarieven.html` | Tarieven | `tarieven` |
+| `reserveren.html` | Reserveren | `reserveren` |
+| `shop.html` | Shop | `shop` |
+| `contact.html` | Contact | `contact` |
+
+Title en meta description per pagina staan bovenaan elk bestand in het HTML-commentaar;
+die horen in de pagina-instellingen (SEO), niet in het blok zelf.
+
+Geneste paden worden ondersteund. Wil je later bijvoorbeeld `diensten/babywellness`, pas
+dan het path in GHL aan én de bijbehorende regel in `GHL_PADEN` in `build.py`, en bouw
+opnieuw. Dan kloppen de links in alle blokken weer.
+
 ## Route A — snelst, per pagina één blok
 
-1. Maak in GHL een pagina aan (bv. `/reserveren`).
+1. Maak in GHL een pagina aan met de paginanaam en het path uit de tabel hierboven.
 2. Sleep één **Custom Code**- of **HTML**-element over de volledige breedte van de sectie.
    Zet de sectie op volle breedte en haal de standaard padding weg, anders staat er een
    marge rond het blok.
 3. Plak de volledige inhoud van het bijbehorende bestand uit deze map.
 4. Zet **Page title** en **Meta description** in de pagina-instellingen. De juiste teksten
    staan bovenaan elk bestand in het HTML-commentaar.
-5. Herhaal per pagina. De navigatie in het blok linkt naar `tarieven.html`,
-   `reserveren.html`, enzovoort — pas die links één keer aan naar de URL's die je in GHL
-   gebruikt (`/tarieven`, `/reserveren`, `/shop`, `/contact`).
+5. Herhaal per pagina. De links in de blokken wijzen al naar de paden uit de tabel, dus
+   zolang je die paden aanhoudt werkt de navigatie meteen.
 
 ## Route B — netter, stijl één keer site-breed
 

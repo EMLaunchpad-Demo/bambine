@@ -455,6 +455,26 @@ LAYOUT = """<!DOCTYPE html>
 
 
 # --- GoHighLevel-export ----------------------------------------------------
+# Paginanaam en path zoals je ze in de GHL-pagebuilder invult. De sleutel is het
+# bestand in deze map; de waarde is (paginanaam, path).
+GHL_PADEN = {
+    "index.html": ("Home", "/"),
+    "tarieven.html": ("Tarieven", "tarieven"),
+    "reserveren.html": ("Reserveren", "reserveren"),
+    "shop.html": ("Shop", "shop"),
+    "contact.html": ("Contact", "contact"),
+}
+
+
+def naar_ghl_links(blok: str) -> str:
+    """Interne links omzetten naar de paden die in GoHighLevel gebruikt worden."""
+    for bestand, (_, pad) in GHL_PADEN.items():
+        doel = "/" if pad == "/" else "/" + pad
+        blok = blok.replace(f'href="{bestand}#', f'href="{doel}#')
+        blok = blok.replace(f'href="{bestand}"', f'href="{doel}"')
+    return blok
+
+
 # GHL werkt met losse blokken in een pagebuilder. Per pagina schrijven we één
 # zelfstandig HTML-blok weg: de CSS zit ingekapseld onder .bambine-site zodat ze
 # de rest van de GHL-pagina niet raakt, de foto zit als data-URI in het blok en
@@ -558,10 +578,15 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
                     f"background-image:var({sleutel})",
                 )
         fotocss = f".bambine-site{{{fotos}}}" if fotos else ""
+        blok = naar_ghl_links(blok)
+        paginanaam, ghl_pad = GHL_PADEN.get(pad, (meta["title"], pad.replace(".html", "")))
         (ghl_map / pad).write_text(
-            f"<!-- Bambine - {meta['title']}\n"
+            f"<!-- Bambine - {paginanaam}\n"
             f"     Plak dit volledige blok in een Custom Code / HTML-element in GoHighLevel.\n"
-            f"     Titel en meta-omschrijving zet je in de pagina-instellingen van GHL:\n"
+            f"     In de pagebuilder:\n"
+            f"     Paginanaam:  {paginanaam}\n"
+            f"     Path:        {ghl_pad}\n"
+            f"     In de pagina-instellingen (SEO):\n"
             f"     Title:       {meta['title']}\n"
             f"     Description: {meta['desc']}\n"
             f"-->\n"
