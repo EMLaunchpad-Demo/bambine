@@ -18,8 +18,9 @@ tot dan is bellen of mailen de actie die de site moet uitlokken.
 
 - **Het telefoonnummer is de enige actie in de chrome**: een gouden knop met het nummer,
   op elke pagina, op elk schermformaat.
-- De hero herhaalt die actie meteen onder de lead, met de tarievenpagina ernaast als
-  secundaire stap voor wie eerst prijzen wil zien.
+- De hero stuurt meteen onder de lead door naar de reserveerpagina, met de tarievenpagina
+  ernaast als secundaire stap voor wie eerst prijzen wil zien. Bellen blijft één klik weg
+  in de chrome.
 - **Sticky actiebalk** onderaan op mobiel (Bellen · Mailen) zodra de bezoeker voorbij de hero scrollt.
 - Er is een eigen **reserveerpagina** die de hele stap draagt: hoe het gaat, wat je kan
   reserveren, het verloop van een sessie en wat je meebrengt. Bovenaan staat een gemarkeerd
