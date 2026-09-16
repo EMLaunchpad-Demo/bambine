@@ -11,6 +11,7 @@ rechtstreeks in de GHL-pagebuilder kan plakken.
 | `_stijl.css` | De volledige stijl inclusief de foto's, voor Settings → Custom CSS |
 | `_script.js` | Het volledige script als los bestand |
 | `_footer-code.html` | Hetzelfde script, al in `<script>`-tags, voor Tracking Code → Footer |
+| `secties/<pagina>/*.html` | Dezelfde pagina's, opgesplitst in losse secties (route C) |
 | `_proefpagina.html` | Een blok in een vreemde omgeving, om te controleren dat de stijl niet uitlekt |
 
 ## De vijf pagina's
@@ -62,6 +63,37 @@ sneller.
 
 Werkt het script niet? Controleer dan of de footer-code op paginaniveau overschreven wordt;
 in GHL kan een pagina zijn eigen tracking code hebben die de site-brede vervangt.
+
+## Route C — per sectie een blok
+
+Handig als je de pagina in GHL uit losse secties wil opbouwen, bijvoorbeeld om er later
+tussen te schuiven of om een sectie op meerdere pagina's te hergebruiken.
+
+1. Zet eerst stijl en script site-breed (stap 1 tot 3 van route B).
+2. Plak per GHL-sectie één bestand uit `secties/<pagina>/`, in de volgorde van de nummers.
+3. Zet de GHL-sectie op volle breedte zonder padding: de blokken brengen hun eigen
+   achtergrond en witruimte mee.
+
+De homepagina bestaat uit deze blokken:
+
+| Bestand | Wat het is |
+|---|---|
+| `00-kop-en-navigatie.html` | Demobalk, navigatie en mobiel menu. **Hoort op elke pagina**, want de iconensprite zit erin |
+| `01-hero.html` | Titel, tekst, belknop en het grote beeld |
+| `02-in-het-kort.html` | De feitenrij met 36 °C, leeftijd, één gezin, vanafprijs |
+| `03-warm-water.html` | Waarom warm water werkt, met de streepjeslijst |
+| `04-aanbod.html` | De drie diensten als redactionele rijen |
+| `05-verloop.html` | Het verloop van een sessie in vijf stappen |
+| `06-over-ine.html` | De donkere band met het citaat van Ine |
+| `07-de-praktijk.html` | De galerij met drie bogen en de waterlijn |
+| `08-wat-ouders-zeggen.html` | Het grote citaat |
+| `09-cadeaubon.html` | De cadeaubonband |
+| `10-vragen-contact.html` | De FAQ naast de contactgegevens |
+| `98-actiebalk-mobiel.html` | De vaste balk onderaan op mobiel. Optioneel |
+| `99-footer.html` | De footer |
+
+De andere pagina's zijn op dezelfde manier opgesplitst in `secties/tarieven/`,
+`secties/reserveren/`, `secties/shop/` en `secties/contact/`.
 
 ## Goed om te weten
 

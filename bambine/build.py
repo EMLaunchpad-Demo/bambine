@@ -549,6 +549,59 @@ def data_uri(pad: pathlib.Path) -> str:
     return f"data:{soort};base64," + base64.b64encode(pad.read_bytes()).decode()
 
 
+def split_secties(body: str) -> list[tuple[str, str]]:
+    """Splits de inhoud van een pagina in losse <section>-blokken.
+
+    Geeft per sectie een naam (uit het commentaar erboven, anders uit id of
+    aria-label) en de bijbehorende opmaak terug.
+    """
+    import re as _re
+
+    secties: list[tuple[str, str]] = []
+    i = 0
+    laatste_naam = ""
+    while True:
+        start = body.find("<section", i)
+        if start == -1:
+            break
+        # commentaar tussen de vorige sectie en deze gebruiken als naam
+        tussen = body[i:start]
+        namen = _re.findall(r"<!--\s*=+\s*(.*?)\s*=+\s*-->", tussen)
+        if namen:
+            laatste_naam = namen[-1]
+        # bijpassende sluittag zoeken
+        diepte, j = 0, start
+        while j < len(body):
+            if body.startswith("<section", j):
+                diepte += 1
+                j += 8
+            elif body.startswith("</section>", j):
+                diepte -= 1
+                j += 10
+                if diepte == 0:
+                    break
+            else:
+                j += 1
+        blok = body[start:j]
+        naam = laatste_naam
+        if not naam:
+            m = _re.search(r'id="([^"]+)"', blok) or _re.search(r'aria-label="([^"]+)"', blok)
+            naam = m.group(1) if m else "sectie"
+        secties.append((naam, blok))
+        laatste_naam = ""
+        i = j
+    return secties
+
+
+def bestandsnaam(nummer: int, naam: str) -> str:
+    import re as _re
+    kaal = naam.lower()
+    for a, b in [("á", "a"), ("é", "e"), ("ë", "e"), ("ï", "i"), ("ó", "o"), ("ü", "u"), ("&amp;", "en"), ("&", "en")]:
+        kaal = kaal.replace(a, b)
+    kaal = _re.sub(r"[^a-z0-9]+", "-", kaal).strip("-") or "sectie"
+    return f"{nummer:02d}-{kaal}.html"
+
+
 def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
     ghl_map = ROOT / "ghl"
     ghl_map.mkdir(exist_ok=True)
@@ -588,6 +641,42 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         blok = naar_ghl_links(blok)
         paginanaam, ghl_pad = GHL_PADEN.get(pad, (meta["title"], pad.replace(".html", "")))
         kale_blokken[pad] = f'<div class="bambine-site">\n{SPRITE}\n{blok}\n</div>\n'
+
+        # per sectie een eigen blok, voor wie de pagina in GHL-secties opbouwt
+        sect_map = ghl_map / "secties" / ("home" if pad == "index.html" else pad.replace(".html", ""))
+        sect_map.mkdir(parents=True, exist_ok=True)
+        for oud in sect_map.glob("*.html"):
+            oud.unlink()
+        kop_blok = naar_ghl_links(kop)
+        (sect_map / "00-kop-en-navigatie.html").write_text(
+            f"<!-- Bambine - kop en navigatie ({paginanaam})\n"
+            f"     Plaats dit als eerste blok op de pagina, of als globale sectie.\n"
+            f"     De iconensprite zit hierin, dus dit blok hoort op elke pagina.\n"
+            f"-->\n"
+            f'<div class="bambine-site">\n{SPRITE}\n{kop_blok}\n</div>\n',
+            encoding="utf-8",
+        )
+        secties = split_secties(naar_ghl_links(body))
+        for nr, (naam, stuk) in enumerate(secties, start=1):
+            (sect_map / bestandsnaam(nr, naam)).write_text(
+                f"<!-- Bambine - {paginanaam} · sectie {nr}: {naam}\n"
+                f"     Eén GHL-sectie. Stijl en script staan site-breed (route B).\n"
+                f"-->\n"
+                f'<div class="bambine-site">\n{stuk}\n</div>\n',
+                encoding="utf-8",
+            )
+        (sect_map / "98-actiebalk-mobiel.html").write_text(
+            "<!-- Bambine - vaste balk onderaan op mobiel (bellen en mailen).\n"
+            "     Optioneel; plaats onderaan de pagina of als globale sectie. -->\n"
+            f'<div class="bambine-site">\n{naar_ghl_links(actionbar_html)}\n</div>\n',
+            encoding="utf-8",
+        )
+        (sect_map / "99-footer.html").write_text(
+            "<!-- Bambine - footer. Plaats als laatste blok of als globale sectie. -->\n"
+            f'<div class="bambine-site">\n{naar_ghl_links(footer_html)}\n</div>\n',
+            encoding="utf-8",
+        )
+        print(f"  ~ ghl/secties/{sect_map.name}/ ({len(secties)} secties)")
         (ghl_map / pad).write_text(
             f"<!-- Bambine - {paginanaam}\n"
             f"     Plak dit volledige blok in een Custom Code / HTML-element in GoHighLevel.\n"
