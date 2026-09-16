@@ -31,10 +31,9 @@ FB = "https://www.facebook.com/BambineBabywellness/"
 WEBSHOP = "https://www.bambine-webshop.be/"
 
 NAV = [
-    ("babywellness.html", "Babywellness"),
-    ("mamazorg.html", "Mama &amp; vrouw"),
-    ("kids.html", "Kids"),
     ("tarieven.html", "Tarieven"),
+    ("reserveren.html", "Reserveren"),
+    ("shop.html", "Shop"),
     ("contact.html", "Contact"),
 ]
 
@@ -231,76 +230,63 @@ PAGES = {
                       "publisher": {"@id": f"{SITE}/#bambine"}},
             {**DIENSTEN_LD}, faq_ld(FAQ_BABY[:4])],
     ),
-    "babywellness.html": dict(
-        title="Babywellness & hydrotherapie voor baby's | Bambine Lommel",
-        desc=(
-            "Hydrotherapie in water van 36 °C en Shantala babymassage voor baby's van 2 weken tot "
-            "±9 maanden. Zo verloopt een sessie bij Bambine in Lommel, met tarieven en veelgestelde vragen."
-        ),
-        ld=[
-            BEDRIJF,
-            dienst_ld(
-                "Babywellness: hydrotherapie en Shantala babymassage",
-                "Je baby drijft in warm water van ongeveer 36 °C, speelt met lichtjes en speeltjes, "
-                "en krijgt daarna optioneel een Shantala babymassage.",
-                "babywellness.html",
-                DIENSTEN_LD["itemListElement"],
-            ),
-            crumbs_ld([("", "Home"), ("babywellness.html", "Babywellness")]),
-            faq_ld(FAQ_BABY),
-        ],
-    ),
-    "mamazorg.html": dict(
-        title="Zwangerschapsmassage & ontspanningsmassage | Bambine Lommel",
-        desc=(
-            "Mamazorg bij Bambine in Lommel: zwangerschapsmassage in elke fase van je zwangerschap "
-            "en ontspanningsmassage voor vrouwen — met of zonder kinderen. Rustige praktijk, op afspraak."
-        ),
-        ld=[
-            BEDRIJF,
-            dienst_ld(
-                "Mamazorg: zwangerschapsmassage en ontspanningsmassage",
-                "Massage voor zwangere vrouwen in elke fase van de zwangerschap en "
-                "ontspanningsmassage voor vrouwen.",
-                "mamazorg.html",
-            ),
-            crumbs_ld([("", "Home"), ("mamazorg.html", "Mama & vrouw")]),
-        ],
-    ),
-    "kids.html": dict(
-        title="Verwenmomenten voor kinderen vanaf 3 jaar | Bambine Lommel",
-        desc=(
-            "Een echt verwenmoment voor kinderen van 3 tot 16 jaar: zachte gezichtsverzorging, "
-            "handjes, nagels en een drankje. Alleen, met een vriendin of als klein feestje in Lommel."
-        ),
-        ld=[
-            BEDRIJF,
-            dienst_ld(
-                "Verwenmomenten voor kinderen",
-                "Verzorgings- en verwenmomenten voor kinderen van 3 tot 16 jaar.",
-                "kids.html",
-            ),
-            crumbs_ld([("", "Home"), ("kids.html", "Kids")]),
-        ],
-    ),
     "tarieven.html": dict(
-        title="Tarieven & cadeaubon | Bambine babywellness Lommel",
+        title="Tarieven & diensten | Bambine babywellness Lommel",
         desc=(
-            "Alle tarieven van Bambine op één pagina: babywellness vanaf € 55, hydrotherapie met "
-            "Shantala babymassage € 75, duosessie € 150. Plus cadeaubonnen en pampertaarten."
+            "Alle diensten en tarieven van Bambine op één pagina: babywellness vanaf € 55, "
+            "hydrotherapie met Shantala babymassage € 75, duosessie € 150, zwangerschaps- en "
+            "ontspanningsmassage en verwenmomenten voor kinderen vanaf 3 jaar."
         ),
         ld=[
             BEDRIJF,
             {**DIENSTEN_LD},
+            dienst_ld(
+                "Babywellness: hydrotherapie en Shantala babymassage",
+                "Je baby drijft in warm water van ongeveer 36 °C en krijgt daarna optioneel "
+                "een Shantala babymassage.",
+                "tarieven.html#babywellness",
+                DIENSTEN_LD["itemListElement"],
+            ),
+            dienst_ld(
+                "Mamazorg: zwangerschapsmassage en ontspanningsmassage",
+                "Massage voor zwangere vrouwen in elke fase van de zwangerschap en "
+                "ontspanningsmassage voor vrouwen.",
+                "tarieven.html#mama",
+            ),
+            dienst_ld(
+                "Verwenmomenten voor kinderen",
+                "Verzorgings- en verwenmomenten voor kinderen van 3 tot 16 jaar.",
+                "tarieven.html#kids",
+            ),
             crumbs_ld([("", "Home"), ("tarieven.html", "Tarieven")]),
         ],
     ),
-    "contact.html": dict(
-        title="Contact & afspraak | Bambine Lommel — Michiel Jansplein 28",
+    "reserveren.html": dict(
+        title="Reserveren | Bambine babywellness Lommel",
         desc=(
-            "Maak een afspraak bij Bambine in Lommel: Michiel Jansplein 28 bus b2, "
-            "+32 474 78 26 91, info@bambine.be. Route, parkeren, openingsmomenten en "
-            "veelgestelde vragen."
+            "Een sessie reserveren bij Bambine in Lommel: bel +32 474 78 26 91 of mail "
+            "info@bambine.be. Zo verloopt een sessie, wat je meebrengt en wat je vooraf "
+            "moet weten."
+        ),
+        ld=[
+            BEDRIJF,
+            crumbs_ld([("", "Home"), ("reserveren.html", "Reserveren")]),
+            faq_ld(FAQ_BABY[:4]),
+        ],
+    ),
+    "shop.html": dict(
+        title="Shop: cadeaubonnen, pampertaarten en geschenkjes | Bambine Lommel",
+        desc=(
+            "De shop van Bambine: cadeaubonnen voor een sessie babywellness, pampertaarten "
+            "en gepersonaliseerde geschenkjes voor mama, papa of baby. Af te halen in Lommel."
+        ),
+        ld=[BEDRIJF, crumbs_ld([("", "Home"), ("shop.html", "Shop")])],
+    ),
+    "contact.html": dict(
+        title="Contact & route | Bambine Lommel — Michiel Jansplein 28",
+        desc=(
+            "Bambine in Lommel: Michiel Jansplein 28 bus b2, +32 474 78 26 91, "
+            "info@bambine.be. Route, parkeren, openingsmomenten en veelgestelde vragen."
         ),
         ld=[
             BEDRIJF,
@@ -383,20 +369,19 @@ FOOTER = """<footer class="site-footer">
       <div>
         <h4>Aanbod</h4>
         <ul>
-          <li><a href="babywellness.html">Babywellness</a></li>
-          <li><a href="mamazorg.html">Mama &amp; vrouw</a></li>
-          <li><a href="kids.html">Kids vanaf 3 jaar</a></li>
-          <li><a href="tarieven.html#cadeaubon">Cadeaubon</a></li>
-          <li><a href="{shop}" rel="noopener">Webshop</a></li>
+          <li><a href="tarieven.html#babywellness">Babywellness</a></li>
+          <li><a href="tarieven.html#mama">Mama &amp; vrouw</a></li>
+          <li><a href="tarieven.html#kids">Kids vanaf 3 jaar</a></li>
+          <li><a href="shop.html">Shop &amp; cadeaubon</a></li>
         </ul>
       </div>
       <div>
         <h4>Praktisch</h4>
         <ul>
-          <li><a href="tarieven.html">Tarieven</a></li>
-          <li><a href="contact.html#afspraak">Afspraak</a></li>
+          <li><a href="reserveren.html">Reserveren</a></li>
           <li><a href="contact.html#faq">Veelgestelde vragen</a></li>
           <li><a href="contact.html#route">Route &amp; parkeren</a></li>
+          <li><a href="{shop}" rel="noopener">Webshop</a></li>
         </ul>
       </div>
       <div>

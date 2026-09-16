@@ -21,9 +21,12 @@ tot dan is bellen of mailen de actie die de site moet uitlokken.
 - De hero herhaalt die actie meteen onder de lead, met de tarievenpagina ernaast als
   secundaire stap voor wie eerst prijzen wil zien.
 - **Sticky actiebalk** onderaan op mobiel (Bellen · Mailen) zodra de bezoeker voorbij de hero scrollt.
-- Op de contactpagina staat een gemarkeerd blok (`.ghl-slot`) precies waar het
-  GHL-boekingsformulier of de agenda komt. Geen nepformulier in de tussentijd: dat zou
-  aanvragen opslokken die nergens aankomen.
+- Er is een eigen **reserveerpagina** die de hele stap draagt: hoe het gaat, wat je kan
+  reserveren, het verloop van een sessie en wat je meebrengt. Bovenaan staat een gemarkeerd
+  blok (`.ghl-slot`) precies waar het GHL-formulier of de agenda komt. Geen nepformulier in
+  de tussentijd: dat zou aanvragen opslokken die nergens aankomen.
+- De **shoppagina** draagt het tweede aankoopmoment (cadeaubon, pampertaart, geschenkje),
+  met dezelfde constructie voor de bestelmodule.
 
 ## 2. Layoutregister en dichtheid
 
@@ -48,9 +51,11 @@ als menukaart en één groot citaat in plaats van drie reviewkaartjes.
 
 ## 3. Merchandising- en categorieoppervlak
 
-- **Drie dienstfamilies** staan als volwaardige redactionele rijen (groot cijfer, boog-foto,
-  tekst, vanafprijs), links en rechts afwisselend, elk met een eigen detailpagina. Eén vlakke
-  tier — geen mega-menu, geen facetten: bij drie diensten is dat overkill.
+- **Drie dienstfamilies** staan op de homepage als redactionele rijen (groot cijfer,
+  boog-foto, tekst, vanafprijs), links en rechts afwisselend, en leiden alle drie naar hun
+  anker op de tarievenpagina. Eén vlakke tier — geen mega-menu, geen facetten.
+- De navigatie is teruggebracht tot vier bestemmingen: Tarieven, Reserveren, Shop, Contact.
+  Dat maakt de twee handelingen (reserveren, bestellen) tot de ruggengraat van het menu.
 - De **cadeaubon/webshop** is het vierde entreepunt, bewust apart als donkere band zodat
   het niet concurreert met de zorgdiensten maar wel zichtbaar blijft (het is het
   tweede-grootste aankoopmoment: kraamcadeau).
@@ -61,9 +66,9 @@ als menukaart en één groot citaat in plaats van drie reviewkaartjes.
 | Pad | Status | Waar |
 |---|---|---|
 | Per persoon (baby / mama / kind) | **primair** | hero-tabs + hoofdnavigatie + dienstkaarten |
-| Per dienst (hydrotherapie, Shantala, zwangerschapsmassage …) | **primair** | detailpagina's, tarievenpagina |
-| Per prijs | secundair | eigen tarievenpagina, prijs herhaald op elke dienstpagina |
-| Per gelegenheid (kraamcadeau, verjaardag) | secundair | cadeaubonband, kids-pagina |
+| Per dienst (hydrotherapie, Shantala, zwangerschapsmassage …) | **primair** | tarievenpagina met een anker per dienst |
+| Per prijs | **primair** | de tarievenpagina draagt nu alle diensten, met menukaart per familie |
+| Per gelegenheid (kraamcadeau, verjaardag) | secundair | shoppagina met cadeaubonnen en geschenkjes |
 | Per locatie / route | secundair | contactpagina, footer, chrome |
 | Zoeken | **afwezig** | correct voor deze shape: zes pagina's, geen catalogus |
 

@@ -5,23 +5,23 @@ rechtstreeks in de GHL-pagebuilder kan plakken.
 
 | Bestand | Wat het is |
 |---|---|
-| `index.html` … `contact.html` | Eén zelfstandig blok per pagina: stijl, iconen, foto en script zitten erin |
+| `index.html`, `tarieven.html`, `reserveren.html`, `shop.html`, `contact.html` | Eén zelfstandig blok per pagina: stijl, iconen, foto en script zitten erin |
 | `_stijl.css` | Dezelfde stijl als los bestand, voor wie liever site-brede CSS gebruikt |
 | `_script.js` | Hetzelfde script als los bestand, voor in de footer |
 | `_proefpagina.html` | Het blok in een vreemde omgeving, om te controleren dat de stijl niet uitlekt |
 
 ## Route A — snelst, per pagina één blok
 
-1. Maak in GHL een pagina aan (bv. `/babywellness`).
+1. Maak in GHL een pagina aan (bv. `/reserveren`).
 2. Sleep één **Custom Code**- of **HTML**-element over de volledige breedte van de sectie.
    Zet de sectie op volle breedte en haal de standaard padding weg, anders staat er een
    marge rond het blok.
 3. Plak de volledige inhoud van het bijbehorende bestand uit deze map.
 4. Zet **Page title** en **Meta description** in de pagina-instellingen. De juiste teksten
    staan bovenaan elk bestand in het HTML-commentaar.
-5. Herhaal per pagina. De navigatie in het blok linkt naar `babywellness.html`,
-   `tarieven.html`, enzovoort — pas die links één keer aan naar de URL's die je in GHL
-   gebruikt (`/babywellness`, `/tarieven`, …).
+5. Herhaal per pagina. De navigatie in het blok linkt naar `tarieven.html`,
+   `reserveren.html`, enzovoort — pas die links één keer aan naar de URL's die je in GHL
+   gebruikt (`/tarieven`, `/reserveren`, `/shop`, `/contact`).
 
 ## Route B — netter, stijl één keer site-breed
 
@@ -37,9 +37,10 @@ rechtstreeks in de GHL-pagebuilder kan plakken.
 - **Alles zit ingekapseld onder `.bambine-site`.** De stijl raakt de rest van de
   GHL-pagina niet, en omgekeerd overschrijven de thema-instellingen van GHL de pagina niet.
   Open `_proefpagina.html` in een browser om dat te zien.
-- **Boekingswidgets zitten er bewust niet in.** Op de contactpagina staat een blok met een
-  stippellijn (`.ghl-slot`) op de plek waar het GHL-formulier of de agenda hoort. Vervang
-  dat hele blok door het embed-element uit GHL.
+- **Boekingswidgets zitten er bewust niet in.** Op `reserveren.html` staat een blok met een
+  stippellijn (`.ghl-slot`) op de plek waar het formulier of de agenda hoort, en op
+  `shop.html` staat hetzelfde blok voor de bestelmodule. Vervang die blokken door de
+  embed-elementen uit GHL.
 - **De foto zit als data-URI in het blok**, dus je hoeft niets te uploaden. Wil je liever
   de GHL-mediabibliotheek gebruiken: zoek in het bestand naar `--f-baby-knuffel` en zet
   daar de URL van de geüploade foto neer.

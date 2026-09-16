@@ -12,23 +12,27 @@ https://claude.ai/code/artifact/028ac88e-6ae9-40c6-bd1e-4444dac759ca
 
 ## Wat zit erin
 
-Zes statische pagina's, geen build-stap nodig om te hosten — gewoon uploaden.
+Vijf statische pagina's, geen build-stap nodig om te hosten — gewoon uploaden.
 
 | Pagina | Inhoud |
 |---|---|
 | `index.html` | Hero, feitenrij, warm water, aanbod in drie rijen, verloop, over Ine, de praktijk, citaat, cadeaubon, vragen en contact |
-| `babywellness.html` | Hydrotherapie + Shantala, verloop, tarieven, praktische tips, volledige FAQ |
-| `mamazorg.html` | Zwangerschapsmassage en ontspanningsmassage |
-| `kids.html` | Verwenmomenten van 3 tot 16 jaar |
-| `tarieven.html` | Alle tarieven + cadeaubon + praktische afspraken |
-| `contact.html` | Adres, route, parkeren, plek voor het GHL-formulier, FAQ |
+| `tarieven.html` | Alle diensten op één pagina: babywellness (`#babywellness`), mama &amp; vrouw (`#mama`), kids (`#kids`), cadeaubon (`#cadeaubon`) en praktische afspraken |
+| `reserveren.html` | Hoe je reserveert, plek voor het GHL-formulier, wat je kan reserveren, het verloop van een sessie, wat je meebrengt |
+| `shop.html` | Cadeaubonnen en geschenkjes als artikelslots, plus hoe bestellen werkt en de plek voor de bestelmodule |
+| `contact.html` | Adres, route, parkeren, openingsmomenten en de FAQ |
+
+De aparte dienstpagina's (babywellness, mamazorg, kids) zijn samengevoegd tot één
+tarievenpagina met ankers per dienst. Als die URL's ooit live hebben gestaan: zet een
+301-redirect naar `tarieven.html#babywellness`, `#mama` en `#kids`.
 
 Verder: `sitemap.xml`, `robots.txt`, `site.webmanifest`, `favicon.svg`, zelf gehoste
 webfonts en een iconensprite.
 
 **Boekingswidgets zitten er bewust niet in.** Afspraken lopen voorlopig via telefoon en
-mail; het boekingsformulier en de agenda komen later in GoHighLevel. Op de contactpagina
-staat een gemarkeerd blok (`.ghl-slot`) op de plek waar dat embed-element hoort.
+mail; het boekingsformulier en de agenda komen later in GoHighLevel. Op `reserveren.html`
+en op `shop.html` staat een gemarkeerd blok (`.ghl-slot`) op de plek waar dat embed-element
+hoort.
 
 ## Bouwen
 
@@ -119,8 +123,12 @@ custom property wordt relatief aan het stylesheet opgelost, niet aan de pagina.
 - **Tarieven** voor mamazorg en kids (nu "op aanvraag") en bevestiging van de
   babywellness-tarieven (€ 55 / € 75 / € 150, overgenomen van de huidige site).
 - **Btw-nummer** in de footer, en een privacy- en cookiepagina.
-- **Boekingsformulier en agenda** in GoHighLevel opzetten en het `.ghl-slot`-blok op de
-  contactpagina daardoor vervangen.
+- **Boekingsformulier en agenda** in GoHighLevel opzetten en het `.ghl-slot`-blok op
+  `reserveren.html` daardoor vervangen.
+- **Assortiment van de shop**: namen, omschrijvingen, prijzen en foto's van de artikelen.
+  Elk artikel is een `.good`-blok in `src/shop.html`, gemarkeerd met `<!-- PRODUCTSLOT -->`;
+  kopieer een blok voor elk extra artikel. De bestelmodule van GHL vervangt het
+  `.ghl-slot`-blok onderaan.
 - Adres, telefoon en e-mail komen uit publiek beschikbare bronnen; graag verifiëren.
 
 ## SEO
