@@ -16,7 +16,7 @@ Vijf statische pagina's, geen build-stap nodig om te hosten — gewoon uploaden.
 
 | Pagina | Inhoud |
 |---|---|
-| `index.html` | Hero, feitenrij, warm water, aanbod in drie rijen, verloop, over Ine, de praktijk, citaat, cadeaubon, vragen en contact |
+| `index.html` | Hero met vullend beeld, feitenrij, warm water, aanbod in drie rijen, verloop, over Ine, de praktijk, citaat, cadeaubon, vragen en contact |
 | `tarieven.html` | Alle diensten op één pagina: babywellness (`#babywellness`), mama &amp; vrouw (`#mama`), kids (`#kids`), cadeaubon (`#cadeaubon`) en praktische afspraken |
 | `reserveren.html` | Hoe je reserveert, plek voor het GHL-formulier, wat je kan reserveren, het verloop van een sessie, wat je meebrengt |
 | `shop.html` | Cadeaubonnen en geschenkjes als artikelslots, plus hoe bestellen werkt en de plek voor de bestelmodule |
@@ -72,6 +72,10 @@ verbinding met Google tijdens het bezoek (AVG/GDPR + snelheid).
 Het ontwerp gebruikt bewust **niet** het gangbare stramien van kop → drie kaartjes →
 iconen in cirkels → stats-strook. In plaats daarvan:
 
+- **Een hero met vullend beeld**: de foto loopt van rand tot rand en van de bovenkant van
+  het scherm tot onder de vouw, met een warme bruine sluier eroverheen zodat witte tekst
+  leesbaar blijft op elke foto. De navigatie staat doorzichtig over dat beeld en wordt wit
+  zodra je eruit scrollt. Daaronder blijft de pagina redactioneel:
 - **Genummerde secties** (`01 — Warm water`, `02 — Het aanbod`, …) als herkenbare
   handtekening, met een gouden haarlijn erachter.
 - **Haarlijnen in plaats van kaders.** Geen kaartjes met schaduw, geen afgeronde blokken.
@@ -95,9 +99,9 @@ IntersectionObserver onzichtbaar en onthult zichzelf dan nooit.
 
 ## Foto's toevoegen
 
-De site is foto-gedreven opgebouwd. In de hero staan twee aangeleverde foto's: het grote
-boogbeeld komt rechtstreeks uit de GHL-mediabibliotheek (een `https://assets.cdn.filesafe.space/…`-URL)
-en het kleine ingezette beeld is `assets/img/baby-knuffel.webp`. De overige beeldvlakken zijn
+De site is foto-gedreven opgebouwd. De hero toont de foto uit de
+GHL-mediabibliotheek (een `https://assets.cdn.filesafe.space/…`-URL) schermvullend; de tweede
+aangeleverde foto (`assets/img/baby-knuffel.webp`) staat in de galerij bij "De praktijk". De overige beeldvlakken zijn
 `.fig`-blokken met een rustig verloop in de merkkleuren als tijdelijke invulling, elk gemarkeerd
 met `<!-- FOTO-SLOT: … -->` in `src/`.
 

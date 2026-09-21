@@ -79,7 +79,7 @@ De homepagina bestaat uit deze blokken:
 | Bestand | Wat het is |
 |---|---|
 | `00-kop-en-navigatie.html` | Navigatie en mobiel menu. **Hoort op elke pagina**, want de iconensprite zit erin |
-| `01-hero.html` | Titel, tekst, belknop en het grote beeld |
+| `01-hero.html` | Het schermvullende beeld met de titel, de reserveerknop en de cadeaubonknop |
 | `02-in-het-kort.html` | De feitenrij met 36 °C, leeftijd, één gezin, vanafprijs |
 | `03-warm-water.html` | Waarom warm water werkt, met de streepjeslijst |
 | `04-aanbod.html` | De drie diensten als redactionele rijen |
@@ -110,6 +110,10 @@ De andere pagina's zijn op dezelfde manier opgesplitst in `secties/tarieven/`,
 - **Webfonts** komen via een `@import` van Google Fonts. Voor strikte AVG/GDPR-naleving kan
   je de bestanden uit `../assets/fonts/` naar de mediabibliotheek van GHL uploaden en de
   `@import`-regel vervangen door `@font-face`-regels met die URL's.
+- **De hero schuift bewust onder de navigatie**, zodat de kop doorzichtig over de foto staat.
+  Zet die GHL-sectie dus op volle breedte zonder padding. Loopt het in GHL toch niet mooi
+  samen, zet dan op het hero-blok `style="--header-h:0px"`: dan begint de foto netjes onder
+  de navigatie in plaats van eronder door te lopen.
 - **De vermelding dat dit een concept is** staat nu enkel nog in de footer, in de onderste
   regel. Voor livegang haal je die regel weg.
 - Na elke aanpassing in `src/` of `assets/`: `python3 build.py` opnieuw draaien en de

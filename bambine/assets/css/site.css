@@ -219,6 +219,7 @@ hr.rule--gold { background: var(--gold-line); }
 .btn:hover { background: transparent; color: var(--gold-ink); border-color: var(--gold-ink); }
 .btn .ico { width: 1.05em; height: 1.05em; }
 
+.btn--sm { padding: 0.6rem 1.15rem; font-size: 0.7rem; letter-spacing: 0.1em; }
 .btn--line { background: transparent; border-color: var(--rule); color: var(--ink); }
 .btn--line:hover { border-color: var(--ink); background: transparent; color: var(--ink); }
 .btn--onDark { background: var(--gold); border-color: var(--gold); color: var(--brown-2); }
@@ -261,6 +262,20 @@ hr.rule--gold { background: var(--gold-line); }
   transition: border-color 0.4s var(--ease), padding 0.4s var(--ease);
 }
 .site-header.is-stuck { border-bottom-color: var(--gold-line); }
+
+/* Boven een hero met vullend beeld staat de kop doorzichtig over de foto. */
+.site-header.is-over {
+  background: transparent;
+  backdrop-filter: none;
+  border-bottom-color: transparent;
+}
+.site-header.is-over .brand,
+.site-header.is-over .nav-tel,
+.site-header.is-over .nav-links a,
+.site-header.is-over .nav-toggle { color: #fff; }
+.site-header.is-over .brand-sub { color: rgba(255, 255, 255, 0.72); }
+.site-header.is-over .nav-links a:hover,
+.site-header.is-over .nav-links a[aria-current="page"] { color: #fff; border-color: var(--gold); }
 
 .nav {
   display: grid;
@@ -346,6 +361,7 @@ hr.rule--gold { background: var(--gold-line); }
   .brand { grid-column: 1; justify-self: start; text-align: left; }
   .nav-side { grid-column: 3; }
   .nav-tel { display: none; }
+  .nav-cta { display: none; }
   .nav-toggle { display: grid; }
 }
 
@@ -477,6 +493,90 @@ hr.rule--gold { background: var(--gold-line); }
 .fig-note::before { content: ""; width: 1.75rem; height: 1px; background: var(--gold); }
 
 /* --- 7. Hero ------------------------------------------------------------- */
+/* Hero met vullend beeld: het beeld draagt de pagina, de tekst staat erop. */
+.hero-cover {
+  position: relative;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  isolation: isolate;
+  min-height: min(90vh, 52rem);
+  margin-top: calc(-1 * var(--header-h, 4.75rem));
+  padding-top: calc(var(--header-h, 4.75rem) + clamp(2.5rem, 7vh, 5rem));
+  padding-bottom: clamp(7rem, 15vh, 10rem);
+  background-color: var(--brown);
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+}
+/* Warme sluier in de merkkleur: houdt witte tekst leesbaar op elke foto. */
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(60% 55% at 50% 48%, rgba(36, 29, 24, 0.34) 0%, rgba(36, 29, 24, 0) 100%),
+    linear-gradient(
+      180deg,
+      rgba(36, 29, 24, 0.7) 0%,
+      rgba(36, 29, 24, 0.42) 40%,
+      rgba(36, 29, 24, 0.78) 100%
+    );
+}
+.hero-cover-in { text-align: center; max-width: 60rem; }
+.hero-cover .label { justify-content: center; color: rgba(255, 255, 255, 0.82); }
+.hero-cover .label::after { display: none; }
+.hero-cover .label i { color: var(--gold); }
+.hero-cover h1 { color: #fff; margin-bottom: 1.4rem; text-shadow: 0 2px 40px rgba(36, 29, 24, 0.35); }
+.hero-cover h1 em { font-style: italic; color: var(--gold); }
+.hero-cover .lead { color: rgba(255, 255, 255, 0.9); margin-inline: auto; max-width: 46ch; }
+.hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem; margin-top: 2.25rem; }
+.hero-facts {
+  margin: 1.75rem 0 0;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+.hero-foot {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(1.25rem, 3.5vh, 2.5rem);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 1rem;
+  padding-inline: var(--pad);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+}
+.hero-foot a { color: rgba(255, 255, 255, 0.82); text-decoration: none; }
+.hero-foot a:hover { color: #fff; }
+.hero-foot > a:first-child { justify-self: start; }
+.hero-foot > a:last-child { justify-self: end; font-weight: 700; }
+.hero-scroll {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 50%;
+  transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+.hero-scroll:hover { border-color: #fff; background: rgba(255, 255, 255, 0.1); }
+.hero-scroll .ico { transform: rotate(90deg); animation: wenken 2.8s var(--ease) infinite; }
+@keyframes wenken {
+  0%, 100% { transform: rotate(90deg) translateX(0); }
+  50% { transform: rotate(90deg) translateX(4px); }
+}
+@media (max-width: 640px) {
+  .hero-cover { padding-bottom: clamp(5rem, 12vh, 7rem); }
+  .hero-foot { grid-template-columns: auto; justify-items: center; }
+  .hero-foot > a:first-child, .hero-foot > a:last-child { display: none; }
+}
+
 .hero { padding-block: clamp(3rem, 7vw, 6.5rem) clamp(2.5rem, 5vw, 4.5rem); }
 .hero h1 { margin-bottom: 1.5rem; }
 .hero h1 em { font-style: italic; color: var(--gold-ink); }

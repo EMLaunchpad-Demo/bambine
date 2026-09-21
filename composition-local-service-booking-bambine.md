@@ -18,7 +18,7 @@ tot dan is bellen of mailen de actie die de site moet uitlokken.
 
 - **Het telefoonnummer is de enige actie in de chrome**: een gouden knop met het nummer,
   op elke pagina, op elk schermformaat.
-- De hero stuurt meteen onder de lead door naar de reserveerpagina, met de tarievenpagina
+- De hero stuurt meteen door naar de reserveerpagina, met de tarievenpagina
   ernaast als secundaire stap voor wie eerst prijzen wil zien. Bellen blijft één klik weg
   in de chrome.
 - **Sticky actiebalk** onderaan op mobiel (Bellen · Mailen) zodra de bezoeker voorbij de hero scrollt.
@@ -41,8 +41,11 @@ haarlijnen in plaats van kaders, een asymmetrisch raster van twaalf kolommen, be
 één kant de bladspiegel uit loopt, het aanbod als afwisselende redactionele rijen, tarieven
 als menukaart en één groot citaat in plaats van drie reviewkaartjes.
 
-- **Boven de vouw op desktop: 3 modules**: kop + lead, de belknop met de tarievenlink, en
-  het beeld rechts. Direct daaronder de vertrouwensstrook met vier feiten.
+- **Boven de vouw op desktop**: één schermvullend beeld met daarop de kop, de lead, twee
+  acties (reserveren, cadeaubonnen) en een regel met de vier harde feiten. Direct daaronder
+  de vertrouwensstrook met diezelfde feiten uitgeschreven. Dat register is overgenomen van
+  een babyspa die de klant mooi vond (bubbeline.be), maar dan in de eigen merkkleuren:
+  een warme bruine sluier over de foto in plaats van blauw, en goud als enige actiekleur.
 - Ruime witruimte, maar de informatie is dicht: prijzen, leeftijdsgrens, watertemperatuur en
   adres staan alle vier binnen één schermhoogte na de hero.
 - Visueel register (kleur, type, radius) → `design-standards` / `creative-direction`.

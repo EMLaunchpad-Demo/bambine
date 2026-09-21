@@ -32,10 +32,24 @@
   /* 2. Sticky header + mobiele actiebalk ----------------------------------- */
   var header = $(".site-header");
   var actionBar = $(".action-bar");
+  var cover = $(".hero-cover");
   var lastY = window.scrollY;
+
+  /* De hero schuift onder de kop door; die hoogte moet de stijl kennen. */
+  function meetKop() {
+    if (!header) return;
+    document.documentElement.style.setProperty("--header-h", header.offsetHeight + "px");
+  }
+  meetKop();
+  window.addEventListener("resize", meetKop, { passive: true });
+
   function onScroll() {
     var y = window.scrollY;
     if (header) header.classList.toggle("is-stuck", y > 12);
+    /* Doorzichtige kop zolang die nog over het hero-beeld staat. */
+    if (header && cover) {
+      header.classList.toggle("is-over", y < cover.offsetHeight - header.offsetHeight * 1.5);
+    }
     if (actionBar) actionBar.classList.toggle("is-on", y > 520 || (y > 200 && y < lastY));
     lastY = y;
   }

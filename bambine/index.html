@@ -56,6 +56,7 @@
 </a>
     <div class="nav-side">
       <a class="nav-tel" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+      <a class="btn btn--sm nav-cta" href="reserveren.html">Reserveren</a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen"><svg class="ico" aria-hidden="true"><use href="#i-menu"></use></svg></button>
     </div>
   </nav>
@@ -76,38 +77,39 @@
 </div>
 <main id="main">
 <!-- ======================= HERO ======================= -->
-<section class="hero">
-  <div class="sheet grid12" style="align-items:end">
-    <div class="s6" data-reveal>
-      <p class="label"><i>—</i>Michiel Jansplein 28, Lommel</p>
-      <h1>Warm water,<br>zachte handen,<br><em>alle tijd</em>.</h1>
-      <p class="lead">
-        Bambine is babywellness in het centrum van Lommel. Je baby drijft een half uur in
-        water van ongeveer 36 graden, daarna leer je zelf de Shantala babymassage geven.
-        Eén gezin per sessie, dus geen wachtzaal en geen haast.
-      </p>
-      <div class="actions">
-        <a class="btn" href="reserveren.html">
-          <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Reserveren
-        </a>
-        <a class="tlink" href="tarieven.html">Tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-      </div>
-    </div>
+<section class="hero-cover"
+         style="background-image:url('https://assets.cdn.filesafe.space/rIY8poIOyyR1sZZLPK96/media/6aaa8b8742c38177da676696.png')"
+         role="img" aria-label="Sfeerbeeld van een sessie babywellness bij Bambine">
+  <!-- Foto uit de GHL-mediabibliotheek. Pas de aria-label hierboven aan zodat
+       die beschrijft wat er te zien is. -->
+  <div class="hero-scrim" aria-hidden="true"></div>
 
-    <div class="s6 hero-art" data-reveal="fig" style="--d:120ms">
-      <!-- Foto aangeleverd door Bambine (GHL-mediabibliotheek).
-           Pas de aria-label hieronder aan zodat die beschrijft wat er te zien is. -->
-      <div class="fig arch r-4-5 bleed-r"
-           style="background-image:url('https://assets.cdn.filesafe.space/rIY8poIOyyR1sZZLPK96/media/6aaa8b8742c38177da676696.png')"
-           role="img" aria-label="Sfeerbeeld van een sessie babywellness bij Bambine"></div>
-      <!-- Echte foto, aangeleverd door Bambine -->
-      <div class="hero-inset" style="background-image:url('assets/img/baby-knuffel.webp')"
-           role="img" aria-label="Pasgeboren baby slaapt met een gehaakte knuffel onder een gebreid dekentje"></div>
+  <div class="sheet hero-cover-in" data-reveal>
+    <p class="label label--light"><i>—</i>Babywellness in hartje Lommel</p>
+    <h1>Warm water,<br>zachte handen,<br><em>alle tijd</em>.</h1>
+    <p class="lead">
+      Je baby drijft een half uur in water van ongeveer 36 graden, daarna leer je zelf
+      de Shantala babymassage geven. Eén gezin per sessie, dus geen wachtzaal en geen haast.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn--onDark" href="reserveren.html">
+        <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Reserveer jullie moment
+      </a>
+      <a class="btn btn--ghostDark" href="shop.html">Bekijk de cadeaubonnen</a>
     </div>
+    <p class="hero-facts">36 °C · één gezin per sessie · van 2 weken tot ± 9 maanden · vanaf € 55</p>
+  </div>
+
+  <div class="hero-foot">
+    <a href="mailto:info@bambine.be">info@bambine.be</a>
+    <a class="hero-scroll" href="#in-het-kort" aria-label="Verder lezen">
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+    </a>
+    <a href="tel:+32474782691">+32 474 78 26 91</a>
   </div>
 </section>
 
-<section class="sheet" aria-label="In het kort">
+<section class="sheet" id="in-het-kort" aria-label="In het kort">
   <div class="facts" data-reveal>
     <div><b>36 °C</b><span>Watertemperatuur. Het bad wordt voor elke sessie vers gevuld.</span></div>
     <div><b>2 wkn – 9 mnd</b><span>Prematuur geboren? Dan rekenen we vanaf de uitgerekende datum.</span></div>
@@ -311,8 +313,9 @@
     </div>
 
     <div class="gallery" data-reveal="fig">
-      <!-- FOTO-SLOT: overzicht van de badruimte -->
-      <div class="fig arch" role="img" aria-label="Overzicht van de badruimte"></div>
+      <!-- Echte foto, aangeleverd door Bambine -->
+      <div class="fig arch" style="background-image:url('assets/img/baby-knuffel.webp')"
+           role="img" aria-label="Pasgeboren baby slaapt met een gehaakte knuffel onder een gebreid dekentje"></div>
       <!-- FOTO-SLOT: detail van de massagetafel -->
       <div class="fig arch fig--soft" role="img" aria-label="De massagetafel met verse handdoeken"></div>
       <!-- FOTO-SLOT: het cadeauhoekje -->

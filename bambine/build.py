@@ -333,6 +333,7 @@ HEADER = """<header class="site-header">
     {brand}
     <div class="nav-side">
       <a class="nav-tel" href="tel:{telhref}">{ic_tel}{tel}</a>
+      <a class="btn btn--sm nav-cta" href="reserveren.html">Reserveren</a>
       <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen">{ic_menu}</button>
     </div>
   </nav>
