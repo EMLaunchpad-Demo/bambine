@@ -7,7 +7,7 @@
      Title:       Contact & route | Bambine Lommel — Michiel Jansplein 28
      Description: Bambine in Lommel: Michiel Jansplein 28 bus b2, +32 474 78 26 91, info@bambine.be. Route, parkeren, openingsmomenten en veelgestelde vragen.
 -->
-<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap');.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site{
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap');.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site--los .hero-cover{margin-top:0;padding-top:clamp(2.5rem,7vh,5rem)}.bambine-site.bambine-site--beeld{background:transparent}.bambine-site{
   color-scheme: light;
 
   --paper: #ffffff;
@@ -325,7 +325,9 @@
   margin-top: calc(-1 * var(--header-h, 4.75rem));
   padding-top: calc(var(--header-h, 4.75rem) + clamp(2.5rem, 7vh, 5rem));
   padding-bottom: clamp(7rem, 15vh, 10rem);
-  background-color: var(--brown);
+  /* Bewust geen eigen achtergrondkleur: het beeld komt van de sectie eromheen
+     (in GoHighLevel de sectie-achtergrond). De sluier hieronder zorgt voor het
+     contrast, ongeacht welke foto erachter staat. */
   background-size: cover;
   background-position: center;
   color: #fff;

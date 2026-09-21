@@ -7,7 +7,7 @@
      Title:       Babywellness in Lommel | Bambine — hydrotherapie & Shantala babymassage
      Description: Babywellness in Lommel. Je baby drijft in water van 36 °C, daarna een Shantala babymassage. Ook zwangerschapsmassage, ontspanningsmassage en verwenmomenten voor kids. Enkel op afspraak, één gezin per moment.
 -->
-<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap');.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site{
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap');.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site--los .hero-cover{margin-top:0;padding-top:clamp(2.5rem,7vh,5rem)}.bambine-site.bambine-site--beeld{background:transparent}.bambine-site{
   color-scheme: light;
 
   --paper: #ffffff;
@@ -325,7 +325,9 @@
   margin-top: calc(-1 * var(--header-h, 4.75rem));
   padding-top: calc(var(--header-h, 4.75rem) + clamp(2.5rem, 7vh, 5rem));
   padding-bottom: clamp(7rem, 15vh, 10rem);
-  background-color: var(--brown);
+  /* Bewust geen eigen achtergrondkleur: het beeld komt van de sectie eromheen
+     (in GoHighLevel de sectie-achtergrond). De sluier hieronder zorgt voor het
+     contrast, ongeacht welke foto erachter staat. */
   background-size: cover;
   background-position: center;
   color: #fff;
@@ -667,11 +669,10 @@
 </div>
 <main id="main">
 <!-- ======================= HERO ======================= -->
-<section class="hero-cover"
-         style="background-image:url('https://assets.cdn.filesafe.space/rIY8poIOyyR1sZZLPK96/media/6aaa8b8742c38177da676696.png')"
-         role="img" aria-label="Sfeerbeeld van een sessie babywellness bij Bambine">
-  <!-- Foto uit de GHL-mediabibliotheek. Pas de aria-label hierboven aan zodat
-       die beschrijft wat er te zien is. -->
+<section class="hero-cover">
+  <!-- FOTO-SLOT: het beeld van de hero zet je als achtergrond van de sectie zelf.
+       In GoHighLevel: sectie-instellingen > Background > Image. Op deze statische
+       site kan het ook hier:  style="background-image:url('assets/img/....jpg')"  -->
   <div class="hero-scrim" aria-hidden="true"></div>
 
   <div class="sheet hero-cover-in" data-reveal>

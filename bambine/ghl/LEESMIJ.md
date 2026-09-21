@@ -94,7 +94,7 @@ De homepagina bestaat uit deze blokken:
 | Bestand | Wat het is |
 |---|---|
 | `00-kop-en-navigatie.html` | Navigatie en mobiel menu. **Hoort op elke pagina**, want de iconensprite zit erin |
-| `01-hero.html` | Het schermvullende beeld met de titel, de reserveerknop en de cadeaubonknop |
+| `01-hero.html` | De hero: titel, tekst, reserveerknop en cadeaubonknop. **Zonder foto**: die zet je als achtergrond van de GHL-sectie |
 | `02-in-het-kort.html` | De feitenrij met 36 °C, leeftijd, één gezin, vanafprijs |
 | `03-warm-water.html` | Waarom warm water werkt, met de streepjeslijst |
 | `04-aanbod.html` | De drie diensten als redactionele rijen |
@@ -125,6 +125,12 @@ De andere pagina's zijn op dezelfde manier opgesplitst in `secties/tarieven/`,
 - **Webfonts** komen via een `@import` van Google Fonts. Voor strikte AVG/GDPR-naleving kan
   je de bestanden uit `../assets/fonts/` naar de mediabibliotheek van GHL uploaden en de
   `@import`-regel vervangen door `@font-face`-regels met die URL's.
+- **De foto van de hero zet je in GoHighLevel zelf**: sectie-instellingen → Background →
+  Image, op de sectie waar `01-hero.html` in staat. Het blok is doorzichtig, dus die foto
+  komt er gewoon doorheen. De donkere sluier eroverheen houdt de witte tekst leesbaar; bij
+  een heel lichte foto mag je in de stijl `.hero-scrim` wat donkerder zetten.
+- **In de losse secties schuift de hero niet onder de navigatie** (dat kan niet, want de
+  sectie-achtergrond van GHL loopt niet mee omhoog). In de pagina-in-één-blok (route A) wel.
 - **De hero schuift bewust onder de navigatie**, zodat de kop doorzichtig over de foto staat.
   Zet die GHL-sectie dus op volle breedte zonder padding. Loopt het in GHL toch niet mooi
   samen, zet dan op het hero-blok `style="--header-h:0px"`: dan begint de foto netjes onder

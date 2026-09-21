@@ -508,7 +508,9 @@ hr.rule--gold { background: var(--gold-line); }
   margin-top: calc(-1 * var(--header-h, 4.75rem));
   padding-top: calc(var(--header-h, 4.75rem) + clamp(2.5rem, 7vh, 5rem));
   padding-bottom: clamp(7rem, 15vh, 10rem);
-  background-color: var(--brown);
+  /* Bewust geen eigen achtergrondkleur: het beeld komt van de sectie eromheen
+     (in GoHighLevel de sectie-achtergrond). De sluier hieronder zorgt voor het
+     contrast, ongeacht welke foto erachter staat. */
   background-size: cover;
   background-position: center;
   color: #fff;

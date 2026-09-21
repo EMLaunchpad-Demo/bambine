@@ -99,9 +99,10 @@ IntersectionObserver onzichtbaar en onthult zichzelf dan nooit.
 
 ## Foto's toevoegen
 
-De site is foto-gedreven opgebouwd. De hero toont de foto uit de
-GHL-mediabibliotheek (een `https://assets.cdn.filesafe.space/…`-URL) schermvullend; de tweede
-aangeleverde foto (`assets/img/baby-knuffel.webp`) staat in de galerij bij "De praktijk". De overige beeldvlakken zijn
+De site is foto-gedreven opgebouwd. De hero heeft geen eigen foto meer: dat beeld komt van de sectie eromheen, zodat het in
+GoHighLevel via de sectie-achtergrond ingesteld wordt. Op deze statische site kan je het
+daar ook zetten met `style="background-image:url('assets/img/….jpg')"` op de `.hero-cover`.
+De aangeleverde foto (`assets/img/baby-knuffel.webp`) staat in de galerij bij "De praktijk". De overige beeldvlakken zijn
 `.fig`-blokken met een rustig verloop in de merkkleuren als tijdelijke invulling, elk gemarkeerd
 met `<!-- FOTO-SLOT: … -->` in `src/`.
 

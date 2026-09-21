@@ -1,7 +1,7 @@
 /* Bambine - plak dit in Settings > Custom CSS.
    De webfonts komen binnen via _header-code.html.
    De foto's zitten onderaan als data-URI, dus er is geen upload nodig. */
-.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site{
+.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site--los .hero-cover{margin-top:0;padding-top:clamp(2.5rem,7vh,5rem)}.bambine-site.bambine-site--beeld{background:transparent}.bambine-site{
   color-scheme: light;
 
   --paper: #ffffff;
@@ -319,7 +319,9 @@
   margin-top: calc(-1 * var(--header-h, 4.75rem));
   padding-top: calc(var(--header-h, 4.75rem) + clamp(2.5rem, 7vh, 5rem));
   padding-bottom: clamp(7rem, 15vh, 10rem);
-  background-color: var(--brown);
+  /* Bewust geen eigen achtergrondkleur: het beeld komt van de sectie eromheen
+     (in GoHighLevel de sectie-achtergrond). De sluier hieronder zorgt voor het
+     contrast, ongeacht welke foto erachter staat. */
   background-size: cover;
   background-position: center;
   color: #fff;

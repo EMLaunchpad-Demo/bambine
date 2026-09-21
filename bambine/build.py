@@ -631,6 +631,12 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         # Het blok met de kop en navigatie krijgt geen eigen achtergrond: de
         # hero eronder loopt er in GoHighLevel bewust achter door.
         ".bambine-site.bambine-site--chrome{background:transparent}"
+        # Losse secties: de hero schuift niet onder de navigatie door, want de
+        # sectie-achtergrond van GHL loopt niet mee omhoog.
+        ".bambine-site--los .hero-cover{margin-top:0;padding-top:clamp(2.5rem,7vh,5rem)}"
+        # Het blok met de hero is doorzichtig: de foto die je in GoHighLevel als
+        # sectie-achtergrond instelt, moet er doorheen komen.
+        ".bambine-site.bambine-site--beeld{background:transparent}"
     )
     css = harden + scope_css((ROOT / "assets" / "css" / "site.css").read_text(encoding="utf-8"))
     kale_blokken: dict[str, str] = {}
@@ -684,22 +690,24 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         )
         secties = split_secties(naar_ghl_links(naar_fotovars(body, ROOT)))
         for nr, (naam, stuk) in enumerate(secties, start=1):
+            # De hero heeft geen eigen achtergrond: daar komt de sectiefoto van GHL.
+            beeld = " bambine-site--beeld" if "hero-cover" in stuk else ""
             (sect_map / bestandsnaam(nr, naam)).write_text(
                 f"<!-- Bambine - {paginanaam} · sectie {nr}: {naam}\n"
                 f"     Eén GHL-sectie. De stijl komt uit blok 00, dat bovenaan de pagina staat.\n"
                 f"-->\n"
-                f'<div class="bambine-site">\n{stuk}\n</div>\n',
+                f'<div class="bambine-site bambine-site--los{beeld}">\n{stuk}\n</div>\n',
                 encoding="utf-8",
             )
         (sect_map / "98-actiebalk-mobiel.html").write_text(
             "<!-- Bambine - vaste balk onderaan op mobiel (bellen en mailen).\n"
             "     Optioneel; plaats onderaan de pagina of als globale sectie. -->\n"
-            f'<div class="bambine-site">\n{naar_ghl_links(actionbar_html)}\n</div>\n',
+            f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(actionbar_html)}\n</div>\n',
             encoding="utf-8",
         )
         (sect_map / "99-footer.html").write_text(
             "<!-- Bambine - footer. Plaats als laatste blok of als globale sectie. -->\n"
-            f'<div class="bambine-site">\n{naar_ghl_links(footer_html)}\n</div>\n',
+            f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(footer_html)}\n</div>\n',
             encoding="utf-8",
         )
         print(f"  ~ ghl/secties/{sect_map.name}/ ({len(secties)} secties)")
