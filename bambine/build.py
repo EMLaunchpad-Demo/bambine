@@ -608,6 +608,17 @@ def bestandsnaam(nummer: int, naam: str) -> str:
     return f"{nummer:02d}-{kaal}.html"
 
 
+def krimp_css(css: str) -> str:
+    """Commentaar en overbodige witruimte weg: scheelt ongeveer een derde.
+
+    Het custom-CSS-veld van GoHighLevel knipt lange stijlen af, dus voor die
+    route levert het bouwscript ook een ingekrompen versie."""
+    uit = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
+    uit = re.sub(r"\s+", " ", uit)
+    uit = re.sub(r"\s*([{};,])\s*", r"\1", uit)
+    return uit.replace(";}", "}").strip()
+
+
 def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
     ghl_map = ROOT / "ghl"
     ghl_map.mkdir(exist_ok=True)
@@ -737,6 +748,21 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         + css + "\n" + fotocss_gedeeld + "\n",
         encoding="utf-8",
     )
+    # Zonder de foto's en ingekrompen: voor het custom-CSS-veld van GHL, dat
+    # lange stijlen afknipt. De foto's staan dan apart in _fotos.css.
+    (ghl_map / "_stijl.min.css").write_text(
+        "/* Bambine - dezelfde stijl, ingekrompen en zonder de foto's.\n"
+        "   Gebruik dit als het custom-CSS-veld van GoHighLevel de volledige\n"
+        "   stijl afknipt. De foto's staan in _fotos.css of zet je per blok. */\n"
+        + krimp_css(css) + "\n",
+        encoding="utf-8",
+    )
+    (ghl_map / "_fotos.css").write_text(
+        "/* Bambine - enkel de foto's als data-URI. Plak dit onder de stijl,\n"
+        "   of vervang elke regel door de URL uit de mediabibliotheek van GHL. */\n"
+        + fotocss_gedeeld + "\n",
+        encoding="utf-8",
+    )
     (ghl_map / "_script.js").write_text(js, encoding="utf-8")
     (ghl_map / "_footer-code.html").write_text(
         "<!-- Bambine - plak dit in Settings > Tracking Code > Footer -->\n"
@@ -758,7 +784,7 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
             f"-->\n" + kaal,
             encoding="utf-8",
         )
-    print("  ~ ghl/_stijl.css, _script.js, _header-code.html, _footer-code.html")
+    print("  ~ ghl/_stijl.css, _stijl.min.css, _script.js, _header-code.html, _footer-code.html")
     print(f"  ~ ghl/blokken/ ({len(kale_blokken)} pagina's zonder stijl en script)")
     print("  ~ ghl/_proefpagina.html")
 

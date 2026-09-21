@@ -9,6 +9,8 @@ rechtstreeks in de GHL-pagebuilder kan plakken.
 | `blokken/*.html` | Dezelfde pagina's, maar alleen de opmaak, zonder stijl en script (route B) |
 | `_header-code.html` | De webfonts, voor Tracking Code → Header |
 | `_stijl.css` | De volledige stijl inclusief de foto's, voor Settings → Custom CSS |
+| `_stijl.min.css` | Dezelfde stijl, ingekrompen en zonder de foto's (31 kB in plaats van 53 kB) |
+| `_fotos.css` | Enkel de foto's als data-URI, hoort bij `_stijl.min.css` |
 | `_script.js` | Het volledige script als los bestand |
 | `_footer-code.html` | Hetzelfde script, al in `<script>`-tags, voor Tracking Code → Footer |
 | `secties/<pagina>/*.html` | Dezelfde pagina's, opgesplitst in losse secties (route C) |
@@ -60,6 +62,14 @@ sneller.
    `_script.js` met de `<script>`-tags er al omheen.
 4. **Per pagina.** Plak het bestand uit `blokken/` in een Custom Code-element. Dat is enkel
    `<div class="bambine-site"> … </div>` — geen stijl, geen script.
+
+**Komt maar een deel van de opmaak door?** Dan is de stijl onderweg afgekapt: het
+custom-CSS-veld van GHL heeft een limiet. Je herkent het hieraan dat koppen en knoppen wel
+kloppen, maar de navigatie, de hero en de rest niet. Plak dan `_stijl.min.css` in plaats van
+`_stijl.css`, en zet `_fotos.css` er als tweede blok onder (of laat dat weg: dan valt de
+galerijfoto terug op een kleurvlak). Controleer na het plakken of de laatste regel van het
+veld nog `display:none!important}}` is; staat daar iets anders, dan is er alsnog geknipt en
+kan je beter route A nemen, want daar zit de stijl in het blok zelf.
 
 Werkt het script niet? Controleer dan of de footer-code op paginaniveau overschreven wordt;
 in GHL kan een pagina zijn eigen tracking code hebben die de site-brede vervangt.
