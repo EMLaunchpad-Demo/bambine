@@ -1,7 +1,7 @@
 /* Bambine - plak dit in Settings > Custom CSS.
    De webfonts komen binnen via _header-code.html.
    De foto's zitten onderaan als data-URI, dus er is geen upload nodig. */
-.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site{
+.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site{
   color-scheme: light;
 
   --paper: #ffffff;
@@ -44,7 +44,11 @@
   font-size: 1.0625rem;
   line-height: 1.72;
   -webkit-font-smoothing: antialiased;
+  /* Alleen horizontaal afknippen. Met 'hidden' wordt dit een scrollbox die ook
+     verticaal knipt, en dan verdwijnt in GoHighLevel de hero die bewust onder
+     de navigatie doorschuift. 'hidden' blijft staan voor oudere browsers. */
   overflow-x: hidden;
+  overflow-x: clip;
 }.bambine-site img,.bambine-site svg,.bambine-site video{ max-width: 100%; display: block; }.bambine-site a{ color: inherit; }.bambine-site button{ font: inherit; color: inherit; }.bambine-site ::selection{ background: var(--gold); color: var(--brown-2); }.bambine-site :focus-visible{
   outline: 2px solid var(--gold-ink);
   outline-offset: 3px;

@@ -77,12 +77,17 @@ in GHL kan een pagina zijn eigen tracking code hebben die de site-brede vervangt
 ## Route C — per sectie een blok
 
 Handig als je de pagina in GHL uit losse secties wil opbouwen, bijvoorbeeld om er later
-tussen te schuiven of om een sectie op meerdere pagina's te hergebruiken.
+tussen te schuiven of om een sectie op meerdere pagina's te hergebruiken. **Je hebt hiervoor
+geen Custom CSS nodig**: het eerste blok draagt de stijl en het script voor de hele pagina.
 
-1. Zet eerst stijl en script site-breed (stap 1 tot 3 van route B).
-2. Plak per GHL-sectie één bestand uit `secties/<pagina>/`, in de volgorde van de nummers.
-3. Zet de GHL-sectie op volle breedte zonder padding: de blokken brengen hun eigen
+1. Plak `secties/<pagina>/00-kop-en-navigatie.html` als **eerste** blok op de pagina. Daarin
+   zitten de stijl, de iconensprite en het script. Zonder dit blok blijft de rest kaal.
+2. Plak daarna per GHL-sectie één bestand uit dezelfde map, in de volgorde van de nummers.
+3. Zet elke GHL-sectie op volle breedte zonder padding: de blokken brengen hun eigen
    achtergrond en witruimte mee.
+
+Staat `_header-code.html` al in de tracking code, dan laden de lettertypen sneller, maar
+nodig is het niet: blok 00 haalt ze zelf op.
 
 De homepagina bestaat uit deze blokken:
 

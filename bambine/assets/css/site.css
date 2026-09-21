@@ -56,7 +56,11 @@ body {
   font-size: 1.0625rem;
   line-height: 1.72;
   -webkit-font-smoothing: antialiased;
+  /* Alleen horizontaal afknippen. Met 'hidden' wordt dit een scrollbox die ook
+     verticaal knipt, en dan verdwijnt in GoHighLevel de hero die bewust onder
+     de navigatie doorschuift. 'hidden' blijft staan voor oudere browsers. */
   overflow-x: hidden;
+  overflow-x: clip;
 }
 
 img, svg, video { max-width: 100%; display: block; }

@@ -147,8 +147,10 @@ alt-teksten op elk beeldvlak en contrastverhoudingen die WCAG AA halen.
 
 ## GoHighLevel
 
-`build.py` schrijft ook een map `ghl/` weg met per pagina één blok dat je rechtstreeks in de
-GHL-pagebuilder plakt. De stijl zit daarin ingekapseld onder `.bambine-site`, de foto zit
+`build.py` schrijft ook een map `ghl/` weg: per pagina één blok, en daarnaast dezelfde pagina
+opgesplitst in losse secties in `ghl/secties/`. Bij die secties draagt het eerste blok
+(`00-kop-en-navigatie.html`) de stijl, de iconensprite en het script voor de hele pagina, dus
+er hoeft niets in het custom-CSS-veld van GHL — dat veld knipt lange stijlen af. De stijl zit daarin ingekapseld onder `.bambine-site`, de foto zit
 als data-URI in het blok en er zijn geen externe bestanden nodig. De stappen staan in
 [`ghl/LEESMIJ.md`](ghl/LEESMIJ.md); `ghl/_proefpagina.html` laat zien dat het blok en het
 GHL-thema elkaar niet in de weg zitten.

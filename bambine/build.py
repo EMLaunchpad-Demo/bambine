@@ -628,6 +628,9 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         ".bambine-site a{color:inherit}"
         ".bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}"
         ".bambine-site ul,.bambine-site ol{list-style:none}"
+        # Het blok met de kop en navigatie krijgt geen eigen achtergrond: de
+        # hero eronder loopt er in GoHighLevel bewust achter door.
+        ".bambine-site.bambine-site--chrome{background:transparent}"
     )
     css = harden + scope_css((ROOT / "assets" / "css" / "site.css").read_text(encoding="utf-8"))
     kale_blokken: dict[str, str] = {}
@@ -665,19 +668,25 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
         for oud in sect_map.glob("*.html"):
             oud.unlink()
         kop_blok = naar_ghl_links(kop)
+        # Het eerste blok draagt de hele pagina: stijl, iconensprite en script
+        # zitten erin. Zo hoeft er niets in het custom-CSS-veld van GHL, dat
+        # lange stijlen afknipt, en blijven de andere secties losse blokken.
         (sect_map / "00-kop-en-navigatie.html").write_text(
             f"<!-- Bambine - kop en navigatie ({paginanaam})\n"
-            f"     Plaats dit als eerste blok op de pagina, of als globale sectie.\n"
-            f"     De iconensprite zit hierin, dus dit blok hoort op elke pagina.\n"
+            f"     Plaats dit als EERSTE blok op de pagina, of als globale sectie.\n"
+            f"     Dit blok hoort op elke pagina: de stijl, de iconensprite en het\n"
+            f"     script zitten erin en gelden voor alle secties eronder.\n"
             f"-->\n"
-            f'<div class="bambine-site">\n{SPRITE}\n{kop_blok}\n</div>\n',
+            f"<style>{FONT_IMPORT}{css}{fotocss_gedeeld}</style>\n"
+            f'<div class="bambine-site bambine-site--chrome">\n{SPRITE}\n{kop_blok}\n</div>\n'
+            f"<script>{js}</script>\n",
             encoding="utf-8",
         )
         secties = split_secties(naar_ghl_links(naar_fotovars(body, ROOT)))
         for nr, (naam, stuk) in enumerate(secties, start=1):
             (sect_map / bestandsnaam(nr, naam)).write_text(
                 f"<!-- Bambine - {paginanaam} · sectie {nr}: {naam}\n"
-                f"     Eén GHL-sectie. Stijl en script staan site-breed (route B).\n"
+                f"     Eén GHL-sectie. De stijl komt uit blok 00, dat bovenaan de pagina staat.\n"
                 f"-->\n"
                 f'<div class="bambine-site">\n{stuk}\n</div>\n',
                 encoding="utf-8",
