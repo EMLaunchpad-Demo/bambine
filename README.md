@@ -105,18 +105,6 @@ Typografie: **Fraunces** (display) en **Mulish** (tekst), allebei zelf gehost in
 twee uitzonderingen. De kaart op de contactpagina laadt pas als de bezoeker erop klikt. De
 online checkout van de digitale cadeaubon laadt pas als die keuze openstaat.
 
-## Cadeaubon: digitaal en fysiek
-
-- **Digitaal**: de embed van de gift card checkout staat in `src/cadeaubon.html`
-  (`data-gc-id="6ab3cabfa8381f944221f16a"`). `site.js` laadt het script
-  (`gc-embed.parent.js`) pas wanneer "Digitale cadeaubon" gekozen is. Het script moet vlak na
-  de `div` komen; `site.js` zet het daar. Bedragen, taal en omschrijving van de bon stel je
-  in de checkout zelf in, niet op deze site.
-- **Fysiek**: het formulier maakt een ingevulde mail aan info@bambine.be vanuit het
-  mailprogramma van de bezoeker. De keuzelijst met behandelingen en prijzen komt uit
-  `DIENSTEN` in `build.py` (plaatshouder `<!-- bon-opties -->`). Zonder JavaScript valt het
-  formulier terug op een gewone `mailto`-verzending.
-
 De opbouw is redactioneel, niet het gangbare stramien van kaartjes en iconen:
 
 - een **hero met vullend beeld** en een warme bruine sluier, met de navigatie doorzichtig
@@ -129,6 +117,18 @@ De opbouw is redactioneel, niet het gangbare stramien van kaartjes en iconen:
 
 De animaties zijn rustig (tekst schuift zacht omhoog, beeld zoomt licht uit) en staan
 helemaal uit bij `prefers-reduced-motion`. Zonder JavaScript blijft alles zichtbaar.
+
+## Cadeaubon: digitaal en fysiek
+
+- **Digitaal**: de embed van de gift card checkout staat in `src/cadeaubon.html`
+  (`data-gc-id="6ab3cabfa8381f944221f16a"`). `site.js` laadt het script
+  (`gc-embed.parent.js`) pas wanneer "Digitale cadeaubon" gekozen is. Het script moet vlak na
+  de `div` komen; `site.js` zet het daar. Bedragen, taal en omschrijving van de bon stel je
+  in de checkout zelf in, niet op deze site.
+- **Fysiek**: het formulier maakt een ingevulde mail aan info@bambine.be vanuit het
+  mailprogramma van de bezoeker. De keuzelijst met behandelingen en prijzen komt uit
+  `DIENSTEN` in `build.py` (plaatshouder `<!-- bon-opties -->`). Zonder JavaScript valt het
+  formulier terug op een gewone `mailto`-verzending.
 
 ## SEO en toegankelijkheid
 
