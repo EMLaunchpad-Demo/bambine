@@ -143,9 +143,10 @@ het boekingssysteem zelf in.
 
 ### Stijl van de boekingspagina
 
-`boekingssysteem/custom.css` geeft de boekingspagina zelf dezelfde huisstijl als de site
-(goud, bruin en wit, Fraunces en Mulish). Plak de volledige inhoud in GoHighLevel in het
-veld "Custom CSS" van de boekingspagina. De CSS is getest op de echte pagina: de
+`boekingssysteem/custom-code.html` geeft de boekingspagina zelf dezelfde huisstijl als de
+site (goud, bruin en wit, Fraunces en Mulish). Plak de volledige inhoud in GoHighLevel in
+het veld "Custom CSS" van de boekingspagina, **inclusief de `<style>`-tags**: GHL zet dat
+veld als HTML in de pagina, dus kale CSS verschijnt als tekst en doet niets. De CSS is getest op de echte pagina: de
 categorieën, de lijst met diensten, de kalender met tijdsloten en het formulier.
 
 ## SEO en toegankelijkheid
