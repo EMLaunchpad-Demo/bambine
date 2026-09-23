@@ -141,6 +141,13 @@ localhost), dan toont `site.js` de agenda na vier seconden toch. Onder de agenda
 link om ze in een nieuw venster te openen. De taal en de teksten van de agenda stel je in
 het boekingssysteem zelf in.
 
+### Stijl van de boekingspagina
+
+`boekingssysteem/custom.css` geeft de boekingspagina zelf dezelfde huisstijl als de site
+(goud, bruin en wit, Fraunces en Mulish). Plak de volledige inhoud in GoHighLevel in het
+veld "Custom CSS" van de boekingspagina. De CSS is getest op de echte pagina: de
+categorieën, de lijst met diensten, de kalender met tijdsloten en het formulier.
+
 ## SEO en toegankelijkheid
 
 Per pagina een eigen title, description, canonical en OG-tags. Structured data:

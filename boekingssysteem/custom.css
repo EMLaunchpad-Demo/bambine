@@ -1,0 +1,287 @@
+/* ==========================================================================
+   Bambine: custom CSS voor de boekingspagina (GoHighLevel, Services)
+   Plakken in het veld "Custom CSS" van de boekingspagina.
+   Zelfde stijl als de website: goud, bruin en wit, Fraunces en Mulish.
+   ========================================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,400;9..144,500&family=Mulish:wght@400;600;700&display=swap");
+
+/* --- Kleuren --------------------------------------------------------------
+   GHL zet deze variabelen met !important op <html>. Op body opnieuw zetten
+   werkt wel: alles in de pagina erft dan van body. */
+body {
+  --cal_services_widget-primary-color: #8a6a35 !important;       /* goud voor tekst, 5:1 op wit */
+  --cal_services_widget-light-primary-color: rgba(200, 170, 102, 0.16) !important;
+  --cal_services_widget-background-color: #ffffff !important;
+  --cal_services_widget-secondary-bg-color: #fbf8f3 !important;
+  --cal_services_widget-border-color: rgba(36, 29, 24, 0.14) !important;
+  --cal_services_widget-text-color: #241d18 !important;
+  --cal_services_widget-light-text-color: #776a5e !important;
+  --cal_services_widget-blur-color: rgba(251, 248, 243, 0.7) !important;
+  --primary-700: #8a6a35 !important;
+  --primary-700-light: rgba(200, 170, 102, 0.16) !important;
+  background: #ffffff !important;
+  color: #241d18 !important;
+}
+
+/* --- Lettertypes ---------------------------------------------------------- */
+#cal_services_widget,
+#cal_services_widget *:not(svg):not(path),
+.hl-app, .hl-app input, .hl-app textarea, .hl-app button, .hl-app label,
+/* het formulier zet Inter met twee ID's en !important; drie ID's winnen */
+#cal_services_widget #form-builder #_builder-form label,
+#cal_services_widget #form-builder #_builder-form .terms-and-conditions span,
+#cal_services_widget #form-builder #_builder-form input,
+#cal_services_widget #form-builder #_builder-form textarea,
+#cal_services_widget #form-builder #_builder-form button {
+  font-family: "Mulish", system-ui, -apple-system, "Segoe UI", sans-serif !important;
+}
+#cal_services_widget .subaccount-name,
+#cal_services_widget .locations,
+#cal_services_widget .services,
+#cal_services_widget .select-date-time,
+#cal_services_widget .enter-information,
+#cal_services_widget .selected-services,
+#cal_services_widget .booking-details,
+#cal_services_widget .payment-header,
+#cal_services_widget .select-card-grid__list-title,
+#cal_services_widget .service-name,
+#cal_services_widget .single-service-container .name,
+#cal_services_widget .panel-title {
+  font-family: "Fraunces", Georgia, "Times New Roman", serif !important;
+  font-weight: 400 !important;
+  font-variation-settings: "SOFT" 60;
+  letter-spacing: -0.01em;
+  color: #241d18 !important;
+}
+#cal_services_widget .locations,
+#cal_services_widget .services,
+#cal_services_widget .select-date-time,
+#cal_services_widget .enter-information,
+#cal_services_widget .selected-services {
+  font-size: 1.6rem !important;
+  line-height: 1.15 !important;
+}
+
+/* Het blauwe, wazige decor achter de pagina past niet bij de huisstijl */
+#cal_services_widget .dynamic-svg-fade { display: none !important; }
+
+/* --- Kop ------------------------------------------------------------------ */
+#cal_services_widget .services-header {
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(200, 170, 102, 0.5) !important;
+  box-shadow: none !important;
+}
+#cal_services_widget .subaccount-name { font-size: 1.35rem !important; }
+
+/* --- Categorieën en diensten --------------------------------------------- */
+#cal_services_widget .select-card-grid__list-item,
+#cal_services_widget .services-info-list-container {
+  border: 1px solid rgba(36, 29, 24, 0.14) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+  transition: border-color 0.25s ease !important;
+}
+#cal_services_widget .single-service { border: 0 !important; }   /* anders een dubbel kader */
+#cal_services_widget .select-card-grid__list-item:hover,
+#cal_services_widget .single-service:hover .services-info-list-container {
+  border-color: #c8aa66 !important;
+}
+#cal_services_widget .select-card-grid__list-title,
+#cal_services_widget .service-name { font-size: 1.2rem !important; }
+#cal_services_widget .select-card-grid__list-thumb,
+#cal_services_widget .image-section,
+#cal_services_widget .image-placeholder { border-radius: 2px !important; }
+#cal_services_widget .initials { color: #8a6a35 !important; font-family: "Fraunces", Georgia, serif !important; }
+/* Diensten zonder foto krijgen een groen vlak met initialen. Die kleur staat
+   inline met !important en is niet te overschrijven; een laag erover wel. */
+#cal_services_widget .image-placeholder,
+#cal_services_widget .initials { position: relative !important; isolation: isolate; }
+#cal_services_widget .image-placeholder::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #f3ece1;
+  border-radius: inherit;
+  z-index: -1;
+}
+#cal_services_widget .initials::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  border: 1px solid rgba(200, 170, 102, 0.6);
+  border-radius: 50%;
+  z-index: -1;
+}
+#cal_services_widget .select-card-grid__list-pill {
+  background: rgba(200, 170, 102, 0.16) !important;
+  color: #8a6a35 !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.68rem !important;
+}
+#cal_services_widget .price-text,
+#cal_services_widget .price {
+  font-family: "Fraunces", Georgia, serif !important;
+  color: #241d18 !important;
+  font-size: 1.1rem !important;
+}
+#cal_services_widget .duration { color: #776a5e !important; }
+#cal_services_widget .category-item.active,
+#cal_services_widget .sort-item.active { background: rgba(200, 170, 102, 0.16) !important; }
+#cal_services_widget .category-item.active .category-name { color: #8a6a35 !important; font-weight: 700 !important; }
+
+/* --- Knoppen: goud met donkere tekst, zoals op de site -------------------- */
+#cal_services_widget .book-button,
+#cal_services_widget .continue,
+#cal_services_widget #cart-continue,
+#cal_services_widget #cart-schedule,
+#cal_services_widget button.selected-slot,
+.hl-app .btn.button-element,
+.hl-app button[type="submit"] {
+  background: #c8aa66 !important;
+  border: 1px solid #c8aa66 !important;
+  color: #241d18 !important;
+  border-radius: 2px !important;
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  box-shadow: none !important;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease !important;
+}
+#cal_services_widget .book-button:hover,
+#cal_services_widget .continue:hover,
+#cal_services_widget #cart-continue:hover,
+#cal_services_widget #cart-schedule:hover,
+#cal_services_widget button.selected-slot:hover,
+.hl-app .btn.button-element:hover,
+.hl-app button[type="submit"]:hover {
+  background: transparent !important;
+  border-color: #8a6a35 !important;
+  color: #8a6a35 !important;
+}
+#cal_services_widget .continue *,
+#cal_services_widget #cart-schedule *,
+#cal_services_widget .book-button *,
+.hl-app .btn.button-element * { color: inherit !important; }
+#cal_services_widget #cart-continue-icon svg path,
+#cal_services_widget #cart-schedule svg path { stroke: currentColor !important; }
+
+/* Tweede actie ("Voeg een andere service toe") en "Terug" als tekstlink */
+#cal_services_widget .add-service,
+#cal_services_widget .services-back-button-text {
+  color: #241d18 !important;
+  font-weight: 700 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+#cal_services_widget .add-service {
+  background: transparent !important;
+  border: 1px solid rgba(36, 29, 24, 0.14) !important;
+  border-radius: 2px !important;
+}
+#cal_services_widget .add-service:hover { border-color: #241d18 !important; }
+
+/* --- Overzicht rechts ("Boekingsgegevens") ------------------------------- */
+#cal_services_widget .services-cart-container {
+  background: #fbf8f3 !important;
+  border: 1px solid rgba(36, 29, 24, 0.14) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+#cal_services_widget .total-container {
+  border-top: 1px solid #241d18 !important;
+}
+
+/* --- Kalender ------------------------------------------------------------- */
+#cal_services_widget .vdpPeriodControl button,
+#cal_services_widget .vdpPeriodControl > button {
+  font-family: "Fraunces", Georgia, serif !important;
+  font-size: 1.15rem !important;
+  color: #241d18 !important;
+}
+#cal_services_widget .vdpHeadCellContent {
+  color: #776a5e !important;
+  font-weight: 700 !important;
+  font-size: 0.7rem !important;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+#cal_services_widget .vdpCell.selectable .vdpCellContent { color: #241d18 !important; }
+#cal_services_widget .vdpCell.selectable:hover .vdpCellContent {
+  background: rgba(200, 170, 102, 0.22) !important;
+  color: #241d18 !important;
+}
+#cal_services_widget .vdpCell.today .vdpCellContent { box-shadow: inset 0 0 0 1px #c8aa66 !important; }
+#cal_services_widget .vdpCell.selected .vdpCellContent,
+#cal_services_widget .vdpCell.selected:hover .vdpCellContent {
+  background: #8a6a35 !important;
+  color: #ffffff !important;
+}
+#cal_services_widget .vdpCell.disabled .vdpCellContent { color: rgba(36, 29, 24, 0.3) !important; }
+
+/* --- Tijdsloten ----------------------------------------------------------- */
+#cal_services_widget .widgets-time-slot > span {
+  border: 1px solid rgba(36, 29, 24, 0.14) !important;
+  border-radius: 2px !important;
+  color: #241d18 !important;
+  background: #ffffff !important;
+}
+#cal_services_widget .widgets-time-slot:hover > span { border-color: #c8aa66 !important; }
+#cal_services_widget .widgets-time-slot.actived > span {
+  border-color: #8a6a35 !important;
+  color: #8a6a35 !important;
+  background: rgba(200, 170, 102, 0.12) !important;
+}
+
+/* --- Formulier ------------------------------------------------------------ */
+.hl-app .form-control,
+.hl-app input.countryphone,
+.hl-app textarea,
+#cal_services_widget .coupon-input,
+#cal_services_widget .multiselect__tags {
+  font-size: 16px !important;               /* voorkomt inzoomen op iPhone */
+  color: #241d18 !important;
+  background: #ffffff !important;
+  border: 1px solid rgba(36, 29, 24, 0.14) !important;
+  border-radius: 2px !important;
+  box-shadow: none !important;
+}
+.hl-app .form-control:focus,
+.hl-app input.countryphone:focus,
+.hl-app textarea:focus,
+#cal_services_widget .coupon-input:focus {
+  outline: none !important;
+  border-color: #8a6a35 !important;
+  box-shadow: 0 0 0 3px rgba(200, 170, 102, 0.28) !important;
+}
+.hl-app .field-label,
+.hl-app label.label-alignment {
+  color: #5a4e44 !important;
+  font-weight: 700 !important;
+  font-size: 0.72rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+}
+.hl-app .terms-text-container,
+.hl-app .terms-text-container * { color: #5a4e44 !important; font-size: 0.85rem !important; }
+.hl-app input[type="checkbox"] { accent-color: #8a6a35 !important; }
+#cal_services_widget .coupon-button {
+  background: transparent !important;
+  border: 1px solid rgba(36, 29, 24, 0.14) !important;
+  border-radius: 2px !important;
+  color: #241d18 !important;
+}
+
+/* --- Toetsenbord: zichtbare focus ---------------------------------------- */
+#cal_services_widget button:focus-visible,
+#cal_services_widget [role="button"]:focus-visible,
+.hl-app button:focus-visible {
+  outline: 2px solid #8a6a35 !important;
+  outline-offset: 3px !important;
+}
