@@ -1,65 +1,66 @@
 <!-- ======================= HERO ======================= -->
-<section class="hero-cover"
-         style="background-image:url('https://assets.cdn.filesafe.space/rIY8poIOyyR1sZZLPK96/media/6aaa8b8742c38177da676696.png')">
-  <!-- Foto van Bambine (GHL-mediabibliotheek). In de GoHighLevel-export haalt
-       build.py dit weg: daar zet je het beeld als achtergrond van de sectie. -->
+<section class="hero-cover">
+  <picture class="hero-media">
+    <source media="(max-aspect-ratio: 4/5)" srcset="assets/img/baby-onder-handdoek-staand-900.webp" width="900" height="1200">
+    <img src="assets/img/baby-onder-handdoek-1600.webp"
+         srcset="assets/img/baby-onder-handdoek-800.webp 800w, assets/img/baby-onder-handdoek-1600.webp 1600w"
+         sizes="100vw" width="1600" height="1067" fetchpriority="high" decoding="async"
+         alt="Baby met grote donkere ogen gluurt van onder een witte badhanddoek">
+  </picture>
   <div class="hero-scrim" aria-hidden="true"></div>
 
   <div class="sheet hero-cover-in" data-reveal>
-    <p class="label label--light"><i>—</i>Babywellness in hartje Lommel</p>
-    <h1>Warm water,<br>zachte handen,<br><em>alle tijd</em>.</h1>
+    <p class="label label--light"><i>—</i>Babywellness &amp; mamazorg in Lommel</p>
+    <h1>Een warm bad<br>voor de <em>allerkleinsten</em></h1>
     <p class="lead">
-      Je baby drijft een half uur in water van ongeveer 36 graden, daarna leer je zelf
-      de Shantala babymassage geven. Eén gezin per sessie, dus geen wachtzaal en geen haast.
+      Bij Bambine dobbert je baby in water van ongeveer 36 graden en bubbelt met lichtjes
+      en speeltjes. Ine ontvangt jullie in galerij Vivaldi, met veel warmte en gezelligheid.
     </p>
     <div class="hero-cta">
       <a class="btn btn--onDark" href="reserveren.html">
         <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Reserveer jullie moment
       </a>
-      <a class="btn btn--ghostDark" href="shop.html">Bekijk de cadeaubonnen</a>
+      <a class="btn btn--ghostDark" href="cadeaubon.html">Bekijk de cadeaubonnen</a>
     </div>
-    <p class="hero-facts">36 °C · één gezin per sessie · van 2 weken tot ± 9 maanden · vanaf € 55</p>
+    <p class="hero-facts">Vanaf 2 weken · water van ± 36 °C · vanaf € 55</p>
   </div>
 
   <div class="hero-foot">
     <a href="mailto:info@bambine.be">info@bambine.be</a>
-    <a class="hero-scroll" href="#in-het-kort" aria-label="Verder lezen">
+    <a class="hero-scroll" href="#warm-water" aria-label="Verder naar de inhoud">
       <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
     </a>
     <a href="tel:+32474782691">+32 474 78 26 91</a>
   </div>
 </section>
 
-<section class="sheet" id="in-het-kort" aria-label="In het kort">
-  <div class="facts" data-reveal>
-    <div><b>36 °C</b><span>Watertemperatuur. Het bad wordt voor elke sessie vers gevuld.</span></div>
-    <div><b>2 wkn – 9 mnd</b><span>Prematuur geboren? Dan rekenen we vanaf de uitgerekende datum.</span></div>
-    <div><b>Eén gezin</b><span>Per sessie. Jij kiest wie meekomt, maar hoe rustiger, hoe beter.</span></div>
-    <div><b>vanaf € 55</b><span>Voor een sessie van 30 minuten. Alle tarieven staan online.</span></div>
-  </div>
-</section>
-
 <!-- ======================= WARM WATER ======================= -->
-<section class="band">
-  <div class="sheet grid12">
-    <div class="s5" data-reveal>
-      <p class="label"><i>01</i>Warm water</p>
-      <h2>Negen maanden lang<br>werd alles gedragen.</h2>
+<section class="band" id="warm-water">
+  <div class="sheet grid12" style="align-items:center">
+    <div class="s5" data-reveal="fig">
+      <div class="fig arch r-4-5 bleed-l">
+        <img src="assets/img/zeepbellen-hand-800.webp"
+             srcset="assets/img/zeepbellen-hand-800.webp 800w, assets/img/zeepbellen-hand-1600.webp 1600w"
+             sizes="(max-width: 900px) 92vw, 42vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Kinderhandje vol zeepbelletjes" style="object-position:40% 50%">
+      </div>
     </div>
     <div class="s6 from7" data-reveal style="--d:100ms">
-      <p class="lead">
-        In water van ongeveer 36 graden wordt je baby weer gedragen. Armpjes en beentjes
-        bewegen vrijer dan op een matje, en de warmte voelt vertrouwd aan. De meeste baby's
-        worden er rustig van en slapen daarna diep.
+      <p class="label"><i>01</i>Hydrotherapie</p>
+      <h2>Dobberen, zoals<br>in de buik van mama</h2>
+      <p class="lead" style="margin-top:1.25rem">
+        Het water is altijd ongeveer 36 graden. Die warmte geeft je baby een veilig,
+        vertrouwd gevoel. Met een zacht halskraagje van schuim dobbert je kleintje vrij
+        rond, terwijl lichtjes en speeltjes de rest doen.
       </p>
       <ul class="dashes">
-        <li>Rustig drijven en spelen met lichtjes en speeltjes in het water.</li>
-        <li>De warmte is goed voor de bloedsomloop en kost energie. Veel baby's hebben nadien sneller honger.</li>
-        <li>Daarna kan je een Shantala babymassage bijboeken, die je zelf geeft.</li>
-        <li>Geen groepsles en geen publiek: enkel jullie en Ine.</li>
+        <li>Door het dobberen komen de darmpjes beter op gang: dat kan krampjes verminderen en helpt bij constipatie.</li>
+        <li>Het warme water is goed voor de bloedsomloop.</li>
+        <li>Je baby verbruikt er veel energie bij en heeft nadien misschien wat sneller honger.</li>
+        <li>Na het afdrogen kan je nog een Shantala babymassage erbij boeken.</li>
       </ul>
       <div class="actions">
-        <a class="tlink" href="tarieven.html#babywellness">Zo verloopt een sessie<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        <a class="tlink" href="reserveren.html#verloop">Zo verloopt een sessie<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
   </div>
@@ -71,121 +72,76 @@
     <div class="grid12" style="margin-bottom:clamp(2.5rem,5vw,4.5rem)">
       <div class="s6" data-reveal>
         <p class="label"><i>02</i>Het aanbod</p>
-        <h2>Drie soorten rust,<br>onder één dak.</h2>
+        <h2>Voor baby, mama<br>en de grote zus</h2>
       </div>
     </div>
 
     <div class="feature" data-reveal>
       <div class="feature-art">
-        <!-- FOTO-SLOT: babywellness, baby in het water -->
-        <div class="fig arch r-3-4" role="img" aria-label="Babywellness bij Bambine"></div>
+        <div class="fig arch r-3-4">
+          <img src="assets/img/baby-onder-dekentje-800.webp"
+               srcset="assets/img/baby-onder-dekentje-800.webp 800w, assets/img/baby-onder-dekentje-1600.webp 1600w"
+               sizes="(max-width: 900px) 92vw, 38vw" width="800" height="533" loading="lazy" decoding="async"
+               alt="Baby met blauwe ogen kijkt van onder een zacht wit dekentje" style="object-position:30% 50%">
+        </div>
       </div>
       <div class="feature-body">
-        <span class="feature-num">01</span>
+        <span class="feature-num" aria-hidden="true">01</span>
         <h3>Babywellness</h3>
         <p class="lead">
-          Hydrotherapie in water van ongeveer 36 graden, met daarna optioneel een Shantala
-          babymassage die je zelf leert geven. Ook samen te boeken met een vriendin.
+          Een halfuur hydrotherapie, of een sessie met daarna een Shantala babymassage.
+          Komen er twee kindjes, zoals vriendjes of een tweeling? Dan baden ze elk in een
+          eigen badje. Welkom vanaf twee weken tot ongeveer 20 maanden.
         </p>
         <div class="feature-meta">
-          <span class="feature-price">€ 55<small>vanaf · 30 minuten</small></span>
-          <a class="tlink" href="tarieven.html#babywellness">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <span class="feature-price">vanaf € 55<small>hydrotherapie · 30 minuten</small></span>
+          <a class="tlink" href="tarieven.html#babywellness">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
       </div>
     </div>
 
     <div class="feature feature--flip" data-reveal>
       <div class="feature-art">
-        <!-- FOTO-SLOT: zwangerschapsmassage -->
-        <div class="fig arch r-3-4 fig--soft" role="img" aria-label="Zwangerschapsmassage bij Bambine"></div>
+        <div class="fig arch r-3-4">
+          <img src="assets/img/zwangere-buik-800.webp"
+               srcset="assets/img/zwangere-buik-800.webp 800w, assets/img/zwangere-buik-1600.webp 1600w"
+               sizes="(max-width: 900px) 92vw, 38vw" width="800" height="533" loading="lazy" decoding="async"
+               alt="Zwangere vrouw in een roze jurk vormt een hartje met haar handen op haar buik" style="object-position:45% 50%">
+        </div>
       </div>
       <div class="feature-body">
-        <span class="feature-num">02</span>
+        <span class="feature-num" aria-hidden="true">02</span>
         <h3>Mama &amp; vrouw</h3>
         <p class="lead">
-          Zwangerschapsmassage in elke fase van je zwangerschap, of gewoon een uur voor
-          jezelf. Je baby mag mee, in alle rust.
+          Een zwangerschapsmassage, hoe ver je ook bent, of een ontspanningsmassage voor elke
+          vrouw, met of zonder kinderen. Eerst een voetenbadje en een drankje, dan ongeveer een
+          uur massage van het volledige lichaam.
         </p>
         <div class="feature-meta">
-          <span class="feature-price">Op aanvraag<small>duur in overleg</small></span>
-          <a class="tlink" href="tarieven.html#mama">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <span class="feature-price">€ 90<small>± 75 minuten</small></span>
+          <a class="tlink" href="tarieven.html#mama">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
       </div>
     </div>
 
     <div class="feature" data-reveal>
       <div class="feature-art">
-        <!-- FOTO-SLOT: verwenmoment voor kinderen -->
-        <div class="fig arch r-3-4 fig--warm" role="img" aria-label="Verwenmoment voor kinderen bij Bambine"></div>
+        <div class="fig arch r-3-4">
+          <img src="assets/img/meisje-gezichtsmassage-676.webp" width="676" height="901" loading="lazy" decoding="async"
+               alt="Meisje met gesloten ogen krijgt een zachte gezichtsmassage">
+        </div>
       </div>
       <div class="feature-body">
-        <span class="feature-num">03</span>
-        <h3>Kids, vanaf 3 jaar</h3>
+        <span class="feature-num" aria-hidden="true">03</span>
+        <h3>Kids</h3>
         <p class="lead">
-          Een verwenmoment op kindermaat voor de grote broer of zus: een zacht maskertje,
-          verzorgde handjes, nageltjes en een drankje erbij.
+          Een verwensessie voor meisjes van 3 tot 16 jaar, met een massage, een gelaatsmasker,
+          een voetenbadje, gelakte nagels, schmink en ingevlochten haren. Ook een
+          ontspanningsmassage voor kids van 6 tot 16 jaar, en Mini en me voor vrouw en meisje samen.
         </p>
         <div class="feature-meta">
-          <span class="feature-price">Op aanvraag<small>alleen of samen</small></span>
-          <a class="tlink" href="tarieven.html#kids">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ======================= VERLOOP ======================= -->
-<section class="band">
-  <div class="sheet grid12">
-    <div class="s4" data-reveal>
-      <p class="label"><i>03</i>Het verloop</p>
-      <h2>Een uur<br>waarin niets<br>moet.</h2>
-      <p class="small" style="margin-top:1.5rem;max-width:34ch">
-        Plan er liefst niets vlak na. De meeste baby's slapen onderweg naar huis al.
-      </p>
-    </div>
-
-    <div class="s7 from6">
-      <div class="steps">
-        <div class="step" data-reveal>
-          <span class="step-num">1</span>
-          <div>
-            <span class="step-when">De eerste 10 minuten</span>
-            <h3>Aankomen en wennen</h3>
-            <p>Jas uit, tas neer, even praten. Ine vraagt hoe je week was en hoe je baby erin zit. Pas als jullie er klaar voor zijn, gaan we het water in.</p>
-          </div>
-        </div>
-        <div class="step" data-reveal>
-          <span class="step-num">2</span>
-          <div>
-            <span class="step-when">30 minuten</span>
-            <h3>In het warme water</h3>
-            <p>Het bad is ongeveer 36 graden en vers gevuld. Je baby drijft, strekt, draait en speelt met lichtjes en speeltjes. Jij blijft er de hele tijd vlakbij.</p>
-          </div>
-        </div>
-        <div class="step" data-reveal>
-          <span class="step-num">3</span>
-          <div>
-            <span class="step-when">Tussendoor</span>
-            <h3>Warm afdrogen</h3>
-            <p>Uit het water, in een warme handdoek, luier aan. Even drinken mag altijd, want na het badje hebben veel baby's sneller honger.</p>
-          </div>
-        </div>
-        <div class="step" data-reveal>
-          <span class="step-num">4</span>
-          <div>
-            <span class="step-when">40 minuten, optioneel</span>
-            <h3>Shantala babymassage</h3>
-            <p>Jij masseert, Ine begeleidt. Deze massage komt uit India en draait om ontspanning en om de band tussen jullie. De bewegingen neem je mee naar huis.</p>
-          </div>
-        </div>
-        <div class="step" data-reveal>
-          <span class="step-num">5</span>
-          <div>
-            <span class="step-when">Zolang je wil</span>
-            <h3>Nog even blijven</h3>
-            <p>Voeden, verschonen, bijpraten met een kop thee. Er staat geen volgend gezin te wachten, dus vertrek gerust pas als het rustig voelt.</p>
-          </div>
+          <span class="feature-price">vanaf € 60<small>verwensessie · ± 60 minuten</small></span>
+          <a class="tlink" href="tarieven.html#kids">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
       </div>
     </div>
@@ -193,72 +149,69 @@
 </section>
 
 <!-- ======================= OVER INE ======================= -->
-<section class="band band--dark">
+<section class="band band--dark" id="ine">
   <div class="sheet grid12" style="align-items:center">
     <div class="s5" data-reveal="fig">
-      <!-- FOTO-SLOT: portret van Ine -->
-      <div class="fig arch r-4-5 fig--dark bleed-l" role="img" aria-label="Ine, zaakvoerster van Bambine"></div>
+      <div class="fig arch r-4-5 bleed-l">
+        <img src="assets/img/ine-met-baby-800.webp"
+             srcset="assets/img/ine-met-baby-800.webp 800w, assets/img/ine-met-baby-853.webp 853w"
+             sizes="(max-width: 900px) 92vw, 42vw" width="800" height="1200" loading="lazy" decoding="async"
+             alt="Ine houdt lachend een pasgeboren baby in haar armen in de praktijk van Bambine" style="object-position:50% 40%">
+      </div>
     </div>
     <div class="s6 from7" data-reveal style="--d:100ms">
-      <p class="label label--light"><i>04</i>Wie je ontvangt</p>
-      <blockquote class="pull">“Ik heb altijd al een boontje gehad voor de allerkleinsten.”</blockquote>
-      <p class="pull-by">Ine · zaakvoerster</p>
-      <p class="lead" style="margin-top:2rem">
-        Bambine is van Ine, mama van twee. Wat begon als een passie voor baby's groeide uit
-        tot een praktijk in het centrum van Lommel. Ze ontvangt er bewust maar één gezin
-        tegelijk, zodat er tijd is om te kijken naar hoe jouw kindje reageert.
+      <p class="label label--light"><i>03</i>Wie je ontvangt</p>
+      <h2>Ine Hendriks</h2>
+      <p class="lead" style="margin-top:1.25rem">
+        Ine is geboren en getogen in Lommel en woont vandaag in Balen. Ze is mama van Amélie
+        en Loïc, en werkte zeventien jaar in een kinderkribbe in Lommel, bij de kleintjes van
+        0 tot 3 jaar.
+      </p>
+      <p>
+        Al van kleins af aan heeft ze een passie voor kindjes, vooral voor de allerkleinsten.
+        Wat ze in de kinderkribbe leerde, geeft ze graag door: tips en tricks voor andere
+        mama's, of gewoon een praatje als je daar nood aan hebt. Ine was ook hoger redder in
+        het zwembad. Bij Bambine komen haar twee passies samen: water en baby's.
       </p>
       <ul class="dashes">
-        <li>Persoonlijke begeleiding, van de eerste mail tot na de sessie</li>
-        <li>Rustige ruimte in galerij Vivaldi, vlak bij het centrum</li>
-        <li>Ook ruimte voor mama's die zelf even aan de beurt zijn</li>
+        <li>Ine werkt één op één</li>
+        <li>In galerij Vivaldi, Michiel Jansplein 28/b2</li>
       </ul>
     </div>
   </div>
 </section>
 
-<!-- ======================= DE PRAKTIJK ======================= -->
+<!-- ======================= CITAAT ======================= -->
 <section class="band">
   <div class="sheet">
-    <div class="grid12" style="margin-bottom:clamp(2rem,4vw,3.5rem)">
-      <div class="s5" data-reveal>
-        <p class="label"><i>05</i>De praktijk</p>
-        <h2>Een kijkje binnen</h2>
-      </div>
-      <div class="s5 from8" data-reveal style="--d:80ms">
-        <p class="small" style="max-width:38ch;margin-top:.5rem">
-          Michiel Jansplein 28, in galerij Vivaldi. Klein, warm en helemaal ingericht
-          op kleine mensjes.
-        </p>
+    <div class="grid12">
+      <div class="s9 from2" data-reveal>
+        <blockquote class="pull pull--big">
+          <p>“Warmte en gezelligheid draag ik hoog in het vaandel. Als je daar ook van houdt, dan ben je op de juiste plek.”</p>
+        </blockquote>
+        <p class="pull-by">Ine, Bambine</p>
       </div>
     </div>
 
     <div class="gallery" data-reveal="fig">
-      <!-- Echte foto, aangeleverd door Bambine -->
-      <div class="fig arch" style="background-image:url('assets/img/baby-knuffel.webp')"
-           role="img" aria-label="Pasgeboren baby slaapt met een gehaakte knuffel onder een gebreid dekentje"></div>
-      <!-- FOTO-SLOT: detail van de massagetafel -->
-      <div class="fig arch fig--soft" role="img" aria-label="De massagetafel met verse handdoeken"></div>
-      <!-- FOTO-SLOT: het cadeauhoekje -->
-      <div class="fig arch fig--warm" role="img" aria-label="Het cadeauhoekje met pampertaarten en geschenkjes"></div>
-    </div>
-
-    <svg class="waterline" viewBox="0 0 1200 14" preserveAspectRatio="none" aria-hidden="true" style="margin-top:clamp(3rem,6vw,5rem)">
-      <path d="M0 7c40 0 40-6 80-6s40 6 80 6 40-6 80-6 40 6 80 6 40-6 80-6 40 6 80 6 40-6 80-6 40 6 80 6 40-6 80-6 40 6 80 6 40-6 80-6 40 6 80 6 40-6 80-6 40 6 80 6"/>
-    </svg>
-  </div>
-</section>
-
-<!-- ======================= WAT OUDERS ZEGGEN ======================= -->
-<section class="band band--tight">
-  <div class="sheet grid12">
-    <div class="s8 from2" data-reveal style="text-align:center;margin-inline:auto">
-      <span class="demo-tag">Voorbeeldtekst · te vervangen door een echte reactie</span>
-      <blockquote class="pull">
-        “Onze zoon van zeven weken lag er compleet ontspannen bij. Wij ook, eerlijk gezegd.
-        Hij heeft die nacht voor het eerst doorgeslapen.”
-      </blockquote>
-      <p class="pull-by" style="justify-content:center">Ouder uit Lommel</p>
+      <div class="fig arch">
+        <img src="assets/img/babyvoetjes-in-doek-800.webp"
+             srcset="assets/img/babyvoetjes-in-doek-800.webp 800w, assets/img/babyvoetjes-in-doek-1600.webp 1600w"
+             sizes="(max-width: 760px) 46vw, 30vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Twee babyvoetjes steken uit een witte doek" style="object-position:60% 50%">
+      </div>
+      <div class="fig arch">
+        <img src="assets/img/baby-gaapt-teddybeer-800.webp"
+             srcset="assets/img/baby-gaapt-teddybeer-800.webp 800w, assets/img/baby-gaapt-teddybeer-1600.webp 1600w"
+             sizes="(max-width: 760px) 46vw, 30vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Pasgeboren baby met een grijs mutsje gaapt naast een witte teddybeer" style="object-position:45% 50%">
+      </div>
+      <div class="fig arch">
+        <img src="assets/img/handen-rond-babyvoetjes-800.webp"
+             srcset="assets/img/handen-rond-babyvoetjes-800.webp 800w, assets/img/handen-rond-babyvoetjes-1600.webp 1600w"
+             sizes="(max-width: 760px) 92vw, 30vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Twee handen vormen een kommetje rond babyvoetjes met een geel bloemetje" style="object-position:55% 60%">
+      </div>
     </div>
   </div>
 </section>
@@ -267,23 +220,24 @@
 <section class="band band--shell" id="cadeau">
   <div class="sheet grid12" style="align-items:center">
     <div class="s5" data-reveal>
-      <p class="label"><i>06</i>Cadeaubon</p>
-      <h2>Een sessie<br>cadeau geven</h2>
-      <p class="lead" style="margin-top:1.5rem">
-        Een sessie babywellness cadeau doen, een pampertaart laten klaarzetten of een
-        kleinigheid met naam erop. Bestellen doe je telefonisch of via mail, ophalen kan na
-        afspraak of gewoon even binnenspringen.
+      <p class="label"><i>04</i>Cadeaubon</p>
+      <h2>Een origineel<br>cadeau</h2>
+      <p class="lead" style="margin-top:1.25rem">
+        Zoek je iets bijzonders voor mama, papa of de baby? Geef een cadeaubon van Bambine.
+        Ook voor meisjes vanaf 3 jaar is er een verwenmoment. Het bedrag kies je zelf.
       </p>
       <div class="actions">
-        <a class="btn" href="tel:+32474782691">
-          <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bel voor een cadeaubon
+        <a class="btn" href="cadeaubon.html">
+          <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg>Alles over de cadeaubon
         </a>
         <a class="tlink" href="https://www.bambine-webshop.be/" rel="noopener">Webshop<svg class="ico" aria-hidden="true"><use href="#i-arrow-up-right"></use></svg></a>
       </div>
     </div>
     <div class="s6 from7" data-reveal="fig">
-      <!-- FOTO-SLOT: pampertaart of cadeauverpakking -->
-      <div class="fig r-3-2 fig--warm bleed-r" role="img" aria-label="Pampertaart en cadeauverpakking van Bambine"></div>
+      <img class="voucher" src="assets/img/cadeaubon-1000.webp"
+           srcset="assets/img/cadeaubon-600.webp 600w, assets/img/cadeaubon-1000.webp 1000w"
+           sizes="(max-width: 900px) 92vw, 46vw" width="1000" height="500" loading="lazy" decoding="async"
+           alt="Cadeaubon van Babywellness Bambine">
     </div>
   </div>
 </section>
@@ -292,57 +246,31 @@
 <section class="band" id="afspraak">
   <div class="sheet grid12">
     <div class="s6" data-reveal>
-      <p class="label"><i>07</i>Veelgestelde vragen</p>
+      <p class="label"><i>05</i>Veelgestelde vragen</p>
       <h2 style="margin-bottom:2rem">Wat ouders<br>vaak vragen</h2>
-      <div class="faq">
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false" type="button">
-            <span class="faq-n">01</span><span>Vanaf welke leeftijd mag mijn baby mee?</span><span class="faq-sign" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a"><div><p>Welkom vanaf 2 weken oud, bij prematuurtjes rekenen we vanaf de uitgerekende datum, tot ongeveer 9 maanden. Dat hangt af van hoe groot of klein je baby is.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false" type="button">
-            <span class="faq-n">02</span><span>Hoe warm is het water?</span><span class="faq-sign" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a"><div><p>Altijd ongeveer 36 graden. Die warmte geeft je baby hetzelfde veilige gevoel als in de buik van mama en is goed voor de bloedsomloop. Het kost ook energie: veel baby's hebben nadien sneller honger.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false" type="button">
-            <span class="faq-n">03</span><span>Wie mag er mee komen?</span><span class="faq-sign" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a"><div><p>Jij kiest wie meekomt, het is jullie moment. Hou er wel rekening mee dat hoe meer mensen erbij zijn, hoe meer prikkels en hoe minder rust je baby ervaart.</p></div></div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-q" aria-expanded="false" type="button">
-            <span class="faq-n">04</span><span>Wat breng ik zelf mee?</span><span class="faq-sign" aria-hidden="true"></span>
-          </button>
-          <div class="faq-a"><div><p>Een handdoek, een verse luier en eventueel een flesje of een vertrouwd dekentje. De rest staat klaar.</p></div></div>
-        </div>
-      </div>
+      <!-- faq:home -->
       <div class="actions">
         <a class="tlink" href="contact.html#faq">Alle vragen<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
 
     <div class="s5 from8" data-reveal style="--d:100ms">
-      <p class="label"><i>08</i>Een moment vastleggen</p>
+      <p class="label"><i>06</i>Een afspraak maken</p>
       <h2 style="margin-bottom:1.25rem">Bel of mail<br>even</h2>
       <p class="lead">
-        Ine kijkt samen met jou naar een moment dat past in jullie ritme. Ook 's avonds is
-        bespreekbaar.
+        Afspreken doe je rechtstreeks met Ine, telefonisch of per mail.
       </p>
       <ul class="info" style="margin-top:2rem">
         <li><span class="k">Telefoon</span><a href="tel:+32474782691">+32 474 78 26 91</a></li>
         <li><span class="k">E-mail</span><a href="mailto:info@bambine.be">info@bambine.be</a></li>
-        <li><span class="k">Adres</span>Michiel Jansplein 28 bus b2<br>3920 Lommel</li>
-        <li><span class="k">Open</span>Enkel op afspraak</li>
+        <li><span class="k">Adres</span><span>Michiel Jansplein 28/b2<br>3920 Lommel · galerij Vivaldi</span></li>
+        <li><span class="k">Openingsuren</span><span class="todo">nog aan te vullen</span></li>
       </ul>
       <div class="actions">
         <a class="btn" href="tel:+32474782691">
           <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bel Bambine
         </a>
-        <a class="tlink" href="contact.html">Route<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        <a class="tlink" href="contact.html#route">Route<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
   </div>

@@ -5,14 +5,21 @@ Bronnen staan in src/ (enkel de <main>-inhoud per pagina); dit script plakt daar
 de gedeelde head, navigatie, footer, iconensprite en structured data omheen en
 schrijft klaar-voor-upload HTML weg in deze map.
 
+Diensten, prijzen en veelgestelde vragen staan maar op één plek: hieronder. In de
+bronnen staan plaatshouders (<!-- carte:babywellness -->, <!-- faq:alle --> …) die
+bij het bouwen worden ingevuld. Zo zeggen de pagina en de structured data altijd
+hetzelfde.
+
     python3 build.py
 """
 
 from __future__ import annotations
 
+import html
 import json
 import pathlib
 import re
+import sys
 
 ROOT = pathlib.Path(__file__).parent
 SRC = ROOT / "src"
@@ -23,115 +30,266 @@ VOLUIT = "Bambine babywellness & mamazorg"
 TEL = "+32 474 78 26 91"
 TEL_HREF = "+32474782691"
 MAIL = "info@bambine.be"
-STRAAT = "Michiel Jansplein 28 bus b2"
+STRAAT = "Michiel Jansplein 28/b2"
 POSTCODE = "3920"
 STAD = "Lommel"
 INSTA = "https://www.instagram.com/bambine.babywellness/"
 FB = "https://www.facebook.com/BambineBabywellness/"
 WEBSHOP = "https://www.bambine-webshop.be/"
+KAART = "https://www.google.com/maps/search/?api=1&query=Michiel+Jansplein+28+3920+Lommel"
 
+# Links in de navigatie op grote schermen; "Reserveren" is daar de gouden knop.
 NAV = [
     ("tarieven.html", "Tarieven"),
+    ("cadeaubon.html", "Cadeaubon"),
+    ("index.html#ine", "Over Ine"),
+    ("contact.html", "Contact"),
+]
+# Het mobiele menu toont alles onder elkaar.
+DRAWER = [
+    ("tarieven.html", "Tarieven"),
     ("reserveren.html", "Reserveren"),
-    ("shop.html", "Shop"),
+    ("cadeaubon.html", "Cadeaubon"),
+    ("index.html#ine", "Over Ine"),
     ("contact.html", "Contact"),
 ]
 
+# --- diensten en prijzen (bron: bambine.be/tarieven) ------------------------
+
+DIENSTEN = [
+    dict(groep="babywellness", naam="Hydrotherapie", duur="30 minuten", prijs=55,
+         noot="Dobberen en bubbelen in water van ongeveer 36 °C."),
+    dict(groep="babywellness", naam="Sessie Bambine", duur="1 uur 10 minuten", prijs=75,
+         noot="30 minuten hydrotherapie, daarna 40 minuten Shantala babymassage."),
+    dict(groep="babywellness", naam="Duosessie Bambine", duur="1 uur", prijs=150,
+         noot="Voor twee kindjes in twee aparte badjes, bijvoorbeeld vriendjes of een "
+              "tweeling. 30 minuten hydrotherapie en 30 minuten Shantala babymassage."),
+    dict(groep="babywellness", naam="Shantala babymassage", duur="± 35 minuten", prijs=40,
+         noot="Je geeft je baby zelf de massage, onder begeleiding van Ine."),
+    dict(groep="mama", naam="Zwangerschapsmassage", duur="± 75 minuten", prijs=90,
+         noot="Eerst een ontspannend voetenbadje en een drankje, dan ongeveer een uur "
+              "massage van het volledige lichaam."),
+    dict(groep="mama", naam="Ontspanningsmassage voor vrouwen", duur="± 75 minuten", prijs=90,
+         noot="Eerst een ontspannend voetenbadje en een drankje, dan ongeveer een uur "
+              "massage van het volledige lichaam."),
+    dict(groep="kids", naam="Verwensessie voor meisjes", sub="3 tot 16 jaar",
+         duur="± 60 minuten", prijs=60,
+         noot="Op maat van je kind: een drankje, een massage van 15 minuten, een "
+              "gelaatsmasker, een voetenbadje, nagels lakken, schminken en haren invlechten."),
+    dict(groep="kids", naam="Kids ontspanningsmassage", sub="6 tot 16 jaar",
+         duur="± 60 minuten", prijs=75,
+         noot="Eerst een ontspannend voetenbubbelbadje en een drankje, dan ongeveer "
+              "45 minuten massage van het volledige lichaam."),
+    dict(groep="kids", naam="Mini en me", duur="120 minuten", prijs=120,
+         noot="Een sessie voor vrouw en meisje samen."),
+]
+
+
+def euro(bedrag: int) -> str:
+    return f"€ {bedrag}"
+
+
+def carte_html(groep: str | None = None, namen: list[str] | None = None) -> str:
+    """Tarieven als menukaart: naam, stippellijn, prijs, en daaronder duur en inhoud."""
+    rijen = []
+    for d in DIENSTEN:
+        if groep and d["groep"] != groep:
+            continue
+        if namen and d["naam"] not in namen:
+            continue
+        sub = f' <span class="carte-sub">{d["sub"]}</span>' if d.get("sub") else ""
+        rijen.append(
+            '<li class="carte-item">'
+            f'<div class="carte-row"><h3 class="carte-name">{html.escape(d["naam"])}{sub}</h3>'
+            '<span class="dots" aria-hidden="true"></span>'
+            f'<p class="carte-price">{euro(d["prijs"])}</p></div>'
+            f'<p class="carte-note"><span class="carte-duur">{d["duur"]}</span>{d["noot"]}</p>'
+            "</li>"
+        )
+    return '<ul class="carte">' + "".join(rijen) + "</ul>"
+
+
+# --- veelgestelde vragen (bron: bambine.be/veelgestelde-vragen en /tarieven) --
+
+FAQ = {
+    "leeftijd": (
+        "Vanaf welke leeftijd is mijn baby welkom?",
+        "Vanaf twee weken. Is je baby te vroeg geboren, dan tellen we vanaf de uitgerekende "
+        "datum. Babywellness kan tot ongeveer 20 maanden, afhankelijk van hoe groot of klein "
+        "je baby is.",
+    ),
+    "verloop": (
+        "Hoe verloopt een sessie babywellness?",
+        "We kleden je baby uit in een warme, aangename ruimte en doen een halskraagje aan. "
+        "Dat is van schuim, dus het kan niet leeglopen. Dan mag je baby dobberen in water van "
+        "ongeveer 36 graden en bubbelen met lichtjes en speeltjes. Daarna drogen we je baby af. "
+        "Wie wil, sluit af met een Shantala babymassage die je erbij boekt.",
+    ),
+    "water": (
+        "Wat doet het warme water met mijn baby?",
+        "Door te dobberen in het water komen de darmpjes beter op gang. Dat kan krampjes "
+        "verminderen en bij constipatie verloopt de stoelgang vlotter. Het water van ongeveer "
+        "36 graden geeft je baby een veilig gevoel, zoals in de buik van mama, en is goed voor "
+        "de bloedsomloop. Je baby verbruikt er ook veel energie bij en heeft nadien misschien "
+        "wat sneller honger.",
+    ),
+    "shantala": (
+        "Wat doet een Shantala babymassage?",
+        "Ontspanning en een sterkere band tussen je baby en jou staan op de eerste plaats. "
+        "Daarnaast kan de massage de darmtransit bevorderen en krampjes verlichten, helpen om "
+        "spanningen los te laten, het slaapgedrag verbeteren en de bloedcirculatie op gang "
+        "brengen.",
+    ),
+    "meebrengen": (
+        "Wat breng ik mee?",
+        "Gewoon de luiertas met een schone luier, propere kleertjes en eventueel wat eten. "
+        "Voor de rest zorgt Bambine: massageolie, een floatband, handdoeken, tetradoeken en "
+        "een zwemluier.",
+    ),
+    "personen": (
+        "Hoeveel mensen mogen er mee?",
+        "Dat kies je zelf, het is jullie moment. Maar hoe meer mensen erbij zijn, hoe meer "
+        "prikkels en hoe minder rust je baby ervaart.",
+    ),
+    "moment": (
+        "Wanneer plan ik best een afspraak?",
+        "Kies een moment vlak nadat je baby gegeten heeft. Laat je baby vooraf eventueel een "
+        "dutje doen: goed uitgeslapen geniet je kleintje extra.",
+    ),
+    "niet-komen": (
+        "Wanneer kom ik beter niet?",
+        "Als je baby zich niet lekker voelt of wat koortsig is. Heeft je baby net een prikje "
+        "gekregen bij de dokter, wacht dan best een drietal dagen.",
+    ),
+    "annuleren": (
+        "Wat als ik de afspraak niet kan nakomen?",
+        "Verwittig zo snel mogelijk, minstens 24 uur op voorhand, en enkel telefonisch. "
+        "Verwittig je op tijd en met een geldige reden, dan krijg je een tegoedbon. Kom je te "
+        "laat, dan stopt de sessie wel op het afgesproken uur.",
+    ),
+    "betalen": (
+        "Hoe betaal ik?",
+        "Cash of met Payconiq. Met Bancontact betalen kan niet.",
+    ),
+    "meisjes": (
+        "Hoe ziet een verwenmoment voor meisjes eruit?",
+        "Er staan allerlei verwenspulletjes klaar. In ongeveer een uur tovert Ine je kind om "
+        "tot een prinses: een korte massage, een voetenbadje, een gelaatsmasker, gelakte "
+        "nagels, schmink en ingevlochten haren. Wie meekomt, mag blijven en krijgt ondertussen "
+        "een drankje. Dat hoeft niet.",
+    ),
+    "massages": (
+        "Voor wie zijn de ontspanningsmassages?",
+        "De zwangerschapsmassage is voor zwangere vrouwen, hoe ver je ook bent. De "
+        "ontspanningsmassage is voor elke vrouw, met of zonder kinderen. Beide krijg je in "
+        "dezelfde setting; Ine past enkel de massagetechniek aan.",
+    ),
+    "cadeaubon": (
+        "Kan ik een cadeaubon geven?",
+        "Ja, voor mama, papa of baby, en ook voor meisjes vanaf 3 jaar. Je bestelt hem "
+        "telefonisch, via mail of in de webshop, en je kan zelf het bedrag kiezen.",
+    ),
+    "aansprakelijkheid": (
+        "Is Bambine aansprakelijk bij een ongeval?",
+        "We zorgen samen met veel liefde en zorg voor je kleintje. Om administratieve redenen "
+        "moet wel vermeld worden dat Bambine niet aansprakelijk gesteld kan worden voor "
+        "eventuele ongevallen.",
+    ),
+}
+
+# Welke vragen op welke pagina staan (plaatshouder <!-- faq:naam -->).
+FAQ_SETS = {
+    "home": ["leeftijd", "meebrengen", "personen", "annuleren"],
+    "reserveren": ["meebrengen", "personen", "niet-komen", "annuleren", "leeftijd"],
+    "alle": list(FAQ),
+}
+
+
+def faq_html(sleutels: list[str]) -> str:
+    items = []
+    for i, k in enumerate(sleutels, start=1):
+        vraag, antwoord = FAQ[k]
+        items.append(
+            '<div class="faq-item">'
+            f'<h3 class="faq-h"><button class="faq-q" aria-expanded="false" type="button" id="v-{k}" '
+            f'aria-controls="a-{k}"><span class="faq-n">{i:02d}</span><span>{vraag}</span>'
+            '<span class="faq-sign" aria-hidden="true"></span></button></h3>'
+            f'<div class="faq-a" id="a-{k}" role="region" aria-labelledby="v-{k}"><div><p>{antwoord}</p></div></div>'
+            "</div>"
+        )
+    return '<div class="faq">' + "".join(items) + "</div>"
+
+
 # --- structured data -------------------------------------------------------
 
+BEDRIJF_ID = f"{SITE}/#bambine"
+
+
+def aanbod_ld(groep: str | None = None) -> list[dict]:
+    return [
+        {
+            "@type": "Offer",
+            "price": f"{d['prijs']}.00",
+            "priceCurrency": "EUR",
+            "url": f"{SITE}/tarieven.html#{d['groep']}",
+            "itemOffered": {
+                "@type": "Service",
+                "name": d["naam"],
+                "description": f"{d['duur']}. {d['noot']}",
+                "provider": {"@id": BEDRIJF_ID},
+            },
+        }
+        for d in DIENSTEN
+        if groep is None or d["groep"] == groep
+    ]
+
+
 BEDRIJF = {
-    "@type": ["HealthAndBeautyBusiness", "ChildCare"],
-    "@id": f"{SITE}/#bambine",
+    "@type": "HealthAndBeautyBusiness",
+    "@id": BEDRIJF_ID,
     "name": VOLUIT,
     "alternateName": NAAM,
     "description": (
-        "Babywellness in Lommel: hydrotherapie in water van 36°C en Shantala "
-        "babymassage voor baby's van 2 weken tot ongeveer 9 maanden. Daarnaast "
-        "zwangerschaps- en ontspanningsmassage voor mama's en verwenmomenten "
-        "voor kinderen vanaf 3 jaar."
+        "Babywellness in Lommel: hydrotherapie in water van ongeveer 36 °C en Shantala "
+        "babymassage voor baby's vanaf 2 weken tot ongeveer 20 maanden. Daarnaast "
+        "zwangerschaps- en ontspanningsmassage voor vrouwen en verwenmomenten voor meisjes "
+        "van 3 tot 16 jaar."
     ),
     "url": SITE + "/",
+    "logo": f"{SITE}/assets/img/logo-320.webp",
+    "image": f"{SITE}/assets/img/bambine-og.jpg",
     "telephone": TEL,
     "email": MAIL,
-    "image": f"{SITE}/assets/img/bambine-og.jpg",
-    "priceRange": "€€",
+    "priceRange": "€40 - €150",
     "currenciesAccepted": "EUR",
+    "paymentAccepted": "Cash, Payconiq",
     "address": {
         "@type": "PostalAddress",
-        "streetAddress": STRAAT,
+        "streetAddress": STRAAT + " (galerij Vivaldi)",
         "postalCode": POSTCODE,
         "addressLocality": STAD,
         "addressRegion": "Limburg",
         "addressCountry": "BE",
     },
-    "areaServed": [
-        {"@type": "City", "name": "Lommel"},
-        {"@type": "City", "name": "Overpelt"},
-        {"@type": "City", "name": "Hamont-Achel"},
-        {"@type": "City", "name": "Mol"},
-        {"@type": "City", "name": "Balen"},
-        {"@type": "City", "name": "Leopoldsburg"},
-    ],
-    "openingHoursSpecification": [
-        {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-                "Monday", "Tuesday", "Wednesday", "Thursday",
-                "Friday", "Saturday",
-            ],
-            "opens": "09:00",
-            "closes": "18:00",
-            "description": "Enkel op afspraak",
-        }
-    ],
+    "hasMap": KAART,
+    "areaServed": {"@type": "City", "name": "Lommel"},
+    "founder": {"@type": "Person", "name": "Ine Hendriks"},
     "sameAs": [INSTA, FB, WEBSHOP],
-    "founder": {"@type": "Person", "name": "Ine"},
-    "knowsLanguage": ["nl-BE"],
+    "knowsLanguage": "nl-BE",
+    "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Tarieven",
+        "itemListElement": aanbod_ld(),
+    },
 }
-
-DIENSTEN_LD = {
-    "@type": "OfferCatalog",
-    "name": "Aanbod",
-    "itemListElement": [
-        {
-            "@type": "Offer",
-            "price": "55.00",
-            "priceCurrency": "EUR",
-            "itemOffered": {
-                "@type": "Service",
-                "name": "Babywellness — hydrotherapie",
-                "description": "30 minuten drijven en spelen in water van ongeveer 36 °C.",
-            },
-        },
-        {
-            "@type": "Offer",
-            "price": "75.00",
-            "priceCurrency": "EUR",
-            "itemOffered": {
-                "@type": "Service",
-                "name": "Babywellness — hydrotherapie & Shantala babymassage",
-                "description": "30 minuten hydrotherapie gevolgd door 40 minuten Shantala babymassage.",
-            },
-        },
-        {
-            "@type": "Offer",
-            "price": "150.00",
-            "priceCurrency": "EUR",
-            "itemOffered": {
-                "@type": "Service",
-                "name": "Duosessie babywellness",
-                "description": "Samen met een vriendin of familielid, elk met je eigen baby.",
-            },
-        },
-    ],
-}
+# Openingsuren staan niet op bambine.be; ze komen hier pas bij als Bambine ze aanlevert.
 
 
 def jsonld(*blocks: dict) -> str:
     data = {"@context": "https://schema.org", "@graph": list(blocks)}
     return (
         '<script type="application/ld+json">'
-        + json.dumps(data, ensure_ascii=False, separators=(",", ":"))
+        + json.dumps(data, ensure_ascii=False, separators=(",", ":")).replace("</", "<\\/")
         + "</script>"
     )
 
@@ -143,7 +301,7 @@ def crumbs_ld(items: list[tuple[str, str]]) -> dict:
             {
                 "@type": "ListItem",
                 "position": i + 1,
-                "name": re.sub("&amp;", "&", naam),
+                "name": naam,
                 "item": f"{SITE}/{url}" if url else SITE + "/",
             }
             for i, (url, naam) in enumerate(items)
@@ -151,112 +309,77 @@ def crumbs_ld(items: list[tuple[str, str]]) -> dict:
     }
 
 
-def faq_ld(paren: list[tuple[str, str]]) -> dict:
+def faq_ld(sleutels: list[str]) -> dict:
     return {
         "@type": "FAQPage",
         "mainEntity": [
             {
                 "@type": "Question",
-                "name": v,
-                "acceptedAnswer": {"@type": "Answer", "text": a},
+                "name": FAQ[k][0],
+                "acceptedAnswer": {"@type": "Answer", "text": FAQ[k][1]},
             }
-            for v, a in paren
+            for k in sleutels
         ],
     }
 
 
-def dienst_ld(naam: str, omschrijving: str, url: str, aanbod: list[dict] | None = None) -> dict:
-    d = {
+def dienst_ld(naam: str, omschrijving: str, anker: str) -> dict:
+    return {
         "@type": "Service",
         "name": naam,
         "description": omschrijving,
-        "serviceType": naam,
-        "url": f"{SITE}/{url}",
-        "provider": {"@id": f"{SITE}/#bambine"},
+        "url": f"{SITE}/tarieven.html#{anker}",
+        "provider": {"@id": BEDRIJF_ID},
         "areaServed": {"@type": "City", "name": "Lommel"},
-        "audience": {"@type": "Audience", "audienceType": "Ouders met jonge kinderen"},
+        "hasOfferCatalog": {"@type": "OfferCatalog", "name": naam, "itemListElement": aanbod_ld(anker)},
     }
-    if aanbod:
-        d["hasOfferCatalog"] = {"@type": "OfferCatalog", "name": naam, "itemListElement": aanbod}
-    return d
 
 
-FAQ_BABY = [
-    (
-        "Vanaf welke leeftijd mag mijn baby mee in bad?",
-        "Welkom vanaf 2 weken oud — bij prematuurtjes rekenen we vanaf de uitgerekende datum — "
-        "tot ongeveer 9 maanden, afhankelijk van hoe groot of klein je baby is.",
-    ),
-    (
-        "Hoe warm is het water?",
-        "Het water is altijd ongeveer 36 °C. Die warmte geeft je baby hetzelfde veilige gevoel "
-        "als in de buik van mama en is goed voor de bloedsomloop. Het kost ook energie: veel baby's "
-        "hebben nadien wat sneller honger.",
-    ),
-    (
-        "Wie mag er mee komen?",
-        "Jij kiest wie meekomt — het is jullie moment. Hou er wel rekening mee: hoe meer mensen "
-        "aanwezig zijn, hoe meer prikkels en hoe minder rust je baby ervaart.",
-    ),
-    (
-        "Wat moet ik zelf meebrengen?",
-        "Een handdoek, een verse luier en eventueel een flesje of een dekentje dat vertrouwd ruikt. "
-        "De rest staat klaar.",
-    ),
-    (
-        "Wat is Shantala babymassage?",
-        "Een zachte massagevorm uit India die je na het badje aan je baby geeft, met begeleiding. "
-        "Ontspanning en de band tussen ouder en baby staan voorop.",
-    ),
-    (
-        "Kan ik een sessie cadeau geven?",
-        "Ja. Een cadeaubon bestel je telefonisch of via mail. "
-        "Je haalt hem op na afspraak of je springt gewoon even binnen.",
-    ),
-]
+WEBSITE = {
+    "@type": "WebSite",
+    "@id": f"{SITE}/#website",
+    "url": SITE + "/",
+    "name": VOLUIT,
+    "inLanguage": "nl-BE",
+    "publisher": {"@id": BEDRIJF_ID},
+}
 
 # --- pagina's ---------------------------------------------------------------
 
 PAGES = {
     "index.html": dict(
-        title="Babywellness in Lommel | Bambine — hydrotherapie & Shantala babymassage",
+        title="Babywellness en babymassage in Lommel | Bambine",
         desc=(
-            "Babywellness in Lommel. Je baby drijft in water van 36 °C, daarna een Shantala "
-            "babymassage. Ook zwangerschapsmassage, ontspanningsmassage en verwenmomenten voor kids. "
-            "Enkel op afspraak, één gezin per moment."
+            "Babywellness in Lommel: je baby dobbert in water van ± 36 °C, met Shantala "
+            "babymassage erbij. Ook massages voor mama en verwenmomenten voor meisjes."
         ),
-        ld=[BEDRIJF, {"@type": "WebSite", "@id": f"{SITE}/#website", "url": SITE + "/",
-                      "name": VOLUIT, "inLanguage": "nl-BE",
-                      "publisher": {"@id": f"{SITE}/#bambine"}},
-            {**DIENSTEN_LD}, faq_ld(FAQ_BABY[:4])],
+        ld=[BEDRIJF, WEBSITE, faq_ld(FAQ_SETS["home"])],
     ),
     "tarieven.html": dict(
-        title="Tarieven & diensten | Bambine babywellness Lommel",
+        title="Tarieven | Bambine babywellness en massages in Lommel",
         desc=(
-            "Alle diensten en tarieven van Bambine op één pagina: babywellness vanaf € 55, "
-            "hydrotherapie met Shantala babymassage € 75, duosessie € 150, zwangerschaps- en "
-            "ontspanningsmassage en verwenmomenten voor kinderen vanaf 3 jaar."
+            "Hydrotherapie € 55, sessie Bambine € 75, duosessie € 150, Shantala € 40, "
+            "zwangerschaps- en ontspanningsmassage € 90, verwensessie voor meisjes € 60."
         ),
         ld=[
             BEDRIJF,
-            {**DIENSTEN_LD},
             dienst_ld(
-                "Babywellness: hydrotherapie en Shantala babymassage",
-                "Je baby drijft in warm water van ongeveer 36 °C en krijgt daarna optioneel "
-                "een Shantala babymassage.",
-                "tarieven.html#babywellness",
-                DIENSTEN_LD["itemListElement"],
+                "Babywellness",
+                "Hydrotherapie in water van ongeveer 36 °C en Shantala babymassage, voor baby's "
+                "vanaf 2 weken tot ongeveer 20 maanden.",
+                "babywellness",
             ),
             dienst_ld(
-                "Mamazorg: zwangerschapsmassage en ontspanningsmassage",
-                "Massage voor zwangere vrouwen in elke fase van de zwangerschap en "
-                "ontspanningsmassage voor vrouwen.",
-                "tarieven.html#mama",
+                "Mama & vrouw",
+                "Zwangerschapsmassage en ontspanningsmassage van het volledige lichaam voor "
+                "vrouwen, met of zonder kinderen.",
+                "mama",
             ),
             dienst_ld(
-                "Verwenmomenten voor kinderen",
-                "Verzorgings- en verwenmomenten voor kinderen van 3 tot 16 jaar.",
-                "tarieven.html#kids",
+                "Kids",
+                "Verwensessie voor meisjes van 3 tot 16 jaar, ontspanningsmassage voor kids van "
+                "6 tot 16 jaar en Mini en me voor vrouw en meisje samen.",
+                "kids",
             ),
             crumbs_ld([("", "Home"), ("tarieven.html", "Tarieven")]),
         ],
@@ -264,34 +387,33 @@ PAGES = {
     "reserveren.html": dict(
         title="Reserveren | Bambine babywellness Lommel",
         desc=(
-            "Een sessie reserveren bij Bambine in Lommel: bel +32 474 78 26 91 of mail "
-            "info@bambine.be. Zo verloopt een sessie, wat je meebrengt en wat je vooraf "
-            "moet weten."
+            "Een afspraak bij Bambine maak je telefonisch op +32 474 78 26 91 of via "
+            "info@bambine.be. Zo verloopt een sessie babywellness en dit breng je mee."
         ),
         ld=[
             BEDRIJF,
             crumbs_ld([("", "Home"), ("reserveren.html", "Reserveren")]),
-            faq_ld(FAQ_BABY[:4]),
+            faq_ld(FAQ_SETS["reserveren"]),
         ],
     ),
-    "shop.html": dict(
-        title="Shop: cadeaubonnen, pampertaarten en geschenkjes | Bambine Lommel",
+    "cadeaubon.html": dict(
+        title="Cadeaubon | Bambine babywellness Lommel",
         desc=(
-            "De shop van Bambine: cadeaubonnen voor een sessie babywellness, pampertaarten "
-            "en gepersonaliseerde geschenkjes voor mama, papa of baby. Af te halen in Lommel."
+            "Een cadeaubon van Bambine voor mama, papa, baby of een meisje vanaf 3 jaar. "
+            "Te bestellen per telefoon, mail of webshop, voor een bedrag naar keuze."
         ),
-        ld=[BEDRIJF, crumbs_ld([("", "Home"), ("shop.html", "Shop")])],
+        ld=[BEDRIJF, crumbs_ld([("", "Home"), ("cadeaubon.html", "Cadeaubon")])],
     ),
     "contact.html": dict(
-        title="Contact & route | Bambine Lommel — Michiel Jansplein 28",
+        title="Contact en veelgestelde vragen | Bambine Lommel",
         desc=(
-            "Bambine in Lommel: Michiel Jansplein 28 bus b2, +32 474 78 26 91, "
-            "info@bambine.be. Route, parkeren, openingsmomenten en veelgestelde vragen."
+            "Bambine, Michiel Jansplein 28/b2, 3920 Lommel (galerij Vivaldi). Bel "
+            "+32 474 78 26 91 of mail info@bambine.be. Met antwoorden op de veelgestelde vragen."
         ),
         ld=[
             BEDRIJF,
             crumbs_ld([("", "Home"), ("contact.html", "Contact")]),
-            faq_ld(FAQ_BABY),
+            faq_ld(FAQ_SETS["alle"]),
         ],
     ),
 }
@@ -305,29 +427,21 @@ def icon(name: str, cls: str = "ico") -> str:
     return f'<svg class="{cls}" aria-hidden="true"><use href="#i-{name}"></use></svg>'
 
 
-def nav_html(current: str) -> str:
-    items = []
-    for href, label in NAV:
+def links_html(items: list[tuple[str, str]], current: str, genummerd: bool = False) -> str:
+    uit = []
+    for i, (href, label) in enumerate(items):
         cur = ' aria-current="page"' if href == current else ""
-        items.append(f'<li><a href="{href}"{cur}>{label}</a></li>')
-    return "".join(items)
+        nr = f"<em>0{i + 1}</em>" if genummerd else ""
+        uit.append(f'<li><a href="{href}"{cur}>{nr}{label}</a></li>')
+    return "".join(uit)
 
 
-def drawer_html(current: str) -> str:
-    items = []
-    for i, (href, label) in enumerate(NAV):
-        cur = ' aria-current="page"' if href == current else ""
-        nr = f"0{i + 1}"
-        items.append(f'<li><a href="{href}"{cur}><em>{nr}</em>{label}</a></li>')
-    return "".join(items)
-
-
-BRAND = f"""<a class="brand" href="index.html" aria-label="{NAAM} — naar de startpagina">
-  <span class="brand-name">bambine</span>
-  <span class="brand-sub">babywellness &amp; mamazorg</span>
+BRAND = f"""<a class="brand" href="index.html">
+  <img class="brand-logo" src="assets/img/logo-160.webp" width="160" height="160" alt="{NAAM}, babywellness and more">
+  <img class="brand-logo brand-logo--licht" src="assets/img/logo-licht-160.webp" width="160" height="160" alt="" aria-hidden="true">
 </a>"""
 
-HEADER = """<header class="site-header">
+HEADER = """<header class="site-header{headerclass}">
   <nav class="sheet nav" aria-label="Hoofdnavigatie">
     <ul class="nav-links">{links}</ul>
     {brand}
@@ -354,8 +468,8 @@ FOOTER = """<footer class="site-footer">
   <div class="sheet">
     <div class="footer-grid">
       <div>
-        <span class="brand-name">bambine</span>
-        <p style="margin-top:1rem;max-width:32ch">Babywellness, mamazorg en verwenmomenten in hartje Lommel. Eén gezin per moment, alle tijd voor jullie twee.</p>
+        <img class="footer-logo" src="assets/img/logo-licht-320.webp" width="320" height="320" alt="{naam}, babywellness and more" loading="lazy">
+        <p class="footer-lead">Babywellness, mamazorg en verwenmomenten in galerij Vivaldi, Lommel.</p>
         <div class="socials">
           <a href="{insta}" rel="noopener me" aria-label="Bambine op Instagram">{ic_ig}</a>
           <a href="{fb}" rel="noopener me" aria-label="Bambine op Facebook">{ic_fb}</a>
@@ -363,36 +477,36 @@ FOOTER = """<footer class="site-footer">
         </div>
       </div>
       <div>
-        <h4>Aanbod</h4>
+        <h2 class="footer-h">Aanbod</h2>
         <ul>
           <li><a href="tarieven.html#babywellness">Babywellness</a></li>
           <li><a href="tarieven.html#mama">Mama &amp; vrouw</a></li>
-          <li><a href="tarieven.html#kids">Kids vanaf 3 jaar</a></li>
-          <li><a href="shop.html">Shop &amp; cadeaubon</a></li>
+          <li><a href="tarieven.html#kids">Kids</a></li>
+          <li><a href="cadeaubon.html">Cadeaubon</a></li>
         </ul>
       </div>
       <div>
-        <h4>Praktisch</h4>
+        <h2 class="footer-h">Praktisch</h2>
         <ul>
           <li><a href="reserveren.html">Reserveren</a></li>
           <li><a href="contact.html#faq">Veelgestelde vragen</a></li>
-          <li><a href="contact.html#route">Route &amp; parkeren</a></li>
+          <li><a href="index.html#ine">Over Ine</a></li>
           <li><a href="{shop}" rel="noopener">Webshop</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
+        <h2 class="footer-h">Contact</h2>
         <ul>
-          <li>{straat}<br>{post} {stad}</li>
+          <li>{straat}<br>{post} {stad}<br>galerij Vivaldi</li>
           <li><a href="tel:{telhref}">{tel}</a></li>
           <li><a href="mailto:{mail}">{mail}</a></li>
-          <li>Enkel op afspraak</li>
+          <li>Openingsuren: <span class="todo">nog aan te vullen</span></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>© <span data-year>2026</span> {voluit} · btw-nummer toe te voegen</span>
-      <span>Conceptontwerp door EM Launchpad · niet de officiële website van Bambine</span>
+      <span>© <span data-year>2026</span> {voluit}</span>
+      <span>Conceptontwerp door EM Launchpad</span>
     </div>
   </div>
 </footer>"""
@@ -403,17 +517,15 @@ ACTIONBAR = """<div class="action-bar">
 </div>"""
 
 LAYOUT = """<!DOCTYPE html>
-<html lang="nl-BE">
+<html lang="nl-BE" class="no-js">
 <head>
 <meta charset="utf-8">
+<script>document.documentElement.className="js"</script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{title}</title>
 <meta name="description" content="{desc}">
 <link rel="canonical" href="{site}/{path}">
-<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<meta name="author" content="{voluit}">
-<meta name="geo.region" content="BE-VLI">
-<meta name="geo.placename" content="Lommel">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_BE">
 <meta property="og:site_name" content="{voluit}">
@@ -421,17 +533,17 @@ LAYOUT = """<!DOCTYPE html>
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{site}/{path}">
 <meta property="og:image" content="{site}/assets/img/bambine-og.jpg">
-<meta property="og:image:alt" content="Baby drijft in warm water bij Bambine in Lommel">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Baby gluurt van onder een witte badhanddoek">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{title}">
-<meta name="twitter:description" content="{desc}">
-<meta name="theme-color" content="#10403e">
-<link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="favicon.svg">
+<meta name="theme-color" content="#42342a">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="manifest" href="site.webmanifest">
 <link rel="preload" href="assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/mulish-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/fonts.css">
+{preload}<link rel="stylesheet" href="assets/css/fonts.css">
 <link rel="stylesheet" href="assets/css/site.css">
 {ld}
 </head>
@@ -449,548 +561,66 @@ LAYOUT = """<!DOCTYPE html>
 </html>
 """
 
-
-# --- GoHighLevel-export ----------------------------------------------------
-# Paginanaam en path zoals je ze in de GHL-pagebuilder invult. De sleutel is het
-# bestand in deze map; de waarde is (paginanaam, path).
-GHL_PADEN = {
-    "index.html": ("Home", "/"),
-    "tarieven.html": ("Tarieven", "tarieven"),
-    "reserveren.html": ("Reserveren", "reserveren"),
-    "shop.html": ("Shop", "shop"),
-    "contact.html": ("Contact", "contact"),
-}
-
-
-def naar_fotovars(blok: str, root: pathlib.Path) -> str:
-    """Relatieve fotopaden vervangen door de variabele uit de gedeelde stijl."""
-    for plaatje in sorted((root / "assets" / "img").glob("*")):
-        blok = blok.replace(
-            f"background-image:url('assets/img/{plaatje.name}')",
-            f"background-image:var(--f-{plaatje.stem})",
-        )
-    return blok
-
-
-def naar_ghl_links(blok: str) -> str:
-    """Interne links omzetten naar de paden die in GoHighLevel gebruikt worden."""
-    for bestand, (_, pad) in GHL_PADEN.items():
-        doel = "/" if pad == "/" else "/" + pad
-        blok = blok.replace(f'href="{bestand}#', f'href="{doel}#')
-        blok = blok.replace(f'href="{bestand}"', f'href="{doel}"')
-    return blok
-
-
-# GHL werkt met losse blokken in een pagebuilder. Per pagina schrijven we één
-# zelfstandig HTML-blok weg: de CSS zit ingekapseld onder .bambine-site zodat ze
-# de rest van de GHL-pagina niet raakt, de foto zit als data-URI in het blok en
-# er zijn geen externe bestanden nodig behalve de webfonts.
-
-FONT_IMPORT = (
-    # WONK staat overal op 0, dus die as hoeft niet mee: dat houdt de URL kort
-    # genoeg om zonder afbreken in het codeboek te passen.
-    "@import url('https://fonts.googleapis.com/css2?"
-    "family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;"
-    "1,9..144,300..700,0..100&family=Mulish:wght@300..800&display=swap');"
-)
-
-
-def scope_css(css: str, scope: str = ".bambine-site") -> str:
-    """Prefix elke selector met `scope`, zodat de stijl binnen het blok blijft."""
-    uit: list[str] = []
-    i = 0
-    n = len(css)
-    while i < n:
-        # commentaar overslaan
-        if css.startswith("/*", i):
-            j = css.find("*/", i + 2)
-            i = (j + 2) if j != -1 else n
-            continue
-        if css[i].isspace():
-            i += 1
-            continue
-        haak = css.find("{", i)
-        if haak == -1:
-            break
-        selector = css[i:haak].strip()
-        # bijpassende sluithaak zoeken
-        diepte, j = 1, haak + 1
-        while j < n and diepte:
-            if css[j] == "{":
-                diepte += 1
-            elif css[j] == "}":
-                diepte -= 1
-            j += 1
-        body = css[haak + 1:j - 1]
-        i = j
-
-        if selector.startswith("@media") or selector.startswith("@supports"):
-            uit.append(f"{selector}{{{scope_css(body, scope)}}}")
-        elif selector.startswith("@keyframes") or selector.startswith("@font-face"):
-            uit.append(f"{selector}{{{body}}}")
-        elif selector.startswith("@view-transition"):
-            continue  # paginaovergangen horen bij een hele pagina, niet bij een blok
-        elif selector.startswith("@"):
-            uit.append(f"{selector}{{{body}}}")
-        else:
-            delen = []
-            for sel in selector.split(","):
-                sel = sel.strip()
-                if not sel:
-                    continue
-                if sel.startswith(":root") or sel in ("html", "body"):
-                    delen.append(scope + sel.replace(":root", "").replace("html", "").replace("body", ""))
-                elif sel.startswith("html ") or sel.startswith("body "):
-                    delen.append(scope + sel[4:] if sel.startswith("html") else scope + sel[4:])
-                elif sel.startswith("::"):
-                    delen.append(f"{scope} {sel}")
-                else:
-                    delen.append(f"{scope} {sel}")
-            uit.append(f"{','.join(delen)}{{{body}}}")
-    return "".join(uit)
-
-
-def data_uri(pad: pathlib.Path) -> str:
-    import base64
-    soort = {"webp": "image/webp", "jpg": "image/jpeg", "jpeg": "image/jpeg",
-             "png": "image/png", "svg": "image/svg+xml"}[pad.suffix.lstrip(".").lower()]
-    return f"data:{soort};base64," + base64.b64encode(pad.read_bytes()).decode()
-
-
-def sectienaam(blok: str) -> str:
-    """Een leesbare naam voor een sectie zonder naamcommentaar erboven.
-
-    Eerst de paginakop, dan het label boven de sectie (zonder het nummer), dan de
-    eerste kop, en pas daarna id of aria-label van de sectie zelf. Aria-labels
-    van beelden binnenin horen hier niet: die beschrijven een foto, geen sectie."""
-    def kaal(html: str) -> str:
-        html = re.sub(r"<i>.*?</i>", "", html, flags=re.S)
-        html = re.sub(r"<br\s*/?>", " ", html)
-        html = re.sub(r"<[^>]+>", "", html)
-        return re.sub(r"\s+", " ", html).replace("&amp;", "&").strip()
-
-    openingstag = blok[: blok.find(">") + 1]
-    if 'class="page-head' in openingstag:
-        return "Paginakop"
-    if 'class="hero' in openingstag:
-        return "Hero"
-    for patroon in (r'<p class="label[^"]*"[^>]*>(.*?)</p>', r"<h[12][^>]*>(.*?)</h[12]>"):
-        m = re.search(patroon, blok, re.S)
-        if m and kaal(m.group(1)):
-            return kaal(m.group(1))
-    m = re.search(r'(?:id|aria-label)="([^"]+)"', openingstag)
-    return m.group(1) if m else "sectie"
-
-
-def split_secties(body: str) -> list[tuple[str, str]]:
-    """Splits de inhoud van een pagina in losse <section>-blokken.
-
-    Geeft per sectie een naam (uit het commentaar erboven, anders uit id of
-    aria-label) en de bijbehorende opmaak terug.
-    """
-    import re as _re
-
-    secties: list[tuple[str, str]] = []
-    i = 0
-    laatste_naam = ""
-    while True:
-        start = body.find("<section", i)
-        if start == -1:
-            break
-        # commentaar tussen de vorige sectie en deze gebruiken als naam
-        tussen = body[i:start]
-        namen = _re.findall(r"<!--\s*=+\s*(.*?)\s*=+\s*-->", tussen)
-        if namen:
-            laatste_naam = namen[-1]
-        # bijpassende sluittag zoeken
-        diepte, j = 0, start
-        while j < len(body):
-            if body.startswith("<section", j):
-                diepte += 1
-                j += 8
-            elif body.startswith("</section>", j):
-                diepte -= 1
-                j += 10
-                if diepte == 0:
-                    break
-            else:
-                j += 1
-        blok = body[start:j]
-        naam = laatste_naam or sectienaam(blok)
-        secties.append((naam, blok))
-        laatste_naam = ""
-        i = j
-    return secties
-
-
-def bestandsnaam(nummer: int, naam: str) -> str:
-    import re as _re
-    kaal = naam.lower()
-    for a, b in [("á", "a"), ("é", "e"), ("ë", "e"), ("ï", "i"), ("ó", "o"), ("ü", "u"), ("&amp;", "en"), ("&", "en")]:
-        kaal = kaal.replace(a, b)
-    kaal = _re.sub(r"[^a-z0-9]+", "-", kaal).strip("-") or "sectie"
-    return f"{nummer:02d}-{kaal}.html"
-
-
-def zonder_herofoto(html: str) -> str:
-    """In GoHighLevel komt de hero-foto van de sectie-achtergrond, niet uit het blok."""
-    html = re.sub(
-        r"<!-- Foto van Bambine \(GHL-mediabibliotheek\)\..*?-->",
-        "<!-- Foto: zet die in GoHighLevel als achtergrond van deze sectie\n"
-        "       (sectie-instellingen > Background > Image). -->",
-        html,
-        flags=re.S,
-    )
-    return re.sub(
-        r'(<section class="hero-cover")\s*style="background-image:url\([^)]*\)"',
-        r"\1",
-        html,
-    )
-
-
-def zonder_fotos(html: str) -> str:
-    """Losse GHL-secties dragen geen foto's: die zet je in GoHighLevel zelf.
-
-    Het beeldvlak blijft staan (met zijn kleurverloop) en krijgt een FOTO-SLOT-
-    commentaar, zodat duidelijk is waar de foto hoort."""
-    html = html.replace(
-        "<!-- Echte foto, aangeleverd door Bambine -->",
-        "<!-- FOTO-SLOT: echte foto van Bambine (baby-knuffel.webp) -->",
-    )
-    return re.sub(r"\s*style=\"background-image:url\('assets/img/[^']+'\)\"", "", html)
-
-
-def krimp_css(css: str) -> str:
-    """Commentaar en overbodige witruimte weg: scheelt ongeveer een derde.
-
-    Het custom-CSS-veld van GoHighLevel knipt lange stijlen af, dus voor die
-    route levert het bouwscript ook een ingekrompen versie."""
-    uit = re.sub(r"/\*.*?\*/", "", css, flags=re.S)
-    uit = re.sub(r"\s+", " ", uit)
-    uit = re.sub(r"\s*([{};,])\s*", r"\1", uit)
-    return uit.replace(";}", "}").strip()
-
-
-def mooie_css(css: str) -> str:
-    """Eén regel per declaratie, ingesprongen per niveau.
-
-    De ingekapselde stijl plakt regels aan elkaar; om over te nemen uit het
-    codeboek moet elke regel kort en op zichzelf leesbaar zijn."""
-    uit: list[str] = []
-    i, n = 0, len(css)
-    tekst, paren = None, 0
-    while i < n:
-        c = css[i]
-        if tekst is None and css.startswith("/*", i):
-            j = css.find("*/", i + 2)
-            j = n if j == -1 else j + 2
-            uit.append("\n" + css[i:j] + "\n")
-            i = j
-            continue
-        if tekst:
-            uit.append(c)
-            if c == "\\" and i + 1 < n:
-                uit.append(css[i + 1])
-                i += 2
-                continue
-            if c == tekst:
-                tekst = None
-        elif c in "\"'":
-            tekst = c
-            uit.append(c)
-        elif c == "(":
-            paren += 1
-            uit.append(c)
-        elif c == ")":
-            paren -= 1
-            uit.append(c)
-        elif c == "{" and not paren:
-            uit.append("{\n")
-        elif c == ";" and not paren:
-            uit.append(";\n")
-        elif c == "}" and not paren:
-            uit.append("\n}\n")
-        else:
-            uit.append(c)
-        i += 1
-
-    regels, diepte, in_commentaar = [], 0, False
-    for ruw in "".join(uit).split("\n"):
-        r = ruw.strip()
-        if not r:
-            continue
-        if in_commentaar or r.startswith("/*"):
-            regels.append("  " * diepte + r)
-            in_commentaar = "*/" not in r
-            continue
-        if r.startswith("}"):
-            diepte = max(0, diepte - 1)
-        if r.endswith("{") and "," in r:
-            # selectorlijst: één selector per regel
-            delen = [d.strip() for d in r[:-1].split(",")]
-            for k, d in enumerate(delen):
-                slot = " {" if k == len(delen) - 1 else ","
-                regels.append("  " * diepte + d + slot)
-        elif r.endswith("{"):
-            regels.append("  " * diepte + r[:-1].rstrip() + " {")
-        else:
-            regels.append("  " * diepte + r)
-        if r.endswith("{"):
-            diepte += 1
-    return "\n".join(regels) + "\n"
-
-
-def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
-    ghl_map = ROOT / "ghl"
-    ghl_map.mkdir(exist_ok=True)
-    # een paar regels die voorkomen dat de stijl van het GHL-thema naar binnen lekt
-    harden = (
-        ".bambine-site{text-align:left;box-sizing:border-box}"
-        ".bambine-site a{color:inherit}"
-        ".bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}"
-        ".bambine-site ul,.bambine-site ol{list-style:none}"
-        # Het blok met de kop en navigatie krijgt geen eigen achtergrond: de
-        # hero eronder loopt er in GoHighLevel bewust achter door.
-        ".bambine-site.bambine-site--chrome{background:transparent}"
-        # Losse secties: de hero schuift niet onder de navigatie door, want de
-        # sectie-achtergrond van GHL loopt niet mee omhoog.
-        ".bambine-site--los .hero-cover{margin-top:0;padding-top:clamp(2.5rem,7vh,5rem)}"
-        # Het blok met de hero is doorzichtig: de foto die je in GoHighLevel als
-        # sectie-achtergrond instelt, moet er doorheen komen.
-        ".bambine-site.bambine-site--beeld{background:transparent}"
-    )
-    css = harden + scope_css((ROOT / "assets" / "css" / "site.css").read_text(encoding="utf-8"))
-    kale_blokken: dict[str, str] = {}
-    # elke foto één keer als variabele, ook voor de gedeelde stijl van route B
-    alle_fotos = "".join(
-        f"--f-{plaatje.stem}:url({data_uri(plaatje)});"
-        for plaatje in sorted((ROOT / "assets" / "img").glob("*"))
-    )
-    fotocss_gedeeld = f".bambine-site{{{alle_fotos}}}" if alle_fotos else ""
-    js = (ROOT / "assets" / "js" / "site.js").read_text(encoding="utf-8")
-
-    for pad, meta in PAGES.items():
-        body = zonder_herofoto((SRC / pad).read_text(encoding="utf-8"))
-        kop = HEADER.format(brand=BRAND, links=nav_html(pad), dlinks=drawer_html(pad), **COMMON)
-        blok = kop + f"\n<main id=\"main\">\n{body}\n</main>\n" + footer_html + "\n" + actionbar_html
-        # foto's één keer als data-URI in een variabele, zodat het blok zelfstandig
-        # werkt zonder dezelfde afbeelding meermaals mee te sturen
-        fotos = ""
-        for plaatje in sorted((ROOT / "assets" / "img").glob("*")):
-            sleutel = "--f-" + plaatje.stem
-            if f"assets/img/{plaatje.name}" in blok:
-                fotos += f"{sleutel}:url({data_uri(plaatje)});"
-                blok = blok.replace(
-                    f"background-image:url('assets/img/{plaatje.name}')",
-                    f"background-image:var({sleutel})",
-                )
-        fotocss = f".bambine-site{{{fotos}}}" if fotos else ""
-        blok = naar_ghl_links(blok)
-        paginanaam, ghl_pad = GHL_PADEN.get(pad, (meta["title"], pad.replace(".html", "")))
-        kale_blokken[pad] = f'<div class="bambine-site">\n{SPRITE}\n{blok}\n</div>\n'
-
-        # per sectie een eigen blok, voor wie de pagina in GHL-secties opbouwt
-        sect_map = ghl_map / "secties" / ("home" if pad == "index.html" else pad.replace(".html", ""))
-        sect_map.mkdir(parents=True, exist_ok=True)
-        for oud in sect_map.glob("*.html"):
-            oud.unlink()
-        kop_blok = naar_ghl_links(kop)
-        # Het eerste blok draagt de hele pagina: stijl, iconensprite en script
-        # zitten erin. Zo hoeft er niets in het custom-CSS-veld van GHL, dat
-        # lange stijlen afknipt, en blijven de andere secties losse blokken.
-        (sect_map / "00-kop-en-navigatie.html").write_text(
-            f"<!-- Bambine - kop en navigatie ({paginanaam})\n"
-            f"     Plaats dit als EERSTE blok op de pagina, of als globale sectie.\n"
-            f"     Dit blok hoort op elke pagina: de stijl, de iconensprite en het\n"
-            f"     script zitten erin en gelden voor alle secties eronder.\n"
-            f"-->\n"
-            f"<style>{FONT_IMPORT}{css}</style>\n"
-            f'<div class="bambine-site bambine-site--chrome">\n{SPRITE}\n{kop_blok}\n</div>\n'
-            f"<script>{js}</script>\n",
-            encoding="utf-8",
-        )
-        secties = split_secties(naar_ghl_links(zonder_fotos(body)))
-        for nr, (naam, stuk) in enumerate(secties, start=1):
-            # De hero heeft geen eigen achtergrond: daar komt de sectiefoto van GHL.
-            beeld = " bambine-site--beeld" if "hero-cover" in stuk else ""
-            (sect_map / bestandsnaam(nr, naam)).write_text(
-                f"<!-- Bambine - {paginanaam} · sectie {nr}: {naam}\n"
-                f"     Eén GHL-sectie. De stijl komt uit het eerste blok bovenaan de pagina.\n"
-                f"-->\n"
-                f'<div class="bambine-site bambine-site--los{beeld}">\n{stuk}\n</div>\n',
-                encoding="utf-8",
-            )
-        (sect_map / "98-actiebalk-mobiel.html").write_text(
-            "<!-- Bambine - vaste balk onderaan op mobiel (bellen en mailen).\n"
-            "     Optioneel; plaats onderaan de pagina of als globale sectie. -->\n"
-            f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(actionbar_html)}\n</div>\n',
-            encoding="utf-8",
-        )
-        (sect_map / "99-footer.html").write_text(
-            "<!-- Bambine - footer. Plaats als laatste blok of als globale sectie. -->\n"
-            f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(footer_html)}\n</div>\n',
-            encoding="utf-8",
-        )
-        print(f"  ~ ghl/secties/{sect_map.name}/ ({len(secties)} secties)")
-        (ghl_map / pad).write_text(
-            f"<!-- Bambine - {paginanaam}\n"
-            f"     Plak dit volledige blok in een Custom Code / HTML-element in GoHighLevel.\n"
-            f"     In de pagebuilder:\n"
-            f"     Paginanaam:  {paginanaam}\n"
-            f"     Path:        {ghl_pad}\n"
-            f"     In de pagina-instellingen (SEO):\n"
-            f"     Title:       {meta['title']}\n"
-            f"     Description: {meta['desc']}\n"
-            f"-->\n"
-            f"<style>{FONT_IMPORT}{css}{fotocss}</style>\n"
-            f"<div class=\"bambine-site\">\n{SPRITE}\n{blok}\n</div>\n"
-            f"<script>{js}</script>\n",
-            encoding="utf-8",
-        )
-        print(f"  ~ ghl/{pad}")
-
-    # --- globale blokken: één keer maken en in GHL als globale sectie hergebruiken
-    # Zonder foto's (die zet je in GHL zelf) en zonder de korrel op de lege
-    # beeldvlakken: beide zijn lange data-URI's die niet over te nemen zijn uit
-    # een PDF. De stijl staat uitgeschreven, één declaratie per regel.
-    glob = ghl_map / "globaal"
-    glob.mkdir(exist_ok=True)
-    for oud_bestand in glob.glob("*.html"):
-        oud_bestand.unlink()
-    zonder_korrel = re.sub(r'background-image:\s*url\("data:image/svg\+xml[^"]*"\);', "", css)
-    (glob / "00-stijl-en-script.html").write_text(
-        "<!-- Bambine - stijl en script voor de hele site.\n"
-        "     Plaats dit als EERSTE blok op elke pagina, het liefst als globale sectie.\n"
-        "     Zonder dit blok blijven alle andere blokken kaal. -->\n"
-        "<style>\n" + FONT_IMPORT + "\n" + mooie_css(zonder_korrel) + "</style>\n"
-        "<script>\n" + js + "</script>\n",
-        encoding="utf-8",
-    )
-    kop_globaal = naar_ghl_links(
-        HEADER.format(brand=BRAND, links=nav_html(""), dlinks=drawer_html(""), **COMMON)
-    )
-    (glob / "01-kop-en-navigatie.html").write_text(
-        "<!-- Bambine - kop en navigatie, met de iconensprite.\n"
-        "     Tweede blok op elke pagina, het liefst als globale sectie. -->\n"
-        f'<div class="bambine-site bambine-site--chrome">\n{SPRITE}\n{kop_globaal}\n</div>\n',
-        encoding="utf-8",
-    )
-    (glob / "98-actiebalk-mobiel.html").write_text(
-        "<!-- Bambine - vaste balk onderaan op mobiel. Optioneel, als globale sectie. -->\n"
-        f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(actionbar_html)}\n</div>\n',
-        encoding="utf-8",
-    )
-    (glob / "99-footer.html").write_text(
-        "<!-- Bambine - footer. Laatste blok op elke pagina, als globale sectie. -->\n"
-        f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(footer_html)}\n</div>\n',
-        encoding="utf-8",
-    )
-    print("  ~ ghl/globaal/ (stijl en script, kop, actiebalk, footer)")
-
-    # proefpagina: het blok in een vreemde omgeving, om te zien of de stijl
-    # niet naar buiten lekt en het thema van GHL niet naar binnen
-    proef = (ghl_map / "index.html").read_text(encoding="utf-8")
-    (ghl_map / "_proefpagina.html").write_text(
-        "<!DOCTYPE html><html lang=\"nl\"><head><meta charset=\"utf-8\">"
-        "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
-        "<title>Proefpagina GoHighLevel-blok</title><style>"
-        "body{margin:0;font-family:Arial,sans-serif;background:#eef;color:#036}"
-        ".ghl-bar{padding:14px 20px;background:#036;color:#fff;font-weight:bold}"
-        "h1,h2,h3{font-family:Arial,sans-serif;color:#036}a{color:#06c}"
-        "</style></head><body>"
-        "<div class=\"ghl-bar\">Sectie van het GHL-thema erboven</div>"
-        + proef +
-        "<div class=\"ghl-bar\">Sectie van het GHL-thema eronder</div>"
-        "</body></html>",
-        encoding="utf-8",
-    )
-    # --- route B: stijl en script één keer site-breed --------------------
-    # De webfonts komen dan via de header-code binnen: een @import moet als
-    # eerste regel van een stylesheet staan en dat is in het custom-CSS-veld
-    # van GHL niet gegarandeerd.
-    (ghl_map / "_header-code.html").write_text(
-        "<!-- Bambine - plak dit in Settings > Tracking Code > Header -->\n"
-        '<link rel="preconnect" href="https://fonts.googleapis.com">\n'
-        '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
-        '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
-        "family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;"
-        "1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap\">\n",
-        encoding="utf-8",
-    )
-    (ghl_map / "_stijl.css").write_text(
-        "/* Bambine - plak dit in Settings > Custom CSS.\n"
-        "   De webfonts komen binnen via _header-code.html.\n"
-        "   De foto's zitten onderaan als data-URI, dus er is geen upload nodig. */\n"
-        + css + "\n" + fotocss_gedeeld + "\n",
-        encoding="utf-8",
-    )
-    # Zonder de foto's en ingekrompen: voor het custom-CSS-veld van GHL, dat
-    # lange stijlen afknipt. De foto's staan dan apart in _fotos.css.
-    (ghl_map / "_stijl.min.css").write_text(
-        "/* Bambine - dezelfde stijl, ingekrompen en zonder de foto's.\n"
-        "   Gebruik dit als het custom-CSS-veld van GoHighLevel de volledige\n"
-        "   stijl afknipt. De foto's staan in _fotos.css of zet je per blok. */\n"
-        + krimp_css(css) + "\n",
-        encoding="utf-8",
-    )
-    (ghl_map / "_fotos.css").write_text(
-        "/* Bambine - enkel de foto's als data-URI. Plak dit onder de stijl,\n"
-        "   of vervang elke regel door de URL uit de mediabibliotheek van GHL. */\n"
-        + fotocss_gedeeld + "\n",
-        encoding="utf-8",
-    )
-    (ghl_map / "_script.js").write_text(js, encoding="utf-8")
-    (ghl_map / "_footer-code.html").write_text(
-        "<!-- Bambine - plak dit in Settings > Tracking Code > Footer -->\n"
-        "<script>\n" + js + "</script>\n",
-        encoding="utf-8",
-    )
-
-    # --- route B: per pagina enkel de opmaak, zonder stijl en script ------
-    blokken = ghl_map / "blokken"
-    blokken.mkdir(exist_ok=True)
-    for bestand, kaal in kale_blokken.items():
-        paginanaam, ghl_pad = GHL_PADEN[bestand]
-        (blokken / bestand).write_text(
-            f"<!-- Bambine - {paginanaam}\n"
-            f"     Alleen de opmaak. Gebruik dit als _stijl.css en _script.js al\n"
-            f"     site-breed staan; anders het bestand uit de map erboven nemen.\n"
-            f"     Paginanaam:  {paginanaam}\n"
-            f"     Path:        {ghl_pad}\n"
-            f"-->\n" + kaal,
-            encoding="utf-8",
-        )
-    print("  ~ ghl/_stijl.css, _stijl.min.css, _script.js, _header-code.html, _footer-code.html")
-    print(f"  ~ ghl/blokken/ ({len(kale_blokken)} pagina's zonder stijl en script)")
-    print("  ~ ghl/_proefpagina.html")
-
-
 COMMON = dict(
-    telhref=TEL_HREF, tel=TEL, mail=MAIL, straat=STRAAT, post=POSTCODE,
+    naam=NAAM, telhref=TEL_HREF, tel=TEL, mail=MAIL, straat=STRAAT, post=POSTCODE,
     stad=STAD, insta=INSTA, fb=FB, shop=WEBSHOP, voluit=VOLUIT,
-    ic_tel=icon("phone"), ic_cal=icon("calendar-days"), ic_menu=icon("menu"),
-    ic_x=icon("x"), ic_check=icon("check"), ic_shield=icon("shield-check"),
+    ic_tel=icon("phone"), ic_menu=icon("menu"), ic_x=icon("x"),
     ic_ig=icon("si-instagram"), ic_fb=icon("si-facebook"), ic_mail=icon("mail"),
-    ic=icon("sparkles"),
 )
+
+
+def vul_in(body: str) -> str:
+    """Plaatshouders in de bronnen vervangen door tarieven en vragen."""
+    body = re.sub(
+        r"<!-- carte:([a-z]+) -->",
+        lambda m: carte_html(groep=m.group(1)),
+        body,
+    )
+    body = re.sub(
+        r"<!-- carte-namen:(.+?) -->",
+        lambda m: carte_html(namen=[n.strip() for n in m.group(1).split("|")]),
+        body,
+    )
+    body = re.sub(r"<!-- faq:([a-z]+) -->", lambda m: faq_html(FAQ_SETS[m.group(1)]), body)
+    over = re.findall(r"<!-- (?:carte|faq)[^>]*-->", body)
+    if over:
+        raise SystemExit(f"Onbekende plaatshouder: {over}")
+    return body
 
 
 def build() -> None:
-    common = COMMON
-    footer = FOOTER.format(**common)
-    actionbar = ACTIONBAR.format(**common)
+    footer = FOOTER.format(**COMMON)
+    actionbar = ACTIONBAR.format(**COMMON)
 
     for path, meta in PAGES.items():
-        body = (SRC / path).read_text(encoding="utf-8")
+        body = vul_in((SRC / path).read_text(encoding="utf-8"))
+        heeft_cover = 'class="hero-cover"' in body
         header = HEADER.format(
-            brand=BRAND, links=nav_html(path), dlinks=drawer_html(path), **common
+            brand=BRAND,
+            links=links_html(NAV, path),
+            dlinks=links_html(DRAWER, path, genummerd=True),
+            # Boven de hero start de kop doorzichtig, ook voor het script loopt.
+            headerclass=" is-over" if heeft_cover else "",
+            **COMMON,
         )
-        html = LAYOUT.format(
-            title=meta["title"],
-            desc=meta["desc"],
+        # Het hero-beeld is het grootste element boven de vouw: vroeg laden.
+        preload = (
+            '<link rel="preload" as="image" type="image/webp" '
+            'href="assets/img/baby-onder-handdoek-1600.webp" '
+            'imagesrcset="assets/img/baby-onder-handdoek-800.webp 800w, '
+            'assets/img/baby-onder-handdoek-1600.webp 1600w" imagesizes="100vw" '
+            'media="(min-aspect-ratio: 4/5)">\n'
+            '<link rel="preload" as="image" type="image/webp" '
+            'href="assets/img/baby-onder-handdoek-staand-900.webp" media="(max-aspect-ratio: 4/5)">\n'
+            if heeft_cover else ""
+        )
+        page = LAYOUT.format(
+            title=html.escape(meta["title"], quote=True),
+            desc=html.escape(meta["desc"], quote=True),
             path="" if path == "index.html" else path,
             site=SITE,
-            voluit=VOLUIT,
+            voluit=html.escape(VOLUIT),
+            preload=preload,
             ld=jsonld(*meta["ld"]),
             sprite=SPRITE,
             header=header,
@@ -998,32 +628,9 @@ def build() -> None:
             footer=footer,
             actionbar=actionbar,
         )
-        (ROOT / path).write_text(html, encoding="utf-8")
-        print(f"  ✓ {path}  ({len(html) // 1024} kB)")
+        (ROOT / path).write_text(page, encoding="utf-8")
+        print(f"  ✓ {path}  ({len(page) // 1024} kB)")
 
-    # losse variant voor de Artifact-preview: zonder <html>/<head>/<body>,
-    # want die schil levert de artifact-host zelf aan
-    art = ROOT / "_artifact"
-    art.mkdir(exist_ok=True)
-    body = (SRC / "index.html").read_text(encoding="utf-8")
-    meta = PAGES["index.html"]
-    header = HEADER.format(brand=BRAND, links=nav_html("index.html"),
-                           dlinks=drawer_html("index.html"), **common)
-    (art / "index.html").write_text(
-        f"<title>{meta['title']}</title>\n"
-        f'<meta name="description" content="{meta["desc"]}">\n'
-        '<link rel="stylesheet" href="assets/css/fonts.css">\n'
-        '<link rel="stylesheet" href="assets/css/site.css">\n'
-        + jsonld(*meta["ld"]) + "\n"
-        + '<a class="skip-link" href="#main">Naar de inhoud</a>\n'
-        + SPRITE + "\n" + header + '\n<main id="main">\n' + body
-        + "\n</main>\n" + footer + "\n" + actionbar
-        + '\n<script src="assets/js/site.js" defer></script>\n',
-        encoding="utf-8",
-    )
-    print("  ✓ _artifact/index.html")
-
-    # sitemap
     urls = "".join(
         f"<url><loc>{SITE}/{'' if p == 'index.html' else p}</loc>"
         f"<changefreq>monthly</changefreq>"
@@ -1042,10 +649,9 @@ def build() -> None:
     )
     print("  ✓ sitemap.xml, robots.txt")
 
-    ghl_export(header_html="", footer_html=footer, actionbar_html=actionbar)
-
 
 if __name__ == "__main__":
+    sys.stdout.reconfigure(encoding="utf-8")  # Windows-console kent ✓ niet
     print("Bambine bouwen …")
     build()
     print("Klaar.")
