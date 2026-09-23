@@ -487,9 +487,11 @@ def naar_ghl_links(blok: str) -> str:
 # er zijn geen externe bestanden nodig behalve de webfonts.
 
 FONT_IMPORT = (
+    # WONK staat overal op 0, dus die as hoeft niet mee: dat houdt de URL kort
+    # genoeg om zonder afbreken in het codeboek te passen.
     "@import url('https://fonts.googleapis.com/css2?"
-    "family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;"
-    "1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap');"
+    "family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;"
+    "1,9..144,300..700,0..100&family=Mulish:wght@300..800&display=swap');"
 )
 
 
@@ -555,6 +557,31 @@ def data_uri(pad: pathlib.Path) -> str:
     return f"data:{soort};base64," + base64.b64encode(pad.read_bytes()).decode()
 
 
+def sectienaam(blok: str) -> str:
+    """Een leesbare naam voor een sectie zonder naamcommentaar erboven.
+
+    Eerst de paginakop, dan het label boven de sectie (zonder het nummer), dan de
+    eerste kop, en pas daarna id of aria-label van de sectie zelf. Aria-labels
+    van beelden binnenin horen hier niet: die beschrijven een foto, geen sectie."""
+    def kaal(html: str) -> str:
+        html = re.sub(r"<i>.*?</i>", "", html, flags=re.S)
+        html = re.sub(r"<br\s*/?>", " ", html)
+        html = re.sub(r"<[^>]+>", "", html)
+        return re.sub(r"\s+", " ", html).replace("&amp;", "&").strip()
+
+    openingstag = blok[: blok.find(">") + 1]
+    if 'class="page-head' in openingstag:
+        return "Paginakop"
+    if 'class="hero' in openingstag:
+        return "Hero"
+    for patroon in (r'<p class="label[^"]*"[^>]*>(.*?)</p>', r"<h[12][^>]*>(.*?)</h[12]>"):
+        m = re.search(patroon, blok, re.S)
+        if m and kaal(m.group(1)):
+            return kaal(m.group(1))
+    m = re.search(r'(?:id|aria-label)="([^"]+)"', openingstag)
+    return m.group(1) if m else "sectie"
+
+
 def split_secties(body: str) -> list[tuple[str, str]]:
     """Splits de inhoud van een pagina in losse <section>-blokken.
 
@@ -589,10 +616,7 @@ def split_secties(body: str) -> list[tuple[str, str]]:
             else:
                 j += 1
         blok = body[start:j]
-        naam = laatste_naam
-        if not naam:
-            m = _re.search(r'id="([^"]+)"', blok) or _re.search(r'aria-label="([^"]+)"', blok)
-            naam = m.group(1) if m else "sectie"
+        naam = laatste_naam or sectienaam(blok)
         secties.append((naam, blok))
         laatste_naam = ""
         i = j
@@ -610,11 +634,30 @@ def bestandsnaam(nummer: int, naam: str) -> str:
 
 def zonder_herofoto(html: str) -> str:
     """In GoHighLevel komt de hero-foto van de sectie-achtergrond, niet uit het blok."""
+    html = re.sub(
+        r"<!-- Foto van Bambine \(GHL-mediabibliotheek\)\..*?-->",
+        "<!-- Foto: zet die in GoHighLevel als achtergrond van deze sectie\n"
+        "       (sectie-instellingen > Background > Image). -->",
+        html,
+        flags=re.S,
+    )
     return re.sub(
         r'(<section class="hero-cover")\s*style="background-image:url\([^)]*\)"',
         r"\1",
         html,
     )
+
+
+def zonder_fotos(html: str) -> str:
+    """Losse GHL-secties dragen geen foto's: die zet je in GoHighLevel zelf.
+
+    Het beeldvlak blijft staan (met zijn kleurverloop) en krijgt een FOTO-SLOT-
+    commentaar, zodat duidelijk is waar de foto hoort."""
+    html = html.replace(
+        "<!-- Echte foto, aangeleverd door Bambine -->",
+        "<!-- FOTO-SLOT: echte foto van Bambine (baby-knuffel.webp) -->",
+    )
+    return re.sub(r"\s*style=\"background-image:url\('assets/img/[^']+'\)\"", "", html)
 
 
 def krimp_css(css: str) -> str:
@@ -626,6 +669,75 @@ def krimp_css(css: str) -> str:
     uit = re.sub(r"\s+", " ", uit)
     uit = re.sub(r"\s*([{};,])\s*", r"\1", uit)
     return uit.replace(";}", "}").strip()
+
+
+def mooie_css(css: str) -> str:
+    """Eén regel per declaratie, ingesprongen per niveau.
+
+    De ingekapselde stijl plakt regels aan elkaar; om over te nemen uit het
+    codeboek moet elke regel kort en op zichzelf leesbaar zijn."""
+    uit: list[str] = []
+    i, n = 0, len(css)
+    tekst, paren = None, 0
+    while i < n:
+        c = css[i]
+        if tekst is None and css.startswith("/*", i):
+            j = css.find("*/", i + 2)
+            j = n if j == -1 else j + 2
+            uit.append("\n" + css[i:j] + "\n")
+            i = j
+            continue
+        if tekst:
+            uit.append(c)
+            if c == "\\" and i + 1 < n:
+                uit.append(css[i + 1])
+                i += 2
+                continue
+            if c == tekst:
+                tekst = None
+        elif c in "\"'":
+            tekst = c
+            uit.append(c)
+        elif c == "(":
+            paren += 1
+            uit.append(c)
+        elif c == ")":
+            paren -= 1
+            uit.append(c)
+        elif c == "{" and not paren:
+            uit.append("{\n")
+        elif c == ";" and not paren:
+            uit.append(";\n")
+        elif c == "}" and not paren:
+            uit.append("\n}\n")
+        else:
+            uit.append(c)
+        i += 1
+
+    regels, diepte, in_commentaar = [], 0, False
+    for ruw in "".join(uit).split("\n"):
+        r = ruw.strip()
+        if not r:
+            continue
+        if in_commentaar or r.startswith("/*"):
+            regels.append("  " * diepte + r)
+            in_commentaar = "*/" not in r
+            continue
+        if r.startswith("}"):
+            diepte = max(0, diepte - 1)
+        if r.endswith("{") and "," in r:
+            # selectorlijst: één selector per regel
+            delen = [d.strip() for d in r[:-1].split(",")]
+            for k, d in enumerate(delen):
+                slot = " {" if k == len(delen) - 1 else ","
+                regels.append("  " * diepte + d + slot)
+        elif r.endswith("{"):
+            regels.append("  " * diepte + r[:-1].rstrip() + " {")
+        else:
+            regels.append("  " * diepte + r)
+        if r.endswith("{"):
+            diepte += 1
+    return "\n".join(regels) + "\n"
 
 
 def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
@@ -692,18 +804,18 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
             f"     Dit blok hoort op elke pagina: de stijl, de iconensprite en het\n"
             f"     script zitten erin en gelden voor alle secties eronder.\n"
             f"-->\n"
-            f"<style>{FONT_IMPORT}{css}{fotocss_gedeeld}</style>\n"
+            f"<style>{FONT_IMPORT}{css}</style>\n"
             f'<div class="bambine-site bambine-site--chrome">\n{SPRITE}\n{kop_blok}\n</div>\n'
             f"<script>{js}</script>\n",
             encoding="utf-8",
         )
-        secties = split_secties(naar_ghl_links(naar_fotovars(body, ROOT)))
+        secties = split_secties(naar_ghl_links(zonder_fotos(body)))
         for nr, (naam, stuk) in enumerate(secties, start=1):
             # De hero heeft geen eigen achtergrond: daar komt de sectiefoto van GHL.
             beeld = " bambine-site--beeld" if "hero-cover" in stuk else ""
             (sect_map / bestandsnaam(nr, naam)).write_text(
                 f"<!-- Bambine - {paginanaam} · sectie {nr}: {naam}\n"
-                f"     Eén GHL-sectie. De stijl komt uit blok 00, dat bovenaan de pagina staat.\n"
+                f"     Eén GHL-sectie. De stijl komt uit het eerste blok bovenaan de pagina.\n"
                 f"-->\n"
                 f'<div class="bambine-site bambine-site--los{beeld}">\n{stuk}\n</div>\n',
                 encoding="utf-8",
@@ -736,6 +848,44 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
             encoding="utf-8",
         )
         print(f"  ~ ghl/{pad}")
+
+    # --- globale blokken: één keer maken en in GHL als globale sectie hergebruiken
+    # Zonder foto's (die zet je in GHL zelf) en zonder de korrel op de lege
+    # beeldvlakken: beide zijn lange data-URI's die niet over te nemen zijn uit
+    # een PDF. De stijl staat uitgeschreven, één declaratie per regel.
+    glob = ghl_map / "globaal"
+    glob.mkdir(exist_ok=True)
+    for oud_bestand in glob.glob("*.html"):
+        oud_bestand.unlink()
+    zonder_korrel = re.sub(r'background-image:\s*url\("data:image/svg\+xml[^"]*"\);', "", css)
+    (glob / "00-stijl-en-script.html").write_text(
+        "<!-- Bambine - stijl en script voor de hele site.\n"
+        "     Plaats dit als EERSTE blok op elke pagina, het liefst als globale sectie.\n"
+        "     Zonder dit blok blijven alle andere blokken kaal. -->\n"
+        "<style>\n" + FONT_IMPORT + "\n" + mooie_css(zonder_korrel) + "</style>\n"
+        "<script>\n" + js + "</script>\n",
+        encoding="utf-8",
+    )
+    kop_globaal = naar_ghl_links(
+        HEADER.format(brand=BRAND, links=nav_html(""), dlinks=drawer_html(""), **COMMON)
+    )
+    (glob / "01-kop-en-navigatie.html").write_text(
+        "<!-- Bambine - kop en navigatie, met de iconensprite.\n"
+        "     Tweede blok op elke pagina, het liefst als globale sectie. -->\n"
+        f'<div class="bambine-site bambine-site--chrome">\n{SPRITE}\n{kop_globaal}\n</div>\n',
+        encoding="utf-8",
+    )
+    (glob / "98-actiebalk-mobiel.html").write_text(
+        "<!-- Bambine - vaste balk onderaan op mobiel. Optioneel, als globale sectie. -->\n"
+        f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(actionbar_html)}\n</div>\n',
+        encoding="utf-8",
+    )
+    (glob / "99-footer.html").write_text(
+        "<!-- Bambine - footer. Laatste blok op elke pagina, als globale sectie. -->\n"
+        f'<div class="bambine-site bambine-site--los">\n{naar_ghl_links(footer_html)}\n</div>\n',
+        encoding="utf-8",
+    )
+    print("  ~ ghl/globaal/ (stijl en script, kop, actiebalk, footer)")
 
     # proefpagina: het blok in een vreemde omgeving, om te zien of de stijl
     # niet naar buiten lekt en het thema van GHL niet naar binnen

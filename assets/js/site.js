@@ -166,6 +166,15 @@
 
     /* 8. Jaartal ------------------------------------------------------------ */
     $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
+    /* 9. Actieve pagina in de navigatie -------------------------------------- */
+    /* In GoHighLevel staat de navigatie als globale sectie op elke pagina, dus
+       de actieve link wordt hier bepaald in plaats van in de opmaak. */
+    var hier = window.location.pathname.replace(/\.html$/, "").replace(/\/+$/, "");
+    $$(".nav-links a, .drawer-links a").forEach(function (a) {
+      var doel = (a.getAttribute("href") || "").split("#")[0].replace(/\.html$/, "").replace(/^\.?\/?/, "/");
+      if (doel !== "/" && hier.slice(-doel.length) === doel) a.setAttribute("aria-current", "page");
+    });
   }
 
   if (document.readyState === "loading") {

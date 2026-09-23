@@ -7,7 +7,7 @@
      Title:       Contact & route | Bambine Lommel — Michiel Jansplein 28
      Description: Bambine in Lommel: Michiel Jansplein 28 bus b2, +32 474 78 26 91, info@bambine.be. Route, parkeren, openingsmomenten en veelgestelde vragen.
 -->
-<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Mulish:wght@300..800&display=swap');.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site--los .hero-cover{margin-top:0;padding-top:clamp(2.5rem,7vh,5rem)}.bambine-site.bambine-site--beeld{background:transparent}.bambine-site{
+<style>@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..700,0..100;1,9..144,300..700,0..100&family=Mulish:wght@300..800&display=swap');.bambine-site{text-align:left;box-sizing:border-box}.bambine-site a{color:inherit}.bambine-site h1,.bambine-site h2,.bambine-site h3,.bambine-site h4{margin-top:0}.bambine-site ul,.bambine-site ol{list-style:none}.bambine-site.bambine-site--chrome{background:transparent}.bambine-site--los .hero-cover{margin-top:0;padding-top:clamp(2.5rem,7vh,5rem)}.bambine-site.bambine-site--beeld{background:transparent}.bambine-site{
   color-scheme: light;
 
   --paper: #ffffff;
@@ -1026,6 +1026,15 @@
 
     /* 8. Jaartal ------------------------------------------------------------ */
     $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
+
+    /* 9. Actieve pagina in de navigatie -------------------------------------- */
+    /* In GoHighLevel staat de navigatie als globale sectie op elke pagina, dus
+       de actieve link wordt hier bepaald in plaats van in de opmaak. */
+    var hier = window.location.pathname.replace(/\.html$/, "").replace(/\/+$/, "");
+    $$(".nav-links a, .drawer-links a").forEach(function (a) {
+      var doel = (a.getAttribute("href") || "").split("#")[0].replace(/\.html$/, "").replace(/^\.?\/?/, "/");
+      if (doel !== "/" && hier.slice(-doel.length) === doel) a.setAttribute("aria-current", "page");
+    });
   }
 
   if (document.readyState === "loading") {

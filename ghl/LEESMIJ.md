@@ -1,5 +1,9 @@
 # Bambine in GoHighLevel zetten
 
+> **Het makkelijkst:** open `Bambine-GHL-codeboek.pdf`. Daarin staat per pagina elke sectie
+> met de naam, wat ze doet en de volledige code, klaar om over te nemen. Opnieuw maken na een
+> aanpassing: `python3 build.py && python3 maak_codeboek.py` (vraagt `pip install reportlab`).
+
 Deze map wordt gegenereerd door `python3 build.py` en bevat per pagina één blok dat je
 rechtstreeks in de GHL-pagebuilder kan plakken.
 
@@ -14,6 +18,8 @@ rechtstreeks in de GHL-pagebuilder kan plakken.
 | `_script.js` | Het volledige script als los bestand |
 | `_footer-code.html` | Hetzelfde script, al in `<script>`-tags, voor Tracking Code → Footer |
 | `secties/<pagina>/*.html` | Dezelfde pagina's, opgesplitst in losse secties (route C) |
+| `globaal/*.html` | De vier blokken die op elke pagina terugkomen (stijl en script, kop, actiebalk, footer), om als globale sectie te bewaren |
+| `Bambine-GHL-codeboek.pdf` | Alles hierboven als één document: per pagina elke sectie met naam, uitleg en code |
 | `_proefpagina.html` | Een blok in een vreemde omgeving, om te controleren dat de stijl niet uitlekt |
 
 ## De vijf pagina's
@@ -109,6 +115,19 @@ De homepagina bestaat uit deze blokken:
 
 De andere pagina's zijn op dezelfde manier opgesplitst in `secties/tarieven/`,
 `secties/reserveren/`, `secties/shop/` en `secties/contact/`.
+
+## Route D — globale secties (wat het codeboek volgt)
+
+1. Maak de vier blokken uit `globaal/` één keer aan en bewaar ze in GHL als **globale sectie**.
+2. Zet op elke pagina bovenaan `00-stijl-en-script` en `01-kop-en-navigatie`, daaronder de
+   secties `01`, `02`, … uit `secties/<pagina>/` (niet het blok `00` uit die map), en onderaan
+   `98-actiebalk-mobiel` en `99-footer`.
+3. De actieve pagina in de navigatie wordt door het script bepaald, dus één globale navigatie
+   volstaat voor alle pagina's.
+
+De blokken dragen geen foto's: die zet je in GHL zelf. Bij de hero als achtergrond van de
+sectie, bij de andere beeldvlakken met `style="background-image:url('…')"` op het
+`<div class="fig …">` onder het `FOTO-SLOT`-commentaar.
 
 ## Goed om te weten
 
