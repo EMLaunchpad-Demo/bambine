@@ -15,6 +15,7 @@ hetzelfde.
 
 from __future__ import annotations
 
+import hashlib
 import html
 import json
 import pathlib
@@ -109,6 +110,17 @@ def carte_html(groep: str | None = None, namen: list[str] | None = None) -> str:
     return '<ul class="carte">' + "".join(rijen) + "</ul>"
 
 
+def bon_opties_html() -> str:
+    """Keuzelijst voor het bestelformulier van de fysieke cadeaubon."""
+    opties = [
+        f'<option value="{html.escape(d["naam"])} ({euro(d["prijs"])})">'
+        f'{html.escape(d["naam"])} · {euro(d["prijs"])}</option>'
+        for d in DIENSTEN
+    ]
+    opties.append('<option value="bedrag">Een bedrag naar keuze</option>')
+    return "".join(opties)
+
+
 # --- veelgestelde vragen (bron: bambine.be/veelgestelde-vragen en /tarieven) --
 
 FAQ = {
@@ -186,8 +198,9 @@ FAQ = {
     ),
     "cadeaubon": (
         "Kan ik een cadeaubon geven?",
-        "Ja, voor mama, papa of baby, en ook voor meisjes vanaf 3 jaar. Je bestelt hem "
-        "telefonisch, via mail of in de webshop, en je kan zelf het bedrag kiezen.",
+        "Ja, voor mama, papa of baby, en ook voor meisjes vanaf 3 jaar. Kies een digitale "
+        "bon, die je meteen online koopt, of een fysieke bon, die je via mail of telefonisch "
+        "bestelt en in de zaak afhaalt. Het bedrag kies je zelf.",
     ),
     "aansprakelijkheid": (
         "Is Bambine aansprakelijk bij een ongeval?",
@@ -400,7 +413,7 @@ PAGES = {
         title="Cadeaubon | Bambine babywellness Lommel",
         desc=(
             "Een cadeaubon van Bambine voor mama, papa, baby of een meisje vanaf 3 jaar. "
-            "Te bestellen per telefoon, mail of webshop, voor een bedrag naar keuze."
+            "Digitaal meteen online, of als fysieke bon om af te halen in Lommel."
         ),
         ld=[BEDRIJF, crumbs_ld([("", "Home"), ("cadeaubon.html", "Cadeaubon")])],
     ),
@@ -544,7 +557,7 @@ LAYOUT = """<!DOCTYPE html>
 <link rel="preload" href="assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/mulish-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
 {preload}<link rel="stylesheet" href="assets/css/fonts.css">
-<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/site.css?v={v_css}">
 {ld}
 </head>
 <body>
@@ -556,7 +569,7 @@ LAYOUT = """<!DOCTYPE html>
 </main>
 {footer}
 {actionbar}
-<script src="assets/js/site.js" defer></script>
+<script src="assets/js/site.js?v={v_js}" defer></script>
 </body>
 </html>
 """
@@ -582,14 +595,21 @@ def vul_in(body: str) -> str:
         body,
     )
     body = re.sub(r"<!-- faq:([a-z]+) -->", lambda m: faq_html(FAQ_SETS[m.group(1)]), body)
-    over = re.findall(r"<!-- (?:carte|faq)[^>]*-->", body)
+    body = body.replace("<!-- bon-opties -->", bon_opties_html())
+    over = re.findall(r"<!-- (?:carte|faq|bon-)[^>]*-->", body)
     if over:
         raise SystemExit(f"Onbekende plaatshouder: {over}")
     return body
 
 
+def versie(pad: str) -> str:
+    """Korte hash van een bestand, zodat browsers na een wijziging de nieuwe versie laden."""
+    return hashlib.md5((ROOT / pad).read_bytes()).hexdigest()[:8]
+
+
 def build() -> None:
     footer = FOOTER.format(**COMMON)
+    v_css, v_js = versie("assets/css/site.css"), versie("assets/js/site.js")
     actionbar = ACTIONBAR.format(**COMMON)
 
     for path, meta in PAGES.items():
@@ -622,6 +642,8 @@ def build() -> None:
             voluit=html.escape(VOLUIT),
             preload=preload,
             ld=jsonld(*meta["ld"]),
+            v_css=v_css,
+            v_js=v_js,
             sprite=SPRITE,
             header=header,
             body=body,

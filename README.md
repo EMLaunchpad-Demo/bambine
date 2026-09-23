@@ -15,7 +15,7 @@ te vinden was, staat op de site als *nog aan te vullen*.
 | `index.html` | Hero met vullend beeld, hydrotherapie, het aanbod in drie rijen, over Ine, citaat met fotogalerij, cadeaubon, vier vragen en contact |
 | `tarieven.html` | Alle diensten als menukaart, met ankers `#babywellness`, `#mama`, `#kids`, `#cadeaubon` en `#praktisch` (betalen, afzeggen, aansprakelijkheid) |
 | `reserveren.html` | Hoe je reserveert (bellen of mailen), het verloop van een sessie babywellness en wat je vooraf moet weten |
-| `cadeaubon.html` | Wat je cadeau kan geven, hoe je bestelt en afhaalt, en de link naar de webshop |
+| `cadeaubon.html` | Keuze tussen een **digitale** bon (online checkout) en een **fysieke** bon (bestelformulier dat een mail aan Ine klaarmaakt, afhalen in de zaak). Met `#digitaal` of `#fysiek` in de link opent meteen de juiste keuze |
 | `contact.html` | Adres, gegevens, een kaart die pas na een klik laadt, en alle veelgestelde vragen |
 
 Verder: `sitemap.xml`, `robots.txt`, `site.webmanifest`, favicons, zelf gehoste webfonts
@@ -101,8 +101,21 @@ De merkkleuren zijn goud, lichtbruin en wit.
 Knoppen zijn goud met donkere tekst (7:1); wit op goud zou onder de norm blijven.
 
 Typografie: **Fraunces** (display) en **Mulish** (tekst), allebei zelf gehost in
-`assets/fonts/`. De site maakt dus geen verbinding met Google tijdens het bezoek. De enige
-uitzondering is de kaart op de contactpagina, en die laadt pas als de bezoeker erop klikt.
+`assets/fonts/`. De site maakt dus geen verbinding met Google tijdens het bezoek. Er zijn
+twee uitzonderingen. De kaart op de contactpagina laadt pas als de bezoeker erop klikt. De
+online checkout van de digitale cadeaubon laadt pas als die keuze openstaat.
+
+## Cadeaubon: digitaal en fysiek
+
+- **Digitaal**: de embed van de gift card checkout staat in `src/cadeaubon.html`
+  (`data-gc-id="6ab3cabfa8381f944221f16a"`). `site.js` laadt het script
+  (`gc-embed.parent.js`) pas wanneer "Digitale cadeaubon" gekozen is. Het script moet vlak na
+  de `div` komen; `site.js` zet het daar. Bedragen, taal en omschrijving van de bon stel je
+  in de checkout zelf in, niet op deze site.
+- **Fysiek**: het formulier maakt een ingevulde mail aan info@bambine.be vanuit het
+  mailprogramma van de bezoeker. De keuzelijst met behandelingen en prijzen komt uit
+  `DIENSTEN` in `build.py` (plaatshouder `<!-- bon-opties -->`). Zonder JavaScript valt het
+  formulier terug op een gewone `mailto`-verzending.
 
 De opbouw is redactioneel, niet het gangbare stramien van kaartjes en iconen:
 

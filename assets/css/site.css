@@ -872,6 +872,174 @@ p:last-child { margin-bottom: 0; }
 .map-cover .small { max-width: 30ch; margin: 0; }
 .map.is-loaded .map-cover { display: none; }
 
+/* --- 15b. Cadeaubon: keuze, online checkout en bestelformulier ----------- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.bon-keuze {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 clamp(1.25rem, 3vw, 3rem);
+  border: 0;
+  margin: 0 0 clamp(2.5rem, 5vw, 4rem);
+  padding: 0;
+  min-width: 0;
+}
+@media (max-width: 640px) { .bon-keuze { grid-template-columns: 1fr; } }
+.bon-optie {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 0.35rem 1rem;
+  padding: 1.35rem 0 1.4rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  cursor: pointer;
+  transition: border-color 0.3s var(--ease);
+}
+@media (max-width: 640px) { .bon-optie + .bon-optie { border-top: 0; } }
+/* De radioknop zelf: een ring met een gouden stip, rechts */
+.bon-optie input {
+  grid-column: 3;
+  grid-row: 1;
+  appearance: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  border: 1px solid var(--ink-2);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  align-self: center;
+}
+.bon-optie input::before {
+  content: "";
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: scale(0);
+  transition: transform 0.25s var(--ease-out);
+}
+.bon-optie input:checked { border-color: var(--gold-ink); }
+.bon-optie input:checked::before { transform: scale(1); }
+.bon-optie input:focus-visible { outline: 2px solid var(--gold-ink); outline-offset: 3px; }
+.bon-optie::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -1px;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s var(--ease-out);
+}
+.bon-optie:has(input:checked)::after { transform: scaleX(1); }
+.bon-optie-nr {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+  font-family: var(--serif);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  line-height: 1;
+  color: var(--gold-deep);
+  font-variation-settings: "SOFT" 60;
+}
+.bon-optie-titel {
+  grid-column: 2;
+  font-family: var(--serif);
+  font-size: clamp(1.3rem, 2.2vw, 1.7rem);
+  line-height: 1.2;
+  font-variation-settings: "SOFT" 60, "opsz" 60;
+}
+.bon-optie-tekst { grid-column: 2; font-size: 0.95rem; color: var(--ink-2); }
+.bon-optie:hover .bon-optie-titel { color: var(--gold-ink); }
+
+.bon-paneel { align-items: start; }
+.bon-paneel[hidden] { display: none; }
+.bon-paneel h3 { margin-bottom: 0.9rem; }
+.bon-paneel > .s4 > p:not(.small) { color: var(--ink-2); }
+.bon-paneel .small a { color: var(--ink); text-decoration-color: var(--gold); text-underline-offset: 3px; }
+
+.bon-embed {
+  position: relative;
+  min-height: 24rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+}
+.bon-embed iframe { display: block; min-height: 24rem; }
+.bon-laden { position: absolute; inset: 0; display: grid; place-items: center; margin: 0; }
+.bon-embed.is-geladen .bon-laden { display: none; }
+
+/* Formulier: enkel een onderlijn per veld, in de stijl van de haarlijnen */
+.bon-form { display: grid; gap: 1.35rem; }
+.veld { display: grid; gap: 0.4rem; border: 0; margin: 0; padding: 0; min-width: 0; }
+.veld[hidden] { display: none; }
+.veld > label, .veld > legend {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  padding: 0;
+}
+.req { color: var(--gold-ink); }
+.veld input:not([type="radio"]), .veld select, .veld textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 2px;
+  padding: 0.8rem 0.9rem;
+  transition: border-color 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.veld select {
+  appearance: none;
+  padding-right: 2.5rem;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink-2) 50%), linear-gradient(135deg, var(--ink-2) 50%, transparent 50%);
+  background-position: calc(100% - 1.15rem) 55%, calc(100% - 0.8rem) 55%;
+  background-size: 0.35rem 0.35rem;
+  background-repeat: no-repeat;
+}
+.veld textarea { resize: vertical; min-height: 5.5rem; }
+.veld input:focus, .veld select:focus, .veld textarea:focus {
+  outline: none;
+  border-color: var(--gold-ink);
+  box-shadow: 0 0 0 3px rgba(200, 170, 102, 0.28);
+}
+.veld input[aria-invalid="true"], .veld select[aria-invalid="true"] { border-color: #a3402b; }
+.veld--keuze { gap: 0.6rem; }
+.veld--keuze > label {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.98rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  cursor: pointer;
+}
+.veld--keuze input { accent-color: var(--gold-ink); width: 1.05rem; height: 1.05rem; margin: 0; }
+.veld-rij { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.35rem; }
+@media (max-width: 520px) { .veld-rij { grid-template-columns: 1fr; } }
+.bon-status:empty { display: none; }
+.bon-status { margin: 0; color: var(--ink); }
+
 /* --- 16. Kruimelpad en paginakop ---------------------------------------- */
 .crumbs {
   display: flex;

@@ -113,6 +113,113 @@
     });
   });
 
-  /* 6. Jaartal ------------------------------------------------------------ */
+  /* 6. Cadeaubon: digitaal of fysiek -------------------------------------- */
+  var keuzes = $$('input[name="bon-soort"]');
+  var panelen = $$("[data-paneel]");
+
+  /* Het checkout-script zoekt de div vlak vóór zichzelf, dus het komt direct
+     achter [data-gc-id]. Pas laden als iemand voor digitaal kiest. */
+  function laadCheckout() {
+    var box = $(".bon-embed");
+    if (!box || box.dataset.geladen) return;
+    box.dataset.geladen = "1";
+    var doel = $("[data-gc-id]", box);
+    var s = document.createElement("script");
+    s.src = box.getAttribute("data-gc-src");
+    s.async = true;
+    s.onload = function () {
+      var frame = $("iframe", box);
+      if (frame) {
+        frame.title = "Digitale cadeaubon van Bambine bestellen";
+        frame.addEventListener("load", function () { box.classList.add("is-geladen"); });
+      } else {
+        box.classList.add("is-geladen");
+      }
+    };
+    doel.parentNode.insertBefore(s, doel.nextSibling);
+  }
+
+  function toonBon(soort, scrollen) {
+    keuzes.forEach(function (k) { k.checked = k.value === soort; });
+    panelen.forEach(function (p) { p.hidden = p.getAttribute("data-paneel") !== soort; });
+    if (soort === "digitaal") laadCheckout();
+    if (scrollen) {
+      var sectie = $("#bestellen");
+      if (sectie) sectie.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+    }
+  }
+
+  if (keuzes.length) {
+    keuzes.forEach(function (k) {
+      k.addEventListener("change", function () {
+        toonBon(k.value, false);
+        if (history.replaceState) history.replaceState(null, "", "#" + k.value);
+      });
+    });
+    /* #digitaal of #fysiek in de link opent meteen de juiste keuze */
+    var volgHash = function () {
+      var h = window.location.hash.replace("#", "");
+      if (h === "digitaal" || h === "fysiek") { toonBon(h, true); return true; }
+      return false;
+    };
+    window.addEventListener("hashchange", volgHash);
+    if (!volgHash()) toonBon((keuzes.filter(function (k) { return k.checked; })[0] || keuzes[0]).value, false);
+  }
+
+  /* Bestelformulier fysieke bon: maakt een ingevulde mail klaar */
+  var form = $(".bon-form");
+  if (form) {
+    var wat = $("#bon-wat", form);
+    var bedragVeld = $("[data-bedrag]", form);
+    var bedrag = $("#bon-bedrag", form);
+    var status = $(".bon-status", form);
+
+    wat.addEventListener("change", function () {
+      var eigen = wat.value === "bedrag";
+      bedragVeld.hidden = !eigen;
+      bedrag.required = eigen;
+      if (eigen) bedrag.focus();
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var velden = $$("input, select, textarea", form);
+      velden.forEach(function (v) { v.removeAttribute("aria-invalid"); });
+      /* Alleen het bedragveld mag overgeslagen worden, als het niet van toepassing is. */
+      var fout = velden.filter(function (v) {
+        var veld = v.closest(".veld");
+        return !(veld && veld.hidden) && !v.checkValidity();
+      });
+      if (fout.length) {
+        fout.forEach(function (v) { v.setAttribute("aria-invalid", "true"); });
+        status.textContent = "Vul de verplichte velden in.";
+        fout[0].focus();
+        return;
+      }
+      var waarde = function (id) { var el = $(id, form); return el ? el.value.trim() : ""; };
+      var cadeau = wat.value === "bedrag" ? "Een bedrag van € " + waarde("#bon-bedrag") : wat.value;
+      var afhalen = ($('input[name="Afhalen"]:checked', form) || {}).value || "";
+      var regels = [
+        "Dag Ine,",
+        "",
+        "Ik wil graag een fysieke cadeaubon bestellen.",
+        "",
+        "Cadeau: " + cadeau,
+        "Afhalen: " + afhalen,
+        "Naam: " + waarde("#bon-naam"),
+        "E-mail: " + waarde("#bon-mail")
+      ];
+      if (waarde("#bon-tel")) regels.push("Telefoon: " + waarde("#bon-tel"));
+      if (waarde("#bon-noot")) regels.push("", "Opmerking: " + waarde("#bon-noot"));
+      regels.push("", "Groetjes,", waarde("#bon-naam"));
+      window.location.href = "mailto:info@bambine.be?subject=" +
+        encodeURIComponent("Aanvraag fysieke cadeaubon") +
+        "&body=" + encodeURIComponent(regels.join("\n"));
+      status.textContent = "Je mailprogramma opent met je aanvraag. Verstuur die mail om te bestellen. " +
+        "Opent er niets? Mail dan naar info@bambine.be of bel +32 474 78 26 91.";
+    });
+  }
+
+  /* 7. Jaartal ------------------------------------------------------------ */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();
