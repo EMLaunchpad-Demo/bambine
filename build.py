@@ -608,6 +608,15 @@ def bestandsnaam(nummer: int, naam: str) -> str:
     return f"{nummer:02d}-{kaal}.html"
 
 
+def zonder_herofoto(html: str) -> str:
+    """In GoHighLevel komt de hero-foto van de sectie-achtergrond, niet uit het blok."""
+    return re.sub(
+        r'(<section class="hero-cover")\s*style="background-image:url\([^)]*\)"',
+        r"\1",
+        html,
+    )
+
+
 def krimp_css(css: str) -> str:
     """Commentaar en overbodige witruimte weg: scheelt ongeveer een derde.
 
@@ -649,7 +658,7 @@ def ghl_export(header_html: str, footer_html: str, actionbar_html: str) -> None:
     js = (ROOT / "assets" / "js" / "site.js").read_text(encoding="utf-8")
 
     for pad, meta in PAGES.items():
-        body = (SRC / pad).read_text(encoding="utf-8")
+        body = zonder_herofoto((SRC / pad).read_text(encoding="utf-8"))
         kop = HEADER.format(brand=BRAND, links=nav_html(pad), dlinks=drawer_html(pad), **COMMON)
         blok = kop + f"\n<main id=\"main\">\n{body}\n</main>\n" + footer_html + "\n" + actionbar_html
         # foto's één keer als data-URI in een variabele, zodat het blok zelfstandig

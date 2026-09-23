@@ -129,9 +129,9 @@ staat in plaats van van een wellnessbrochure.
 - **Foto's** — 14 slots, elk met een `<!-- FOTO-SLOT -->`-commentaar en de gewenste beeldinhoud.
   Invullen gebeurt per slot met `style="background-image:url('assets/img/….jpg')"`.
   Eén foto is al aangeleverd en staat in de hero en de galerij.
-- **`design-standards`** — tokens staan in `bambine/assets/css/site.css` (sectie 1). Kleur, radius
+- **`design-standards`** — tokens staan in `assets/css/site.css` (sectie 1). Kleur, radius
   en schaal zijn daar centraal; niets is hardgecodeerd in de pagina's.
-- **GoHighLevel** — `build.py` exporteert de pagina's als plakbare blokken in `bambine/ghl/`,
+- **GoHighLevel** — `build.py` exporteert de pagina's als plakbare blokken in `ghl/`,
   met de stijl ingekapseld onder `.bambine-site`. Het boekingsformulier en de agenda worden
   daar opgezet en vervangen het `.ghl-slot`-blok op de contactpagina.
 - **`seo-onpage`** — meta, canonical, OG, LocalBusiness/Service/FAQPage/BreadcrumbList-schema,

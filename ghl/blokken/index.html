@@ -1,8 +1,57 @@
+<!-- Bambine - Home
+     Alleen de opmaak. Gebruik dit als _stijl.css en _script.js al
+     site-breed staan; anders het bestand uit de map erboven nemen.
+     Paginanaam:  Home
+     Path:        /
+-->
+<div class="bambine-site">
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></symbol>
+<symbol id="i-calendar-days" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v3" /> <path d="M16 2v3" /> <rect x="3" y="3" width="18" height="18" rx="2" /> <path d="M3 9h18" /> <path d="M8 13h.01" /> <path d="M12 13h.01" /> <path d="M16 13h.01" /> <path d="M8 17h.01" /> <path d="M12 17h.01" /> <path d="M16 17h.01" /></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /> <rect x="2" y="4" width="20" height="16" rx="2" /></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16" /> <path d="M4 12h16" /> <path d="M4 19h16" /></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol>
+<symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /></symbol>
+<symbol id="i-si-facebook" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
+<symbol id="i-si-instagram" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></symbol>
+</svg>
+<header class="site-header">
+  <nav class="sheet nav" aria-label="Hoofdnavigatie">
+    <ul class="nav-links"><li><a href="/tarieven">Tarieven</a></li><li><a href="/reserveren">Reserveren</a></li><li><a href="/shop">Shop</a></li><li><a href="/contact">Contact</a></li></ul>
+    <a class="brand" href="/" aria-label="Bambine — naar de startpagina">
+  <span class="brand-name">bambine</span>
+  <span class="brand-sub">babywellness &amp; mamazorg</span>
+</a>
+    <div class="nav-side">
+      <a class="nav-tel" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+      <a class="btn btn--sm nav-cta" href="/reserveren">Reserveren</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen"><svg class="ico" aria-hidden="true"><use href="#i-menu"></use></svg></button>
+    </div>
+  </nav>
+</header>
+<div class="drawer" id="drawer" data-open="false" aria-hidden="true">
+  <div class="drawer-top">
+    <a class="brand" href="/" aria-label="Bambine — naar de startpagina">
+  <span class="brand-name">bambine</span>
+  <span class="brand-sub">babywellness &amp; mamazorg</span>
+</a>
+    <button class="drawer-close" data-drawer-close aria-label="Menu sluiten"><svg class="ico" aria-hidden="true"><use href="#i-x"></use></svg></button>
+  </div>
+  <ul class="drawer-links"><li><a href="/tarieven"><em>01</em>Tarieven</a></li><li><a href="/reserveren"><em>02</em>Reserveren</a></li><li><a href="/shop"><em>03</em>Shop</a></li><li><a href="/contact"><em>04</em>Contact</a></li></ul>
+  <div class="drawer-foot">
+    <a class="btn" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+    <a class="btn btn--line" href="mailto:info@bambine.be"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>info@bambine.be</a>
+  </div>
+</div>
+<main id="main">
 <!-- ======================= HERO ======================= -->
 <section class="hero-cover">
-  <!-- FOTO-SLOT: het beeld van de hero zet je als achtergrond van de sectie zelf.
-       In GoHighLevel: sectie-instellingen > Background > Image. Op deze statische
-       site kan het ook hier:  style="background-image:url('assets/img/....jpg')"  -->
+  <!-- Foto van Bambine (GHL-mediabibliotheek). In de GoHighLevel-export haalt
+       build.py dit weg: daar zet je het beeld als achtergrond van de sectie. -->
   <div class="hero-scrim" aria-hidden="true"></div>
 
   <div class="sheet hero-cover-in" data-reveal>
@@ -13,10 +62,10 @@
       de Shantala babymassage geven. Eén gezin per sessie, dus geen wachtzaal en geen haast.
     </p>
     <div class="hero-cta">
-      <a class="btn btn--onDark" href="reserveren.html">
+      <a class="btn btn--onDark" href="/reserveren">
         <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Reserveer jullie moment
       </a>
-      <a class="btn btn--ghostDark" href="shop.html">Bekijk de cadeaubonnen</a>
+      <a class="btn btn--ghostDark" href="/shop">Bekijk de cadeaubonnen</a>
     </div>
     <p class="hero-facts">36 °C · één gezin per sessie · van 2 weken tot ± 9 maanden · vanaf € 55</p>
   </div>
@@ -59,7 +108,7 @@
         <li>Geen groepsles en geen publiek: enkel jullie en Ine.</li>
       </ul>
       <div class="actions">
-        <a class="tlink" href="tarieven.html#babywellness">Zo verloopt een sessie<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        <a class="tlink" href="/tarieven#babywellness">Zo verloopt een sessie<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
   </div>
@@ -89,7 +138,7 @@
         </p>
         <div class="feature-meta">
           <span class="feature-price">€ 55<small>vanaf · 30 minuten</small></span>
-          <a class="tlink" href="tarieven.html#babywellness">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a class="tlink" href="/tarieven#babywellness">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
       </div>
     </div>
@@ -108,7 +157,7 @@
         </p>
         <div class="feature-meta">
           <span class="feature-price">Op aanvraag<small>duur in overleg</small></span>
-          <a class="tlink" href="tarieven.html#mama">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a class="tlink" href="/tarieven#mama">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
       </div>
     </div>
@@ -127,7 +176,7 @@
         </p>
         <div class="feature-meta">
           <span class="feature-price">Op aanvraag<small>alleen of samen</small></span>
-          <a class="tlink" href="tarieven.html#kids">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          <a class="tlink" href="/tarieven#kids">Lees meer<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
       </div>
     </div>
@@ -235,7 +284,7 @@
 
     <div class="gallery" data-reveal="fig">
       <!-- Echte foto, aangeleverd door Bambine -->
-      <div class="fig arch" style="background-image:url('assets/img/baby-knuffel.webp')"
+      <div class="fig arch" style="background-image:var(--f-baby-knuffel)"
            role="img" aria-label="Pasgeboren baby slaapt met een gehaakte knuffel onder een gebreid dekentje"></div>
       <!-- FOTO-SLOT: detail van de massagetafel -->
       <div class="fig arch fig--soft" role="img" aria-label="De massagetafel met verse handdoeken"></div>
@@ -321,7 +370,7 @@
         </div>
       </div>
       <div class="actions">
-        <a class="tlink" href="contact.html#faq">Alle vragen<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        <a class="tlink" href="/contact#faq">Alle vragen<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
 
@@ -342,8 +391,61 @@
         <a class="btn" href="tel:+32474782691">
           <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bel Bambine
         </a>
-        <a class="tlink" href="contact.html">Route<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        <a class="tlink" href="/contact">Route<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
   </div>
 </section>
+
+</main>
+<footer class="site-footer">
+  <div class="sheet">
+    <div class="footer-grid">
+      <div>
+        <span class="brand-name">bambine</span>
+        <p style="margin-top:1rem;max-width:32ch">Babywellness, mamazorg en verwenmomenten in hartje Lommel. Eén gezin per moment, alle tijd voor jullie twee.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/bambine.babywellness/" rel="noopener me" aria-label="Bambine op Instagram"><svg class="ico" aria-hidden="true"><use href="#i-si-instagram"></use></svg></a>
+          <a href="https://www.facebook.com/BambineBabywellness/" rel="noopener me" aria-label="Bambine op Facebook"><svg class="ico" aria-hidden="true"><use href="#i-si-facebook"></use></svg></a>
+          <a href="mailto:info@bambine.be" aria-label="Mail Bambine"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Aanbod</h4>
+        <ul>
+          <li><a href="/tarieven#babywellness">Babywellness</a></li>
+          <li><a href="/tarieven#mama">Mama &amp; vrouw</a></li>
+          <li><a href="/tarieven#kids">Kids vanaf 3 jaar</a></li>
+          <li><a href="/shop">Shop &amp; cadeaubon</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Praktisch</h4>
+        <ul>
+          <li><a href="/reserveren">Reserveren</a></li>
+          <li><a href="/contact#faq">Veelgestelde vragen</a></li>
+          <li><a href="/contact#route">Route &amp; parkeren</a></li>
+          <li><a href="https://www.bambine-webshop.be/" rel="noopener">Webshop</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Michiel Jansplein 28 bus b2<br>3920 Lommel</li>
+          <li><a href="tel:+32474782691">+32 474 78 26 91</a></li>
+          <li><a href="mailto:info@bambine.be">info@bambine.be</a></li>
+          <li>Enkel op afspraak</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span data-year>2026</span> Bambine babywellness & mamazorg · btw-nummer toe te voegen</span>
+      <span>Conceptontwerp door EM Launchpad · niet de officiële website van Bambine</span>
+    </div>
+  </div>
+</footer>
+<div class="action-bar">
+  <a href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bellen</a>
+  <a href="mailto:info@bambine.be"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>Mailen</a>
+</div>
+</div>
