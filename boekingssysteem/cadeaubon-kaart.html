@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="nl-BE"><head><meta charset="utf-8">
+<!-- Bron van de cadeaubonkaart voor GoHighLevel (800 x 400).
+     Opnieuw maken: open via de lokale server en neem een schermafbeelding van 800 x 400,
+     bv. met Edge headless op schaal 2 en daarna verkleinen. #rustig = zonder tekst. -->
+<link rel="stylesheet" href="../assets/css/fonts.css">
+<style>
+  html, body { margin: 0; padding: 0; background: #2b211a; }
+  .kaart {
+    position: relative; width: 800px; height: 400px; overflow: hidden;
+    background:
+      radial-gradient(420px 360px at 76% 50%, rgba(200,170,102,.16), rgba(200,170,102,0) 70%),
+      radial-gradient(900px 500px at 20% 110%, #2b211a 0%, rgba(43,33,26,0) 60%),
+      linear-gradient(135deg, #4a3a2e 0%, #42342a 45%, #2e241c 100%);
+    color: #fbf8f3; font-family: "Mulish", sans-serif;
+  }
+  .kader { position: absolute; inset: 16px; border: 1px solid rgba(200,170,102,.55); }
+  .kader::after { content: ""; position: absolute; inset: 5px; border: 1px solid rgba(200,170,102,.18); }
+  .logo { position: absolute; right: 58px; top: 50%; width: 236px; height: 236px; transform: translateY(-50%); }
+  .tekst { position: absolute; left: 58px; bottom: 62px; }
+  .label {
+    display: flex; align-items: center; gap: 12px;
+    font-size: 11px; font-weight: 700; letter-spacing: .3em; text-transform: uppercase; color: #c8aa66;
+    margin: 0 0 14px;
+  }
+  .label::before { content: ""; width: 26px; height: 1px; background: #c8aa66; }
+  h1 {
+    margin: 0; font-family: "Fraunces", serif; font-weight: 400; font-size: 74px; line-height: .95;
+    letter-spacing: -.02em; font-variation-settings: "SOFT" 60, "WONK" 0, "opsz" 144; color: #fbf8f3;
+  }
+  h1 em { font-style: italic; color: #c8aa66; font-variation-settings: "SOFT" 80, "WONK" 0; }
+  .sub { margin: 18px 0 0; font-size: 13px; letter-spacing: .06em; color: rgba(251,248,243,.78); }
+  .rustig .tekst { display: none; }
+  .rustig .logo { right: 50%; transform: translate(50%, -50%); width: 250px; height: 250px; }
+</style></head>
+<body>
+<div class="kaart" id="kaart">
+  <div class="kader"></div>
+  <img class="logo" src="../assets/img/logo-licht-320.webp" alt="">
+  <div class="tekst">
+    <p class="label">Babywellness &amp; mamazorg</p>
+    <h1>Cadeau<em>bon</em></h1>
+    <p class="sub">Michiel Jansplein 28/b2 · Lommel</p>
+  </div>
+</div>
+<script>
+  if (location.hash === "#rustig") document.getElementById("kaart").classList.add("rustig");
+</script>
+</body></html>
