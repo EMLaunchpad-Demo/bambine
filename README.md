@@ -122,7 +122,7 @@ helemaal uit bij `prefers-reduced-motion`. Zonder JavaScript blijft alles zichtb
 ## Cadeaubon: digitaal en fysiek
 
 - **Digitaal**: de embed van de gift card checkout staat in `src/cadeaubon.html`
-  (`data-gc-id="6ab3cabfa8381f944221f16a"`). `site.js` laadt het script
+  (`data-gc-id="6ab3febee345593058111650"`). `site.js` laadt het script
   (`gc-embed.parent.js`) pas wanneer "Digitale cadeaubon" gekozen is. Het script moet vlak na
   de `div` komen; `site.js` zet het daar. Bedragen, taal en omschrijving van de bon stel je
   in de checkout zelf in, niet op deze site.
