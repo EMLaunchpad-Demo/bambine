@@ -198,14 +198,18 @@
       }
       var waarde = function (id) { var el = $(id, form); return el ? el.value.trim() : ""; };
       var cadeau = wat.value === "bedrag" ? "Een bedrag van € " + waarde("#bon-bedrag") : wat.value;
-      var afhalen = ($('input[name="Afhalen"]:checked', form) || {}).value || "";
       var regels = [
         "Dag Ine,",
         "",
         "Ik wil graag een fysieke cadeaubon bestellen.",
         "",
         "Cadeau: " + cadeau,
-        "Afhalen: " + afhalen,
+        "",
+        "Leveradres:",
+        waarde("#bon-ontvanger") || waarde("#bon-naam"),
+        waarde("#bon-straat"),
+        waarde("#bon-postcode") + " " + waarde("#bon-gemeente"),
+        "",
         "Naam: " + waarde("#bon-naam"),
         "E-mail: " + waarde("#bon-mail")
       ];
@@ -220,6 +224,22 @@
     });
   }
 
-  /* 7. Jaartal ------------------------------------------------------------ */
+  /* 7. Online reserveren --------------------------------------------------- */
+  /* form_embed.js verbergt de agenda tot die laat weten dat ze geladen is. Komt
+     dat bericht niet door (bv. op een domein dat het boekingssysteem niet kent),
+     dan blijft het vak leeg. Na een paar seconden tonen we de agenda daarom toch. */
+  var boeking = $(".boeking iframe");
+  if (boeking) {
+    setTimeout(function () {
+      if (window.getComputedStyle(boeking).opacity !== "0") return;
+      boeking.style.opacity = "1";
+      boeking.style.visibility = "visible";
+      boeking.style.pointerEvents = "auto";
+      boeking.style.position = "";
+      boeking.style.left = "";
+    }, 4000);
+  }
+
+  /* 8. Jaartal ------------------------------------------------------------ */
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();

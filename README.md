@@ -14,8 +14,8 @@ te vinden was, staat op de site als *nog aan te vullen*.
 |---|---|
 | `index.html` | Hero met vullend beeld, hydrotherapie, het aanbod in drie rijen, over Ine, citaat met fotogalerij, cadeaubon, vier vragen en contact |
 | `tarieven.html` | Alle diensten als menukaart, met ankers `#babywellness`, `#mama`, `#kids`, `#cadeaubon` en `#praktisch` (betalen, afzeggen, aansprakelijkheid) |
-| `reserveren.html` | Hoe je reserveert (bellen of mailen), het verloop van een sessie babywellness en wat je vooraf moet weten |
-| `cadeaubon.html` | Keuze tussen een **digitale** bon (online checkout) en een **fysieke** bon (bestelformulier dat een mail aan Ine klaarmaakt, afhalen in de zaak). Met `#digitaal` of `#fysiek` in de link opent meteen de juiste keuze |
+| `reserveren.html` | Online reserveren via het boekingssysteem van Bambine (`#boeken`), bellen of mailen als alternatief, het verloop van een sessie babywellness en wat je vooraf moet weten |
+| `cadeaubon.html` | Keuze tussen een **digitale** bon (online checkout) en een **fysieke** bon (bestelformulier met leveradres dat een mail aan Ine klaarmaakt; de bon wordt opgestuurd). Met `#digitaal` of `#fysiek` in de link opent meteen de juiste keuze |
 | `contact.html` | Adres, gegevens, een kaart die pas na een klik laadt, en alle veelgestelde vragen |
 
 Verder: `sitemap.xml`, `robots.txt`, `site.webmanifest`, favicons, zelf gehoste webfonts
@@ -102,8 +102,9 @@ Knoppen zijn goud met donkere tekst (7:1); wit op goud zou onder de norm blijven
 
 Typografie: **Fraunces** (display) en **Mulish** (tekst), allebei zelf gehost in
 `assets/fonts/`. De site maakt dus geen verbinding met Google tijdens het bezoek. Er zijn
-twee uitzonderingen. De kaart op de contactpagina laadt pas als de bezoeker erop klikt. De
-online checkout van de digitale cadeaubon laadt pas als die keuze openstaat.
+drie uitzonderingen. De kaart op de contactpagina laadt pas als de bezoeker erop klikt. De
+online checkout van de digitale cadeaubon laadt pas als die keuze openstaat. De
+reserveerpagina laadt het boekingssysteem (LeadConnector).
 
 De opbouw is redactioneel, niet het gangbare stramien van kaartjes en iconen:
 
@@ -125,10 +126,20 @@ helemaal uit bij `prefers-reduced-motion`. Zonder JavaScript blijft alles zichtb
   (`gc-embed.parent.js`) pas wanneer "Digitale cadeaubon" gekozen is. Het script moet vlak na
   de `div` komen; `site.js` zet het daar. Bedragen, taal en omschrijving van de bon stel je
   in de checkout zelf in, niet op deze site.
-- **Fysiek**: het formulier maakt een ingevulde mail aan info@bambine.be vanuit het
-  mailprogramma van de bezoeker. De keuzelijst met behandelingen en prijzen komt uit
+- **Fysiek**: de bon wordt opgestuurd. Het formulier vraagt wat je cadeau geeft, het
+  leveradres (eventueel met de naam van wie hem krijgt) en je gegevens, en maakt een
+  ingevulde mail aan info@bambine.be vanuit het mailprogramma van de bezoeker. De keuzelijst met behandelingen en prijzen komt uit
   `DIENSTEN` in `build.py` (plaatshouder `<!-- bon-opties -->`). Zonder JavaScript valt het
   formulier terug op een gewone `mailto`-verzending.
+
+## Online reserveren
+
+De insluitcode van het boekingssysteem staat in `src/reserveren.html` (sectie `#boeken`),
+met `form_embed.js` direct na de iframe. Dat script verbergt de agenda tot die meldt dat ze
+geladen is, en past daarna de hoogte aan. Komt die melding niet door (zoals bij testen op
+localhost), dan toont `site.js` de agenda na vier seconden toch. Onder de agenda staat een
+link om ze in een nieuw venster te openen. De taal en de teksten van de agenda stel je in
+het boekingssysteem zelf in.
 
 ## SEO en toegankelijkheid
 
@@ -144,7 +155,6 @@ volgens WCAG AA.
 - **Openingsuren.** Die staan nergens op bambine.be. Op de site staan ze als *nog aan te
   vullen* (zoek op `class="todo"`). Voeg ze daarna ook toe als
   `openingHoursSpecification` bij `BEDRIJF` in `build.py`.
-- **Online boeken.** Er is nog geen boekingsformulier: reserveren gaat per telefoon of mail.
 - **Privacy- en cookiepagina.**
 - **Foto's van de praktijk zelf**, als Bambine die heeft. Alleen `ine-met-baby` is in de
   zaak genomen; de andere beelden zijn sfeerbeelden.

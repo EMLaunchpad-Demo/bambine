@@ -199,8 +199,8 @@ FAQ = {
     "cadeaubon": (
         "Kan ik een cadeaubon geven?",
         "Ja, voor mama, papa of baby, en ook voor meisjes vanaf 3 jaar. Kies een digitale "
-        "bon, die je meteen online koopt, of een fysieke bon, die je via mail of telefonisch "
-        "bestelt en in de zaak afhaalt. Het bedrag kies je zelf.",
+        "bon, die je meteen online koopt, of een fysieke bon, die naar je opgestuurd wordt. "
+        "Het bedrag kies je zelf.",
     ),
     "aansprakelijkheid": (
         "Is Bambine aansprakelijk bij een ongeval?",
@@ -289,6 +289,11 @@ BEDRIJF = {
     "founder": {"@type": "Person", "name": "Ine Hendriks"},
     "sameAs": [INSTA, FB, WEBSHOP],
     "knowsLanguage": "nl-BE",
+    "potentialAction": {
+        "@type": "ReserveAction",
+        "name": "Een afspraak maken",
+        "target": {"@type": "EntryPoint", "urlTemplate": f"{SITE}/reserveren.html#boeken"},
+    },
     "hasOfferCatalog": {
         "@type": "OfferCatalog",
         "name": "Tarieven",
@@ -400,8 +405,8 @@ PAGES = {
     "reserveren.html": dict(
         title="Reserveren | Bambine babywellness Lommel",
         desc=(
-            "Een afspraak bij Bambine maak je telefonisch op +32 474 78 26 91 of via "
-            "info@bambine.be. Zo verloopt een sessie babywellness en dit breng je mee."
+            "Reserveer je sessie bij Bambine in Lommel online: kies een behandeling en een "
+            "moment. Of bel +32 474 78 26 91. Zo verloopt een sessie en dit breng je mee."
         ),
         ld=[
             BEDRIJF,
@@ -413,7 +418,7 @@ PAGES = {
         title="Cadeaubon | Bambine babywellness Lommel",
         desc=(
             "Een cadeaubon van Bambine voor mama, papa, baby of een meisje vanaf 3 jaar. "
-            "Digitaal meteen online, of als fysieke bon om af te halen in Lommel."
+            "Digitaal meteen online, of als fysieke bon die naar je opgestuurd wordt."
         ),
         ld=[BEDRIJF, crumbs_ld([("", "Home"), ("cadeaubon.html", "Cadeaubon")])],
     ),

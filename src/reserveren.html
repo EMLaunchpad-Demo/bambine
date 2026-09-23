@@ -12,50 +12,70 @@
       </div>
       <div class="s4 from9" data-reveal style="--d:100ms">
         <p class="lead">
-          Een afspraak maak je rechtstreeks met Ine. Bel of mail, en laat weten welke
-          behandeling je wil.
+          Kies je behandeling en een moment dat past, en reserveer meteen online.
+          Liever eerst iets vragen? Bel of mail Ine.
         </p>
+        <div class="actions">
+          <a class="tlink" href="#boeken">Naar de agenda<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ======================= ZO RESERVEER JE ======================= -->
-<section class="band band--tight">
-  <div class="sheet grid12">
-    <div class="s5" data-reveal>
-      <p class="label"><i>01</i>Zo reserveer je</p>
-      <h2>Bel of mail<br>even</h2>
-      <p class="lead" style="margin-top:1.25rem">
-        Plan babywellness op een moment vlak nadat je baby gegeten heeft. Laat je baby
-        vooraf eventueel een dutje doen: goed uitgeslapen geniet je kleintje extra.
-      </p>
-      <div class="actions">
-        <a class="btn" href="tel:+32474782691">
-          <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91
-        </a>
-        <a class="tlink" href="mailto:info@bambine.be">info@bambine.be<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+<!-- ======================= ONLINE RESERVEREN ======================= -->
+<section class="band band--shell band--tight" id="boeken">
+  <div class="sheet">
+    <div class="grid12" style="align-items:end;margin-bottom:clamp(1.75rem,3.5vw,2.75rem)">
+      <div class="s6" data-reveal>
+        <p class="label"><i>01</i>Online reserveren</p>
+        <h2>Kies je<br>moment</h2>
+      </div>
+      <div class="s5 from8" data-reveal style="--d:100ms">
+        <p>
+          Plan babywellness vlak nadat je baby gegeten heeft. Laat je baby vooraf eventueel
+          een dutje doen: goed uitgeslapen geniet je kleintje extra.
+        </p>
       </div>
     </div>
-    <div class="s6 from7" data-reveal style="--d:100ms">
-      <ul class="info">
-        <li><span class="k">Telefoon</span><a href="tel:+32474782691">+32 474 78 26 91</a></li>
-        <li><span class="k">E-mail</span><a href="mailto:info@bambine.be">info@bambine.be</a></li>
-        <li><span class="k">Adres</span><span>Michiel Jansplein 28/b2<br>3920 Lommel · galerij Vivaldi</span></li>
-        <li><span class="k">Openingsuren</span><span class="todo">nog aan te vullen</span></li>
-        <li><span class="k">Betalen</span><span>Cash of met Payconiq, geen Bancontact</span></li>
-        <li><span class="k">Afzeggen</span><span>Minstens 24 uur op voorhand, enkel telefonisch</span></li>
-      </ul>
-      <p class="small" style="margin-top:1.25rem">
-        Wat kan je reserveren? Alle behandelingen en prijzen staan op de
-        <a href="tarieven.html">tarievenpagina</a>.
-      </p>
+
+    <!-- Boekingssysteem van Bambine. form_embed.js past de hoogte van de iframe aan. -->
+    <div class="boeking">
+      <iframe src="https://api.leadconnectorhq.com/booking/bambine-eduh49980fd?heightMode=full&amp;showHeader=true"
+              allow="payment" style="width: 100%;border:none;overflow: hidden;" scrolling="no"
+              id="rIY8poIOyyR1sZZLPK96_1790168448489" title="Een afspraak maken bij Bambine"></iframe>
+      <script src="https://link.msgsndr.com/js/form_embed.js" defer></script>
+    </div>
+    <p class="small" style="margin-top:0.9rem">
+      Zie je de agenda niet? Open ze
+      <a href="https://api.leadconnectorhq.com/booking/bambine-eduh49980fd" rel="noopener">in een nieuw venster</a>.
+    </p>
+
+    <div class="grid12" style="margin-top:clamp(2rem,4vw,3rem)">
+      <div class="s5" data-reveal>
+        <h3>Liever bellen of mailen?</h3>
+        <p class="small" style="margin-bottom:0">Ook zo kan je een afspraak maken.</p>
+        <div class="actions" style="margin-top:1.25rem">
+          <a class="btn" href="tel:+32474782691">
+            <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91
+          </a>
+          <a class="tlink" href="mailto:info@bambine.be">info@bambine.be<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </div>
+      </div>
+      <div class="s6 from7" data-reveal style="--d:100ms">
+        <ul class="info">
+          <li><span class="k">Adres</span><span>Michiel Jansplein 28/b2<br>3920 Lommel · galerij Vivaldi</span></li>
+          <li><span class="k">Openingsuren</span><span class="todo">nog aan te vullen</span></li>
+          <li><span class="k">Betalen</span><span>Cash of met Payconiq, geen Bancontact</span></li>
+          <li><span class="k">Afzeggen</span><span>Minstens 24 uur op voorhand, enkel telefonisch</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ======================= VERLOOP ======================= -->
-<section class="band band--shell" id="verloop">
+<section class="band" id="verloop">
   <div class="sheet grid12">
     <div class="s4" data-reveal>
       <p class="label"><i>02</i>Het verloop</p>
@@ -108,7 +128,7 @@
 </section>
 
 <!-- ======================= GOED OM TE WETEN ======================= -->
-<section class="band" id="goed-om-te-weten">
+<section class="band band--shell" id="goed-om-te-weten">
   <div class="sheet grid12">
     <div class="s4" data-reveal>
       <p class="label"><i>03</i>Goed om te weten</p>

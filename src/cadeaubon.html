@@ -47,7 +47,7 @@
         <input type="radio" name="bon-soort" value="fysiek">
         <span class="bon-optie-nr" aria-hidden="true">02</span>
         <span class="bon-optie-titel">Fysieke cadeaubon</span>
-        <span class="bon-optie-tekst">Bestellen via mail of telefoon, en afhalen in de zaak.</span>
+        <span class="bon-optie-tekst">Een echte bon, die naar je opgestuurd wordt.</span>
       </label>
     </fieldset>
 
@@ -71,18 +71,17 @@
       </div>
     </div>
 
-    <!-- Fysiek: het formulier maakt een ingevulde mail aan info@bambine.be.
-         Zonder JavaScript valt het terug op een gewone mailto-verzending. -->
+    <!-- Fysiek: de bon wordt opgestuurd. Het formulier maakt een ingevulde mail aan
+         info@bambine.be; zonder JavaScript valt het terug op een gewone mailto-verzending. -->
     <div class="bon-paneel grid12" data-paneel="fysiek">
       <div class="s4">
         <h3>Fysieke cadeaubon</h3>
         <p>
-          Vul je keuze in en verstuur de mail die klaarstaat. Je haalt de bon af op
-          afspraak, of je wandelt binnen wanneer de winkel open is. Kijk dan meteen eens
-          rond: je kan de bon combineren met een leuk presentje.
+          Kies wat je cadeau geeft en waar de bon naartoe moet, en verstuur de mail die
+          klaarstaat. De bon wordt opgestuurd naar het adres dat je opgeeft: naar jezelf,
+          of meteen naar wie hem krijgt.
         </p>
         <ul class="info" style="margin-top:1.5rem">
-          <li><span class="k">Openingsuren</span><span class="todo">nog aan te vullen</span></li>
           <li><span class="k">Liever bellen?</span><a href="tel:+32474782691">+32 474 78 26 91</a></li>
         </ul>
       </div>
@@ -99,11 +98,29 @@
             <label for="bon-bedrag">Bedrag in euro <span class="req" aria-hidden="true">*</span></label>
             <input id="bon-bedrag" name="Bedrag" type="number" inputmode="numeric" min="1" step="1">
           </div>
-          <fieldset class="veld veld--keuze">
-            <legend>Afhalen</legend>
-            <label><input type="radio" name="Afhalen" value="Op afspraak" checked> Op afspraak</label>
-            <label><input type="radio" name="Afhalen" value="Binnenwandelen als de winkel open is"> Binnenwandelen als de winkel open is</label>
+          <fieldset class="veld veld--adres">
+            <legend>Leveradres</legend>
+            <div class="veld">
+              <label for="bon-ontvanger">Naam op het adres</label>
+              <input id="bon-ontvanger" name="Ontvanger" type="text" autocomplete="shipping name" aria-describedby="bon-ontvanger-hulp">
+              <p class="veld-hulp" id="bon-ontvanger-hulp">Laat leeg als de bon naar jou mag.</p>
+            </div>
+            <div class="veld">
+              <label for="bon-straat">Straat en huisnummer <span class="req" aria-hidden="true">*</span></label>
+              <input id="bon-straat" name="Straat" type="text" autocomplete="shipping street-address" required>
+            </div>
+            <div class="veld-rij veld-rij--post">
+              <div class="veld">
+                <label for="bon-postcode">Postcode <span class="req" aria-hidden="true">*</span></label>
+                <input id="bon-postcode" name="Postcode" type="text" inputmode="numeric" autocomplete="shipping postal-code" required>
+              </div>
+              <div class="veld">
+                <label for="bon-gemeente">Gemeente <span class="req" aria-hidden="true">*</span></label>
+                <input id="bon-gemeente" name="Gemeente" type="text" autocomplete="shipping address-level2" required>
+              </div>
+            </div>
           </fieldset>
+          <p class="veld-kop">Jouw gegevens</p>
           <div class="veld-rij">
             <div class="veld">
               <label for="bon-naam">Je naam <span class="req" aria-hidden="true">*</span></label>
