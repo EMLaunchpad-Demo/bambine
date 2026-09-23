@@ -59,7 +59,7 @@ DRAWER = [
 
 DIENSTEN = [
     dict(groep="babywellness", naam="Hydrotherapie", duur="30 minuten", prijs=55,
-         noot="Dobberen en bubbelen in water van ongeveer 36 °C."),
+         noot="Dobberen en bubbelen in water van ongeveer 37 °C."),
     dict(groep="babywellness", naam="Sessie Bambine", duur="1 uur 10 minuten", prijs=75,
          noot="30 minuten hydrotherapie, daarna 40 minuten Shantala babymassage."),
     dict(groep="babywellness", naam="Duosessie Bambine", duur="1 uur", prijs=150,
@@ -76,7 +76,8 @@ DIENSTEN = [
     dict(groep="kids", naam="Verwensessie voor meisjes", sub="3 tot 16 jaar",
          duur="± 60 minuten", prijs=60,
          noot="Op maat van je kind: een drankje, een massage van 15 minuten, een "
-              "gelaatsmasker, een voetenbadje, nagels lakken, schminken en haren invlechten."),
+              "gelaatsmasker, een voetenbadje, nagels lakken, schminken en haren invlechten. "
+              "Voor 1 of 2 kinderen: € 60 per kind."),
     dict(groep="kids", naam="Kids ontspanningsmassage", sub="6 tot 16 jaar",
          duur="± 60 minuten", prijs=75,
          noot="Eerst een ontspannend voetenbubbelbadje en een drankje, dan ongeveer "
@@ -134,14 +135,16 @@ FAQ = {
         "Hoe verloopt een sessie babywellness?",
         "We kleden je baby uit in een warme, aangename ruimte en doen een halskraagje aan. "
         "Dat is van schuim, dus het kan niet leeglopen. Dan mag je baby dobberen in water van "
-        "ongeveer 36 graden en bubbelen met lichtjes en speeltjes. Daarna drogen we je baby af. "
+        "ongeveer 37 graden en bubbelen met lichtjes en speeltjes. Daarna drogen we je baby af "
+        "onder een warmtelamp. "
         "Wie wil, sluit af met een Shantala babymassage die je erbij boekt.",
     ),
     "water": (
         "Wat doet het warme water met mijn baby?",
         "Door te dobberen in het water komen de darmpjes beter op gang. Dat kan krampjes "
-        "verminderen en bij constipatie verloopt de stoelgang vlotter. Het water van ongeveer "
-        "36 graden geeft je baby een veilig gevoel, zoals in de buik van mama, en is goed voor "
+        "verminderen en bij constipatie verloopt de stoelgang vlotter. Het trappelen, het "
+        "“zwemmen”, stimuleert de ontwikkeling van de spieren en de motoriek. Het water van "
+        "ongeveer 37 graden geeft je baby een veilig gevoel, zoals in de buik van mama, en is goed voor "
         "de bloedsomloop. Je baby verbruikt er ook veel energie bij en heeft nadien misschien "
         "wat sneller honger.",
     ),
@@ -263,7 +266,7 @@ BEDRIJF = {
     "name": VOLUIT,
     "alternateName": NAAM,
     "description": (
-        "Babywellness in Lommel: hydrotherapie in water van ongeveer 36 °C en Shantala "
+        "Babywellness in Lommel: hydrotherapie in water van ongeveer 37 °C en Shantala "
         "babymassage voor baby's vanaf 2 weken tot ongeveer 20 maanden. Daarnaast "
         "zwangerschaps- en ontspanningsmassage voor vrouwen en verwenmomenten voor meisjes "
         "van 3 tot 16 jaar."
@@ -368,7 +371,7 @@ PAGES = {
     "index.html": dict(
         title="Babywellness en babymassage in Lommel | Bambine",
         desc=(
-            "Babywellness in Lommel: je baby dobbert in water van ± 36 °C, met Shantala "
+            "Babywellness in Lommel: je baby dobbert in water van ± 37 °C, met Shantala "
             "babymassage erbij. Ook massages voor mama en verwenmomenten voor meisjes."
         ),
         ld=[BEDRIJF, WEBSITE, faq_ld(FAQ_SETS["home"])],
@@ -383,7 +386,7 @@ PAGES = {
             BEDRIJF,
             dienst_ld(
                 "Babywellness",
-                "Hydrotherapie in water van ongeveer 36 °C en Shantala babymassage, voor baby's "
+                "Hydrotherapie in water van ongeveer 37 °C en Shantala babymassage, voor baby's "
                 "vanaf 2 weken tot ongeveer 20 maanden.",
                 "babywellness",
             ),
