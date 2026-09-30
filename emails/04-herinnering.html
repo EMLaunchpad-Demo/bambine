@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="nl-BE" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<!-- Onderwerp: Tot binnenkort bij Bambine
+     Voorvertoning: Een herinnering aan je afspraak op {{serviceBooking.day_of_week}} {{serviceBooking.only_start_date}} om {{serviceBooking.only_start_time}}.
+     Kopieer dit hele bestand in de code-editor van de e-mail in GoHighLevel. -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>Tot binnenkort bij Bambine</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  body { margin:0; padding:0; background:#fbf8f3; }
+  a { color:#241d18; }
+  @media only screen and (max-width: 620px) {
+    .kaart { width:100% !important; }
+    .binnen { padding-left:22px !important; padding-right:22px !important; }
+    h1 { font-size:27px !important; }
+  }
+</style>
+</head>
+<body style="margin:0;padding:0;background:#fbf8f3;">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;mso-hide:all;">Een herinnering aan je afspraak op {{serviceBooking.day_of_week}} {{serviceBooking.only_start_date}} om {{serviceBooking.only_start_time}}.&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;&#8199;&#65279;&#847;</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#fbf8f3" style="background:#fbf8f3;">
+  <tr>
+    <td align="center" style="padding:32px 12px;">
+      <table role="presentation" class="kaart" width="600" cellpadding="0" cellspacing="0" border="0" style="width:600px;max-width:600px;background:#ffffff;border:1px solid #eadfcc;">
+        <tr>
+          <td align="center" style="padding:30px 20px 18px;border-bottom:1px solid #c8aa66;">
+            <a href="https://bambine.be" target="_blank"><img src="https://bambine.be/wp-content/uploads/2024/10/bambine_logo_transparant.png" width="112" height="112" alt="Bambine, babywellness and more" style="display:block;border:0;width:112px;height:112px;"></a>
+          </td>
+        </tr>
+        <tr>
+          <td class="binnen" style="padding:36px 44px 40px;">
+<p style="margin:0 0 12px;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#8a6a35;">Herinnering</p>
+<h1 style="margin:0 0 20px;font-family:'Fraunces', Georgia, 'Times New Roman', serif;font-size:32px;line-height:1.15;font-weight:400;color:#241d18;">Tot binnenkort<br>bij Bambine</h1>
+<p style="margin:0 0 16px;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:16px;line-height:1.65;color:#5a4e44;">Hallo,</p>
+<p style="margin:0 0 16px;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:16px;line-height:1.65;color:#5a4e44;">Een kleine herinnering aan je afspraak. Ine maakt alles voor jullie klaar.</p>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 8px;background:#fbf8f3;border:1px solid #eadfcc;">
+  <tr>
+    <td style="padding:22px 24px 8px;">
+      {{#each serviceBooking.services}}
+      <p style="margin:0 0 14px;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:16px;line-height:1.55;color:#241d18;"><strong style="font-family:'Fraunces', Georgia, 'Times New Roman', serif;font-size:19px;font-weight:400;">{{this.name}}</strong><br><span style="font-size:14px;color:#776a5e;">{{this.duration}} · bij {{this.user.first_name}} · {{this.price}}</span></p>
+      {{/each}}
+    </td>
+  </tr>
+  <tr>
+    <td style="padding:0 24px 14px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr><td style="padding:10px 0;border-top:1px solid #eadfcc;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#776a5e;width:110px;vertical-align:top;">Datum</td><td style="padding:10px 0;border-top:1px solid #eadfcc;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:16px;line-height:1.5;color:#241d18;vertical-align:top;">{{serviceBooking.day_of_week}} {{serviceBooking.only_start_date}}</td></tr>
+        <tr><td style="padding:10px 0;border-top:1px solid #eadfcc;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#776a5e;width:110px;vertical-align:top;">Uur</td><td style="padding:10px 0;border-top:1px solid #eadfcc;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:16px;line-height:1.5;color:#241d18;vertical-align:top;">{{serviceBooking.only_start_time}}</td></tr>
+        <tr><td style="padding:10px 0;border-top:1px solid #eadfcc;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#776a5e;width:110px;vertical-align:top;">Waar</td><td style="padding:10px 0;border-top:1px solid #eadfcc;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:16px;line-height:1.5;color:#241d18;vertical-align:top;">Bambine, Michiel Jansplein 28/b2, 3920 Lommel<br>in galerij Vivaldi</td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 8px;">
+  <tr>
+    <td bgcolor="#c8aa66" style="background:#c8aa66;border-radius:2px;">
+      <a href="https://www.google.com/maps/search/?api=1&query=Michiel+Jansplein+28+3920+Lommel" target="_blank" style="display:inline-block;padding:15px 28px;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#241d18;text-decoration:none;">Route plannen</a>
+    </td>
+  </tr>
+</table>
+<h2 style="margin:28px 0 12px;font-family:'Fraunces', Georgia, 'Times New Roman', serif;font-size:21px;line-height:1.25;font-weight:400;color:#241d18;">Vergeet niet</h2>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0 0 8px;"><tr><td style="width:26px;vertical-align:top;padding:9px 0;"><div style="width:16px;height:1px;background:#c8aa66;margin-top:12px;font-size:0;line-height:0;">&nbsp;</div></td><td style="padding:6px 0;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:15px;line-height:1.6;color:#5a4e44;"><strong style="color:#241d18;">Kom je voor babywellness?</strong> Breng de luiertas mee met een schone luier, propere kleertjes en eventueel wat eten. Voor massageolie, een floatband, handdoeken, tetradoeken en een zwemluier zorgt Bambine.</td></tr><tr><td style="width:26px;vertical-align:top;padding:9px 0;"><div style="width:16px;height:1px;background:#c8aa66;margin-top:12px;font-size:0;line-height:0;">&nbsp;</div></td><td style="padding:6px 0;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:15px;line-height:1.6;color:#5a4e44;"><strong style="color:#241d18;">Is je baby ziek?</strong> Voelt je baby zich niet lekker of is hij wat koortsig, of kreeg hij net een prikje bij de dokter? Dan kom je beter niet. Na een prikje wacht je best een drietal dagen.</td></tr><tr><td style="width:26px;vertical-align:top;padding:9px 0;"><div style="width:16px;height:1px;background:#c8aa66;margin-top:12px;font-size:0;line-height:0;">&nbsp;</div></td><td style="padding:6px 0;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:15px;line-height:1.6;color:#5a4e44;"><strong style="color:#241d18;">Betalen</strong> doe je cash of met Payconiq. Bancontact is er niet.</td></tr><tr><td style="width:26px;vertical-align:top;padding:9px 0;"><div style="width:16px;height:1px;background:#c8aa66;margin-top:12px;font-size:0;line-height:0;">&nbsp;</div></td><td style="padding:6px 0;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:15px;line-height:1.6;color:#5a4e44;"><strong style="color:#241d18;">Kan je toch niet komen?</strong> Verwittig zo snel mogelijk en minstens 24 uur op voorhand, enkel telefonisch op <a href="tel:+32474782691" style="color:#241d18;">+32 474 78 26 91</a>.</td></tr></table>
+<p style="margin:28px 0 0;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:16px;line-height:1.65;color:#5a4e44;">Tot binnenkort,<br><span style="font-family:'Fraunces', Georgia, 'Times New Roman', serif;font-size:19px;color:#241d18;">Ine van Bambine</span></p>
+          </td>
+        </tr>
+        <tr>
+          <td class="binnen" align="center" style="padding:26px 44px 30px;background:#42342a;">
+            <p style="margin:0 0 6px;font-family:'Fraunces', Georgia, 'Times New Roman', serif;font-size:18px;color:#ffffff;">Bambine babywellness &amp; mamazorg</p>
+            <p style="margin:0 0 12px;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:13px;line-height:1.6;color:#e9e1d5;">Michiel Jansplein 28/b2, 3920 Lommel · galerij Vivaldi<br>
+              <a href="tel:+32474782691" style="color:#e9e1d5;text-decoration:none;">+32 474 78 26 91</a> · <a href="mailto:info@bambine.be" style="color:#e9e1d5;text-decoration:none;">info@bambine.be</a></p>
+            <p style="margin:0;font-family:'Mulish', Arial, Helvetica, sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;">
+              <a href="https://www.instagram.com/bambine.babywellness/" target="_blank" style="color:#c8aa66;text-decoration:none;">Instagram</a>
+              <span style="color:#8c7b6a;">&nbsp;·&nbsp;</span>
+              <a href="https://www.facebook.com/BambineBabywellness/" target="_blank" style="color:#c8aa66;text-decoration:none;">Facebook</a>
+            </p>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

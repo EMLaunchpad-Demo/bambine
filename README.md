@@ -149,6 +149,20 @@ het veld "Custom CSS" van de boekingspagina, **inclusief de `<style>`-tags**: GH
 veld als HTML in de pagina, dus kale CSS verschijnt als tekst en doet niets. De CSS is getest op de echte pagina: de
 categorieën, de lijst met diensten, de kalender met tijdsloten en het formulier.
 
+## E-mails voor de afspraak-automatisaties
+
+In `emails/` staan vijf HTML-e-mails voor de automatisaties van de boekingen in
+GoHighLevel: `01-afspraak-bevestigd`, `02-annulering`, `03-opnieuw-inplannen`,
+`04-herinnering` en `05-opvolging-review`. Open een bestand, kopieer alles en plak het in de
+code-editor van de e-mail. Onderwerp en voorvertoning staan bovenaan als commentaar.
+
+De e-mails gebruiken alleen merge-velden van de servicekalender (`serviceBooking.*` en,
+binnen de lus over de diensten, `this.*`). Aanpassen doe je in `emails/maak.py`, daarna:
+
+```bash
+python3 emails/maak.py
+```
+
 ## SEO en toegankelijkheid
 
 Per pagina een eigen title, description, canonical en OG-tags. Structured data:
