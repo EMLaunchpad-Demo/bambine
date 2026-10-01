@@ -1,795 +1,412 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl-BE" class="no-js">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Terrakota is een privé wellnessparadijs in een botanische tuin in Diepenbeek (Limburg): twee sauna’s, jacuzzi, hot tub, verwarmd zwembad en een Finse Kota. Huur het volledige domein of boek een beleving.">
-<meta name="theme-color" content="#232524">
+<meta charset="utf-8">
+<script>document.documentElement.className="js"</script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babywellness en babymassage in Lommel | Bambine</title>
+<meta name="description" content="Babywellness in Lommel: je baby dobbert in water van ± 37 °C, met Shantala babymassage erbij. Ook massages voor mama en verwenmomenten voor meisjes.">
+<link rel="canonical" href="https://bambine.be/">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_BE">
-<meta property="og:title" content="Terrakota — Privé wellnessparadijs in Limburg">
-<meta property="og:description" content="Terrakota is een privé wellnessparadijs in een botanische tuin in Diepenbeek (Limburg): twee sauna’s, jacuzzi, hot tub, verwarmd zwembad en een Finse Kota. Huur het volledige domein of boek een beleving.">
-<meta property="og:site_name" content="Terrakota">
-<title>Terrakota — Privé wellnessparadijs in Diepenbeek, Limburg</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-/* ============================================================
-   TERRAKOTA — Conceptvoorstel wellnessdomein
-   Brandkleuren: houtskoolgrijs + limoengroen (zoals terrakota.be)
-   Dark-first, foto-gedreven. EM Launchpad patronen.
-   FOTO-SLOTS: elk .photo blok is een plek voor een echte foto.
-   Vervang de gradient door  style="background-image:url('...')"
-   ============================================================ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  /* Dark-first (merk) — houtskool & grijs */
-  --bg:       #232524;
-  --bg-2:     #1c1e1d;
-  --surface:  #2b2d2b;
-  --surface-2:#333633;
-  --ink:      #f3f5ee;
-  --muted:    #b8bdb0;
-  --faint:    #838a7c;
-  --line:     #3a3d39;
-  --line-2:   #474b45;
-
-  /* Limoengroen (primair) + olijf + grijs */
-  --lime:     #aecb3a;
-  --lime-2:   #c4dd60;
-  --lime-dim: #8ba52c;
-  --green:    #7c9a45;
-  --grey:     #9aa196;
-  --lime-tint:  rgba(174,203,58,.15);
-  --green-tint: rgba(124,154,69,.16);
-  --grey-tint:  rgba(154,161,150,.14);
-
-  --panel:    #191b19;   /* extra donkere card */
-  --on-dark:  #f3f5ee;
-  --on-dark-soft: rgba(243,245,238,.64);
-
-  --ph-a: #4a5a3a; --ph-b: #2a2c2a;  /* placeholder foto-gradient (groen→grijs) */
-
-  --shadow-sm: 0 4px 14px rgba(0,0,0,.28);
-  --shadow-md: 0 18px 44px rgba(0,0,0,.4);
-  --shadow-lg: 0 34px 80px rgba(0,0,0,.55);
-  --ease: cubic-bezier(.4,0,.2,1);
-  --maxw: 1200px;
-}
-
-/* Light toggle (bewust secundair; merk is donker) */
-:root[data-theme="light"] {
-  --bg:       #f4f5f0;
-  --bg-2:     #eaece2;
-  --surface:  #ffffff;
-  --surface-2:#f3f5ee;
-  --ink:      #232524;
-  --muted:    #595f56;
-  --faint:    #878d81;
-  --line:     #e2e4d9;
-  --line-2:   #d3d6c9;
-  --lime:     #6f8d24;
-  --lime-2:   #86a531;
-  --lime-dim: #5c761d;
-  --green:    #5a7635;
-  --grey:     #79807a;
-  --lime-tint:  rgba(111,141,36,.12);
-  --green-tint: rgba(90,118,53,.12);
-  --grey-tint:  rgba(121,128,122,.10);
-  --panel:    #1c1e1c;
-  --shadow-sm: 0 4px 14px rgba(40,45,35,.06);
-  --shadow-md: 0 18px 44px rgba(40,45,35,.10);
-  --shadow-lg: 0 34px 80px rgba(40,45,35,.16);
-  --ph-a: #8ba05f; --ph-b: #cfd4c4;
-}
-
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  font-size: 16px; line-height: 1.65; overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-}
-img { max-width: 100%; display: block; }
-::selection { background: var(--lime); color: #1a1c17; }
-a { color: inherit; }
-:focus-visible { outline: 2.5px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
-
-/* ---- Type ---- */
-h1 { font-family: 'Spectral', Georgia, serif; font-weight: 400; font-size: clamp(40px, 5.6vw, 74px); line-height: 1.04; letter-spacing: -.02em; text-wrap: balance; color: var(--ink); }
-h2 { font-family: 'Spectral', Georgia, serif; font-weight: 400; font-size: clamp(28px, 3.6vw, 46px); line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; color: var(--ink); margin-bottom: 16px; }
-h3 { font-family: 'Outfit', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.3; letter-spacing: -.01em; color: var(--ink); }
-p { color: var(--muted); }
-.it { font-style: italic; }
-.accent-lime { color: var(--lime); } .accent-green { color: var(--green); } .accent-bright { color: var(--lime-2); }
-
-.eyebrow { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); display: inline-flex; align-items: center; gap: 10px; margin-bottom: 22px; }
-.eyebrow::before { content: ''; width: 22px; height: 1.5px; background: var(--lime); display: inline-block; }
-.section-sub { font-size: 17px; color: var(--muted); max-width: 560px; line-height: 1.75; }
-
-.wrap { max-width: var(--maxw); margin: 0 auto; padding-left: 40px; padding-right: 40px; }
-.section { padding: 104px 0; }
-
-/* ---- Buttons ---- */
-.btn { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 600; text-decoration: none; border: none; cursor: pointer; padding: 15px 30px; border-radius: 100px; display: inline-flex; align-items: center; gap: 9px; transition: all .22s var(--ease); white-space: nowrap; }
-.btn svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .22s var(--ease); }
-.btn-primary { background: var(--lime); color: #1a1c14; }
-.btn-primary:hover { background: var(--lime-2); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(174,203,58,.3); }
-.btn-primary:hover svg { transform: translateX(3px); }
-.btn-ghost { background: transparent; color: var(--ink); border: 1.5px solid var(--line-2); }
-.btn-ghost:hover { border-color: var(--ink); background: var(--surface); transform: translateY(-2px); }
-
-/* ---- Reveal (zichtbaar bij rust; hide alleen via JS + safety-net) ---- */
-.reveal { opacity: 1; }
-html.js .reveal { transition: opacity .7s var(--ease), transform .7s var(--ease); }
-html.js .reveal.pre { opacity: 0; transform: translateY(22px); }
-
-@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
-@keyframes kenburns { 0% { transform: scale(1); } 100% { transform: scale(1.08); } }
-
-@media (prefers-reduced-motion: reduce) {
-  html.js .reveal, html.js .reveal.pre { opacity: 1 !important; transform: none !important; transition: none; }
-  * { animation: none !important; scroll-behavior: auto !important; }
-}
-
-/* ---- Photo slot (echte foto komt hier) ---- */
-.photo { position: relative; overflow: hidden; background-color: var(--ph-b);
-  background-image: linear-gradient(140deg, var(--ph-a) 0%, var(--ph-b) 78%);
-  background-size: cover; background-position: center; }
-.photo .cap { position: absolute; z-index: 3; left: 18px; bottom: 16px; color: #fff; }
-.photo .cap b { font-family: 'Spectral', serif; font-weight: 500; font-size: 18px; display: block; letter-spacing: -.01em; }
-.photo .cap span { font-size: 12.5px; opacity: .85; }
-.photo .tag { position: absolute; z-index: 3; top: 14px; left: 14px; background: rgba(20,22,18,.55); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); color: #eef3dc; font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 6px 12px; border-radius: 100px; border: 1px solid rgba(255,255,255,.14); }
-.photo::after { content: ''; position: absolute; inset: 0; z-index: 1; background: linear-gradient(to top, rgba(15,17,13,.62), rgba(15,17,13,.05) 55%); }
-.photo .ph-mark { position: absolute; z-index: 2; inset: 0; display: flex; align-items: center; justify-content: center; opacity: .16; }
-.photo .ph-mark svg { width: 46px; height: 46px; stroke: #fff; fill: none; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; }
-
-/* ===================== ANNOUNCE ===================== */
-.announce { background: var(--panel); color: var(--on-dark-soft); font-size: 12.5px; letter-spacing: .03em; text-align: center; padding: 9px 16px; display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: wrap; border-bottom: 1px solid var(--line); }
-.announce strong { color: var(--lime); font-weight: 600; }
-.announce .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lime); display: inline-block; }
-
-/* ===================== NAV ===================== */
-.nav { position: sticky; top: 0; z-index: 900; background: color-mix(in srgb, var(--bg) 84%, transparent); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s, box-shadow .3s; }
-.nav.scrolled { border-bottom-color: var(--line); box-shadow: var(--shadow-sm); }
-.nav-inner { max-width: var(--maxw); margin: 0 auto; padding: 15px 40px; display: flex; align-items: center; justify-content: space-between; }
-.brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
-.brand-mark { width: 30px; height: 34px; flex-shrink: 0; }
-.brand-name { font-family: 'Spectral', serif; font-weight: 500; font-size: 22px; letter-spacing: .01em; color: var(--ink); }
-.brand-name b { color: var(--lime); font-weight: 500; }
-.nav-links { display: flex; align-items: center; gap: 30px; }
-.nav-links a { text-decoration: none; color: var(--muted); font-size: 14.5px; font-weight: 500; transition: color .2s; position: relative; }
-.nav-links a::after { content: ''; position: absolute; left: 0; bottom: -5px; height: 1.5px; width: 0; background: var(--lime); transition: width .25s var(--ease); }
-.nav-links a:hover { color: var(--ink); } .nav-links a:hover::after { width: 100%; }
-.nav-right { display: flex; align-items: center; gap: 14px; }
-.theme-toggle { width: 38px; height: 38px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface); cursor: pointer; display: inline-flex; align-items: center; justify-content: center; color: var(--muted); transition: all .2s; }
-.theme-toggle:hover { color: var(--ink); border-color: var(--ink); }
-.theme-toggle svg { width: 17px; height: 17px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.hamburger { display: none; width: 42px; height: 42px; border: 1px solid var(--line-2); border-radius: 50%; background: var(--surface); cursor: pointer; align-items: center; justify-content: center; }
-.hamburger svg { width: 19px; height: 19px; stroke: var(--ink); stroke-width: 2; stroke-linecap: round; fill: none; }
-
-.mobile-menu { display: none; position: fixed; inset: 0; z-index: 950; background: var(--bg); padding: 88px 32px 32px; flex-direction: column; gap: 6px; transform: translateY(-100%); transition: transform .38s var(--ease); }
-.mobile-menu.open { transform: translateY(0); }
-.mobile-menu a { text-decoration: none; color: var(--ink); font-family: 'Spectral', serif; font-size: 26px; padding: 14px 0; border-bottom: 1px solid var(--line); }
-.mobile-menu .btn { margin-top: 22px; justify-content: center; }
-.mm-close { position: absolute; top: 22px; right: 28px; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--line-2); background: var(--surface); cursor: pointer; color: var(--ink); font-size: 16px; }
-
-/* ===================== HERO (full-bleed foto) ===================== */
-.hero { position: relative; min-height: 640px; display: flex; align-items: center; overflow: hidden; }
-.hero .photo { position: absolute; inset: 0; z-index: 0; }
-.hero .photo::after { background: linear-gradient(105deg, rgba(15,17,13,.86) 0%, rgba(15,17,13,.6) 45%, rgba(15,17,13,.28) 100%); }
-.hero .photo .ph-mark { opacity: .1; }
-.hero-inner { position: relative; z-index: 2; max-width: var(--maxw); margin: 0 auto; padding: 96px 40px; width: 100%; }
-.hero-content { max-width: 660px; }
-.hero .eyebrow { color: rgba(243,245,238,.72); }
-.hero h1 { color: #fff; }
-.hero-tag { font-family: 'Spectral', serif; font-style: italic; font-size: clamp(18px, 2.3vw, 24px); color: var(--lime-2); margin-top: 6px; }
-.hero-sub { font-size: 18px; color: rgba(243,245,238,.82); max-width: 520px; margin: 22px 0 30px; line-height: 1.72; }
-.hero-pills { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 34px; }
-.pill { background: rgba(255,255,255,.09); border: 1px solid rgba(255,255,255,.18); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); border-radius: 100px; padding: 8px 15px; font-size: 13px; font-weight: 500; color: #fff; display: inline-flex; align-items: center; gap: 7px; }
-.pill svg { width: 15px; height: 15px; stroke: var(--lime-2); stroke-width: 2; fill: none; stroke-linecap: round; stroke-linejoin: round; }
-.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-.hero-ctas .btn-ghost { color: #fff; border-color: rgba(255,255,255,.32); }
-.hero-ctas .btn-ghost:hover { background: rgba(255,255,255,.1); border-color: #fff; }
-
-/* ===================== STATS ===================== */
-.stats { border-bottom: 1px solid var(--line); background: var(--bg-2); }
-.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); max-width: var(--maxw); margin: 0 auto; }
-.stat { padding: 40px 30px; text-align: center; border-right: 1px solid var(--line); }
-.stat:last-child { border-right: none; }
-.stat-num { font-family: 'Spectral', serif; font-weight: 500; font-size: 42px; line-height: 1; letter-spacing: -.02em; color: var(--lime); font-variant-numeric: tabular-nums; }
-.stat-num .u { font-size: 21px; color: var(--muted); }
-.stat-lbl { font-size: 13.5px; color: var(--muted); margin-top: 9px; }
-
-.sec-head { max-width: 640px; margin-bottom: 58px; }
-.sec-head.center { margin-left: auto; margin-right: auto; text-align: center; }
-.sec-head.center .eyebrow { justify-content: center; }
-
-/* ===================== FEATURES ===================== */
-.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.feat { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 30px 26px; transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s; }
-.feat:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: var(--line-2); }
-.feat-ico { width: 50px; height: 56px; margin-bottom: 20px; clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); display: flex; align-items: center; justify-content: center; }
-.feat-ico svg { width: 23px; height: 23px; fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-.feat-ico.lime { background: var(--lime-tint); } .feat-ico.lime svg { stroke: var(--lime); }
-.feat-ico.green { background: var(--green-tint); } .feat-ico.green svg { stroke: var(--green); }
-.feat-ico.grey { background: var(--grey-tint); } .feat-ico.grey svg { stroke: var(--grey); }
-.feat h3 { margin-bottom: 8px; }
-.feat p { font-size: 14.5px; line-height: 1.68; }
-
-/* ===================== ELEMENTS ===================== */
-.elements { background: var(--bg-2); }
-.el-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.el { position: relative; background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 34px 26px 30px; overflow: hidden; transition: transform .3s var(--ease), box-shadow .3s var(--ease); }
-.el:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); }
-.el-hex { width: 62px; height: 70px; clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); display: flex; align-items: center; justify-content: center; margin-bottom: 22px; }
-.el-hex svg { width: 30px; height: 30px; fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; stroke: #1a1c14; }
-.el-name { font-family: 'Spectral', serif; font-size: 25px; font-weight: 500; color: var(--ink); margin-bottom: 4px; }
-.el-tag { font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--faint); margin-bottom: 14px; }
-.el p { font-size: 14px; line-height: 1.66; }
-.el.earth .el-hex { background: linear-gradient(150deg, var(--green), #57722f); }
-.el.water .el-hex { background: linear-gradient(150deg, var(--grey), #6f756c); }
-.el.fire  .el-hex { background: linear-gradient(150deg, var(--lime), var(--lime-dim)); }
-.el.air   .el-hex { background: linear-gradient(150deg, var(--lime-2), var(--green)); }
-
-/* ===================== STAY ===================== */
-.stay-grid { display: grid; grid-template-columns: 1.02fr 1fr; gap: 60px; align-items: center; }
-.stay-media { position: relative; }
-.stay-media .photo { aspect-ratio: 4/4.4; border-radius: 22px; box-shadow: var(--shadow-lg); }
-.stay-badge { position: absolute; bottom: -18px; right: -18px; background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 16px 20px; box-shadow: var(--shadow-md); }
-.stay-badge b { font-family: 'Spectral', serif; font-size: 28px; font-weight: 500; color: var(--lime); display: block; line-height: 1; }
-.stay-badge span { font-size: 12.5px; color: var(--muted); }
-.stay-list { list-style: none; display: grid; gap: 16px; margin: 28px 0 32px; }
-.stay-list li { display: flex; gap: 14px; align-items: flex-start; }
-.stay-list .ck { width: 26px; height: 26px; border-radius: 8px; background: var(--lime-tint); flex-shrink: 0; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
-.stay-list .ck svg { width: 14px; height: 14px; stroke: var(--lime); fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-.stay-list b { color: var(--ink); font-weight: 600; font-size: 15px; }
-.stay-list p { font-size: 14px; margin-top: 1px; }
-
-/* ===================== BELEVING ===================== */
-.exp { background: var(--bg-2); }
-.exp-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-.exp-card { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 34px; transition: transform .3s var(--ease), box-shadow .3s var(--ease); display: flex; gap: 22px; }
-.exp-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); }
-.exp-ico { width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-.exp-ico svg { width: 24px; height: 24px; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-.exp-ico.lime { background: var(--lime-tint); } .exp-ico.lime svg { stroke: var(--lime); }
-.exp-ico.green { background: var(--green-tint); } .exp-ico.green svg { stroke: var(--green); }
-.exp-ico.grey { background: var(--grey-tint); } .exp-ico.grey svg { stroke: var(--grey); }
-.exp-card h3 { margin-bottom: 8px; }
-.exp-card p { font-size: 14.5px; line-height: 1.66; margin-bottom: 14px; }
-.exp-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-.exp-tags span { font-size: 12px; color: var(--muted); background: var(--bg-2); border: 1px solid var(--line); border-radius: 100px; padding: 4px 11px; }
-:root[data-theme="light"] .exp-tags span { background: var(--bg); }
-
-/* ===================== DARK PANELS ===================== */
-.panel { position: relative; background: var(--panel); border: 1px solid var(--line); border-radius: 30px; overflow: hidden; color: var(--on-dark); }
-.panel::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(circle at 20% 18%, rgba(174,203,58,.16), transparent 46%), radial-gradient(circle at 84% 84%, rgba(124,154,69,.14), transparent 52%); }
-.panel > * { position: relative; z-index: 1; }
-.panel h2 { color: #fff; }
-.panel .eyebrow { color: rgba(243,245,238,.6); }
-
-.biz-inner { display: grid; grid-template-columns: 1.1fr .9fr; gap: 56px; align-items: center; padding: 68px 60px; }
-.biz p { color: var(--on-dark-soft); font-size: 16px; line-height: 1.75; margin-bottom: 26px; }
-.biz-list { display: grid; gap: 18px; }
-.biz-item { display: flex; gap: 15px; align-items: flex-start; }
-.biz-item .bi { width: 40px; height: 44px; clip-path: polygon(25% 3%, 75% 3%, 100% 50%, 75% 97%, 25% 97%, 0 50%); background: rgba(174,203,58,.14); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-.biz-item .bi svg { width: 19px; height: 19px; stroke: var(--lime); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-.biz-item b { color: #fff; font-size: 15px; font-weight: 600; display: block; margin-bottom: 2px; }
-.biz-item span { color: var(--on-dark-soft); font-size: 13.5px; line-height: 1.55; }
-.btn-lime-solid { background: var(--lime); color: #1a1c14; }
-.btn-lime-solid:hover { background: var(--lime-2); transform: translateY(-2px); box-shadow: 0 14px 30px rgba(174,203,58,.3); }
-
-/* ===================== SFEER (foto gallery) ===================== */
-.sfeer-grid { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 190px; gap: 16px; }
-.sfeer-grid .photo { border-radius: 18px; }
-.sfeer-grid .photo:hover img, .sfeer-grid .photo:hover { }
-.t-wide { grid-column: span 2; } .t-tall { grid-row: span 2; }
-.sfeer .photo:nth-child(2) { --ph-a:#6f756c; --ph-b:#2b2d2b; }
-.sfeer .photo:nth-child(3) { --ph-a:#8ba53a; --ph-b:#2a2c22; }
-.sfeer .photo:nth-child(4) { --ph-a:#5a6f3a; --ph-b:#24261f; }
-.sfeer .photo:nth-child(5) { --ph-a:#767c72; --ph-b:#262826; }
-
-/* ===================== TESTIMONIAL ===================== */
-.testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
-.testi { background: var(--surface); border: 1px solid var(--line); border-radius: 20px; padding: 34px; }
-.testi .stars { display: flex; gap: 3px; margin-bottom: 16px; }
-.testi .stars svg { width: 17px; height: 17px; fill: var(--lime); stroke: none; }
-.testi blockquote { font-family: 'Spectral', serif; font-size: 20px; line-height: 1.5; color: var(--ink); font-weight: 400; margin-bottom: 20px; letter-spacing: -.01em; }
-.testi .who { display: flex; align-items: center; gap: 12px; }
-.testi .av { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #1a1c14; font-weight: 600; font-size: 15px; }
-.testi .who b { font-size: 14.5px; color: var(--ink); display: block; } .testi .who span { font-size: 12.5px; color: var(--faint); }
-
-/* ===================== FAQ ===================== */
-.faq-wrap { max-width: 780px; margin: 0 auto; }
-.faq-item { border-bottom: 1px solid var(--line); }
-.faq-q { width: 100%; text-align: left; background: none; border: none; cursor: pointer; padding: 24px 0; display: flex; justify-content: space-between; align-items: center; gap: 18px; font-family: 'Outfit', sans-serif; font-size: 16.5px; font-weight: 500; color: var(--ink); }
-.faq-q:hover { color: var(--lime); }
-.faq-plus { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--line-2); flex-shrink: 0; position: relative; transition: background .25s, border-color .25s; }
-.faq-plus::before, .faq-plus::after { content: ''; position: absolute; background: var(--lime); border-radius: 2px; top: 50%; left: 50%; transition: transform .3s var(--ease); }
-.faq-plus::before { width: 12px; height: 2px; transform: translate(-50%,-50%); }
-.faq-plus::after { width: 2px; height: 12px; transform: translate(-50%,-50%); }
-.faq-q[aria-expanded="true"] .faq-plus { background: var(--lime-tint); border-color: transparent; }
-.faq-q[aria-expanded="true"] .faq-plus::after { transform: translate(-50%,-50%) rotate(90deg); }
-.faq-a { overflow: hidden; max-height: 0; transition: max-height .38s var(--ease); }
-.faq-a p { padding: 0 40px 26px 0; font-size: 15px; line-height: 1.75; }
-
-/* ===================== CTA ===================== */
-.cta-inner { text-align: center; padding: 82px 40px; max-width: 720px; margin: 0 auto; }
-.cta-inner p { color: var(--on-dark-soft); font-size: 18px; line-height: 1.7; margin: 16px auto 34px; max-width: 500px; }
-.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
-.btn-outline-light { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,.3); }
-.btn-outline-light:hover { border-color: #fff; background: rgba(255,255,255,.08); }
-.cta-checks { display: flex; gap: 26px; justify-content: center; flex-wrap: wrap; margin-top: 32px; }
-.cta-check { font-size: 13.5px; color: var(--on-dark-soft); display: flex; align-items: center; gap: 8px; }
-.cta-check svg { width: 16px; height: 16px; stroke: var(--lime); fill: none; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
-
-/* ===================== FOOTER ===================== */
-.footer { background: var(--bg-2); border-top: 1px solid var(--line); padding: 72px 0 34px; }
-.footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1.3fr; gap: 44px; margin-bottom: 52px; }
-.footer .brand { margin-bottom: 18px; }
-.footer-about p { font-size: 14px; line-height: 1.7; max-width: 290px; }
-.footer h4 { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--faint); margin-bottom: 18px; font-weight: 600; }
-.footer ul { list-style: none; display: grid; gap: 11px; }
-.footer ul a { text-decoration: none; color: var(--muted); font-size: 14.5px; transition: color .2s; }
-.footer ul a:hover { color: var(--lime); }
-.footer-contact li { font-size: 14.5px; color: var(--muted); display: flex; gap: 11px; align-items: flex-start; }
-.footer-contact svg { width: 16px; height: 16px; stroke: var(--lime); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; margin-top: 3px; }
-.footer-contact a { text-decoration: none; color: var(--muted); } .footer-contact a:hover { color: var(--lime); }
-.footer-bottom { border-top: 1px solid var(--line); padding-top: 26px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
-.footer-bottom p { font-size: 13px; color: var(--faint); }
-.footer-bottom .demo-note { font-size: 12.5px; color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: 100px; padding: 6px 14px; }
-.footer-bottom .demo-note b { color: var(--lime); font-weight: 600; }
-
-/* ===================== RESPONSIVE ===================== */
-@media (max-width: 1024px) {
-  .stay-grid { grid-template-columns: 1fr; gap: 54px; }
-  .stay-media { max-width: 460px; }
-  .el-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .stat:nth-child(2) { border-right: none; } .stat:nth-child(1), .stat:nth-child(2) { border-bottom: 1px solid var(--line); }
-  .biz-inner { grid-template-columns: 1fr; gap: 36px; padding: 52px 40px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 36px; }
-}
-@media (max-width: 720px) {
-  .wrap { padding-left: 22px; padding-right: 22px; }
-  .section { padding: 74px 0; }
-  .nav-links, .nav .theme-toggle, .nav-right .btn-primary { display: none; }
-  .hamburger { display: inline-flex; }
-  .mobile-menu { display: flex; }
-  .hero { min-height: 560px; }
-  .hero-inner { padding: 72px 22px; }
-  .feat-grid, .exp-grid, .testi-grid { grid-template-columns: 1fr; }
-  .sfeer-grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
-  .biz-inner { padding: 44px 26px; }
-  .exp-card { flex-direction: column; gap: 16px; }
-  .stay-badge { right: 8px; }
-  .footer-grid { grid-template-columns: 1fr; }
-  .cta-inner { padding: 60px 24px; }
-  h1 { font-size: clamp(36px, 10vw, 52px); }
-}
-</style>
+<meta property="og:site_name" content="Bambine babywellness &amp; mamazorg">
+<meta property="og:title" content="Babywellness en babymassage in Lommel | Bambine">
+<meta property="og:description" content="Babywellness in Lommel: je baby dobbert in water van ± 37 °C, met Shantala babymassage erbij. Ook massages voor mama en verwenmomenten voor meisjes.">
+<meta property="og:url" content="https://bambine.be/">
+<meta property="og:image" content="https://bambine.be/assets/img/bambine-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Baby gluurt van onder een witte badhanddoek">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#42342a">
+<link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="manifest" href="site.webmanifest">
+<link rel="preload" href="assets/fonts/fraunces-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/mulish-normal-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/webp" href="assets/img/baby-onder-handdoek-1600.webp" imagesrcset="assets/img/baby-onder-handdoek-800.webp 800w, assets/img/baby-onder-handdoek-1600.webp 1600w" imagesizes="100vw" media="(min-aspect-ratio: 4/5)">
+<link rel="preload" as="image" type="image/webp" href="assets/img/baby-onder-handdoek-staand-900.webp" media="(max-aspect-ratio: 4/5)">
+<link rel="stylesheet" href="assets/css/fonts.css">
+<link rel="stylesheet" href="assets/css/site.css?v=1730af18">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"HealthAndBeautyBusiness","@id":"https://bambine.be/#bambine","name":"Bambine babywellness & mamazorg","alternateName":"Bambine","description":"Babywellness in Lommel: hydrotherapie in water van ongeveer 37 °C en Shantala babymassage voor baby's vanaf 2 weken tot ongeveer 20 maanden. Daarnaast zwangerschaps- en ontspanningsmassage voor vrouwen en verwenmomenten voor meisjes van 3 tot 16 jaar.","url":"https://bambine.be/","logo":"https://bambine.be/assets/img/logo-320.webp","image":"https://bambine.be/assets/img/bambine-og.jpg","telephone":"+32 474 78 26 91","email":"info@bambine.be","priceRange":"€40 - €150","currenciesAccepted":"EUR","paymentAccepted":"Cash, Payconiq","address":{"@type":"PostalAddress","streetAddress":"Michiel Jansplein 28/b2 (galerij Vivaldi)","postalCode":"3920","addressLocality":"Lommel","addressRegion":"Limburg","addressCountry":"BE"},"hasMap":"https://www.google.com/maps/search/?api=1&query=Michiel+Jansplein+28+3920+Lommel","areaServed":{"@type":"City","name":"Lommel"},"founder":{"@type":"Person","name":"Ine Hendriks"},"sameAs":["https://www.instagram.com/bambine.babywellness/","https://www.facebook.com/BambineBabywellness/","https://www.bambine-webshop.be/"],"knowsLanguage":"nl-BE","potentialAction":{"@type":"ReserveAction","name":"Een afspraak maken","target":{"@type":"EntryPoint","urlTemplate":"https://bambine.be/reserveren.html#boeken"}},"hasOfferCatalog":{"@type":"OfferCatalog","name":"Tarieven","itemListElement":[{"@type":"Offer","price":"55.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#babywellness","itemOffered":{"@type":"Service","name":"Hydrotherapie","description":"30 minuten. Dobberen en bubbelen in water van ongeveer 37 °C.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"75.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#babywellness","itemOffered":{"@type":"Service","name":"Sessie Bambine","description":"1 uur 10 minuten. 30 minuten hydrotherapie, daarna 40 minuten Shantala babymassage.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"150.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#babywellness","itemOffered":{"@type":"Service","name":"Duosessie Bambine","description":"1 uur. Voor twee kindjes in twee aparte badjes, bijvoorbeeld vriendjes of een tweeling. 30 minuten hydrotherapie en 30 minuten Shantala babymassage.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"40.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#babywellness","itemOffered":{"@type":"Service","name":"Shantala babymassage","description":"± 35 minuten. Je geeft je baby zelf de massage, onder begeleiding van Ine.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"90.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#mama","itemOffered":{"@type":"Service","name":"Zwangerschapsmassage","description":"± 75 minuten. Eerst een ontspannend voetenbadje en een drankje, dan ongeveer een uur massage van het volledige lichaam.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"90.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#mama","itemOffered":{"@type":"Service","name":"Ontspanningsmassage voor vrouwen","description":"± 75 minuten. Eerst een ontspannend voetenbadje en een drankje, dan ongeveer een uur massage van het volledige lichaam.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"60.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#kids","itemOffered":{"@type":"Service","name":"Verwensessie voor meisjes","description":"± 60 minuten. Op maat van je kind: een drankje, een massage van 15 minuten, een gelaatsmasker, een voetenbadje, nagels lakken, schminken en haren invlechten. Voor 1 of 2 kinderen: € 60 per kind.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"75.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#kids","itemOffered":{"@type":"Service","name":"Kids ontspanningsmassage","description":"± 60 minuten. Eerst een ontspannend voetenbubbelbadje en een drankje, dan ongeveer 45 minuten massage van het volledige lichaam.","provider":{"@id":"https://bambine.be/#bambine"}}},{"@type":"Offer","price":"120.00","priceCurrency":"EUR","url":"https://bambine.be/tarieven.html#kids","itemOffered":{"@type":"Service","name":"Mini en me","description":"120 minuten. Een sessie voor vrouw en meisje samen.","provider":{"@id":"https://bambine.be/#bambine"}}}]}},{"@type":"WebSite","@id":"https://bambine.be/#website","url":"https://bambine.be/","name":"Bambine babywellness & mamazorg","inLanguage":"nl-BE","publisher":{"@id":"https://bambine.be/#bambine"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Vanaf welke leeftijd is mijn baby welkom?","acceptedAnswer":{"@type":"Answer","text":"Vanaf twee weken. Is je baby te vroeg geboren, dan tellen we vanaf de uitgerekende datum. Babywellness kan tot ongeveer 20 maanden, afhankelijk van hoe groot of klein je baby is."}},{"@type":"Question","name":"Wat breng ik mee?","acceptedAnswer":{"@type":"Answer","text":"Gewoon de luiertas met een schone luier, propere kleertjes en eventueel wat eten. Voor de rest zorgt Bambine: massageolie, een floatband, handdoeken, tetradoeken en een zwemluier."}},{"@type":"Question","name":"Hoeveel mensen mogen er mee?","acceptedAnswer":{"@type":"Answer","text":"Dat kies je zelf, het is jullie moment. Maar hoe meer mensen erbij zijn, hoe meer prikkels en hoe minder rust je baby ervaart."}},{"@type":"Question","name":"Wat als ik de afspraak niet kan nakomen?","acceptedAnswer":{"@type":"Answer","text":"Verwittig zo snel mogelijk, minstens 24 uur op voorhand, en enkel telefonisch. Verwittig je op tijd en met een geldige reden, dan krijg je een tegoedbon. Kom je te laat, dan stopt de sessie wel op het afgesproken uur."}}]}]}</script>
 </head>
 <body>
-<script>document.documentElement.classList.add('js');</script>
-
-<!-- ANNOUNCE -->
-<div class="announce">
-  <span class="dot"></span>
-  <span><strong>Conceptvoorstel</strong> — nieuw website­ontwerp voor Terrakota, gemaakt door EM Launchpad</span>
-</div>
-
-<!-- NAV -->
-<header class="nav" id="nav">
-  <div class="nav-inner">
-    <a href="#top" class="brand" aria-label="Terrakota home">
-      <svg class="brand-mark" viewBox="0 0 30 34" aria-hidden="true">
-        <polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#aecb3a" stroke-width="1.8"/>
-        <path d="M9 21c0-4 2.5-7 6-7s6 3 6 7" fill="none" stroke="#9aa196" stroke-width="1.8" stroke-linecap="round"/>
-        <circle cx="15" cy="12.5" r="2.4" fill="#aecb3a"/>
-      </svg>
-      <span class="brand-name">terra<b>kota</b></span>
-    </a>
-    <nav class="nav-links" aria-label="Hoofdmenu">
-      <a href="#wellness">Faciliteiten</a>
-      <a href="#verblijf">Verblijf</a>
-      <a href="#beleving">Beleving</a>
-      <a href="#sfeer">Foto's</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeBtn" aria-label="Wissel licht/donker thema">
-        <svg id="themeIcon" viewBox="0 0 24 24"></svg>
-      </button>
-      <a href="#contact" class="btn btn-primary" style="padding:12px 24px;">Reserveer <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-      <button class="hamburger" id="hamburger" aria-label="Menu openen" aria-expanded="false">
-        <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
+<a class="skip-link" href="#main">Naar de inhoud</a>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+<symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14" /> <path d="m12 5 7 7-7 7" /></symbol>
+<symbol id="i-arrow-up-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h10v10" /> <path d="M7 17 17 7" /></symbol>
+<symbol id="i-calendar-days" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2v3" /> <path d="M16 2v3" /> <rect x="3" y="3" width="18" height="18" rx="2" /> <path d="M3 9h18" /> <path d="M8 13h.01" /> <path d="M12 13h.01" /> <path d="M16 13h.01" /> <path d="M8 17h.01" /> <path d="M12 17h.01" /> <path d="M16 17h.01" /></symbol>
+<symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" /></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" /> <rect x="2" y="4" width="20" height="16" rx="2" /></symbol>
+<symbol id="i-menu" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16" /> <path d="M4 12h16" /> <path d="M4 19h16" /></symbol>
+<symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" /></symbol>
+<symbol id="i-shield-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" /> <path d="m9 12 2 2 4-4" /></symbol>
+<symbol id="i-si-facebook" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></symbol>
+<symbol id="i-si-instagram" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077"/></symbol>
+<symbol id="i-sparkles" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" /> <path d="M20 2v4" /> <path d="M22 4h-4" /> <circle cx="4" cy="20" r="2" /></symbol>
+<symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18" /> <path d="m6 6 12 12" /></symbol>
+</svg>
+<header class="site-header is-over">
+  <nav class="sheet nav" aria-label="Hoofdnavigatie">
+    <ul class="nav-links"><li><a href="tarieven.html">Tarieven</a></li><li><a href="cadeaubon.html">Cadeaubon</a></li><li><a href="index.html#ine">Over Ine</a></li><li><a href="contact.html">Contact</a></li></ul>
+    <a class="brand" href="index.html">
+  <img class="brand-logo" src="assets/img/logo-160.webp" width="160" height="160" alt="Bambine, babywellness and more">
+  <img class="brand-logo brand-logo--licht" src="assets/img/logo-licht-160.webp" width="160" height="160" alt="" aria-hidden="true">
+</a>
+    <div class="nav-side">
+      <a class="nav-tel" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+      <a class="btn btn--sm nav-cta" href="reserveren.html">Reserveren</a>
+      <button class="nav-toggle" aria-expanded="false" aria-controls="drawer" aria-label="Menu openen"><svg class="ico" aria-hidden="true"><use href="#i-menu"></use></svg></button>
     </div>
-  </div>
+  </nav>
 </header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <button class="mm-close" id="mmClose" aria-label="Menu sluiten">✕</button>
-  <a href="#wellness">Faciliteiten</a>
-  <a href="#verblijf">Verblijf</a>
-  <a href="#beleving">Beleving</a>
-  <a href="#sfeer">Foto's</a>
-  <a href="#contact">Contact</a>
-  <a href="#contact" class="btn btn-primary">Reserveer je verblijf</a>
+<div class="drawer" id="drawer" data-open="false" aria-hidden="true">
+  <div class="drawer-top">
+    <a class="brand" href="index.html">
+  <img class="brand-logo" src="assets/img/logo-160.webp" width="160" height="160" alt="Bambine, babywellness and more">
+  <img class="brand-logo brand-logo--licht" src="assets/img/logo-licht-160.webp" width="160" height="160" alt="" aria-hidden="true">
+</a>
+    <button class="drawer-close" data-drawer-close aria-label="Menu sluiten"><svg class="ico" aria-hidden="true"><use href="#i-x"></use></svg></button>
+  </div>
+  <ul class="drawer-links"><li><a href="tarieven.html"><em>01</em>Tarieven</a></li><li><a href="reserveren.html"><em>02</em>Reserveren</a></li><li><a href="cadeaubon.html"><em>03</em>Cadeaubon</a></li><li><a href="index.html#ine"><em>04</em>Over Ine</a></li><li><a href="contact.html"><em>05</em>Contact</a></li></ul>
+  <div class="drawer-foot">
+    <a class="btn" href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91</a>
+    <a class="btn btn--line" href="mailto:info@bambine.be"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>info@bambine.be</a>
+  </div>
 </div>
+<main id="main">
+<!-- ======================= HERO ======================= -->
+<section class="hero-cover">
+  <picture class="hero-media">
+    <source media="(max-aspect-ratio: 4/5)" srcset="assets/img/baby-onder-handdoek-staand-900.webp" width="900" height="1200">
+    <img src="assets/img/baby-onder-handdoek-1600.webp"
+         srcset="assets/img/baby-onder-handdoek-800.webp 800w, assets/img/baby-onder-handdoek-1600.webp 1600w"
+         sizes="100vw" width="1600" height="1067" fetchpriority="high" decoding="async"
+         alt="Baby met grote donkere ogen gluurt van onder een witte badhanddoek">
+  </picture>
+  <div class="hero-scrim" aria-hidden="true"></div>
 
-<main id="top">
-
-<!-- HERO -->
-<section class="hero">
-  <!-- FOTO-SLOT: hero. Vervang de gradient door bv. style="background-image:url('foto-hero.jpg')" -->
-  <div class="photo" role="img" aria-label="Het wellnessdomein van Terrakota met verwarmd buitenzwembad en botanische tuin">
-    <div class="ph-mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M7 5l1.4-2h7.2L17 5"/></svg></div>
+  <div class="sheet hero-cover-in" data-reveal>
+    <p class="label label--light"><i>—</i>Babywellness &amp; mamazorg in Lommel</p>
+    <h1>Een warm bad<br>voor de <em>allerkleinsten</em></h1>
+    <p class="lead">
+      Bij Bambine dobbert je baby in water van ongeveer 37 graden en bubbelt met lichtjes
+      en speeltjes. Ine ontvangt jullie in galerij Vivaldi, met veel warmte en gezelligheid.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn--onDark" href="reserveren.html">
+        <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Reserveer jullie moment
+      </a>
+      <a class="btn btn--ghostDark" href="cadeaubon.html">Bekijk de cadeaubonnen</a>
+    </div>
+    <p class="hero-facts">Vanaf 2 weken · water van ± 37 °C · vanaf € 55</p>
   </div>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <span class="eyebrow">Privé wellnessparadijs · Diepenbeek, Limburg</span>
-      <h1>Geniet. Beleef.<br><span class="accent-lime it">Onthaast.</span></h1>
-      <p class="hero-tag">"Terrakota — waar wellness belevenis wordt."</p>
-      <p class="hero-sub">Een botanische tuin, twee sauna's, een verwarmd zwembad en een Finse Kota — helemaal privé voor jouw gezelschap. Midden in de natuur van Limburg.</p>
-      <div class="hero-pills">
-        <span class="pill"><svg viewBox="0 0 24 24"><path d="M4 20s2-6 8-6 8 6 8 6"/><path d="M12 14V3M12 3c-2 1-3 3-3 5M12 3c2 1 3 3 3 5"/></svg>Botanische tuin</span>
-        <span class="pill"><svg viewBox="0 0 24 24"><path d="M3 15c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5M3 20c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5"/></svg>Verwarmd zwembad</span>
-        <span class="pill"><svg viewBox="0 0 24 24"><path d="M12 3v6M8 6c0 3 4 3 4 7M9 13c-2 1-3 3-3 5M15 13c2 1 3 3 3 5"/></svg>2 sauna's & jacuzzi</span>
-        <span class="pill"><svg viewBox="0 0 24 24"><polygon points="12,3 20,8 20,17 12,22 4,17 4,8"/></svg>Finse Kota</span>
+
+  <div class="hero-foot">
+    <a href="mailto:info@bambine.be">info@bambine.be</a>
+    <a class="hero-scroll" href="#warm-water" aria-label="Verder naar de inhoud">
+      <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg>
+    </a>
+    <a href="tel:+32474782691">+32 474 78 26 91</a>
+  </div>
+</section>
+
+<!-- ======================= WARM WATER ======================= -->
+<section class="band" id="warm-water">
+  <div class="sheet grid12" style="align-items:center">
+    <div class="s5" data-reveal="fig">
+      <div class="fig arch r-4-5 bleed-l">
+        <img src="assets/img/zeepbellen-hand-800.webp"
+             srcset="assets/img/zeepbellen-hand-800.webp 800w, assets/img/zeepbellen-hand-1600.webp 1600w"
+             sizes="(max-width: 900px) 92vw, 42vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Kinderhandje vol zeepbelletjes" style="object-position:40% 50%">
       </div>
-      <div class="hero-ctas">
-        <a href="#contact" class="btn btn-primary">Plan je verblijf <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="#beleving" class="btn btn-ghost">Ontdek de beleving</a>
-      </div>
     </div>
-  </div>
-</section>
-
-<!-- STATS -->
-<section class="stats">
-  <div class="stats-grid">
-    <div class="stat"><div class="stat-num" data-target="2">2</div><div class="stat-lbl">Sauna's + infrarood</div></div>
-    <div class="stat"><div class="stat-num" data-target="14"><span class="u">tot </span>14</div><div class="stat-lbl">Gasten in één gezelschap</div></div>
-    <div class="stat"><div class="stat-num" data-target="5">5</div><div class="stat-lbl">Yoga- & ademvormen</div></div>
-    <div class="stat"><div class="stat-num">mrt–nov</div><div class="stat-lbl">Open seizoen</div></div>
-  </div>
-</section>
-
-<!-- FACILITEITEN -->
-<section class="section" id="wellness">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">De faciliteiten</span>
-      <h2>Alles voor de zintuigen, <span class="accent-lime it">privé</span> voor jullie.</h2>
-      <p class="section-sub">Het volledige wellnessdomein is exclusief van jou tijdens je verblijf. Geen vreemden, geen tijdslots — enkel rust in een groene omgeving.</p>
-    </div>
-    <div class="feat-grid">
-      <div class="feat reveal"><div class="feat-ico lime"><svg viewBox="0 0 24 24"><path d="M12 3v6M8 6c0 3 4 3 4 7M9 13c-2 1-3 3-3 5M15 13c2 1 3 3 3 5"/></svg></div><h3>Twee sauna's</h3><p>Een authentieke Finse sauna en een milde infraroodcabine — kies je eigen temperatuur en tempo.</p></div>
-      <div class="feat reveal"><div class="feat-ico grey"><svg viewBox="0 0 24 24"><path d="M4 14c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4 1M6 14V9a6 6 0 0 1 12 0v5"/><circle cx="12" cy="6" r="1"/></svg></div><h3>Hot tub & jacuzzi</h3><p>Bubbelend warm water onder de open lucht, met zicht op de botanische tuin. Jaarrond op temperatuur.</p></div>
-      <div class="feat reveal"><div class="feat-ico grey"><svg viewBox="0 0 24 24"><path d="M3 15c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5M3 20c2 0 2-1.5 4-1.5s2 1.5 4 1.5 2-1.5 4-1.5 2 1.5 4 1.5"/></svg></div><h3>Verwarmd zwembad</h3><p>Baantjes trekken of loom drijven in het verwarmde buitenzwembad, omringd door groen.</p></div>
-      <div class="feat reveal"><div class="feat-ico green"><svg viewBox="0 0 24 24"><path d="M4 20s2-6 8-6 8 6 8 6"/><path d="M12 14V3M12 3c-2 1-3 3-3 5M12 3c2 1 3 3 3 5"/></svg></div><h3>Botanische tuin</h3><p>Een aangelegde tuin vol bijzondere beplanting — jouw private stukje natuur om in te dwalen.</p></div>
-      <div class="feat reveal"><div class="feat-ico lime"><svg viewBox="0 0 24 24"><polygon points="12,3 20,8 20,17 12,22 4,17 4,8"/><path d="M9 15c0-2 1.5-3 3-3s3 1 3 3"/></svg></div><h3>Finse Kota</h3><p>Een houten grillhut in Scandinavische stijl. Rond het vuur eten en napraten, ook als het buiten fris is.</p></div>
-      <div class="feat reveal"><div class="feat-ico green"><svg viewBox="0 0 24 24"><path d="M3 9l2-2 2 2M17 9l2-2 2 2M5 7v6a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V7"/><path d="M9 20h6"/></svg></div><h3>Lounge & studio</h3><p>Ruime binnen- en buitenlounges plus een aparte studio — genoeg plek om samen te zijn of je terug te trekken.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ELEMENTS -->
-<section class="section elements">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow">Het ritme van Terrakota</span>
-      <h2>Aarde, water, vuur &amp; <span class="accent-lime it">adem</span>.</h2>
-      <p class="section-sub" style="margin:0 auto;">Terrakota — "gebakken aarde" — draait rond vier elementen die je hier écht beleeft. Samen brengen ze lichaam en geest weer in balans.</p>
-    </div>
-    <div class="el-grid">
-      <div class="el earth reveal"><div class="el-hex"><svg viewBox="0 0 24 24"><path d="M4 20s2-6 8-6 8 6 8 6"/><path d="M12 14V4M12 4c-2 1-3 3-3 6M12 4c2 1 3 3 3 6"/></svg></div><div class="el-name">Aarde</div><div class="el-tag">Grounding</div><p>De botanische tuin en de warmte van terracotta brengen je terug naar de grond onder je voeten.</p></div>
-      <div class="el water reveal"><div class="el-hex"><svg viewBox="0 0 24 24"><path d="M12 3c4 5 6 8 6 11a6 6 0 0 1-12 0c0-3 2-6 6-11z"/></svg></div><div class="el-name">Water</div><div class="el-tag">Ontspanning</div><p>Zwembad, jacuzzi en hot tub laten spanning wegvloeien — warm water dat het lichaam verzacht.</p></div>
-      <div class="el fire reveal"><div class="el-hex"><svg viewBox="0 0 24 24"><path d="M12 2C7 6 5 9 5 13a7 7 0 0 0 14 0c0-2-1-4-3-6 0 2-1 3-2 3 1-4-1-7-2-8z"/></svg></div><div class="el-name">Vuur</div><div class="el-tag">Warmte</div><p>De sauna's en de Kota geven de diepe, herbronnende warmte waar het hier allemaal om draait.</p></div>
-      <div class="el air reveal"><div class="el-hex"><svg viewBox="0 0 24 24"><path d="M4 9h11a3 3 0 1 0-3-3M3 14h14a3 3 0 1 1-3 3"/></svg></div><div class="el-name">Adem</div><div class="el-tag">Verstilling</div><p>Breathwork, yoga en meditatie brengen je aandacht naar binnen. Ruimte om echt te ademen.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- VERBLIJF -->
-<section class="section" id="verblijf">
-  <div class="wrap">
-    <div class="stay-grid">
-      <div class="stay-media reveal">
-        <!-- FOTO-SLOT: verblijf/vakantiewoning -->
-        <div class="photo">
-          <span class="tag">Vakantiewoning</span>
-          <div class="ph-mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M7 5l1.4-2h7.2L17 5"/></svg></div>
-          <div class="cap"><b>De woning &amp; tuin</b><span>plaats hier een foto van het domein</span></div>
-        </div>
-        <div class="stay-badge"><b>vanaf €200</b><span>p.p. / weekend (8 gasten)</span></div>
-      </div>
-      <div class="stay-text reveal">
-        <span class="eyebrow">De vakantiewoning</span>
-        <h2>Een huis om samen te <span class="accent-green it">verblijven</span>.</h2>
-        <p class="section-sub">Huur Terrakota als volledig privé­domein — ideaal voor een vriendengroep, familie of een klein team dat er even tussenuit wil.</p>
-        <ul class="stay-list">
-          <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>2 slaapkamers met privébadkamer</b><p>Elk met eigen badkamer en toilet, plus een volledige studio voor 4 personen.</p></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Extra slaapplaatsen</b><p>Bijkomende slaapbanken in 2 aparte ruimtes — comfortabel tot 14 gasten.</p></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Privéwellness inbegrepen</b><p>Sauna's, jacuzzi, hot tub, zwembad en botanische tuin volledig voor jullie alleen.</p></div></li>
-          <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg></span><div><b>Doordeweeks voordeliger</b><p>Weekends, midweken en langere verblijven mogelijk van maart tot november.</p></div></li>
-        </ul>
-        <a href="#contact" class="btn btn-primary">Check beschikbaarheid <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="s6 from7" data-reveal style="--d:100ms">
+      <p class="label"><i>01</i>Hydrotherapie</p>
+      <h2>Dobberen, zoals<br>in de buik van mama</h2>
+      <p class="lead" style="margin-top:1.25rem">
+        Het water is altijd ongeveer 37 graden. Die warmte geeft je baby een veilig,
+        vertrouwd gevoel. Met een zacht halskraagje van schuim dobbert je kleintje vrij
+        rond, terwijl lichtjes en speeltjes de rest doen.
+      </p>
+      <ul class="dashes">
+        <li>Door te dobberen en te bubbelen worden de darmpjes gestimuleerd. Dat kan krampjes en de pijn van refluxklachten verlichten, en helpt bij constipatie.</li>
+        <li>Het trappelen, het “zwemmen”, stimuleert de ontwikkeling van de spieren en de grove motoriek.</li>
+        <li>Het warme water is goed voor de bloedsomloop.</li>
+        <li>Je baby verbruikt er veel energie bij en heeft nadien misschien wat sneller honger.</li>
+        <li>Na het afdrogen onder de warmtelamp kan je nog een Shantala babymassage erbij boeken.</li>
+      </ul>
+      <div class="actions">
+        <a class="tlink" href="reserveren.html#verloop">Zo verloopt een sessie<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- BELEVING -->
-<section class="section exp" id="beleving">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">De beleving</span>
-      <h2>Kom tot rust en <span class="accent-lime it">verdieping</span>.</h2>
-      <p class="section-sub">Naast een verblijf kun je bij Terrakota terecht voor belevingen die lichaam, geest en ziel weer verbinden — als toevoeging op je overnachting of helemaal los te boeken.</p>
+<!-- ======================= AANBOD ======================= -->
+<section class="band band--shell">
+  <div class="sheet">
+    <div class="grid12" style="margin-bottom:clamp(2.5rem,5vw,4.5rem)">
+      <div class="s6" data-reveal>
+        <p class="label"><i>02</i>Het aanbod</p>
+        <h2>Voor baby, mama<br>en de grote zus</h2>
+      </div>
     </div>
-    <div class="exp-grid">
-      <div class="exp-card reveal"><div class="exp-ico lime"><svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="3"/><path d="M6 21c0-4 2-7 6-7s6 3 6 7"/><path d="M4 13c1.5-1 3-1 4 0M16 13c1-1 2.5-1 4 0"/></svg></div><div><h3>Yoga in vele vormen</h3><p>Van diepe ontspanning tot activerende energie — begeleide sessies afgestemd op de groep.</p><div class="exp-tags"><span>Somatic yoga</span><span>Yoga Nidra</span><span>Kundalini</span><span>Tantra</span><span>Meditatie</span></div></div></div>
-      <div class="exp-card reveal"><div class="exp-ico green"><svg viewBox="0 0 24 24"><path d="M4 12h4l2-5 4 10 2-5h4"/></svg></div><div><h3>Breathwork</h3><p>Ademhalingstechnieken die je zenuwstelsel kalmeren en je lichamelijk welzijn een boost geven.</p><div class="exp-tags"><span>Ademsessies</span><span>Diepe relaxatie</span><span>Herbronnen</span></div></div></div>
-      <div class="exp-card reveal"><div class="exp-ico green"><svg viewBox="0 0 24 24"><path d="M12 3c2 3 2 6 0 9-2-3-2-6 0-9zM12 12v9M7 16c2 0 4 1 5 3M17 16c-2 0-4 1-5 3"/></svg></div><div><h3>Rituelen</h3><p>Momenten die lichaam, geest en ziel opnieuw met elkaar verbinden — bewust en persoonlijk.</p><div class="exp-tags"><span>Lichaam &amp; geest</span><span>Verstilling</span><span>Intentie</span></div></div></div>
-      <div class="exp-card reveal"><div class="exp-ico lime"><svg viewBox="0 0 24 24"><path d="M6 3v7a3 3 0 0 0 6 0V3M9 10v11M18 3c-2 0-3 2-3 5s1 5 3 5v8"/></svg></div><div><h3>Belevingsdagen</h3><p>Themadagen voor groepen die ontspanning en verbinding combineren. Privégroep vanaf 8, of sluit aan bij een open sessie.</p><div class="exp-tags"><span>Natuur</span><span>Wellness</span><span>Kookworkshop</span></div></div></div>
-    </div>
-  </div>
-</section>
 
-<!-- ZAKELIJK -->
-<section class="section" id="zakelijk">
-  <div class="wrap">
-    <div class="panel biz-inner reveal">
-      <div class="biz">
-        <span class="eyebrow">Business Incentive Centre</span>
-        <h2>Een offsite waar je team <span class="accent-lime it">echt</span> ontspant.</h2>
-        <p>Geef je medewerkers meer dan een vergaderzaal. Terrakota combineert wellness, natuur en verbinding tot een teambuilding op maat — wij zoeken een geschikte datum en bouwen een programma rond jullie doelen.</p>
-        <div class="cta-btns" style="justify-content:flex-start;">
-          <a href="#contact" class="btn btn-lime-solid">Vraag een bedrijfsvoorstel <svg viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:2;"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <div class="feature" data-reveal>
+      <div class="feature-art">
+        <div class="fig arch r-3-4">
+          <img src="assets/img/baby-onder-dekentje-800.webp"
+               srcset="assets/img/baby-onder-dekentje-800.webp 800w, assets/img/baby-onder-dekentje-1600.webp 1600w"
+               sizes="(max-width: 900px) 92vw, 38vw" width="800" height="533" loading="lazy" decoding="async"
+               alt="Baby met blauwe ogen kijkt van onder een zacht wit dekentje" style="object-position:30% 50%">
         </div>
       </div>
-      <div class="biz-list">
-        <div class="biz-item"><span class="bi"><svg viewBox="0 0 24 24"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><path d="M16 6a3 3 0 0 1 0 6M18 20c0-2-.8-3.5-2-4.5"/></svg></span><div><b>Teambuilding op maat</b><span>Een programma dat past bij jullie groep en doelen.</span></div></div>
-        <div class="biz-item"><span class="bi"><svg viewBox="0 0 24 24"><path d="M4 20s2-6 8-6 8 6 8 6"/><path d="M12 14V4"/></svg></span><div><b>Wellness &amp; natuur</b><span>Onthaasten in een private, groene omgeving.</span></div></div>
-        <div class="biz-item"><span class="bi"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><div><b>Flexibele planning</b><span>Samen zoeken we een datum die voor iedereen werkt.</span></div></div>
-        <div class="biz-item"><span class="bi"><svg viewBox="0 0 24 24"><path d="M6 3v7a3 3 0 0 0 6 0V3M9 10v11"/><path d="M18 3c-2 0-3 2-3 5s1 5 3 5v8"/></svg></span><div><b>Catering inbegrepen</b><span>Van gedeelde lunch tot grillavond in de Kota.</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- SFEER / FOTO GALLERY -->
-<section class="section sfeer" id="sfeer">
-  <div class="wrap">
-    <div class="sec-head reveal">
-      <span class="eyebrow">Foto's</span>
-      <h2>Een indruk van het <span class="accent-green it">domein</span>.</h2>
-      <p class="section-sub">Plaats hier de mooiste beelden van Terrakota — de tuin, het zwembad, de sauna's en de Kota bij avond.</p>
-    </div>
-    <div class="sfeer-grid" aria-label="Sfeerbeelden van Terrakota">
-      <!-- FOTO-SLOTS: vervang elke gradient door een echte foto -->
-      <div class="photo t-tall reveal"><span class="tag">Tuin</span><div class="ph-mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M7 5l1.4-2h7.2L17 5"/></svg></div><div class="cap"><b>De botanische tuin</b><span>bij zonsopgang</span></div></div>
-      <div class="photo t-wide reveal"><span class="tag">Zwembad</span><div class="ph-mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M7 5l1.4-2h7.2L17 5"/></svg></div><div class="cap"><b>Het verwarmde zwembad</b></div></div>
-      <div class="photo reveal"><div class="ph-mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M7 5l1.4-2h7.2L17 5"/></svg></div><div class="cap"><b>Groen rondom</b></div></div>
-      <div class="photo reveal"><span class="tag">Kota</span><div class="ph-mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M7 5l1.4-2h7.2L17 5"/></svg></div><div class="cap"><b>De Finse Kota</b><span>bij avond</span></div></div>
-      <div class="photo t-wide reveal"><span class="tag">Wellness</span><div class="ph-mark"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="12" cy="12" r="3.2"/><path d="M7 5l1.4-2h7.2L17 5"/></svg></div><div class="cap"><b>Sauna &amp; jacuzzi</b><span>tot rust komen</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- TESTIMONIALS -->
-<section class="section">
-  <div class="wrap">
-    <div class="sec-head center reveal">
-      <span class="eyebrow">Wat gasten zeggen</span>
-      <h2>Weg van alles, <span class="accent-lime it">dichtbij</span> huis.</h2>
-    </div>
-    <div class="testi-grid">
-      <div class="testi reveal">
-        <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
-        <blockquote>"Met acht vriendinnen het hele domein voor onszelf. Sauna, jacuzzi, de tuin — we zijn een heel weekend niet buiten geweest en kwamen thuis alsof we een week weg waren."</blockquote>
-        <div class="who"><span class="av" style="background:var(--lime);">L</span><div><b>Lise &amp; vriendinnen</b><span>Weekendverblijf</span></div></div>
-      </div>
-      <div class="testi reveal">
-        <div class="stars"><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg><svg viewBox="0 0 24 24"><path d="M12 2l3 6 7 1-5 5 1 7-6-3-6 3 1-7-5-5 7-1z"/></svg></div>
-        <blockquote>"We boekten een belevingsdag met breathwork en een kookworkshop voor het team. Iedereen kwam ontspannen én verbonden terug op kantoor. Precies wat we zochten."</blockquote>
-        <div class="who"><span class="av" style="background:var(--green);color:#fff;">M</span><div><b>Team offsite</b><span>Belevingsdag in groep</span></div></div>
-      </div>
-    </div>
-    <p style="text-align:center;font-size:12.5px;color:var(--faint);margin-top:26px;">Voorbeeldreviews voor dit conceptvoorstel — te vervangen door echte gastenreacties.</p>
-  </div>
-</section>
-
-<!-- FAQ -->
-<section class="section" style="background:var(--bg-2);">
-  <div class="wrap">
-    <div class="faq-wrap">
-      <div class="sec-head center reveal">
-        <span class="eyebrow">Goed om te weten</span>
-        <h2>Veelgestelde <span class="accent-lime it">vragen</span>.</h2>
-      </div>
-      <div class="faq reveal">
-        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Wanneer is Terrakota geopend?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Het domein is te huur van maart/april tot oktober/november. Buiten dat seizoen kun je terecht voor losse belevingen en bedrijfsdagen op aanvraag.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Voor hoeveel personen is de woning geschikt?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Er zijn 2 slaapkamers met privébadkamer en een volledige studio voor 4 personen, plus extra slaapbanken in 2 aparte ruimtes — samen comfortabel tot 14 gasten.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is de wellness echt volledig privé?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Ja. Tijdens je verblijf heb je het volledige domein — sauna's, jacuzzi, hot tub, zwembad en botanische tuin — exclusief voor je eigen gezelschap. Je deelt met niemand.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Kan ik yoga of breathwork los boeken?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Zeker. Belevingen kun je toevoegen aan je overnachting of volledig los boeken — als privégroep (vanaf 8 personen) of door aan te sluiten bij een open sessie.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Wat kost een verblijf?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Voor een groep van 8 kom je op ongeveer €200 per persoon voor een weekend, inclusief linnen, verblijf en privégebruik van de wellness. Doordeweeks en bij grotere groepen ligt de prijs lager.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false"><span>Is Terrakota geschikt voor bedrijven?</span><span class="faq-plus" aria-hidden="true"></span></button><div class="faq-a"><p>Absoluut — als Business Incentive Centre stellen we teambuildings en incentives op maat samen, met wellness, natuur en catering.</p></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
-<section class="section" id="contact" style="padding-top:40px;">
-  <div class="wrap">
-    <div class="panel reveal">
-      <div class="cta-inner">
-        <span class="eyebrow" style="justify-content:center;">Klaar om te onthaasten?</span>
-        <h2>Reserveer je plek in het <span class="accent-lime it">wellnessparadijs</span>.</h2>
-        <p>Vertel ons wanneer en met hoeveel je komt — we denken graag mee over je verblijf of beleving. Vrijblijvend en persoonlijk.</p>
-        <div class="cta-btns">
-          <a href="mailto:info@terrakota.be?subject=Reservatie%20Terrakota" class="btn btn-lime-solid">Stuur een aanvraag <svg viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:2;"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          <a href="tel:+32468191333" class="btn btn-outline-light"><svg viewBox="0 0 24 24" style="stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>+32 468 19 13 33</a>
+      <div class="feature-body">
+        <span class="feature-num" aria-hidden="true">01</span>
+        <h3>Babywellness</h3>
+        <p class="lead">
+          Een halfuur hydrotherapie, of een sessie met daarna een Shantala babymassage.
+          Komen er twee kindjes, zoals vriendjes of een tweeling? Dan baden ze elk in een
+          eigen badje. Welkom vanaf twee weken tot ongeveer 20 maanden.
+        </p>
+        <div class="feature-meta">
+          <span class="feature-price">vanaf € 55<small>hydrotherapie · 30 minuten</small></span>
+          <a class="tlink" href="tarieven.html#babywellness">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
         </div>
-        <div class="cta-checks">
-          <span class="cta-check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Vrijblijvend</span>
-          <span class="cta-check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Volledig privé</span>
-          <span class="cta-check"><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Midden in de natuur</span>
+      </div>
+    </div>
+
+    <div class="feature feature--flip" data-reveal>
+      <div class="feature-art">
+        <div class="fig arch r-3-4">
+          <img src="assets/img/zwangere-buik-800.webp"
+               srcset="assets/img/zwangere-buik-800.webp 800w, assets/img/zwangere-buik-1600.webp 1600w"
+               sizes="(max-width: 900px) 92vw, 38vw" width="800" height="533" loading="lazy" decoding="async"
+               alt="Zwangere vrouw in een roze jurk vormt een hartje met haar handen op haar buik" style="object-position:45% 50%">
         </div>
+      </div>
+      <div class="feature-body">
+        <span class="feature-num" aria-hidden="true">02</span>
+        <h3>Mama &amp; vrouw</h3>
+        <p class="lead">
+          Een zwangerschapsmassage, hoe ver je ook bent, of een ontspanningsmassage voor elke
+          vrouw, met of zonder kinderen. Eerst een voetenbadje en een drankje, dan ongeveer een
+          uur massage van het volledige lichaam.
+        </p>
+        <div class="feature-meta">
+          <span class="feature-price">€ 90<small>± 75 minuten</small></span>
+          <a class="tlink" href="tarieven.html#mama">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="feature" data-reveal>
+      <div class="feature-art">
+        <div class="fig arch r-3-4">
+          <img src="assets/img/meisje-gezichtsmassage-676.webp" width="676" height="901" loading="lazy" decoding="async"
+               alt="Meisje met gesloten ogen krijgt een zachte gezichtsmassage">
+        </div>
+      </div>
+      <div class="feature-body">
+        <span class="feature-num" aria-hidden="true">03</span>
+        <h3>Kids</h3>
+        <p class="lead">
+          Een verwensessie voor meisjes van 3 tot 16 jaar, met een massage, een gelaatsmasker,
+          een voetenbadje, gelakte nagels, schmink en ingevlochten haren. Ook een
+          ontspanningsmassage voor kids van 6 tot 16 jaar, en Mini en me voor vrouw en meisje samen.
+        </p>
+        <div class="feature-meta">
+          <span class="feature-price">vanaf € 60<small>verwensessie · ± 60 minuten</small></span>
+          <a class="tlink" href="tarieven.html#kids">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= OVER INE ======================= -->
+<section class="band band--dark" id="ine">
+  <div class="sheet grid12" style="align-items:center">
+    <div class="s5" data-reveal="fig">
+      <div class="fig arch r-4-5 bleed-l">
+        <img src="assets/img/ine-met-baby-800.webp"
+             srcset="assets/img/ine-met-baby-800.webp 800w, assets/img/ine-met-baby-853.webp 853w"
+             sizes="(max-width: 900px) 92vw, 42vw" width="800" height="1200" loading="lazy" decoding="async"
+             alt="Ine houdt lachend een pasgeboren baby in haar armen in de praktijk van Bambine" style="object-position:50% 40%">
+      </div>
+    </div>
+    <div class="s6 from7" data-reveal style="--d:100ms">
+      <p class="label label--light"><i>03</i>Wie je ontvangt</p>
+      <h2>Ine Hendriks</h2>
+      <p class="lead" style="margin-top:1.25rem">
+        Ine is geboren en getogen in Lommel en woont vandaag in Balen. Ze is mama van Amélie
+        en Loïc, en werkte zeventien jaar in een kinderkribbe in Lommel, bij de kleintjes van
+        0 tot 3 jaar.
+      </p>
+      <p>
+        Al van kleins af aan heeft ze een passie voor kindjes, vooral voor de allerkleinsten.
+        Wat ze in de kinderkribbe leerde, geeft ze graag door: tips en tricks voor andere
+        mama's, of gewoon een praatje als je daar nood aan hebt. Ine is ook hoger redder in
+        het zwembad. Bij Bambine komen haar twee passies samen: water en baby's.
+      </p>
+      <ul class="dashes">
+        <li>Ine werkt één op één</li>
+        <li>In galerij Vivaldi, Michiel Jansplein 28/b2</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CITAAT ======================= -->
+<section class="band">
+  <div class="sheet">
+    <div class="grid12">
+      <div class="s9 from2" data-reveal>
+        <blockquote class="pull pull--big">
+          <p>“Warmte en gezelligheid draag ik hoog in het vaandel. Als je daar ook van houdt, dan ben je op de juiste plek.”</p>
+        </blockquote>
+        <p class="pull-by">Ine, Bambine</p>
+      </div>
+    </div>
+
+    <div class="gallery" data-reveal="fig">
+      <div class="fig arch">
+        <img src="assets/img/babyvoetjes-in-doek-800.webp"
+             srcset="assets/img/babyvoetjes-in-doek-800.webp 800w, assets/img/babyvoetjes-in-doek-1600.webp 1600w"
+             sizes="(max-width: 760px) 46vw, 30vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Twee babyvoetjes steken uit een witte doek" style="object-position:60% 50%">
+      </div>
+      <div class="fig arch">
+        <img src="assets/img/baby-gaapt-teddybeer-800.webp"
+             srcset="assets/img/baby-gaapt-teddybeer-800.webp 800w, assets/img/baby-gaapt-teddybeer-1600.webp 1600w"
+             sizes="(max-width: 760px) 46vw, 30vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Pasgeboren baby met een grijs mutsje gaapt naast een witte teddybeer" style="object-position:45% 50%">
+      </div>
+      <div class="fig arch">
+        <img src="assets/img/handen-rond-babyvoetjes-800.webp"
+             srcset="assets/img/handen-rond-babyvoetjes-800.webp 800w, assets/img/handen-rond-babyvoetjes-1600.webp 1600w"
+             sizes="(max-width: 760px) 92vw, 30vw" width="800" height="533" loading="lazy" decoding="async"
+             alt="Twee handen vormen een kommetje rond babyvoetjes met een geel bloemetje" style="object-position:55% 60%">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CADEAUBON ======================= -->
+<section class="band band--shell" id="cadeau">
+  <div class="sheet grid12" style="align-items:center">
+    <div class="s5" data-reveal>
+      <p class="label"><i>04</i>Cadeaubon</p>
+      <h2>Een origineel<br>cadeau</h2>
+      <p class="lead" style="margin-top:1.25rem">
+        Zoek je iets bijzonders voor mama, papa of de baby? Geef een cadeaubon van Bambine.
+        Ook voor meisjes vanaf 3 jaar is er een verwenmoment. Kies een digitale bon die je
+        meteen online koopt, of een fysieke bon die naar je opgestuurd wordt.
+      </p>
+      <div class="actions">
+        <a class="btn" href="cadeaubon.html#digitaal">
+          <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg>Digitale cadeaubon
+        </a>
+        <a class="tlink" href="cadeaubon.html#fysiek">Fysieke cadeaubon<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </div>
+    </div>
+    <div class="s6 from7" data-reveal="fig">
+      <img class="voucher" src="assets/img/cadeaubon-1000.webp"
+           srcset="assets/img/cadeaubon-600.webp 600w, assets/img/cadeaubon-1000.webp 1000w"
+           sizes="(max-width: 900px) 92vw, 46vw" width="1000" height="500" loading="lazy" decoding="async"
+           alt="Cadeaubon van Babywellness Bambine">
+    </div>
+  </div>
+</section>
+
+<!-- ======================= VRAGEN + CONTACT ======================= -->
+<section class="band" id="afspraak">
+  <div class="sheet grid12">
+    <div class="s6" data-reveal>
+      <p class="label"><i>05</i>Veelgestelde vragen</p>
+      <h2 style="margin-bottom:2rem">Wat ouders<br>vaak vragen</h2>
+      <div class="faq"><div class="faq-item"><h3 class="faq-h"><button class="faq-q" aria-expanded="false" type="button" id="v-leeftijd" aria-controls="a-leeftijd"><span class="faq-n">01</span><span>Vanaf welke leeftijd is mijn baby welkom?</span><span class="faq-sign" aria-hidden="true"></span></button></h3><div class="faq-a" id="a-leeftijd" role="region" aria-labelledby="v-leeftijd"><div><p>Vanaf twee weken. Is je baby te vroeg geboren, dan tellen we vanaf de uitgerekende datum. Babywellness kan tot ongeveer 20 maanden, afhankelijk van hoe groot of klein je baby is.</p></div></div></div><div class="faq-item"><h3 class="faq-h"><button class="faq-q" aria-expanded="false" type="button" id="v-meebrengen" aria-controls="a-meebrengen"><span class="faq-n">02</span><span>Wat breng ik mee?</span><span class="faq-sign" aria-hidden="true"></span></button></h3><div class="faq-a" id="a-meebrengen" role="region" aria-labelledby="v-meebrengen"><div><p>Gewoon de luiertas met een schone luier, propere kleertjes en eventueel wat eten. Voor de rest zorgt Bambine: massageolie, een floatband, handdoeken, tetradoeken en een zwemluier.</p></div></div></div><div class="faq-item"><h3 class="faq-h"><button class="faq-q" aria-expanded="false" type="button" id="v-personen" aria-controls="a-personen"><span class="faq-n">03</span><span>Hoeveel mensen mogen er mee?</span><span class="faq-sign" aria-hidden="true"></span></button></h3><div class="faq-a" id="a-personen" role="region" aria-labelledby="v-personen"><div><p>Dat kies je zelf, het is jullie moment. Maar hoe meer mensen erbij zijn, hoe meer prikkels en hoe minder rust je baby ervaart.</p></div></div></div><div class="faq-item"><h3 class="faq-h"><button class="faq-q" aria-expanded="false" type="button" id="v-annuleren" aria-controls="a-annuleren"><span class="faq-n">04</span><span>Wat als ik de afspraak niet kan nakomen?</span><span class="faq-sign" aria-hidden="true"></span></button></h3><div class="faq-a" id="a-annuleren" role="region" aria-labelledby="v-annuleren"><div><p>Verwittig zo snel mogelijk, minstens 24 uur op voorhand, en enkel telefonisch. Verwittig je op tijd en met een geldige reden, dan krijg je een tegoedbon. Kom je te laat, dan stopt de sessie wel op het afgesproken uur.</p></div></div></div></div>
+      <div class="actions">
+        <a class="tlink" href="contact.html#faq">Alle vragen<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+      </div>
+    </div>
+
+    <div class="s5 from8" data-reveal style="--d:100ms">
+      <p class="label"><i>06</i>Een afspraak maken</p>
+      <h2 style="margin-bottom:1.25rem">Reserveer<br>online</h2>
+      <p class="lead">
+        Kies je behandeling en een moment dat past. Liever eerst iets vragen? Bel of mail Ine.
+      </p>
+      <ul class="info" style="margin-top:2rem">
+        <li><span class="k">Telefoon</span><a href="tel:+32474782691">+32 474 78 26 91</a></li>
+        <li><span class="k">E-mail</span><a href="mailto:info@bambine.be">info@bambine.be</a></li>
+        <li><span class="k">Adres</span><span>Michiel Jansplein 28/b2<br>3920 Lommel · galerij Vivaldi</span></li>
+        <li><span class="k">Openingsuren</span><span class="todo">nog aan te vullen</span></li>
+      </ul>
+      <div class="actions">
+        <a class="btn" href="reserveren.html#boeken">
+          <svg class="ico" aria-hidden="true"><use href="#i-calendar-days"></use></svg>Reserveer online
+        </a>
+        <a class="tlink" href="contact.html#route">Route<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
       </div>
     </div>
   </div>
 </section>
 
 </main>
-
-<!-- FOOTER -->
-<footer class="footer">
-  <div class="wrap">
+<footer class="site-footer">
+  <div class="sheet">
     <div class="footer-grid">
-      <div class="footer-about">
-        <a href="#top" class="brand" aria-label="Terrakota">
-          <svg class="brand-mark" viewBox="0 0 30 34" aria-hidden="true"><polygon points="15,1 29,9 29,25 15,33 1,25 1,9" fill="none" stroke="#aecb3a" stroke-width="1.8"/><path d="M9 21c0-4 2.5-7 6-7s6 3 6 7" fill="none" stroke="#9aa196" stroke-width="1.8" stroke-linecap="round"/><circle cx="15" cy="12.5" r="2.4" fill="#aecb3a"/></svg>
-          <span class="brand-name">terra<b>kota</b></span>
-        </a>
-        <p>Privé wellnessparadijs in een botanische tuin in Diepenbeek. Onthaasten, verdiepen en samen zijn — midden in de natuur van Limburg.</p>
+      <div>
+        <img class="footer-logo" src="assets/img/logo-licht-320.webp" width="320" height="320" alt="Bambine, babywellness and more" loading="lazy">
+        <p class="footer-lead">Babywellness, mamazorg en verwenmomenten in galerij Vivaldi, Lommel.</p>
+        <div class="socials">
+          <a href="https://www.instagram.com/bambine.babywellness/" rel="noopener me" aria-label="Bambine op Instagram"><svg class="ico" aria-hidden="true"><use href="#i-si-instagram"></use></svg></a>
+          <a href="https://www.facebook.com/BambineBabywellness/" rel="noopener me" aria-label="Bambine op Facebook"><svg class="ico" aria-hidden="true"><use href="#i-si-facebook"></use></svg></a>
+          <a href="mailto:info@bambine.be" aria-label="Mail Bambine"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg></a>
+        </div>
       </div>
       <div>
-        <h4>Ontdek</h4>
+        <h2 class="footer-h">Aanbod</h2>
         <ul>
-          <li><a href="#wellness">Faciliteiten</a></li>
-          <li><a href="#verblijf">De vakantiewoning</a></li>
-          <li><a href="#beleving">Beleving &amp; yoga</a></li>
-          <li><a href="#sfeer">Foto's</a></li>
+          <li><a href="tarieven.html#babywellness">Babywellness</a></li>
+          <li><a href="tarieven.html#mama">Mama &amp; vrouw</a></li>
+          <li><a href="tarieven.html#kids">Kids</a></li>
+          <li><a href="cadeaubon.html">Cadeaubon</a></li>
         </ul>
       </div>
       <div>
-        <h4>Voor groepen</h4>
+        <h2 class="footer-h">Praktisch</h2>
         <ul>
-          <li><a href="#zakelijk">Bedrijven &amp; incentives</a></li>
-          <li><a href="#beleving">Belevingsdagen</a></li>
-          <li><a href="#contact">Reserveren</a></li>
-          <li><a href="#contact">Beschikbaarheid</a></li>
+          <li><a href="reserveren.html">Reserveren</a></li>
+          <li><a href="contact.html#faq">Veelgestelde vragen</a></li>
+          <li><a href="index.html#ine">Over Ine</a></li>
+          <li><a href="https://www.bambine-webshop.be/" rel="noopener">Webshop</a></li>
         </ul>
       </div>
       <div>
-        <h4>Contact</h4>
-        <ul class="footer-contact">
-          <li><svg viewBox="0 0 24 24"><path d="M12 22s8-5 8-12a8 8 0 1 0-16 0c0 7 8 12 8 12z"/><circle cx="12" cy="10" r="2.5"/></svg><span>Lutselusstraat 156<br>3590 Diepenbeek, Limburg</span></li>
-          <li><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.2-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg><a href="tel:+32468191333">+32 (0)468 19 13 33</a></li>
-          <li><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><a href="mailto:info@terrakota.be">info@terrakota.be</a></li>
+        <h2 class="footer-h">Contact</h2>
+        <ul>
+          <li>Michiel Jansplein 28/b2<br>3920 Lommel<br>galerij Vivaldi</li>
+          <li><a href="tel:+32474782691">+32 474 78 26 91</a></li>
+          <li><a href="mailto:info@bambine.be">info@bambine.be</a></li>
+          <li>Openingsuren: <span class="todo">nog aan te vullen</span></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>© 2026 Terrakota — Wellnessparadijs Limburg. Alle rechten voorbehouden.</p>
-      <span class="demo-note"><b>Conceptvoorstel</b> · ontwerp door EM Launchpad — geen officiële website</span>
+      <span>© <span data-year>2026</span> Bambine babywellness & mamazorg</span>
+      <span>Conceptontwerp door EM Launchpad</span>
     </div>
   </div>
 </footer>
-
-<script>
-(function () {
-  var root = document.documentElement;
-
-  /* Theme toggle — merk is donker; toggle geeft licht */
-  var themeBtn = document.getElementById('themeBtn');
-  var sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
-  var moon = '<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>';
-  function isLight() { return root.getAttribute('data-theme') === 'light'; }
-  function setIcon() { var ic = document.getElementById('themeIcon'); if (ic) ic.innerHTML = isLight() ? moon : sun; }
-  try { var saved = localStorage.getItem('tk-theme'); if (saved) root.setAttribute('data-theme', saved); } catch (e) {}
-  setIcon();
-  if (themeBtn) themeBtn.addEventListener('click', function () {
-    var next = isLight() ? 'dark' : 'light';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('tk-theme', next); } catch (e) {}
-    setIcon();
-  });
-
-  /* Sticky nav shadow */
-  var nav = document.getElementById('nav');
-  function onScroll() { if (nav) nav.classList.toggle('scrolled', window.scrollY > 12); }
-  onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
-
-  /* Mobile menu */
-  var mm = document.getElementById('mobileMenu');
-  var burger = document.getElementById('hamburger');
-  function openMenu(o) {
-    if (!mm) return;
-    mm.classList.toggle('open', o);
-    if (burger) burger.setAttribute('aria-expanded', o ? 'true' : 'false');
-    document.body.style.overflow = o ? 'hidden' : '';
-  }
-  if (burger) burger.addEventListener('click', function () { openMenu(true); });
-  var mmClose = document.getElementById('mmClose');
-  if (mmClose) mmClose.addEventListener('click', function () { openMenu(false); });
-  if (mm) mm.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { openMenu(false); }); });
-
-  /* FAQ accordion */
-  document.querySelectorAll('.faq-q').forEach(function (q) {
-    q.addEventListener('click', function () {
-      var open = q.getAttribute('aria-expanded') === 'true';
-      document.querySelectorAll('.faq-q[aria-expanded="true"]').forEach(function (o) {
-        o.setAttribute('aria-expanded', 'false');
-        o.nextElementSibling.style.maxHeight = null;
-      });
-      if (!open) { q.setAttribute('aria-expanded', 'true'); var a = q.nextElementSibling; a.style.maxHeight = a.scrollHeight + 'px'; }
-    });
-  });
-
-  /* Reveal on scroll (visible by default; hidden only with a guaranteed comeback) */
-  var reveals = [].slice.call(document.querySelectorAll('.reveal'));
-  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if ('IntersectionObserver' in window && !reduce) {
-    reveals.forEach(function (el) { el.classList.add('pre'); });
-    document.querySelectorAll('.feat-grid, .el-grid, .exp-grid, .testi-grid, .sfeer-grid').forEach(function (grid) {
-      grid.querySelectorAll('.reveal').forEach(function (el, i) { el.style.transitionDelay = (i * 0.06) + 's'; });
-    });
-    var obs = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.remove('pre'); obs.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    reveals.forEach(function (el) { obs.observe(el); });
-    setTimeout(function () { reveals.forEach(function (el) { el.classList.remove('pre'); }); }, 2200);
-  }
-
-  /* Animated counters */
-  var counted = false;
-  var numEls = document.querySelectorAll('[data-target]');
-  function runCount() {
-    if (counted) return; counted = true;
-    numEls.forEach(function (el) {
-      var target = parseFloat(el.getAttribute('data-target'));
-      var suffix = el.querySelector('.u') ? el.querySelector('.u').outerHTML : '';
-      var start = performance.now(), dur = 1300;
-      function tick(now) {
-        var p = Math.min((now - start) / dur, 1);
-        var val = Math.round(target * (1 - Math.pow(1 - p, 3)));
-        el.innerHTML = suffix + val;
-        if (p < 1) requestAnimationFrame(tick);
-      }
-      requestAnimationFrame(tick);
-    });
-  }
-  if ('IntersectionObserver' in window && numEls.length) {
-    var so = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) { if (e.isIntersecting) { runCount(); so.disconnect(); } });
-    }, { threshold: 0.4 });
-    so.observe(numEls[0].closest('.stats'));
-  }
-})();
-</script>
-
-<!-- LeadConnector AI chat-widget (GoHighLevel). Werkt live/in de browser & in GHL;
-     laadt niet in de gedeelde previewlink (sandbox blokkeert externe scripts). -->
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a98580cf0e4d579013fcb1e"></script>
+<div class="action-bar">
+  <a href="tel:+32474782691"><svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>Bellen</a>
+  <a href="mailto:info@bambine.be"><svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>Mailen</a>
+</div>
+<script src="assets/js/site.js?v=5ab769ef" defer></script>
 </body>
 </html>

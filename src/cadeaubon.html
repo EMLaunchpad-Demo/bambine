@@ -1,0 +1,174 @@
+<section class="page-head">
+  <div class="sheet">
+    <ol class="crumbs">
+      <li><a href="index.html">Home</a></li>
+      <li aria-hidden="true">·</li>
+      <li aria-current="page">Cadeaubon</li>
+    </ol>
+    <div class="grid12" style="align-items:center">
+      <div class="s6" data-reveal>
+        <p class="label"><i>—</i>Een origineel cadeau</p>
+        <h1>Cadeaubon</h1>
+        <p class="lead" style="margin-top:1.25rem">
+          Op zoek naar een origineel cadeau voor mama, papa of baby? Dan ben je hier aan het
+          juiste adres. Ook voor meisjes vanaf 3 jaar zijn er behandelingen. Het bedrag kies
+          je zelf.
+        </p>
+      </div>
+      <div class="s5 from8" data-reveal="fig">
+        <img class="voucher" src="assets/img/cadeaubon-1000.webp"
+             srcset="assets/img/cadeaubon-600.webp 600w, assets/img/cadeaubon-1000.webp 1000w"
+             sizes="(max-width: 900px) 92vw, 40vw" width="1000" height="500" decoding="async"
+             alt="Cadeaubon van Babywellness Bambine">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= KEUZE: DIGITAAL OF FYSIEK ======================= -->
+<section class="band band--shell" id="bestellen">
+  <div class="sheet">
+    <div class="grid12" style="margin-bottom:clamp(2rem,4vw,3rem)">
+      <div class="s6" data-reveal>
+        <p class="label"><i>01</i>Kies je cadeaubon</p>
+        <h2>Digitaal of<br>om vast te houden</h2>
+      </div>
+    </div>
+
+    <fieldset class="bon-keuze" data-reveal>
+      <legend class="sr-only">Welke cadeaubon wil je?</legend>
+      <label class="bon-optie" id="digitaal">
+        <input type="radio" name="bon-soort" value="digitaal" checked>
+        <span class="bon-optie-nr" aria-hidden="true">01</span>
+        <span class="bon-optie-titel">Digitale cadeaubon</span>
+        <span class="bon-optie-tekst">Meteen online kopen en betalen, zonder langs te komen.</span>
+      </label>
+      <label class="bon-optie" id="fysiek">
+        <input type="radio" name="bon-soort" value="fysiek">
+        <span class="bon-optie-nr" aria-hidden="true">02</span>
+        <span class="bon-optie-titel">Fysieke cadeaubon</span>
+        <span class="bon-optie-tekst">Een echte bon, die naar je opgestuurd wordt.</span>
+      </label>
+    </fieldset>
+
+    <!-- Digitaal: de online checkout van de cadeaubon. site.js laadt het script pas
+         wanneer deze keuze open staat; het moet vlak na de div komen. -->
+    <div class="bon-paneel grid12" data-paneel="digitaal">
+      <div class="s4">
+        <h3>Digitale cadeaubon</h3>
+        <p>Je koopt en betaalt de bon hier online. Handig als je snel een cadeau nodig hebt.</p>
+        <p class="small">
+          Lukt het hier niet? Open de
+          <a href="https://link.fastpaydirect.com/gift-card/6ab3febee345593058111650" rel="noopener">bestelpagina in een nieuw venster</a>.
+        </p>
+      </div>
+      <div class="s7 from6">
+        <div class="bon-embed" data-gc-src="https://storage.googleapis.com/leadgen-payment-products-preview-nuxt-assets/js/iframe-resizer/gc-embed.parent.js">
+          <!-- Embedded Gift Card Live Mode Checkout -->
+          <div data-gc-id="6ab3febee345593058111650"></div>
+          <p class="bon-laden small">De online bestelling wordt geladen …</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Fysiek: de bon wordt opgestuurd. Het formulier maakt een ingevulde mail aan
+         info@bambine.be; zonder JavaScript valt het terug op een gewone mailto-verzending. -->
+    <div class="bon-paneel grid12" data-paneel="fysiek">
+      <div class="s4">
+        <h3>Fysieke cadeaubon</h3>
+        <p>
+          Kies wat je cadeau geeft en waar de bon naartoe moet, en verstuur de mail die
+          klaarstaat. De bon wordt opgestuurd naar het adres dat je opgeeft: naar jezelf,
+          of meteen naar wie hem krijgt.
+        </p>
+        <ul class="info" style="margin-top:1.5rem">
+          <li><span class="k">Liever bellen?</span><a href="tel:+32474782691">+32 474 78 26 91</a></li>
+        </ul>
+      </div>
+      <div class="s7 from6">
+        <form class="bon-form" action="mailto:info@bambine.be?subject=Aanvraag%20fysieke%20cadeaubon" method="post" enctype="text/plain" novalidate>
+          <div class="veld">
+            <label for="bon-wat">Wat geef je cadeau? <span class="req" aria-hidden="true">*</span></label>
+            <select id="bon-wat" name="Cadeau" required>
+              <option value="">Kies een behandeling of een bedrag</option>
+              <!-- bon-opties -->
+            </select>
+          </div>
+          <div class="veld" data-bedrag hidden>
+            <label for="bon-bedrag">Bedrag in euro <span class="req" aria-hidden="true">*</span></label>
+            <input id="bon-bedrag" name="Bedrag" type="number" inputmode="numeric" min="1" step="1">
+          </div>
+          <fieldset class="veld veld--adres">
+            <legend>Leveradres</legend>
+            <div class="veld">
+              <label for="bon-ontvanger">Naam op het adres</label>
+              <input id="bon-ontvanger" name="Ontvanger" type="text" autocomplete="shipping name" aria-describedby="bon-ontvanger-hulp">
+              <p class="veld-hulp" id="bon-ontvanger-hulp">Laat leeg als de bon naar jou mag.</p>
+            </div>
+            <div class="veld">
+              <label for="bon-straat">Straat en huisnummer <span class="req" aria-hidden="true">*</span></label>
+              <input id="bon-straat" name="Straat" type="text" autocomplete="shipping street-address" required>
+            </div>
+            <div class="veld-rij veld-rij--post">
+              <div class="veld">
+                <label for="bon-postcode">Postcode <span class="req" aria-hidden="true">*</span></label>
+                <input id="bon-postcode" name="Postcode" type="text" inputmode="numeric" autocomplete="shipping postal-code" required>
+              </div>
+              <div class="veld">
+                <label for="bon-gemeente">Gemeente <span class="req" aria-hidden="true">*</span></label>
+                <input id="bon-gemeente" name="Gemeente" type="text" autocomplete="shipping address-level2" required>
+              </div>
+            </div>
+          </fieldset>
+          <p class="veld-kop">Jouw gegevens</p>
+          <div class="veld-rij">
+            <div class="veld">
+              <label for="bon-naam">Je naam <span class="req" aria-hidden="true">*</span></label>
+              <input id="bon-naam" name="Naam" type="text" autocomplete="name" required>
+            </div>
+            <div class="veld">
+              <label for="bon-tel">Telefoon</label>
+              <input id="bon-tel" name="Telefoon" type="tel" autocomplete="tel">
+            </div>
+          </div>
+          <div class="veld">
+            <label for="bon-mail">E-mail <span class="req" aria-hidden="true">*</span></label>
+            <input id="bon-mail" name="E-mail" type="email" autocomplete="email" required>
+          </div>
+          <div class="veld">
+            <label for="bon-noot">Opmerking</label>
+            <textarea id="bon-noot" name="Opmerking" rows="3"></textarea>
+          </div>
+          <div class="actions" style="margin-top:1.5rem">
+            <button class="btn" type="submit">
+              <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>Maak mijn aanvraag klaar
+            </button>
+            <a class="tlink" href="tarieven.html">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+          </div>
+          <p class="bon-status small" role="status" aria-live="polite"></p>
+          <p class="small" style="margin-top:1rem">* verplicht. Je aanvraag gaat als mail vanuit je eigen mailprogramma naar info@bambine.be.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================= CTA ======================= -->
+<section class="band band--dark band--tight">
+  <div class="sheet grid12" style="align-items:center">
+    <div class="s7" data-reveal>
+      <h2>Liever even<br>bellen?</h2>
+      <p class="lead" style="margin-top:1rem">Een cadeaubon bestellen kan ook telefonisch of gewoon per mail.</p>
+    </div>
+    <div class="s4 from9" data-reveal style="--d:100ms">
+      <div class="actions actions--stack">
+        <a class="btn btn--onDark" href="tel:+32474782691">
+          <svg class="ico" aria-hidden="true"><use href="#i-phone"></use></svg>+32 474 78 26 91
+        </a>
+        <a class="btn btn--ghostDark" href="mailto:info@bambine.be?subject=Cadeaubon">
+          <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>info@bambine.be
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
