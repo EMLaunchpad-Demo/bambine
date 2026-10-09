@@ -44,6 +44,7 @@ NAV = [
     ("tarieven.html", "Tarieven"),
     ("cadeaubon.html", "Cadeaubon"),
     ("index.html#ine", "Over Ine"),
+    (WEBSHOP, "Webshop"),
     ("contact.html", "Contact"),
 ]
 # Het mobiele menu toont alles onder elkaar.
@@ -52,6 +53,7 @@ DRAWER = [
     ("reserveren.html", "Reserveren"),
     ("cadeaubon.html", "Cadeaubon"),
     ("index.html#ine", "Over Ine"),
+    (WEBSHOP, "Webshop"),
     ("contact.html", "Contact"),
 ]
 
@@ -452,6 +454,8 @@ def links_html(items: list[tuple[str, str]], current: str, genummerd: bool = Fal
     uit = []
     for i, (href, label) in enumerate(items):
         cur = ' aria-current="page"' if href == current else ""
+        if href.startswith("http"):
+            cur = ' target="_blank" rel="noopener"'
         nr = f"<em>0{i + 1}</em>" if genummerd else ""
         uit.append(f'<li><a href="{href}"{cur}>{nr}{label}</a></li>')
     return "".join(uit)
