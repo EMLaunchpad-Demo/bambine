@@ -88,8 +88,10 @@ def tussenkop(titel: str) -> str:
     )
 
 
-def gegevens(met_details: bool = True) -> str:
-    """Blok met de geboekte dienst(en), datum, uur en adres."""
+def gegevens(met_details: bool = True, met_voor: bool = False) -> str:
+    """Blok met de geboekte dienst(en), datum, uur en adres.
+
+    met_voor: toont ook voor wie de sessie is (veld uit het boekingsformulier, sinds 12/10/2026)."""
     if met_details:
         dienst = (
             f'<p style="margin:0 0 14px;font-family:{SANS};font-size:16px;line-height:1.55;color:{INK};">'
@@ -119,7 +121,7 @@ def gegevens(met_details: bool = True) -> str:
   <tr>
     <td style="padding:0 24px 14px;">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
-        {rij("Datum", DATUM)}
+        {rij("Voor", "{{contact.voor_wie_is_de_sessie}}") + chr(10) + "        " if met_voor else ""}{rij("Datum", DATUM)}
         {rij("Uur", UUR)}
         {rij("Waar", "Bambine, " + ADRES + "<br>in galerij Vivaldi")}
       </table>
@@ -223,7 +225,7 @@ EMAILS = {
             p("Hallo,"),
             p("Bedankt voor je reservatie bij Bambine. Hieronder vind je alles op een rij. "
               "Ine kijkt ernaar uit om jullie te ontvangen."),
-            gegevens(),
+            gegevens(met_voor=True),
             knop("Route plannen", ROUTE),
             tussenkop("Goed om te weten"),
             lijst([

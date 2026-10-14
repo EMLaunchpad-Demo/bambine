@@ -305,7 +305,7 @@ BEDRIJF = {
         "itemListElement": aanbod_ld(),
     },
 }
-# Openingsuren staan niet op bambine.be; ze komen hier pas bij als Bambine ze aanlevert.
+# Openingsuren: op afspraak (Martijn, 14/10/2026).
 
 
 def jsonld(*blocks: dict) -> str:
@@ -525,13 +525,13 @@ FOOTER = """<footer class="site-footer">
           <li>{straat}<br>{post} {stad}<br>galerij Vivaldi</li>
           <li><a href="tel:{telhref}">{tel}</a></li>
           <li><a href="mailto:{mail}">{mail}</a></li>
-          <li>Openingsuren: <span class="todo">nog aan te vullen</span></li>
+          <li>Openingsuren: op afspraak</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© <span data-year>2026</span> {voluit}</span>
-      <span>Conceptontwerp door EM Launchpad</span>
+      <span>In samenwerking met <a href="https://emlaunchpad.com" rel="noopener">EM Launchpad</a></span>
     </div>
   </div>
 </footer>"""
