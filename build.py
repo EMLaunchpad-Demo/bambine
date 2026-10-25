@@ -60,13 +60,21 @@ DRAWER = [
 # --- diensten en prijzen (bron: bambine.be/tarieven) ------------------------
 
 DIENSTEN = [
-    dict(groep="babywellness", naam="Hydrotherapie", duur="30 minuten", prijs=55,
+    dict(groep="babywellness", naam="Hydrotherapie", duur="30 minuten", prijs=60,
          noot="Dobberen en bubbelen in water van ongeveer 37 °C."),
-    dict(groep="babywellness", naam="Sessie Bambine", duur="1 uur 10 minuten", prijs=75,
+    dict(groep="babywellness", naam="Sessie Bambine", duur="1 uur 10 minuten", prijs=80,
          noot="30 minuten hydrotherapie, daarna 40 minuten Shantala babymassage."),
-    dict(groep="babywellness", naam="Duosessie Bambine", duur="1 uur", prijs=150,
+    dict(groep="babywellness", naam="Duosessie Bambine", duur="1 uur", prijs=160,
          noot="Voor twee kindjes in twee aparte badjes, bijvoorbeeld vriendjes of een "
               "tweeling. 30 minuten hydrotherapie en 30 minuten Shantala babymassage."),
+    dict(groep="babywellness", naam="Duosessie hydrotherapie", duur="1 uur", prijs=120,
+         noot="Met twee komen bubbelen, bijvoorbeeld vriendjes, een tweeling of een "
+              "familiedate. Elk in een eigen badje, en zijn de baby's nog heel klein, dan "
+              "mogen ze ook eventjes samen in een badje dobberen."),
+    dict(groep="babywellness", naam="Peuter badsessie", duur="1 uur", prijs=45,
+         noot="Je peuter mag in het bubbelbad, met een antislipmatje en water van ongeveer "
+              "37 °C. Er ligt motorisch speelgoed klaar, en je kindje mag zelf de bubbels "
+              "en de lampjes aanzetten."),
     dict(groep="babywellness", naam="Shantala babymassage", duur="± 35 minuten", prijs=40,
          noot="Je geeft je baby zelf de massage, onder begeleiding van Ine."),
     dict(groep="mama", naam="Zwangerschapsmassage", duur="± 75 minuten", prijs=90,
@@ -75,6 +83,9 @@ DIENSTEN = [
     dict(groep="mama", naam="Ontspanningsmassage voor vrouwen", duur="± 75 minuten", prijs=90,
          noot="Eerst een ontspannend voetenbadje en een drankje, dan ongeveer een uur "
               "massage van het volledige lichaam."),
+    dict(groep="mama", naam="Massage nek, rug en schouders", duur="30 minuten", prijs=40,
+         noot="Een stevige massage van een half uur, ideaal als je nek en rug wat vast "
+              "of geblokkeerd zitten."),
     dict(groep="kids", naam="Verwensessie voor meisjes", sub="3 tot 16 jaar",
          duur="± 60 minuten", prijs=60,
          noot="Op maat van je kind: een drankje, een massage van 15 minuten, een "
@@ -84,7 +95,7 @@ DIENSTEN = [
          duur="± 60 minuten", prijs=75,
          noot="Eerst een ontspannend voetenbubbelbadje en een drankje, dan ongeveer "
               "45 minuten massage van het volledige lichaam."),
-    dict(groep="kids", naam="Mini en me", duur="120 minuten", prijs=120,
+    dict(groep="kids", naam="Mini en me", duur="120 minuten", prijs=125,
          noot="Een sessie voor vrouw en meisje samen."),
 ]
 
@@ -278,7 +289,7 @@ BEDRIJF = {
     "image": f"{SITE}/assets/img/bambine-og.jpg",
     "telephone": TEL,
     "email": MAIL,
-    "priceRange": "€40 - €150",
+    "priceRange": "€40 - €160",
     "currenciesAccepted": "EUR",
     "paymentAccepted": "Cash, Payconiq",
     "address": {
@@ -381,7 +392,7 @@ PAGES = {
     "tarieven.html": dict(
         title="Tarieven | Bambine babywellness en massages in Lommel",
         desc=(
-            "Hydrotherapie € 55, sessie Bambine € 75, duosessie € 150, Shantala € 40, "
+            "Hydrotherapie € 60, sessie Bambine € 80, duosessie € 160, Shantala € 40, "
             "zwangerschaps- en ontspanningsmassage € 90, verwensessie voor meisjes € 60."
         ),
         ld=[
