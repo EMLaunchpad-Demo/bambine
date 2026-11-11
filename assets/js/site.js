@@ -166,29 +166,52 @@
     if (!volgHash()) toonBon((keuzes.filter(function (k) { return k.checked; })[0] || keuzes[0]).value, false);
   }
 
-  /* Bestelformulier fysieke bon: maakt een ingevulde mail klaar */
+  /* Fysieke bon: een behandeling betaal je online via de betaallink uit de
+     keuzelijst (data-link, data-prijs, data-totaal komen uit build.py). Voor een
+     eigen bedrag maakt het formulier een ingevulde mail klaar. */
   var form = $(".bon-form");
   if (form) {
     var wat = $("#bon-wat", form);
     var bedragVeld = $("[data-bedrag]", form);
     var bedrag = $("#bon-bedrag", form);
     var status = $(".bon-status", form);
+    var betaal = $("[data-betaal]", form);
+    var eigenBlok = $("[data-eigen]", form);
+    var verzending = $("[data-verzending]", form);
 
-    wat.addEventListener("change", function () {
+    var werkBij = function () {
+      var opt = wat.options[wat.selectedIndex];
+      var link = opt ? opt.getAttribute("data-link") : "";
       var eigen = wat.value === "bedrag";
+      if (betaal) {
+        betaal.hidden = !link;
+        if (link) {
+          var totaal = "€ " + opt.getAttribute("data-totaal");
+          /* Naam van de behandeling ook hier: op een smalle gsm valt ze weg in de keuzelijst. */
+          $("[data-bon-naam]", betaal).textContent = "Cadeaubon: " + opt.textContent.split(" · ")[0];
+          $("[data-bon-waarde]", betaal).textContent = "€ " + opt.getAttribute("data-prijs");
+          $("[data-bon-totaal]", betaal).textContent = totaal;
+          $("[data-bon-knop]", betaal).textContent = "Betaal " + totaal + " online";
+          $("[data-bon-link]", betaal).href = link;
+        }
+      }
+      if (eigenBlok) eigenBlok.hidden = !eigen;
       bedragVeld.hidden = !eigen;
       bedrag.required = eigen;
-      if (eigen) bedrag.focus();
-    });
+      return eigen;
+    };
+    wat.addEventListener("change", function () { if (werkBij()) bedrag.focus(); });
+    /* Terug van de betaalpagina: de browser zet de keuze terug, het totaal volgt. */
+    window.addEventListener("pageshow", werkBij);
+    werkBij();
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
       var velden = $$("input, select, textarea", form);
       velden.forEach(function (v) { v.removeAttribute("aria-invalid"); });
-      /* Alleen het bedragveld mag overgeslagen worden, als het niet van toepassing is. */
+      /* Velden in een verborgen blok tellen niet mee. */
       var fout = velden.filter(function (v) {
-        var veld = v.closest(".veld");
-        return !(veld && veld.hidden) && !v.checkValidity();
+        return !v.closest("[hidden]") && !v.checkValidity();
       });
       if (fout.length) {
         fout.forEach(function (v) { v.setAttribute("aria-invalid", "true"); });
@@ -197,7 +220,10 @@
         return;
       }
       var waarde = function (id) { var el = $(id, form); return el ? el.value.trim() : ""; };
-      var cadeau = wat.value === "bedrag" ? "Een bedrag van € " + waarde("#bon-bedrag") : wat.value;
+      var cadeau = wat.value === "bedrag"
+        ? "Een bedrag van € " + waarde("#bon-bedrag") +
+          (verzending ? " (+ " + verzending.textContent.trim() + " verzending)" : "")
+        : wat.value;
       var regels = [
         "Dag Ine,",
         "",

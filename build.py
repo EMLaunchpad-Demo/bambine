@@ -104,6 +104,31 @@ def euro(bedrag: int) -> str:
     return f"€ {bedrag}"
 
 
+# Fysieke cadeaubon: verzending per bon (Martijn, 11/11/2026)
+VERZENDING = 8
+# Betaallinks voor de fysieke bon: (totaal = prijs + VERZENDING, URL). Eén per dienst uit
+# DIENSTEN. Verandert een prijs, maak dan eerst een nieuwe prijs en betaallink aan: de build
+# stopt zolang het totaal hier niet klopt met de prijs in DIENSTEN plus de verzending.
+BON_LINKS = {
+    "Hydrotherapie": (68, "https://link.fastpaydirect.com/payment-link/6af45ac1906a8b62055d58bf"),
+    "Sessie Bambine": (88, "https://link.fastpaydirect.com/payment-link/6af45b0e906a8b62055d58c0"),
+    "Duosessie Bambine": (168, "https://link.fastpaydirect.com/payment-link/6af45b8e21a48a3872d2519f"),
+    "Duosessie hydrotherapie": (128, "https://link.fastpaydirect.com/payment-link/6af45bb421a48a3872d251a1"),
+    "Peuter badsessie": (53, "https://link.fastpaydirect.com/payment-link/6af45bd9906a8b62055d58c2"),
+    "Shantala babymassage": (48, "https://link.fastpaydirect.com/payment-link/6af45bfb21a48a3872d251a3"),
+    "Zwangerschapsmassage": (98, "https://link.fastpaydirect.com/payment-link/6af45c2521a48a3872d251a4"),
+    "Ontspanningsmassage voor vrouwen": (98, "https://link.fastpaydirect.com/payment-link/6af45c47906a8b62055d58c7"),
+    "Massage nek, rug en schouders": (48, "https://link.fastpaydirect.com/payment-link/6af45c92906a8b62055d58ca"),
+    "Verwensessie voor meisjes": (68, "https://link.fastpaydirect.com/payment-link/6af45cc821a48a3872d251a7"),
+    "Kids ontspanningsmassage": (83, "https://link.fastpaydirect.com/payment-link/6af45cf821a48a3872d251a8"),
+    "Mini en me": (133, "https://link.fastpaydirect.com/payment-link/6af45d2e906a8b62055d58cb"),
+}
+# Naam in de keuzelijst als die preciezer moet zijn dan in DIENSTEN (de betaallink geldt voor 1 kind).
+BON_LABELS = {
+    "Verwensessie voor meisjes": "Verwensessie voor meisjes (1 kind)",
+}
+
+
 def carte_html(groep: str | None = None, namen: list[str] | None = None) -> str:
     """Tarieven als menukaart: naam, stippellijn, prijs, en daaronder duur en inhoud."""
     rijen = []
@@ -125,12 +150,22 @@ def carte_html(groep: str | None = None, namen: list[str] | None = None) -> str:
 
 
 def bon_opties_html() -> str:
-    """Keuzelijst voor het bestelformulier van de fysieke cadeaubon."""
-    opties = [
-        f'<option value="{html.escape(d["naam"])} ({euro(d["prijs"])})">'
-        f'{html.escape(d["naam"])} · {euro(d["prijs"])}</option>'
-        for d in DIENSTEN
-    ]
+    """Keuzelijst fysieke bon: per behandeling prijs, totaal met verzending en betaallink."""
+    opties = []
+    for d in DIENSTEN:
+        if d["naam"] not in BON_LINKS:
+            raise SystemExit(f"Geen betaallink voor de fysieke bon: {d['naam']}")
+        totaal, link = BON_LINKS[d["naam"]]
+        if totaal != d["prijs"] + VERZENDING:
+            raise SystemExit(
+                f"Betaallink {d['naam']} vraagt {totaal}, verwacht {d['prijs'] + VERZENDING}"
+            )
+        label = html.escape(BON_LABELS.get(d["naam"], d["naam"]))
+        opties.append(
+            f'<option value="{label} ({euro(d["prijs"])})" data-prijs="{d["prijs"]}" '
+            f'data-totaal="{totaal}" data-link="{html.escape(link)}">'
+            f'{label} · {euro(d["prijs"])}</option>'
+        )
     opties.append('<option value="bedrag">Een bedrag naar keuze</option>')
     return "".join(opties)
 
@@ -197,7 +232,8 @@ FAQ = {
     ),
     "betalen": (
         "Hoe betaal ik?",
-        "Cash of met Payconiq. Met Bancontact betalen kan niet.",
+        "Ter plaatse betaal je cash of met Payconiq. Met Bancontact betalen kan daar niet. "
+        "Een cadeaubon kan je online betalen.",
     ),
     "meisjes": (
         "Hoe ziet een verwenmoment voor meisjes eruit?",
@@ -215,8 +251,9 @@ FAQ = {
     "cadeaubon": (
         "Kan ik een cadeaubon geven?",
         "Ja, voor mama, papa of baby, en ook voor meisjes vanaf 3 jaar. Kies een digitale "
-        "bon, die je meteen online koopt, of een fysieke bon, die naar je opgestuurd wordt. "
-        "Het bedrag kies je zelf.",
+        f"bon of een fysieke bon die naar je opgestuurd wordt ({euro(VERZENDING)} verzending). "
+        "Allebei koop en betaal je meteen online. Het bedrag kies je zelf: staat jouw bedrag "
+        "er niet tussen, mail of bel Ine dan.",
     ),
     "aansprakelijkheid": (
         "Is Bambine aansprakelijk bij een ongeval?",
@@ -434,7 +471,7 @@ PAGES = {
         title="Cadeaubon | Bambine babywellness Lommel",
         desc=(
             "Een cadeaubon van Bambine voor mama, papa, baby of een meisje vanaf 3 jaar. "
-            "Digitaal meteen online, of als fysieke bon die naar je opgestuurd wordt."
+            "Digitaal of als fysieke bon die opgestuurd wordt, allebei meteen online te betalen."
         ),
         ld=[BEDRIJF, crumbs_ld([("", "Home"), ("cadeaubon.html", "Cadeaubon")])],
     ),
@@ -619,6 +656,7 @@ def vul_in(body: str) -> str:
     )
     body = re.sub(r"<!-- faq:([a-z]+) -->", lambda m: faq_html(FAQ_SETS[m.group(1)]), body)
     body = body.replace("<!-- bon-opties -->", bon_opties_html())
+    body = body.replace("<!-- bon-verzending -->", euro(VERZENDING))
     over = re.findall(r"<!-- (?:carte|faq|bon-)[^>]*-->", body)
     if over:
         raise SystemExit(f"Onbekende plaatshouder: {over}")

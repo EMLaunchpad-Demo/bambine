@@ -11,8 +11,8 @@
         <h1>Cadeaubon</h1>
         <p class="lead" style="margin-top:1.25rem">
           Op zoek naar een origineel cadeau voor mama, papa of baby? Dan ben je hier aan het
-          juiste adres. Ook voor meisjes vanaf 3 jaar zijn er behandelingen. Het bedrag kies
-          je zelf.
+          juiste adres. Ook voor meisjes vanaf 3 jaar zijn er behandelingen. Kies hieronder
+          een bedrag of een behandeling. Een ander bedrag kan ook: mail of bel Ine.
         </p>
       </div>
       <div class="s5 from8" data-reveal="fig">
@@ -47,7 +47,7 @@
         <input type="radio" name="bon-soort" value="fysiek">
         <span class="bon-optie-nr" aria-hidden="true">02</span>
         <span class="bon-optie-titel">Fysieke cadeaubon</span>
-        <span class="bon-optie-tekst">Een echte bon, die naar je opgestuurd wordt.</span>
+        <span class="bon-optie-tekst">Een echte bon, die je online betaalt en die naar je opgestuurd wordt. Verzending <!-- bon-verzending -->.</span>
       </label>
     </fieldset>
 
@@ -71,17 +71,18 @@
       </div>
     </div>
 
-    <!-- Fysiek: de bon wordt opgestuurd. Het formulier maakt een ingevulde mail aan
-         info@bambine.be; zonder JavaScript valt het terug op een gewone mailto-verzending. -->
+    <!-- Fysiek: een behandeling betaal je online via een betaallink (BON_LINKS in build.py);
+         een eigen bedrag gaat als ingevulde mail naar info@bambine.be, en zonder JavaScript
+         is dat de enige route. -->
     <div class="bon-paneel grid12" data-paneel="fysiek">
       <div class="s4">
         <h3>Fysieke cadeaubon</h3>
         <p>
-          Kies wat je cadeau geeft en waar de bon naartoe moet, en verstuur de mail die
-          klaarstaat. De bon wordt opgestuurd naar het adres dat je opgeeft: naar jezelf,
-          of meteen naar wie hem krijgt.
+          Kies wat je cadeau geeft. De bon wordt opgestuurd naar het adres dat je opgeeft:
+          naar jezelf, of meteen naar wie hem krijgt.
         </p>
         <ul class="info" style="margin-top:1.5rem">
+          <li><span class="k">Verzending</span><span><!-- bon-verzending --> per bon</span></li>
           <li><span class="k">Liever bellen?</span><a href="tel:+32474782691">+32 474 78 26 91</a></li>
         </ul>
       </div>
@@ -90,63 +91,79 @@
           <div class="veld">
             <label for="bon-wat">Wat geef je cadeau? <span class="req" aria-hidden="true">*</span></label>
             <select id="bon-wat" name="Cadeau" required>
-              <option value="">Kies een behandeling of een bedrag</option>
+              <option value="">Maak een keuze</option>
               <!-- bon-opties -->
             </select>
           </div>
-          <div class="veld" data-bedrag hidden>
-            <label for="bon-bedrag">Bedrag in euro <span class="req" aria-hidden="true">*</span></label>
-            <input id="bon-bedrag" name="Bedrag" type="number" inputmode="numeric" min="1" step="1">
+          <div class="bon-betaal" data-betaal hidden>
+            <dl class="bon-totaal" aria-live="polite">
+              <div><dt data-bon-naam>Cadeaubon</dt><dd data-bon-waarde></dd></div>
+              <div><dt>Verzending</dt><dd data-verzending><!-- bon-verzending --></dd></div>
+              <div class="bon-totaal-som"><dt>Totaal</dt><dd data-bon-totaal></dd></div>
+            </dl>
+            <div class="actions">
+              <a class="btn" href="#" data-bon-link>
+                <svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg><span data-bon-knop>Betaal online</span>
+              </a>
+            </div>
+            <p class="small">Je betaalt op een beveiligde betaalpagina. Daar vul je ook je gegevens en het volledige leveradres in, met postcode. Gaat de bon rechtstreeks naar iemand anders? Zet dan de naam van de ontvanger vooraan in het adresveld.</p>
           </div>
-          <fieldset class="veld veld--adres">
-            <legend>Leveradres</legend>
-            <div class="veld">
-              <label for="bon-ontvanger">Naam op het adres</label>
-              <input id="bon-ontvanger" name="Ontvanger" type="text" autocomplete="shipping name" aria-describedby="bon-ontvanger-hulp">
-              <p class="veld-hulp" id="bon-ontvanger-hulp">Laat leeg als de bon naar jou mag.</p>
+          <div class="bon-eigen" data-eigen>
+            <p class="veld-hulp">Een eigen bedrag betaal je niet online. Vul je gegevens in en verstuur de mail die klaarstaat, of bel Ine. Ook dan komt er <!-- bon-verzending --> verzending bij.</p>
+            <div class="veld" data-bedrag hidden>
+              <label for="bon-bedrag">Bedrag in euro <span class="req" aria-hidden="true">*</span></label>
+              <input id="bon-bedrag" name="Bedrag" type="number" inputmode="numeric" min="1" step="1">
             </div>
-            <div class="veld">
-              <label for="bon-straat">Straat en huisnummer <span class="req" aria-hidden="true">*</span></label>
-              <input id="bon-straat" name="Straat" type="text" autocomplete="shipping street-address" required>
-            </div>
-            <div class="veld-rij veld-rij--post">
+            <fieldset class="veld veld--adres">
+              <legend>Leveradres</legend>
               <div class="veld">
-                <label for="bon-postcode">Postcode <span class="req" aria-hidden="true">*</span></label>
-                <input id="bon-postcode" name="Postcode" type="text" inputmode="numeric" autocomplete="shipping postal-code" required>
+                <label for="bon-ontvanger">Naam op het adres</label>
+                <input id="bon-ontvanger" name="Ontvanger" type="text" autocomplete="shipping name" aria-describedby="bon-ontvanger-hulp">
+                <p class="veld-hulp" id="bon-ontvanger-hulp">Laat leeg als de bon naar jou mag.</p>
               </div>
               <div class="veld">
-                <label for="bon-gemeente">Gemeente <span class="req" aria-hidden="true">*</span></label>
-                <input id="bon-gemeente" name="Gemeente" type="text" autocomplete="shipping address-level2" required>
+                <label for="bon-straat">Straat en huisnummer <span class="req" aria-hidden="true">*</span></label>
+                <input id="bon-straat" name="Straat" type="text" autocomplete="shipping street-address" required>
+              </div>
+              <div class="veld-rij veld-rij--post">
+                <div class="veld">
+                  <label for="bon-postcode">Postcode <span class="req" aria-hidden="true">*</span></label>
+                  <input id="bon-postcode" name="Postcode" type="text" inputmode="numeric" autocomplete="shipping postal-code" required>
+                </div>
+                <div class="veld">
+                  <label for="bon-gemeente">Gemeente <span class="req" aria-hidden="true">*</span></label>
+                  <input id="bon-gemeente" name="Gemeente" type="text" autocomplete="shipping address-level2" required>
+                </div>
+              </div>
+            </fieldset>
+            <p class="veld-kop">Jouw gegevens</p>
+            <div class="veld-rij">
+              <div class="veld">
+                <label for="bon-naam">Je naam <span class="req" aria-hidden="true">*</span></label>
+                <input id="bon-naam" name="Naam" type="text" autocomplete="name" required>
+              </div>
+              <div class="veld">
+                <label for="bon-tel">Telefoon</label>
+                <input id="bon-tel" name="Telefoon" type="tel" autocomplete="tel">
               </div>
             </div>
-          </fieldset>
-          <p class="veld-kop">Jouw gegevens</p>
-          <div class="veld-rij">
             <div class="veld">
-              <label for="bon-naam">Je naam <span class="req" aria-hidden="true">*</span></label>
-              <input id="bon-naam" name="Naam" type="text" autocomplete="name" required>
+              <label for="bon-mail">E-mail <span class="req" aria-hidden="true">*</span></label>
+              <input id="bon-mail" name="E-mail" type="email" autocomplete="email" required>
             </div>
             <div class="veld">
-              <label for="bon-tel">Telefoon</label>
-              <input id="bon-tel" name="Telefoon" type="tel" autocomplete="tel">
+              <label for="bon-noot">Opmerking</label>
+              <textarea id="bon-noot" name="Opmerking" rows="3"></textarea>
             </div>
+            <div class="actions" style="margin-top:1.5rem">
+              <button class="btn" type="submit">
+                <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>Maak mijn aanvraag klaar
+              </button>
+              <a class="tlink" href="tarieven.html">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
+            </div>
+            <p class="bon-status small" role="status" aria-live="polite"></p>
+            <p class="small" style="margin-top:1rem">* verplicht. Je aanvraag gaat als mail vanuit je eigen mailprogramma naar info@bambine.be.</p>
           </div>
-          <div class="veld">
-            <label for="bon-mail">E-mail <span class="req" aria-hidden="true">*</span></label>
-            <input id="bon-mail" name="E-mail" type="email" autocomplete="email" required>
-          </div>
-          <div class="veld">
-            <label for="bon-noot">Opmerking</label>
-            <textarea id="bon-noot" name="Opmerking" rows="3"></textarea>
-          </div>
-          <div class="actions" style="margin-top:1.5rem">
-            <button class="btn" type="submit">
-              <svg class="ico" aria-hidden="true"><use href="#i-mail"></use></svg>Maak mijn aanvraag klaar
-            </button>
-            <a class="tlink" href="tarieven.html">Alle tarieven<svg class="ico" aria-hidden="true"><use href="#i-arrow-right"></use></svg></a>
-          </div>
-          <p class="bon-status small" role="status" aria-live="polite"></p>
-          <p class="small" style="margin-top:1rem">* verplicht. Je aanvraag gaat als mail vanuit je eigen mailprogramma naar info@bambine.be.</p>
         </form>
       </div>
     </div>

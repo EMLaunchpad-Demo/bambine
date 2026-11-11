@@ -1032,6 +1032,17 @@ p:last-child { margin-bottom: 0; }
 .veld-hulp { margin: 0; font-size: 0.82rem; color: var(--muted); }
 .bon-status:empty { display: none; }
 .bon-status { margin: 0; color: var(--ink); }
+/* Fysieke bon: totaal met verzending en de knop naar de betaalpagina */
+.bon-betaal, .bon-eigen { display: grid; gap: 1.35rem; }
+.bon-betaal[hidden], .bon-eigen[hidden] { display: none; }
+.bon-totaal { margin: 0; border-top: 1px solid var(--rule); }
+.bon-totaal > div { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 0.8rem 0; border-bottom: 1px solid var(--rule); }
+.bon-totaal dt { color: var(--ink-2); }
+.bon-totaal dd { margin: 0; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bon-totaal-som dt, .bon-totaal-som dd { font-family: var(--serif); font-size: 1.25rem; color: var(--ink); }
+.bon-betaal .actions { margin-top: 0; }
+.bon-betaal .small { margin: 0; }
+@media (max-width: 520px) { .bon-betaal .btn { width: 100%; justify-content: center; } }
 
 /* --- 15c. Online reserveren ---------------------------------------------- */
 /* Het boekingssysteem zit in een iframe; form_embed.js past de hoogte aan. De

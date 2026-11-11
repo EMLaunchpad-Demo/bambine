@@ -4,3 +4,4 @@ node_modules/
 shots/
 __pycache__/
 .claude/launch.json
+_screens/

@@ -15,7 +15,7 @@ te vinden was, staat op de site als *nog aan te vullen*.
 | `index.html` | Hero met vullend beeld, hydrotherapie, het aanbod in drie rijen, over Ine, citaat met fotogalerij, cadeaubon, vier vragen en contact |
 | `tarieven.html` | Alle diensten als menukaart, met ankers `#babywellness`, `#mama`, `#kids`, `#cadeaubon` en `#praktisch` (betalen, afzeggen, aansprakelijkheid) |
 | `reserveren.html` | Online reserveren via het boekingssysteem van Bambine (`#boeken`), bellen of mailen als alternatief, het verloop van een sessie babywellness en wat je vooraf moet weten |
-| `cadeaubon.html` | Keuze tussen een **digitale** bon (online checkout) en een **fysieke** bon (bestelformulier met leveradres dat een mail aan Ine klaarmaakt; de bon wordt opgestuurd). Met `#digitaal` of `#fysiek` in de link opent meteen de juiste keuze |
+| `cadeaubon.html` | Keuze tussen een **digitale** bon (online checkout) en een **fysieke** bon die opgestuurd wordt (per behandeling online betalen via een betaallink, bon + verzending; een eigen bedrag via een ingevulde mail aan Ine). Met `#digitaal` of `#fysiek` in de link opent meteen de juiste keuze |
 | `contact.html` | Adres, gegevens, een kaart die pas na een klik laadt, en alle veelgestelde vragen |
 
 Verder: `sitemap.xml`, `robots.txt`, `site.webmanifest`, favicons, zelf gehoste webfonts
@@ -60,7 +60,8 @@ Waar de oudere briefing en bambine.be verschilden, volgt de site bambine.be:
 - Voor de **cadeaubon** kies je zelf het bedrag.
 - Ook op de site: zwangerschapsmassage en ontspanningsmassage (€ 90), kids
   ontspanningsmassage (€ 75) en Mini en me (€ 120).
-- **Betalen** kan cash of met Payconiq, niet met Bancontact.
+- **Betalen** ter plaatse kan cash of met Payconiq, niet met Bancontact. Een cadeaubon kan je
+  online betalen (digitaal via de checkout, fysiek per behandeling via een betaallink).
 
 ## Foto's en logo
 
@@ -126,11 +127,24 @@ helemaal uit bij `prefers-reduced-motion`. Zonder JavaScript blijft alles zichtb
   (`gc-embed.parent.js`) pas wanneer "Digitale cadeaubon" gekozen is. Het script moet vlak na
   de `div` komen; `site.js` zet het daar. Bedragen, taal en omschrijving van de bon stel je
   in de checkout zelf in, niet op deze site.
-- **Fysiek**: de bon wordt opgestuurd. Het formulier vraagt wat je cadeau geeft, het
-  leveradres (eventueel met de naam van wie hem krijgt) en je gegevens, en maakt een
-  ingevulde mail aan info@bambine.be vanuit het mailprogramma van de bezoeker. De keuzelijst met behandelingen en prijzen komt uit
-  `DIENSTEN` in `build.py` (plaatshouder `<!-- bon-opties -->`). Zonder JavaScript valt het
-  formulier terug op een gewone `mailto`-verzending.
+- **Fysiek**: de bon wordt opgestuurd. De bezoeker kiest wat hij cadeau geeft. De
+  keuzelijst met behandelingen en prijzen komt uit `DIENSTEN` in `build.py` (plaatshouder
+  `<!-- bon-opties -->`).
+  - **Een behandeling** betaal je meteen online. Elke behandeling heeft een eigen betaallink
+    in `BON_LINKS` in `build.py`, met als bedrag de prijs plus de verzending (`VERZENDING`,
+    plaatshouder `<!-- bon-verzending -->`). De pagina toont de bon, de verzending en het
+    totaal, en een knop naar de betaalpagina (in hetzelfde tabblad). Het leveradres vult de
+    koper daar in. Moet de naam in de keuzelijst preciezer zijn dan in `DIENSTEN` (de
+    verwensessie is een bon voor 1 kind), dan staat die in `BON_LABELS`.
+  - **Een eigen bedrag** kan niet online. Het formulier vraagt het bedrag, het leveradres
+    (eventueel met de naam van wie hem krijgt) en je gegevens, en maakt een ingevulde mail
+    aan info@bambine.be vanuit het mailprogramma van de bezoeker, met de verzending erbij
+    vermeld.
+  - Zonder JavaScript valt het formulier terug op een gewone `mailto`-verzending.
+  - **Prijs of verzending gewijzigd?** Maak dan eerst in ons platform een nieuwe prijs en
+    betaallink aan en zet die in `BON_LINKS`. De build stopt zolang een totaal in
+    `BON_LINKS` niet klopt met de prijs in `DIENSTEN` plus `VERZENDING`, of als een dienst
+    geen betaallink heeft.
 
 ## Online reserveren
 
